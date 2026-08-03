@@ -1,0 +1,10 @@
+{
+  "components": [
+    {
+      "name": "button",
+      "title": "Button",
+      "category": "forms",
+      "path": "components/button/component.html"
+    }
+  ]
+}
