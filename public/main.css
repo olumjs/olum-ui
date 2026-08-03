@@ -14,7 +14,7 @@
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --font-weight-medium: 500;
-    --radius-md: calc(var(--radius) * 0.8);
+    --radius-md: calc(var(--olum-radius) * 0.8);
     --animate-spin: spin 1s linear infinite;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -245,32 +245,32 @@
     border-radius: calc(infinity * 1px);
   }
   .rounded-lg {
-    border-radius: var(--radius);
+    border-radius: var(--olum-radius);
   }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
   .border-border {
-    border-color: var(--border);
+    border-color: var(--olum-border);
   }
   .border-transparent {
     border-color: transparent;
   }
   .bg-background {
-    background-color: var(--background);
+    background-color: var(--olum-background);
   }
   .bg-destructive\/10 {
-    background-color: var(--destructive);
+    background-color: var(--olum-destructive);
     @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--destructive) 10%, transparent);
+      background-color: color-mix(in oklab, var(--olum-destructive) 10%, transparent);
     }
   }
   .bg-primary {
-    background-color: var(--primary);
+    background-color: var(--olum-primary);
   }
   .bg-secondary {
-    background-color: var(--secondary);
+    background-color: var(--olum-secondary);
   }
   .bg-clip-padding {
     background-clip: padding-box;
@@ -303,16 +303,16 @@
     white-space: nowrap;
   }
   .text-destructive {
-    color: var(--destructive);
+    color: var(--olum-destructive);
   }
   .text-primary {
-    color: var(--primary);
+    color: var(--olum-primary);
   }
   .text-primary-foreground {
-    color: var(--primary-foreground);
+    color: var(--olum-primary-foreground);
   }
   .text-secondary-foreground {
-    color: var(--secondary-foreground);
+    color: var(--olum-secondary-foreground);
   }
   .underline-offset-4 {
     text-underline-offset: 4px;
@@ -335,63 +335,63 @@
     user-select: none;
   }
   @media (hover: hover) {
-    .hover\:bg-\[color-mix\(in_oklch\,var\(--secondary\)\,var\(--foreground\)_5\%\)\]:hover {
-      background-color: var(--secondary);
+    .hover\:bg-\[color-mix\(in_oklch\,var\(--olum-secondary\)\,var\(--olum-foreground\)_5\%\)\]:hover {
+      background-color: var(--olum-secondary);
     }
     @supports (color: color-mix(in lab, red, red)) {
-      .hover\:bg-\[color-mix\(in_oklch\,var\(--secondary\)\,var\(--foreground\)_5\%\)\]:hover {
-        background-color: color-mix(in oklch,var(--secondary),var(--foreground) 5%);
+      .hover\:bg-\[color-mix\(in_oklch\,var\(--olum-secondary\)\,var\(--olum-foreground\)_5\%\)\]:hover {
+        background-color: color-mix(in oklch,var(--olum-secondary),var(--olum-foreground) 5%);
       }
     }
     .hover\:bg-destructive\/20:hover {
-      background-color: var(--destructive);
+      background-color: var(--olum-destructive);
     }
     @supports (color: color-mix(in lab, red, red)) {
       .hover\:bg-destructive\/20:hover {
-        background-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+        background-color: color-mix(in oklab, var(--olum-destructive) 20%, transparent);
       }
     }
     .hover\:bg-muted:hover {
-      background-color: var(--muted);
+      background-color: var(--olum-muted);
     }
     .hover\:bg-primary\/80:hover {
-      background-color: var(--primary);
+      background-color: var(--olum-primary);
     }
     @supports (color: color-mix(in lab, red, red)) {
       .hover\:bg-primary\/80:hover {
-        background-color: color-mix(in oklab, var(--primary) 80%, transparent);
+        background-color: color-mix(in oklab, var(--olum-primary) 80%, transparent);
       }
     }
     .hover\:text-foreground:hover {
-      color: var(--foreground);
+      color: var(--olum-foreground);
     }
     .hover\:underline:hover {
       text-decoration-line: underline;
     }
   }
   .focus-visible\:border-destructive\/40:focus-visible {
-    border-color: var(--destructive);
+    border-color: var(--olum-destructive);
     @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+      border-color: color-mix(in oklab, var(--olum-destructive) 40%, transparent);
     }
   }
   .focus-visible\:border-ring:focus-visible {
-    border-color: var(--ring);
+    border-color: var(--olum-ring);
   }
   .focus-visible\:ring-3:focus-visible {
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .focus-visible\:ring-destructive\/20:focus-visible {
-    --tw-ring-color: var(--destructive);
+    --tw-ring-color: var(--olum-destructive);
     @supports (color: color-mix(in lab, red, red)) {
-      --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+      --tw-ring-color: color-mix(in oklab, var(--olum-destructive) 20%, transparent);
     }
   }
   .focus-visible\:ring-ring\/50:focus-visible {
-    --tw-ring-color: var(--ring);
+    --tw-ring-color: var(--olum-ring);
     @supports (color: color-mix(in lab, red, red)) {
-      --tw-ring-color: color-mix(in oklab, var(--ring) 50%, transparent);
+      --tw-ring-color: color-mix(in oklab, var(--olum-ring) 50%, transparent);
     }
   }
   .active\:not-aria-\[haspopup\]\:translate-y-px:active:not([aria-haspopup]) {
@@ -417,28 +417,28 @@
     padding-left: calc(var(--spacing) * 2);
   }
   .aria-expanded\:bg-muted[aria-expanded="true"] {
-    background-color: var(--muted);
+    background-color: var(--olum-muted);
   }
   .aria-expanded\:bg-secondary[aria-expanded="true"] {
-    background-color: var(--secondary);
+    background-color: var(--olum-secondary);
   }
   .aria-expanded\:text-foreground[aria-expanded="true"] {
-    color: var(--foreground);
+    color: var(--olum-foreground);
   }
   .aria-expanded\:text-secondary-foreground[aria-expanded="true"] {
-    color: var(--secondary-foreground);
+    color: var(--olum-secondary-foreground);
   }
   .aria-invalid\:border-destructive[aria-invalid="true"] {
-    border-color: var(--destructive);
+    border-color: var(--olum-destructive);
   }
   .aria-invalid\:ring-3[aria-invalid="true"] {
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .aria-invalid\:ring-destructive\/20[aria-invalid="true"] {
-    --tw-ring-color: var(--destructive);
+    --tw-ring-color: var(--olum-destructive);
     @supports (color: color-mix(in lab, red, red)) {
-      --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+      --tw-ring-color: color-mix(in oklab, var(--olum-destructive) 20%, transparent);
     }
   }
   .\[\&_svg\]\:pointer-events-none svg {
@@ -461,20 +461,20 @@
   }
 }
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --olum-radius: 0.625rem;
+  --olum-background: oklch(1 0 0);
+  --olum-foreground: oklch(0.145 0 0);
+  --olum-primary: oklch(0.205 0 0);
+  --olum-primary-foreground: oklch(0.985 0 0);
+  --olum-secondary: oklch(0.97 0 0);
+  --olum-secondary-foreground: oklch(0.205 0 0);
+  --olum-muted: oklch(0.97 0 0);
+  --olum-muted-foreground: oklch(0.556 0 0);
+  --olum-accent: oklch(0.97 0 0);
+  --olum-accent-foreground: oklch(0.205 0 0);
+  --olum-destructive: oklch(0.577 0.245 27.325);
+  --olum-border: oklch(0.922 0 0);
+  --olum-ring: oklch(0.708 0 0);
 }
 @property --tw-border-style {
   syntax: "*";
