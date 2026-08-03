@@ -18,13 +18,14 @@
   "license": "ISC",
   "dependencies": {
     "olum": "latest",
-    "olum-router": "latest"
+    "olum-router": "latest",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "latest",
+    "concurrently": "latest",
     "olum-compiler": "latest",
     "olum-devtool": "latest",
-    "@tailwindcss/cli": "latest",
-    "tailwindcss": "latest",
-    "concurrently": "latest"
+    "tailwindcss": "latest"
   }
 }

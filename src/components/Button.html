@@ -1,5 +1,6 @@
 <script>
   import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
 
   const { variant = "default", size = "default", type = "button", class: className = "", disabled = false, onclick, children } = props();
 
@@ -28,7 +29,7 @@
     "icon-lg": "size-9",
   };
 
-  const classes = () => [base, variants[variant] || variants.default, sizes[size] || sizes.default, className].filter(Boolean).join(" ");
+  const classes = () => twMerge(base, variants[variant] || variants.default, sizes[size] || sizes.default, className);
 
   const handleClick = (e) => onclick && onclick(e);
 </script>
