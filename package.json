@@ -1,0 +1,30 @@
+{
+  "name": "olum-ui",
+  "description": "Olum App",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run css && concurrently -k -n css,app -c magenta,green \"npm run css:watch\" \"npm run dev:app\"",
+    "build": "olum-compiler build",
+    "start": "olum-compiler start",
+    "css": "tailwindcss -i src/main.css -o public/main.css",
+    "css:watch": "npm run css -- --watch",
+    "dev:app": "olum-compiler dev"
+  },
+  "keywords": [
+    "olum"
+  ],
+  "author": "Eissa Saber",
+  "license": "ISC",
+  "dependencies": {
+    "olum": "latest",
+    "olum-router": "latest"
+  },
+  "devDependencies": {
+    "olum-compiler": "latest",
+    "olum-devtool": "latest",
+    "@tailwindcss/cli": "latest",
+    "tailwindcss": "latest",
+    "concurrently": "latest"
+  }
+}

@@ -4,7 +4,7 @@
       "name": "button",
       "title": "Button",
       "category": "forms",
-      "path": "components/button/component.html"
+      "path": "src/components/Button.html"
     }
   ]
 }
