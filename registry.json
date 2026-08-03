@@ -5,6 +5,12 @@
       "title": "Button",
       "category": "forms",
       "path": "src/components/Button.html"
+    },
+    {
+      "name": "input",
+      "title": "Input",
+      "category": "forms",
+      "path": "src/components/Input.html"
     }
   ]
 }
