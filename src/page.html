@@ -62,6 +62,11 @@
   import CarouselPrevious from "./components/Carousel/CarouselPrevious";
   import CarouselNext from "./components/Carousel/CarouselNext";
   import BarChart from "./components/Chart/BarChart";
+  import LineChart from "./components/Chart/LineChart";
+  import AreaChart from "./components/Chart/AreaChart";
+  import DonutChart from "./components/Chart/DonutChart";
+  import ComposedChart from "./components/Chart/ComposedChart";
+  import RadialBarChart from "./components/Chart/RadialBarChart";
   import Checkbox from "./components/Checkbox/Checkbox";
   import Collapsible from "./components/Collapsible/Collapsible";
   import CollapsibleTrigger from "./components/Collapsible/CollapsibleTrigger";
@@ -268,6 +273,21 @@
     mobile: { label: "Mobile", color: "var(--color-chart-2)" },
   };
 
+  const composedChartConfig = {
+    desktop: { label: "Desktop", color: "var(--color-chart-1)", type: "bar" },
+    mobile: { label: "Mobile", color: "var(--color-chart-2)", type: "line" },
+  };
+
+  const donutChartData = [
+    { name: "Chrome", value: 275, color: "var(--color-chart-1)" },
+    { name: "Safari", value: 200, color: "var(--color-chart-2)" },
+    { name: "Firefox", value: 187, color: "var(--color-chart-3)" },
+    { name: "Edge", value: 173, color: "var(--color-chart-4)" },
+    { name: "Other", value: 90, color: "var(--color-chart-5)" },
+  ];
+
+  const radialChartData = [{ month: "january", desktop: 1260, mobile: 570 }];
+
   const payments = [
     { id: "728ed52f", amount: 100, status: "pending", email: "m@example.com" },
     { id: "489e1d42", amount: 125, status: "processing", email: "ada@example.com" },
@@ -296,6 +316,7 @@
   const sections = [
     "accordion", "alert", "alert-dialog", "aspect-ratio", "attachment", "avatar", "badge",
     "breadcrumb", "bubble", "button", "button-group", "calendar", "card", "carousel", "bar-chart",
+    "line-chart", "area-chart", "donut-chart", "composed-chart", "radial-bar-chart",
     "checkbox", "collapsible", "combobox", "command", "context-menu", "data-table", "date-picker",
     "dialog", "direction", "drawer", "dropdown-menu", "empty", "field", "hover-card", "input",
     "input-group", "input-otp", "item", "kbd", "label", "marker", "menubar", "message",
@@ -724,6 +745,26 @@
 
   <Section id="bar-chart" title="Bar Chart">
     <BarChart data="{chartData}" config="{chartConfig}" class="h-64 w-full max-w-md" />
+  </Section>
+
+  <Section id="line-chart" title="Line Chart">
+    <LineChart data="{chartData}" config="{chartConfig}" class="h-64 w-full max-w-md" />
+  </Section>
+
+  <Section id="area-chart" title="Area Chart">
+    <AreaChart data="{chartData}" config="{chartConfig}" class="h-64 w-full max-w-md" />
+  </Section>
+
+  <Section id="donut-chart" title="Donut Chart">
+    <DonutChart data="{donutChartData}" label="Visitors" class="w-full max-w-md" />
+  </Section>
+
+  <Section id="composed-chart" title="Composed Chart">
+    <ComposedChart data="{chartData}" config="{composedChartConfig}" class="h-64 w-full max-w-md" />
+  </Section>
+
+  <Section id="radial-bar-chart" title="Radial Bar Chart">
+    <RadialBarChart data="{radialChartData}" config="{chartConfig}" centerLabel="Visitors" class="w-full max-w-md" />
   </Section>
 
   <Section id="checkbox" title="Checkbox">
