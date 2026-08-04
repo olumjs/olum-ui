@@ -61,7 +61,7 @@
   import CarouselItem from "./components/Carousel/CarouselItem";
   import CarouselPrevious from "./components/Carousel/CarouselPrevious";
   import CarouselNext from "./components/Carousel/CarouselNext";
-  import Chart from "./components/Chart/Chart";
+  import BarChart from "./components/Chart/BarChart";
   import Checkbox from "./components/Checkbox/Checkbox";
   import Collapsible from "./components/Collapsible/Collapsible";
   import CollapsibleTrigger from "./components/Collapsible/CollapsibleTrigger";
@@ -295,7 +295,7 @@
 
   const sections = [
     "accordion", "alert", "alert-dialog", "aspect-ratio", "attachment", "avatar", "badge",
-    "breadcrumb", "bubble", "button", "button-group", "calendar", "card", "carousel", "chart",
+    "breadcrumb", "bubble", "button", "button-group", "calendar", "card", "carousel", "bar-chart",
     "checkbox", "collapsible", "combobox", "command", "context-menu", "data-table", "date-picker",
     "dialog", "direction", "drawer", "dropdown-menu", "empty", "field", "hover-card", "input",
     "input-group", "input-otp", "item", "kbd", "label", "marker", "menubar", "message",
@@ -722,8 +722,8 @@
     </Carousel>
   </Section>
 
-  <Section id="chart" title="Chart">
-    <Chart data="{chartData}" config="{chartConfig}" class="h-64 w-full max-w-md" />
+  <Section id="bar-chart" title="Bar Chart">
+    <BarChart data="{chartData}" config="{chartConfig}" class="h-64 w-full max-w-md" />
   </Section>
 
   <Section id="checkbox" title="Checkbox">

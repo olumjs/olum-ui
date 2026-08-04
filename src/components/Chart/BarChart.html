@@ -38,7 +38,7 @@
   const classes = () => twMerge("relative flex w-full flex-col justify-center text-xs", className);
 </script>
 
-<div data-slot="chart" class="{classes()}">
+<div data-slot="bar-chart" class="{classes()}">
   <svg class="min-h-0 w-full flex-1" viewBox="0 0 480 250" preserveAspectRatio="xMidYMid meet">
     <for each="k of 5">
       <line x1="{PL}" x2="{W - PR}" y1="{gridY(k)}" y2="{gridY(k)}" stroke="var(--olum-border)" stroke-opacity="0.5" />
