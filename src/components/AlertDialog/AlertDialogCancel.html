@@ -18,7 +18,7 @@
     return () => btn.removeEventListener("click", onClick);
   });
 
-  const classes = () => twMerge(className);
+  const classes = () => twMerge("group-data-[size=sm]/alert-dialog-content:w-full", className);
 </script>
 
 <Button variant="{variant}" size="{size}" class="{classes()}">{children}</Button>

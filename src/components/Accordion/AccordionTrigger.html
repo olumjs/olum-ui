@@ -11,8 +11,11 @@
 
     const onClick = () => {
       if (!input || input.disabled) return;
-      if (input.type === "checkbox") input.checked = !input.checked;
-      else input.checked = true;
+      // Toggle for both types: unchecking a radio is not something a user can
+      // do by clicking it (native radios only ever get checked by a click), but
+      // "single, collapsible" needs exactly that, so it's done here in JS.
+      // Checking a radio still auto-unchecks its same-name siblings natively.
+      input.checked = !input.checked;
       input.dispatchEvent(new Event("change", { bubbles: true }));
     };
 

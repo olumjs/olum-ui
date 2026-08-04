@@ -5,7 +5,7 @@
   const { name = "accordion", type = "checkbox", defaultOpen = false, disabled = false, class: className = "", children } = props();
 
   const base =
-    "group/accordion-item not-last:border-b " +
+    "group/accordion-item " +
     "[&>*:has([data-slot=accordion-content])]:grid [&>*:has([data-slot=accordion-content])]:grid-rows-[0fr] [&>*:has([data-slot=accordion-content])]:transition-[grid-template-rows] " +
     "has-[>input:checked]:[&>*:has([data-slot=accordion-content])]:grid-rows-[1fr] " +
     "has-[>input:checked]:[&_[data-slot=accordion-trigger-icon-down]]:hidden has-[>input:checked]:[&_[data-slot=accordion-trigger-icon-up]]:inline";

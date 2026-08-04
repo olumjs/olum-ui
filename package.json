@@ -19,9 +19,9 @@
   "dependencies": {
     "olum": "latest",
     "olum-router": "latest",
-    "olum-store": "^0.1.0",
-    "olum-transition": "^0.2.1",
-    "tailwind-merge": "^3.6.0"
+    "olum-store": "latest",
+    "olum-transition": "latest",
+    "tailwind-merge": "latest"
   },
   "devDependencies": {
     "@tailwindcss/cli": "latest",
