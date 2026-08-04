@@ -321,7 +321,13 @@
             <span class="flex size-7 items-center justify-center text-sm text-muted-foreground">…</span>
           </if>
           <else>
-            <Button variant="{p === currentPage() ? 'outline' : 'ghost'}" size="sm" role="page" value="{p}" class="w-7 px-0">{p}</Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              role="page"
+              value="{p}"
+              class="{p === currentPage() ? 'size-7 p-0 bg-black text-white hover:bg-black hover:text-white' : 'size-7 p-0'}"
+            >{p}</Button>
           </else>
         </for>
         <if when="showPrevNext">
