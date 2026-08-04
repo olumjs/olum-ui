@@ -15,14 +15,15 @@
   import TableCell from "../Table/TableCell";
 
   const {
-    data = [],
-    columns = [],
-    searchKey,
-    searchPlaceholder = "Filter...",
-    pageSize = 10,
-    selectable = true,
-    showPagination = true,
-    showPrevNext = true,
+    data = [], // Row objects to display.
+    columns = [], // Column config: [{ key, label, sortable?, format?, headClass?, cellClass? }].
+    search = false, // Row field the search box matches against; also gates whether the search input renders at all.
+    searchPlaceholder = "Filter...", // Placeholder text for the search input.
+    pageSize = 10, // Rows per page.
+    selectable = false, // Show the row-selection checkboxes and the "X of Y row(s) selected." text. Ignored (forced off) whenever rowLink is set.
+    showPagination = true, // Show the First / page-numbers / Last controls.
+    showPrevNext = false, // Show the Previous/Next buttons alongside the pagination controls.
+    showExport = false, // Show the "Export CSV" button.
     // Function (row) => { href, text, icon }, replacing the leading checkbox
     // column with a per-row link instead. Must be passed as a bare
     // identifier (a named function defined in the consumer's own script),
@@ -30,7 +31,7 @@
     // JSON.stringify'd along with the rest of the props object, which
     // silently drops function values.
     rowLink,
-    class: className = "",
+    class: className = "", // Extra classes merged onto the root element.
   } = props();
 
   const state = { q: "", sortKey: null, sortDir: "asc", hidden: {}, page: 0, selected: {} };
@@ -40,6 +41,30 @@
   // safe method-reference path; anything else gets JSON.stringify'd along
   // with the rest of the props object, which silently drops function values.
   const onSearchInput = (e) => (state.q = e.target.value);
+
+  // Exports the currently filtered rows (respects search, ignores
+  // pagination) using the currently visible columns, as CSV -- a real .xlsx
+  // is a zipped OOXML binary and isn't something to hand-roll without a
+  // library; CSV opens correctly in Excel/Sheets/Numbers with zero deps.
+  const csvEscape = (v) => {
+    const s = v == null ? "" : String(v);
+    return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  };
+
+  const exportCsv = () => {
+    const cols = shown();
+    const lines = [
+      cols.map((c) => csvEscape(c.label)).join(","),
+      ...filtered().map((row) => cols.map((c) => csvEscape(fmt(row, c))).join(",")),
+    ];
+    const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "export.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   const filtered = () => {
     const q = state.q.trim().toLowerCase();
@@ -189,10 +214,16 @@
 
 <div data-slot="data-table" class="{classes()}">
   <div class="flex items-center gap-2">
-    <if when="searchKey">
+    <if when="search">
       <Input placeholder="{searchPlaceholder}" value="{state.q}" oninput="{onSearchInput}" class="max-w-sm" />
     </if>
-    <div class="ml-auto">
+    <div class="ml-auto flex items-center gap-2">
+      <if when="showExport">
+        <Button variant="outline" size="sm" onclick="{exportCsv}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+          Export CSV
+        </Button>
+      </if>
       <DropdownMenu>
         <DropdownMenuTrigger
           class="inline-flex h-8 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-2.5 text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:bg-muted [&_svg]:size-4 [&_svg]:shrink-0"
@@ -218,7 +249,7 @@
           <if when="!hasRowLink() && selectable">
             <TableHead class="w-10">
               <span class="relative inline-flex size-4 shrink-0 top-0.75">
-                <input type="checkbox" data-role="select-all" checked="{isPageAllSelected()}" aria-label="Select all" class="{checkboxClasses}" />
+                <Input type="checkbox" data-role="select-all" checked="{isPageAllSelected()}" aria-label="Select all" class="{checkboxClasses}" />
                 <show when="isPageAllSelected()">
                   <svg class="{checkIconClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                 </show>
@@ -254,7 +285,7 @@
             <if when="!hasRowLink() && selectable">
               <TableCell>
                 <span class="relative inline-flex size-4 shrink-0 top-0.75">
-                  <input type="checkbox" data-row-id="{row.id}" checked="{isRowSelected(row.id)}" aria-label="Select row" class="{checkboxClasses}" />
+                  <Input type="checkbox" data-row-id="{row.id}" checked="{isRowSelected(row.id)}" aria-label="Select row" class="{checkboxClasses}" />
                   <show when="isRowSelected(row.id)">
                     <svg class="{checkIconClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                   </show>
