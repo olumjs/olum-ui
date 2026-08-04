@@ -1,33 +1,49 @@
 <script>
   import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
+  import { carouselStore } from "./carouselStore";
+  import { animateValue } from "./animate";
 
   const { class: className = "" } = props();
 
-  const state = { disabled: false };
+  const state = { id: null };
 
-  const scroller = () => {
+  const parts = () => {
     const root = host.closest('[data-slot="carousel"]');
-    return root && root.querySelector('[data-slot="carousel-content"]');
+    return {
+      viewport: root && root.querySelector('[data-slot="carousel-content"]'),
+      track: root && root.querySelector('[data-slot="carousel-track"]'),
+    };
   };
 
   onMount(() => {
-    const el = scroller();
-    if (!el) return;
-    const update = () => {
-      state.disabled = el.scrollLeft >= el.scrollWidth - el.clientWidth - 2;
-    };
-    el.addEventListener("scroll", update, { passive: true });
-    const t = setTimeout(update);
-    return () => {
-      clearTimeout(t);
-      el.removeEventListener("scroll", update);
-    };
+    const root = host.closest('[data-slot="carousel"]');
+    if (!root) return;
+    state.id = root.dataset.carouselId;
   });
 
+  // Reading carouselStore.getOffset(state.id) here subscribes this component
+  // to the store, so `disabled` stays correct whether the offset last changed
+  // from a drag in CarouselContent or a click on CarouselPrevious -- no
+  // MutationObserver/custom event needed, just the store's normal reactivity.
+  const isDisabled = () => {
+    if (state.id == null) return false;
+    const { track, viewport } = parts();
+    if (!track || !viewport) return false;
+    const max = Math.max(0, track.scrollWidth - viewport.clientWidth);
+    return carouselStore.getOffset(state.id) >= max - 1;
+  };
+
   const go = () => {
-    const el = scroller();
-    if (el) el.scrollBy({ left: el.clientWidth + 16, behavior: "smooth" });
+    const { track, viewport } = parts();
+    if (!track || !viewport || state.id == null) return;
+    const max = Math.max(0, track.scrollWidth - viewport.clientWidth);
+    const current = carouselStore.getOffset(state.id);
+    const target = Math.min(max, current + viewport.clientWidth + 16);
+    animateValue(current, target, 600, (v) => {
+      carouselStore.setOffset(state.id, v);
+      track.style.transform = `translateX(-${v}px)`;
+    });
   };
 
   const classes = () =>
@@ -37,7 +53,7 @@
     );
 </script>
 
-<button type="button" data-slot="carousel-next" class="{classes()}" disabled="{state.disabled}" onclick="go()">
+<button type="button" data-slot="carousel-next" class="{classes()}" disabled="{isDisabled()}" onclick="go()">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
   <span class="sr-only">Next slide</span>
 </button>
