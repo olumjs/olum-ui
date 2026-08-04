@@ -14,7 +14,17 @@
   import TableHead from "../Table/TableHead";
   import TableCell from "../Table/TableCell";
 
-  const { data = [], columns = [], searchKey, searchPlaceholder = "Filter...", pageSize = 10, selectable = true, class: className = "" } = props();
+  const {
+    data = [],
+    columns = [],
+    searchKey,
+    searchPlaceholder = "Filter...",
+    pageSize = 10,
+    selectable = true,
+    showPagination = true,
+    showPrevNext = true,
+    class: className = "",
+  } = props();
 
   const state = { q: "", sortKey: null, sortDir: "asc", hidden: {}, page: 0, selected: {} };
 
@@ -68,6 +78,30 @@
   const prevPage = () => canPrev() && state.page--;
   const nextPage = () => canNext() && state.page++;
 
+  const totalPages = () => Math.max(1, Math.ceil(filtered().length / pageSize));
+  const currentPage = () => state.page + 1;
+  const goToPage = (n) => (state.page = Math.min(Math.max(0, n - 1), totalPages() - 1));
+  const goFirst = () => (state.page = 0);
+  const goLast = () => (state.page = totalPages() - 1);
+
+  // Always includes page 1, the last page, and a window around the current
+  // page; gaps between those get collapsed into a single "..." marker.
+  const pageNumbers = () => {
+    const total = totalPages();
+    const current = currentPage();
+    const keep = new Set([1, total]);
+    for (let n = current - 1; n <= current + 1; n++) if (n >= 1 && n <= total) keep.add(n);
+    const sorted = Array.from(keep).sort((a, b) => a - b);
+    const out = [];
+    sorted.forEach((n, i) => {
+      // Keyed by the page just before the gap so two gaps in the same list
+      // (one before and one after the current-page window) get distinct keys.
+      if (i > 0 && n - sorted[i - 1] > 1) out.push("..." + sorted[i - 1]);
+      out.push(n);
+    });
+    return out;
+  };
+
   const isRowSelected = (id) => !!state.selected[id];
   const selectedCount = () => filtered().filter((row) => state.selected[row.id]).length;
   const isPageAllSelected = () => rows().length > 0 && rows().every((row) => state.selected[row.id]);
@@ -88,17 +122,26 @@
     state.selected = next;
   };
 
-  // The sort <Button>, the column-visibility <DropdownMenuCheckboxItem>s, and
-  // the row-selection checkboxes below are all slotted through TableHead/
-  // TableCell/DropdownMenuContent, so an onclick/onCheckedChange prop
-  // resolves against that slot-owning component instead of this one and
-  // silently never fires. Delegate from here (which does own its markup)
-  // instead: identify the element via data-value/aria-checked/data-row-id.
+  // The sort/pagination <Button>s, the column-visibility
+  // <DropdownMenuCheckboxItem>s, and the row-selection checkboxes below are
+  // all slotted through TableHead/TableCell/DropdownMenuContent, so an
+  // onclick/onCheckedChange prop resolves against that slot-owning component
+  // instead of this one and silently never fires. Delegate from here (which
+  // does own its markup) instead: identify the element via data-role/
+  // data-value/aria-checked/data-row-id.
   onMount(() => {
     const onClick = (e) => {
-      const sortBtn = e.target.closest('[data-slot="button"][data-value]');
+      const sortBtn = e.target.closest('[data-slot="button"][data-role="sort"]');
       if (sortBtn && sortBtn.dataset.value) {
         sortBy(sortBtn.dataset.value);
+        return;
+      }
+      const pageBtn = e.target.closest('[data-slot="button"][data-role="page"]');
+      if (pageBtn) {
+        const v = pageBtn.dataset.value;
+        if (v === "first") goFirst();
+        else if (v === "last") goLast();
+        else goToPage(+v);
         return;
       }
       const colItem = e.target.closest('[data-slot="dropdown-menu-checkbox-item"]');
@@ -168,7 +211,7 @@
           <for each="col of shown()" key="col.key">
             <TableHead class="{col.headClass || ''}">
               <if when="col.sortable">
-                <Button variant="ghost" size="sm" value="{col.key}">
+                <Button variant="ghost" size="sm" value="{col.key}" role="sort">
                   {col.label}
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4" /><path d="M17 20V4" /><path d="m3 8 4-4 4 4" /><path d="M7 4v16" /></svg>
                 </Button>
@@ -208,9 +251,25 @@
     <if when="selectable">
       <div class="flex-1 text-sm text-muted-foreground">{selectedCount()} of {filtered().length} row(s) selected.</div>
     </if>
-    <div class="flex items-center gap-2">
-      <Button variant="outline" size="sm" disabled="{!canPrev()}" onclick="{prevPage}">Previous</Button>
-      <Button variant="outline" size="sm" disabled="{!canNext()}" onclick="{nextPage}">Next</Button>
-    </div>
+    <if when="showPagination">
+      <div class="flex items-center gap-1">
+        <Button variant="outline" size="sm" role="page" value="first" disabled="{!canPrev()}">First</Button>
+        <if when="showPrevNext">
+          <Button variant="outline" size="sm" disabled="{!canPrev()}" onclick="{prevPage}">Previous</Button>
+        </if>
+        <for each="p of pageNumbers()" key="p">
+          <if when="typeof p === 'string'">
+            <span class="flex size-7 items-center justify-center text-sm text-muted-foreground">…</span>
+          </if>
+          <else>
+            <Button variant="{p === currentPage() ? 'outline' : 'ghost'}" size="sm" role="page" value="{p}" class="w-7 px-0">{p}</Button>
+          </else>
+        </for>
+        <if when="showPrevNext">
+          <Button variant="outline" size="sm" disabled="{!canNext()}" onclick="{nextPage}">Next</Button>
+        </if>
+        <Button variant="outline" size="sm" role="page" value="last" disabled="{!canNext()}">Last</Button>
+      </div>
+    </if>
   </div>
 </div>
