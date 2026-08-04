@@ -1,5 +1,5 @@
 <script>
-  import { props } from "olum";
+  import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
   import Input from "../Input/Input";
   import Button from "../Button/Button";
@@ -14,14 +14,20 @@
   import TableHead from "../Table/TableHead";
   import TableCell from "../Table/TableCell";
 
-  const { data = [], columns = [], searchKey, searchPlaceholder = "Filter...", pageSize = 10, class: className = "" } = props();
+  const { data = [], columns = [], searchKey, searchPlaceholder = "Filter...", pageSize = 10, selectable = true, class: className = "" } = props();
 
-  const state = { q: "", sortKey: null, sortDir: "asc", hidden: {}, page: 0 };
+  const state = { q: "", sortKey: null, sortDir: "asc", hidden: {}, page: 0, selected: {} };
+
+  // Must be a named top-level function, not an inline arrow, in the template:
+  // the compiler only resolves bare-identifier function props through its
+  // safe method-reference path; anything else gets JSON.stringify'd along
+  // with the rest of the props object, which silently drops function values.
+  const onSearchInput = (e) => (state.q = e.target.value);
 
   const filtered = () => {
     const q = state.q.trim().toLowerCase();
-    if (!searchKey || !q) return data;
-    return data.filter((row) => String(row[searchKey]).toLowerCase().includes(q));
+    if (!q) return data;
+    return data.filter((row) => Object.values(row).some((v) => String(v).toLowerCase().includes(q)));
   };
 
   const rows = () => {
@@ -62,13 +68,72 @@
   const prevPage = () => canPrev() && state.page--;
   const nextPage = () => canNext() && state.page++;
 
+  const isRowSelected = (id) => !!state.selected[id];
+  const selectedCount = () => filtered().filter((row) => state.selected[row.id]).length;
+  const isPageAllSelected = () => rows().length > 0 && rows().every((row) => state.selected[row.id]);
+
+  const toggleRow = (id, checked) => {
+    const next = { ...state.selected };
+    if (checked) next[id] = true;
+    else delete next[id];
+    state.selected = next;
+  };
+
+  const toggleAllRows = (checked) => {
+    const next = { ...state.selected };
+    rows().forEach((row) => {
+      if (checked) next[row.id] = true;
+      else delete next[row.id];
+    });
+    state.selected = next;
+  };
+
+  // The sort <Button>, the column-visibility <DropdownMenuCheckboxItem>s, and
+  // the row-selection checkboxes below are all slotted through TableHead/
+  // TableCell/DropdownMenuContent, so an onclick/onCheckedChange prop
+  // resolves against that slot-owning component instead of this one and
+  // silently never fires. Delegate from here (which does own its markup)
+  // instead: identify the element via data-value/aria-checked/data-row-id.
+  onMount(() => {
+    const onClick = (e) => {
+      const sortBtn = e.target.closest('[data-slot="button"][data-value]');
+      if (sortBtn && sortBtn.dataset.value) {
+        sortBy(sortBtn.dataset.value);
+        return;
+      }
+      const colItem = e.target.closest('[data-slot="dropdown-menu-checkbox-item"]');
+      if (colItem && colItem.dataset.value) {
+        toggleCol(colItem.dataset.value, colItem.getAttribute("aria-checked") === "true");
+        return;
+      }
+      const selectAll = e.target.closest('input[data-role="select-all"]');
+      if (selectAll) {
+        toggleAllRows(selectAll.checked);
+        return;
+      }
+      const rowCb = e.target.closest("input[data-row-id]");
+      if (rowCb) toggleRow(rowCb.dataset.rowId, rowCb.checked);
+    };
+    host.addEventListener("click", onClick);
+    return () => host.removeEventListener("click", onClick);
+  });
+
   const classes = () => twMerge("flex w-full flex-col gap-3", className);
+
+  // Matches Checkbox.html's own markup/classes for visual parity. A native
+  // input is used directly (instead of the shared <Checkbox> component)
+  // because Checkbox only seeds its internal state.checked once from the
+  // `checked` prop at mount -- it won't stay in sync when "select all"
+  // toggles many already-rendered rows from outside.
+  const checkboxClasses =
+    "peer relative flex size-4 shrink-0 appearance-none items-center justify-center rounded-[4px] border border-border bg-background transition-colors outline-none cursor-pointer focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 checked:border-primary checked:bg-primary checked:text-primary-foreground";
+  const checkIconClasses = "pointer-events-none absolute inset-0 m-auto size-3.5 text-primary-foreground";
 </script>
 
 <div data-slot="data-table" class="{classes()}">
   <div class="flex items-center gap-2">
     <if when="searchKey">
-      <Input placeholder="{searchPlaceholder}" value="{state.q}" oninput="{(e) => (state.q = e.target.value)}" class="max-w-sm" />
+      <Input placeholder="{searchPlaceholder}" value="{state.q}" oninput="{onSearchInput}" class="max-w-sm" />
     </if>
     <div class="ml-auto">
       <DropdownMenu>
@@ -80,7 +145,7 @@
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <for each="col of columns" key="col.key">
-            <DropdownMenuCheckboxItem defaultChecked="{true}" onCheckedChange="{(v) => toggleCol(col.key, v)}" class="capitalize">{col.key}</DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem value="{col.key}" defaultChecked="{true}" class="capitalize">{col.key}</DropdownMenuCheckboxItem>
           </for>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -90,10 +155,20 @@
     <Table>
       <TableHeader>
         <TableRow>
+          <if when="selectable">
+            <TableHead class="w-10">
+              <span class="relative inline-flex size-4 shrink-0 top-0.75">
+                <input type="checkbox" data-role="select-all" checked="{isPageAllSelected()}" aria-label="Select all" class="{checkboxClasses}" />
+                <show when="isPageAllSelected()">
+                  <svg class="{checkIconClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                </show>
+              </span>
+            </TableHead>
+          </if>
           <for each="col of shown()" key="col.key">
             <TableHead class="{col.headClass || ''}">
               <if when="col.sortable">
-                <Button variant="ghost" size="sm" onclick="{() => sortBy(col.key)}">
+                <Button variant="ghost" size="sm" value="{col.key}">
                   {col.label}
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4" /><path d="M17 20V4" /><path d="m3 8 4-4 4 4" /><path d="M7 4v16" /></svg>
                 </Button>
@@ -103,9 +178,19 @@
           </for>
         </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody class="[&_[data-slot=table-row]:last-child]:border-b">
         <for each="row of rows()" key="row.id">
-          <TableRow>
+          <TableRow data-state="{isRowSelected(row.id) ? 'selected' : ''}">
+            <if when="selectable">
+              <TableCell>
+                <span class="relative inline-flex size-4 shrink-0 top-0.75">
+                  <input type="checkbox" data-row-id="{row.id}" checked="{isRowSelected(row.id)}" aria-label="Select row" class="{checkboxClasses}" />
+                  <show when="isRowSelected(row.id)">
+                    <svg class="{checkIconClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                  </show>
+                </span>
+              </TableCell>
+            </if>
             <for each="col of shown()" key="col.key">
               <TableCell class="{col.cellClass || ''}">{fmt(row, col)}</TableCell>
             </for>
@@ -113,14 +198,16 @@
         </for>
         <if when="rows().length === 0">
           <TableRow>
-            <TableCell colspan="{shown().length}" class="h-24 text-center">No results.</TableCell>
+            <TableCell colspan="{shown().length + (selectable ? 1 : 0)}" class="h-24 text-center">No results.</TableCell>
           </TableRow>
         </if>
       </TableBody>
     </Table>
   </div>
   <div class="flex items-center justify-end gap-2">
-    <div class="flex-1 text-sm text-muted-foreground">0 of {filtered().length} row(s) selected.</div>
+    <if when="selectable">
+      <div class="flex-1 text-sm text-muted-foreground">{selectedCount()} of {filtered().length} row(s) selected.</div>
+    </if>
     <div class="flex items-center gap-2">
       <Button variant="outline" size="sm" disabled="{!canPrev()}" onclick="{prevPage}">Previous</Button>
       <Button variant="outline" size="sm" disabled="{!canNext()}" onclick="{nextPage}">Next</Button>

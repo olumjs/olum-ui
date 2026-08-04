@@ -696,9 +696,6 @@
   .w-\[240px\] {
     width: 240px;
   }
-  .w-\[1000px\] {
-    width: 1000px;
-  }
   .w-auto {
     width: auto;
   }
@@ -1618,6 +1615,10 @@
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
+  }
+  .select-all {
+    -webkit-user-select: all;
+    user-select: all;
   }
   .select-none {
     -webkit-user-select: none;
@@ -2766,6 +2767,10 @@
   .\[\&_\[data-slot\=table-row\]\:last-child\]\:border-0 [data-slot=table-row]:last-child {
     border-style: var(--tw-border-style);
     border-width: 0px;
+  }
+  .\[\&_\[data-slot\=table-row\]\:last-child\]\:border-b [data-slot=table-row]:last-child {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
   }
   .\[\&_\[data-slot\=table-row\]\:last-child\]\:border-b-0 [data-slot=table-row]:last-child {
     border-bottom-style: var(--tw-border-style);
