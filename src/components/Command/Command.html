@@ -1,0 +1,37 @@
+<script>
+  import { props, onMount } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { class: className = "", children } = props();
+
+  onMount(() => {
+    const apply = () => {
+      const inputEl = host.querySelector('[data-slot="command-input"]');
+      const q = inputEl ? inputEl.value.trim().toLowerCase() : "";
+      let any = false;
+      host.querySelectorAll('[data-slot="command-item"]').forEach((it) => {
+        const show = !q || it.textContent.toLowerCase().includes(q);
+        it.classList.toggle("hidden", !show);
+        if (show) any = true;
+      });
+      host.querySelectorAll('[data-slot="command-group"]').forEach((g) => {
+        g.classList.toggle("hidden", !g.querySelector('[data-slot="command-item"]:not(.hidden)'));
+      });
+      host.querySelectorAll('[data-slot="command-separator"]').forEach((s) => s.classList.toggle("hidden", !!q));
+      host.querySelectorAll('[data-slot="command-empty"]').forEach((e) => e.classList.toggle("hidden", any));
+    };
+    const onInput = (e) => {
+      if (e.target.matches('[data-slot="command-input"]')) apply();
+    };
+    host.addEventListener("input", onInput);
+    const t = setTimeout(apply);
+    return () => {
+      clearTimeout(t);
+      host.removeEventListener("input", onInput);
+    };
+  });
+
+  const classes = () => twMerge("flex size-full flex-col overflow-hidden rounded-xl bg-background p-1 text-foreground", className);
+</script>
+
+<div data-slot="command" class="{classes()}">{children}</div>

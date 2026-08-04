@@ -1,0 +1,10 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { class: className = "", children } = props();
+
+  const classes = () => twMerge("min-w-0 shrink-0 grow-0 basis-full snap-start", className);
+</script>
+
+<div data-slot="carousel-item" role="group" aria-roledescription="slide" class="{classes()}">{children}</div>

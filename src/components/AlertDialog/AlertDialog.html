@@ -1,0 +1,13 @@
+<script>
+  import { props } from "olum";
+
+  const { defaultOpen = false, children } = props();
+</script>
+
+<div
+  data-slot="alert-dialog"
+  class="contents [&_[data-slot=alert-dialog-overlay]]:hidden [&_[data-slot=alert-dialog-content]]:hidden has-[>input:checked]:[&_[data-slot=alert-dialog-overlay]]:block has-[>input:checked]:[&_[data-slot=alert-dialog-content]]:grid"
+>
+  <input type="checkbox" class="hidden" checked="{defaultOpen}" />
+  {children}
+</div>

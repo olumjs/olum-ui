@@ -1,0 +1,8 @@
+<script>
+  import { props } from "olum";
+  import Button from "../Button/Button";
+
+  const { variant = "ghost", size = "icon-xs", onclick, class: className = "", children } = props();
+</script>
+
+<Button variant="{variant}" size="{size}" onclick="{onclick}" class="{className}">{children}</Button>

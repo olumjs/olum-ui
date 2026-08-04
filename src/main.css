@@ -15,6 +15,19 @@
   --olum-destructive: oklch(0.577 0.245 27.325);
   --olum-border: oklch(0.922 0 0);
   --olum-ring: oklch(0.708 0 0);
+  --olum-chart-1: oklch(0.646 0.222 41.116);
+  --olum-chart-2: oklch(0.6 0.118 184.704);
+  --olum-chart-3: oklch(0.398 0.07 227.392);
+  --olum-chart-4: oklch(0.828 0.189 84.429);
+  --olum-chart-5: oklch(0.769 0.188 70.08);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-border);
+  }
 }
 
 @theme inline {
@@ -31,6 +44,11 @@
   --color-destructive: var(--olum-destructive);
   --color-border: var(--olum-border);
   --color-ring: var(--olum-ring);
+  --color-chart-1: var(--olum-chart-1);
+  --color-chart-2: var(--olum-chart-2);
+  --color-chart-3: var(--olum-chart-3);
+  --color-chart-4: var(--olum-chart-4);
+  --color-chart-5: var(--olum-chart-5);
   --radius-sm: calc(var(--olum-radius) * 0.6);
   --radius-md: calc(var(--olum-radius) * 0.8);
   --radius-lg: var(--olum-radius);

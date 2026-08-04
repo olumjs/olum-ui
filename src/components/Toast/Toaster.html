@@ -1,0 +1,30 @@
+<script>
+  import { toast } from "./toast";
+
+  const icons = {
+    success: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>`,
+    info: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>`,
+    warning: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>`,
+    error: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16h.01" /><path d="M12 8v4" /><path d="M12 2a10 10 0 1 0 10 10 10 10 0 0 0-10-10z" /></svg>`,
+  };
+  const iconFor = (type) => icons[type] || "";
+</script>
+
+<div data-slot="toast-viewport" class="pointer-events-none fixed inset-x-4 bottom-4 z-50 mx-auto flex w-auto max-w-sm flex-col-reverse gap-3 sm:right-4 sm:left-auto sm:mx-0 sm:w-full">
+  <for each="t of toast.items" key="t.id">
+    <div data-slot="toast" class="pointer-events-auto flex items-center gap-3 rounded-2xl border border-border bg-background p-4 text-sm text-foreground shadow-lg">
+      <if when="iconFor(t.type)">
+        <span class="shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4" html="iconFor(t.type)"></span>
+      </if>
+      <div class="flex min-w-0 flex-1 flex-col gap-1">
+        <div class="text-sm font-medium">{t.title}</div>
+        <if when="t.description">
+          <div class="text-sm text-muted-foreground">{t.description}</div>
+        </if>
+      </div>
+      <button type="button" aria-label="Close toast" class="relative shrink-0 text-muted-foreground hover:text-foreground" onclick="toast.dismiss(t.id)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+      </button>
+    </div>
+  </for>
+</div>

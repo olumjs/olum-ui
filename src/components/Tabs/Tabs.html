@@ -1,0 +1,10 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { orientation = "horizontal", class: className = "", children } = props();
+
+  const classes = () => twMerge("group/tabs flex gap-2", orientation === "horizontal" ? "flex-col" : "", className);
+</script>
+
+<div data-slot="tabs" data-orientation="{orientation}" class="{classes()}">{children}</div>

@@ -1,0 +1,129 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+  import Input from "../Input/Input";
+  import Button from "../Button/Button";
+  import DropdownMenu from "../DropdownMenu/DropdownMenu";
+  import DropdownMenuTrigger from "../DropdownMenu/DropdownMenuTrigger";
+  import DropdownMenuContent from "../DropdownMenu/DropdownMenuContent";
+  import DropdownMenuCheckboxItem from "../DropdownMenu/DropdownMenuCheckboxItem";
+  import Table from "../Table/Table";
+  import TableHeader from "../Table/TableHeader";
+  import TableBody from "../Table/TableBody";
+  import TableRow from "../Table/TableRow";
+  import TableHead from "../Table/TableHead";
+  import TableCell from "../Table/TableCell";
+
+  const { data = [], columns = [], searchKey, searchPlaceholder = "Filter...", pageSize = 10, class: className = "" } = props();
+
+  const state = { q: "", sortKey: null, sortDir: "asc", hidden: {}, page: 0 };
+
+  const filtered = () => {
+    const q = state.q.trim().toLowerCase();
+    if (!searchKey || !q) return data;
+    return data.filter((row) => String(row[searchKey]).toLowerCase().includes(q));
+  };
+
+  const rows = () => {
+    const out = filtered().slice();
+    if (state.sortKey) {
+      out.sort((a, b) => {
+        const av = a[state.sortKey];
+        const bv = b[state.sortKey];
+        const r = av > bv ? 1 : av < bv ? -1 : 0;
+        return state.sortDir === "desc" ? -r : r;
+      });
+    }
+    return out.slice(state.page * pageSize, state.page * pageSize + pageSize);
+  };
+
+  const shown = () => columns.filter((c) => !state.hidden[c.key]);
+
+  const sortBy = (key) => {
+    if (state.sortKey === key) {
+      state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+    } else {
+      state.sortKey = key;
+      state.sortDir = "asc";
+    }
+  };
+
+  const toggleCol = (key, visible) => {
+    state.hidden = { ...state.hidden, [key]: !visible };
+  };
+
+  const fmt = (row, col) => {
+    if (col.format === "currency") return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(+row[col.key]);
+    return row[col.key];
+  };
+
+  const canPrev = () => state.page > 0;
+  const canNext = () => (state.page + 1) * pageSize < filtered().length;
+  const prevPage = () => canPrev() && state.page--;
+  const nextPage = () => canNext() && state.page++;
+
+  const classes = () => twMerge("flex w-full flex-col gap-3", className);
+</script>
+
+<div data-slot="data-table" class="{classes()}">
+  <div class="flex items-center gap-2">
+    <if when="searchKey">
+      <Input placeholder="{searchPlaceholder}" value="{state.q}" oninput="{(e) => (state.q = e.target.value)}" class="max-w-sm" />
+    </if>
+    <div class="ml-auto">
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          class="inline-flex h-8 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-2.5 text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:bg-muted [&_svg]:size-4 [&_svg]:shrink-0"
+        >
+          Columns
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <for each="col of columns" key="col.key">
+            <DropdownMenuCheckboxItem defaultChecked="{true}" onCheckedChange="{(v) => toggleCol(col.key, v)}" class="capitalize">{col.key}</DropdownMenuCheckboxItem>
+          </for>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  </div>
+  <div class="rounded-lg border border-border">
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <for each="col of shown()" key="col.key">
+            <TableHead class="{col.headClass || ''}">
+              <if when="col.sortable">
+                <Button variant="ghost" size="sm" onclick="{() => sortBy(col.key)}">
+                  {col.label}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4" /><path d="M17 20V4" /><path d="m3 8 4-4 4 4" /><path d="M7 4v16" /></svg>
+                </Button>
+              </if>
+              <else>{col.label}</else>
+            </TableHead>
+          </for>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <for each="row of rows()" key="row.id">
+          <TableRow>
+            <for each="col of shown()" key="col.key">
+              <TableCell class="{col.cellClass || ''}">{fmt(row, col)}</TableCell>
+            </for>
+          </TableRow>
+        </for>
+        <if when="rows().length === 0">
+          <TableRow>
+            <TableCell colspan="{shown().length}" class="h-24 text-center">No results.</TableCell>
+          </TableRow>
+        </if>
+      </TableBody>
+    </Table>
+  </div>
+  <div class="flex items-center justify-end gap-2">
+    <div class="flex-1 text-sm text-muted-foreground">0 of {filtered().length} row(s) selected.</div>
+    <div class="flex items-center gap-2">
+      <Button variant="outline" size="sm" disabled="{!canPrev()}" onclick="{prevPage}">Previous</Button>
+      <Button variant="outline" size="sm" disabled="{!canNext()}" onclick="{nextPage}">Next</Button>
+    </div>
+  </div>
+</div>

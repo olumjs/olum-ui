@@ -1,0 +1,50 @@
+<script>
+  import { props, onMount } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { showCloseButton = true, class: className = "", children } = props();
+
+  onMount(() => {
+    const root = host.closest('[data-slot="dialog"]');
+    const input = root && root.querySelector(":scope > input");
+    const overlay = host.querySelector('[data-slot="dialog-overlay"]');
+    const closeBtn = host.querySelector("[data-builtin-close]");
+
+    const close = () => {
+      if (!input) return;
+      input.checked = false;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape" && input && input.checked) close();
+    };
+    const onOverlayClick = (e) => {
+      if (e.target === overlay) close();
+    };
+
+    closeBtn && closeBtn.addEventListener("click", close);
+    overlay && overlay.addEventListener("click", onOverlayClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      closeBtn && closeBtn.removeEventListener("click", close);
+      overlay && overlay.removeEventListener("click", onOverlayClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  });
+
+  const classes = () => twMerge(
+    "top-1/2 left-1/2 z-50 w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-background p-4 text-sm text-foreground ring-1 ring-foreground/10 outline-none sm:max-w-sm fixed",
+    className,
+  );
+</script>
+
+<div data-slot="dialog-overlay" class="fixed inset-0 z-50 bg-black/10"></div>
+<div data-slot="dialog-content" class="{classes()}">
+  {children}
+  <if when="showCloseButton">
+    <button type="button" data-builtin-close class="absolute top-2 right-2 inline-flex size-7 items-center justify-center rounded-lg hover:bg-muted">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+      <span class="sr-only">Close</span>
+    </button>
+  </if>
+</div>

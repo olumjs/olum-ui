@@ -1,0 +1,11 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+  import Toggle from "../Toggle/Toggle";
+
+  const { variant = "default", size = "default", defaultPressed = false, class: className = "", children } = props();
+
+  const classes = () => twMerge("shrink-0 focus:z-10 focus-visible:z-10", className);
+</script>
+
+<Toggle variant="{variant}" size="{size}" defaultPressed="{defaultPressed}" class="{classes()}">{children}</Toggle>

@@ -1,0 +1,13 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { id, title, class: className = "", children } = props();
+
+  const classes = () => twMerge("flex scroll-mt-16 flex-col gap-3", className);
+</script>
+
+<section id="{id}" class="{classes()}">
+  <h2 class="text-lg font-semibold capitalize">{title}</h2>
+  <div class="flex flex-wrap items-start gap-6 rounded-xl border border-border p-6 [&>[data-olum]]:contents">{children}</div>
+</section>

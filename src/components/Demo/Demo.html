@@ -1,0 +1,13 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { label, class: className = "", children } = props();
+
+  const classes = () => twMerge("flex flex-col gap-2", className);
+</script>
+
+<div data-slot="demo" class="{classes()}">
+  <span class="text-xs font-medium text-muted-foreground">{label}</span>
+  {children}
+</div>

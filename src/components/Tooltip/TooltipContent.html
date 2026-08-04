@@ -1,0 +1,14 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { class: className = "", children } = props();
+
+  const classes = () =>
+    twMerge(
+      "absolute bottom-full left-1/2 z-50 mb-1.5 hidden w-fit max-w-xs -translate-x-1/2 items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-xs text-background whitespace-nowrap",
+      className,
+    );
+</script>
+
+<div data-slot="tooltip-content" role="tooltip" class="{classes()}">{children}</div>

@@ -34,4 +34,4 @@
   const handleClick = (e) => onclick && onclick(e);
 </script>
 
-<button type="{type}" class="{classes()}" disabled="{disabled}" onclick="handleClick()">{children}</button>
+<button data-slot="button" type="{type}" class="{classes()}" disabled="{disabled}" onclick="handleClick()">{children}</button>

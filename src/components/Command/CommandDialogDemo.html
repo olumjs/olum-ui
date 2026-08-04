@@ -1,0 +1,46 @@
+<script>
+  import Button from "../Button/Button";
+  import Kbd from "../Kbd/Kbd";
+  import KbdGroup from "../Kbd/KbdGroup";
+  import Command from "./Command";
+  import CommandDialog from "./CommandDialog";
+  import CommandInput from "./CommandInput";
+  import CommandList from "./CommandList";
+  import CommandEmpty from "./CommandEmpty";
+  import CommandGroup from "./CommandGroup";
+  import CommandItem from "./CommandItem";
+
+  const state = { open: false };
+
+  const openCommand = () => (state.open = true);
+  const setCommandOpen = (value) => (state.open = value);
+
+  const plus = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>`;
+  const folder = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></svg>`;
+</script>
+
+<div class="contents [&>[data-olum]]:contents">
+  <Button variant="outline" onclick="{openCommand}">
+    Open command palette
+    <KbdGroup class="ml-2">
+      <Kbd>⌘</Kbd>
+      <Kbd>K</Kbd>
+    </KbdGroup>
+  </Button>
+  <CommandDialog open="{state.open}" onOpenChange="{setCommandOpen}">
+    <Command>
+      <CommandInput placeholder="Type a command…" />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Actions">
+          <CommandItem>
+            <div html="plus"></div> New file
+          </CommandItem>
+          <CommandItem>
+            <div html="folder"></div> New folder
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  </CommandDialog>
+</div>

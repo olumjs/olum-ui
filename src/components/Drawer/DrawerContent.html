@@ -1,0 +1,43 @@
+<script>
+  import { props, onMount } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { class: className = "", children } = props();
+
+  onMount(() => {
+    const root = host.closest('[data-slot="drawer"]');
+    const input = root && root.querySelector(":scope > input");
+    const overlay = host.querySelector('[data-slot="drawer-overlay"]');
+
+    const close = () => {
+      if (!input) return;
+      input.checked = false;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape" && input && input.checked) close();
+    };
+    const onOverlayClick = (e) => {
+      if (e.target === overlay) close();
+    };
+
+    overlay && overlay.addEventListener("click", onOverlayClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      overlay && overlay.removeEventListener("click", onOverlayClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  });
+
+  const classes = () =>
+    twMerge(
+      "group/drawer-popup fixed inset-x-0 bottom-0 z-50 flex h-auto max-h-[80vh] flex-col rounded-t-xl border-t bg-background text-sm text-foreground",
+      className,
+    );
+</script>
+
+<div data-slot="drawer-overlay" class="fixed inset-0 z-50 bg-black/10"></div>
+<div data-slot="drawer-content" class="{classes()}">
+  <div class="mx-auto mt-2 h-1.5 w-10 shrink-0 rounded-full bg-muted"></div>
+  {children}
+</div>

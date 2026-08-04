@@ -1,0 +1,12 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { class: className = "", children } = props();
+
+  const base = "flex items-center rounded-lg has-aria-invalid:border-destructive has-aria-invalid:ring-3 has-aria-invalid:ring-destructive/20";
+
+  const classes = () => twMerge(base, className);
+</script>
+
+<div data-slot="input-otp-group" class="{classes()}">{children}</div>

@@ -1,0 +1,19 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { orientation = "horizontal", class: className = "", children } = props();
+
+  const base = "group/toggle-group flex w-fit items-center gap-0.5 rounded-lg";
+
+  const orientations = {
+    horizontal:
+      "flex-row [&_[data-slot=toggle]]:rounded-none [&>*:first-child_[data-slot=toggle]]:rounded-l-lg [&>*:last-child_[data-slot=toggle]]:rounded-r-lg",
+    vertical:
+      "flex-col items-stretch [&_[data-slot=toggle]]:rounded-none [&>*:first-child_[data-slot=toggle]]:rounded-t-lg [&>*:last-child_[data-slot=toggle]]:rounded-b-lg",
+  };
+
+  const classes = () => twMerge(base, orientations[orientation] || orientations.horizontal, className);
+</script>
+
+<div role="group" data-slot="toggle-group" data-orientation="{orientation}" class="{classes()}">{children}</div>

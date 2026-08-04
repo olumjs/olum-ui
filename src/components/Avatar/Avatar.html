@@ -1,0 +1,19 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { size = "default", class: className = "", children } = props();
+
+  const base =
+    "group/avatar relative flex size-8 shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken";
+
+  const sizes = {
+    default: "",
+    sm: "size-6",
+    lg: "size-10",
+  };
+
+  const classes = () => twMerge(base, sizes[size] || sizes.default, className);
+</script>
+
+<div data-slot="avatar" data-size="{size}" class="{classes()}">{children}</div>

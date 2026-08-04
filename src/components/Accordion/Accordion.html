@@ -1,0 +1,10 @@
+<script>
+  import { props } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { class: className = "", children } = props();
+
+  const classes = () => twMerge("flex w-full flex-col", className);
+</script>
+
+<div data-slot="accordion" class="{classes()}">{children}</div>

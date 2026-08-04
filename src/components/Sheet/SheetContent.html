@@ -1,0 +1,56 @@
+<script>
+  import { props, onMount } from "olum";
+  import { twMerge } from "tailwind-merge";
+
+  const { side = "right", showCloseButton = true, class: className = "", children } = props();
+
+  onMount(() => {
+    const root = host.closest('[data-slot="sheet"]');
+    const input = root && root.querySelector(":scope > input");
+    const overlay = host.querySelector('[data-slot="sheet-overlay"]');
+    const closeBtn = host.querySelector("[data-builtin-close]");
+
+    const close = () => {
+      if (!input) return;
+      input.checked = false;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape" && input && input.checked) close();
+    };
+    const onOverlayClick = (e) => {
+      if (e.target === overlay) close();
+    };
+
+    closeBtn && closeBtn.addEventListener("click", close);
+    overlay && overlay.addEventListener("click", onOverlayClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      closeBtn && closeBtn.removeEventListener("click", close);
+      overlay && overlay.removeEventListener("click", onOverlayClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  });
+
+  const base = "z-50 flex-col gap-4 bg-background bg-clip-padding text-sm text-foreground shadow-lg fixed";
+
+  const sides = {
+    top: "inset-x-0 top-0 h-auto border-b",
+    bottom: "inset-x-0 bottom-0 h-auto border-t",
+    left: "inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm",
+    right: "inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
+  };
+
+  const classes = () => twMerge(base, sides[side] || sides.right, className);
+</script>
+
+<div data-slot="sheet-overlay" class="fixed inset-0 z-50 bg-black/10"></div>
+<div data-slot="sheet-content" data-side="{side}" class="{classes()}">
+  {children}
+  <if when="showCloseButton">
+    <button type="button" data-builtin-close class="absolute top-3 right-3 inline-flex size-7 items-center justify-center rounded-lg hover:bg-muted">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+      <span class="sr-only">Close</span>
+    </button>
+  </if>
+</div>

@@ -1,0 +1,24 @@
+<script>
+  import { props, onMount } from "olum";
+  import { twMerge } from "tailwind-merge";
+  import Button from "../Button/Button";
+
+  const { variant = "outline", size = "default", class: className = "", children } = props();
+
+  onMount(() => {
+    const root = host.closest('[data-slot="alert-dialog"]');
+    const input = root && root.querySelector(":scope > input");
+    const btn = host.querySelector("button");
+    const onClick = () => {
+      if (!input) return;
+      input.checked = false;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+    };
+    btn.addEventListener("click", onClick);
+    return () => btn.removeEventListener("click", onClick);
+  });
+
+  const classes = () => twMerge(className);
+</script>
+
+<Button variant="{variant}" size="{size}" class="{classes()}">{children}</Button>
