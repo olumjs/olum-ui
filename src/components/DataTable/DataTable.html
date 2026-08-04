@@ -78,6 +78,10 @@
   const prevPage = () => canPrev() && state.page--;
   const nextPage = () => canNext() && state.page++;
 
+  // Cumulative count of rows shown through the current page (not just this
+  // page's own row count), e.g. "10 of 30" on page 2 with pageSize 5, not "5".
+  const shownCount = () => Math.min((state.page + 1) * pageSize, filtered().length);
+
   const totalPages = () => Math.max(1, Math.ceil(filtered().length / pageSize));
   const currentPage = () => state.page + 1;
   const goToPage = (n) => (state.page = Math.min(Math.max(0, n - 1), totalPages() - 1));
@@ -247,12 +251,13 @@
       </TableBody>
     </Table>
   </div>
-  <div class="flex items-center justify-end gap-2">
+  <div class="grid grid-cols-3 items-center gap-2">
     <if when="selectable">
-      <div class="flex-1 text-sm text-muted-foreground">{selectedCount()} of {filtered().length} row(s) selected.</div>
+      <div class="col-start-1 text-sm text-muted-foreground">{selectedCount()} of {filtered().length} row(s) selected.</div>
     </if>
+    <div class="col-start-2 text-center text-sm text-muted-foreground">{shownCount()} of {filtered().length} entries</div>
     <if when="showPagination">
-      <div class="flex items-center gap-1">
+      <div class="col-start-3 flex items-center justify-end gap-1">
         <Button variant="outline" size="sm" role="page" value="first" disabled="{!canPrev()}">First</Button>
         <if when="showPrevNext">
           <Button variant="outline" size="sm" disabled="{!canPrev()}" onclick="{prevPage}">Previous</Button>
