@@ -105,6 +105,7 @@
   import DropdownMenu from "./components/DropdownMenu/DropdownMenu";
   import DropdownMenuTrigger from "./components/DropdownMenu/DropdownMenuTrigger";
   import DropdownMenuContent from "./components/DropdownMenu/DropdownMenuContent";
+  import DropdownMenuGroup from "./components/DropdownMenu/DropdownMenuGroup";
   import DropdownMenuLabel from "./components/DropdownMenu/DropdownMenuLabel";
   import DropdownMenuItem from "./components/DropdownMenu/DropdownMenuItem";
   import DropdownMenuCheckboxItem from "./components/DropdownMenu/DropdownMenuCheckboxItem";
@@ -831,32 +832,56 @@
 
   <Section id="context-menu" title="Context Menu">
     <ContextMenu>
-      <ContextMenuTrigger class="flex h-32 w-64 items-center justify-center rounded-lg border border-dashed border-border text-sm text-muted-foreground">Right click here</ContextMenuTrigger>
-      <ContextMenuContent>
-        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem>
-          Back
-          <DropdownMenuShortcut>⌘[</DropdownMenuShortcut>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          Forward
-          <DropdownMenuShortcut>⌘]</DropdownMenuShortcut>
-        </DropdownMenuItem>
+      <ContextMenuTrigger class="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">
+        <span class="hidden pointer-fine:inline-block">Right click here</span>
+        <span class="hidden pointer-coarse:inline-block">Long press here</span>
+      </ContextMenuTrigger>
+      <ContextMenuContent class="w-48">
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            Back
+            <DropdownMenuShortcut>⌘[</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem disabled="{true}">
+            Forward
+            <DropdownMenuShortcut>⌘]</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            Reload
+            <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>More Tools</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent class="w-44">
+              <DropdownMenuGroup>
+                <DropdownMenuItem>Save Page...</DropdownMenuItem>
+                <DropdownMenuItem>Create Shortcut...</DropdownMenuItem>
+                <DropdownMenuItem>Name Window...</DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>Developer Tools</DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem defaultChecked="{true}">Show bookmarks</DropdownMenuCheckboxItem>
+        <DropdownMenuGroup>
+          <DropdownMenuCheckboxItem defaultChecked="{true}">Show Bookmarks</DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem>Show Full URLs</DropdownMenuCheckboxItem>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup>
-          <DropdownMenuRadioItem name="cm-view" value="list" defaultChecked="{true}">List view</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem name="cm-view" value="grid">Grid view</DropdownMenuRadioItem>
-        </DropdownMenuRadioGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>More tools</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuItem>Developer tools</DropdownMenuItem>
-            <DropdownMenuItem>Task manager</DropdownMenuItem>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
+        <DropdownMenuGroup>
+          <DropdownMenuRadioGroup>
+            <DropdownMenuLabel>People</DropdownMenuLabel>
+            <DropdownMenuRadioItem name="cm-people" value="pedro" defaultChecked="{true}">Pedro Duarte</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem name="cm-people" value="colm">Colm Tuite</DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuGroup>
       </ContextMenuContent>
     </ContextMenu>
   </Section>

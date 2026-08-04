@@ -4,7 +4,7 @@
   const { children } = props();
 </script>
 
-<div data-slot="context-menu" class="relative inline-block [&_[data-slot=context-menu-content]]:hidden has-[>input:checked]:[&_[data-slot=context-menu-content]]:block">
+<div data-slot="context-menu" class="relative block [&_[data-slot=context-menu-content]]:hidden has-[>input:checked]:[&_[data-slot=context-menu-content]]:block">
   <input type="checkbox" class="hidden" />
   {children}
 </div>

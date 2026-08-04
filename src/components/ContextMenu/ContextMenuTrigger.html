@@ -26,7 +26,7 @@
     return () => el.removeEventListener("contextmenu", onContextMenu);
   });
 
-  const classes = () => twMerge("relative select-none", className);
+  const classes = () => twMerge("select-none", className);
 </script>
 
 <div data-slot="context-menu-trigger" class="{classes()}">{children}</div>
