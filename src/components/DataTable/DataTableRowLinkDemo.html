@@ -1,0 +1,29 @@
+<script>
+  import { props } from "olum";
+  import DataTable from "./DataTable";
+
+  // DataTable itself sits inside <Section>'s slot wherever it's used, so a
+  // bare-identifier function prop passed to it from the page resolves against
+  // Section's methodsRef (the slot-owning component), not the page's -- and
+  // silently never fires. This wrapper exists purely so `rowLink` is defined
+  // in the same component that renders <DataTable> directly (unslotted
+  // relative to it), which is what the method-reference prop mechanism
+  // requires. `data`/`columns`/`icon` are plain data props, unaffected by
+  // this and safe to pass through from anywhere regardless of nesting depth.
+  const { data = [], columns = [], icon = "", class: className = "" } = props();
+
+  const rowLink = (row) => ({ href: `mailto:${row.email}`, text: "", icon });
+</script>
+
+<DataTable
+  columns="{columns}"
+  data="{data}"
+  searchKey="email"
+  searchPlaceholder="Filter emails…"
+  pageSize="{10}"
+  selectable="{false}"
+  showPrevNext="{false}"
+  showPagination="{true}"
+  rowLink="{rowLink}"
+  class="{className}"
+/>

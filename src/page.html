@@ -85,6 +85,7 @@
   import ContextMenuTrigger from "./components/ContextMenu/ContextMenuTrigger";
   import ContextMenuContent from "./components/ContextMenu/ContextMenuContent";
   import DataTable from "./components/DataTable/DataTable";
+  import DataTableRowLinkDemo from "./components/DataTable/DataTableRowLinkDemo";
   import DatePicker from "./components/DatePicker/DatePicker";
   import Dialog from "./components/Dialog/Dialog";
   import DialogTrigger from "./components/Dialog/DialogTrigger";
@@ -909,7 +910,7 @@
 
   <Section id="data-table" title="Data Table">
     <div class="w-full">
-      <DataTable columns="{paymentColumns}" data="{payments}" searchKey="email" searchPlaceholder="Filter emails…" pageSize="{10}" selectable="{false}" showPrevNext="{false}" showPagination="{true}" />
+      <DataTableRowLinkDemo columns="{paymentColumns}" data="{payments}" icon="{icons.arrowRight}" />
     </div>
   </Section>
 

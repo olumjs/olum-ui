@@ -23,6 +23,13 @@
     selectable = true,
     showPagination = true,
     showPrevNext = true,
+    // Function (row) => { href, text, icon }, replacing the leading checkbox
+    // column with a per-row link instead. Must be passed as a bare
+    // identifier (a named function defined in the consumer's own script),
+    // not an inline arrow -- inline arrow props on a component tag get
+    // JSON.stringify'd along with the rest of the props object, which
+    // silently drops function values.
+    rowLink,
     class: className = "",
   } = props();
 
@@ -105,6 +112,9 @@
     });
     return out;
   };
+
+  const hasRowLink = () => typeof rowLink === "function";
+  const linkFor = (row) => (hasRowLink() ? rowLink(row) || {} : {});
 
   const isRowSelected = (id) => !!state.selected[id];
   const selectedCount = () => filtered().filter((row) => state.selected[row.id]).length;
@@ -202,7 +212,10 @@
     <Table>
       <TableHeader>
         <TableRow>
-          <if when="selectable">
+          <if when="hasRowLink()">
+            <TableHead class="w-10"></TableHead>
+          </if>
+          <if when="!hasRowLink() && selectable">
             <TableHead class="w-10">
               <span class="relative inline-flex size-4 shrink-0 top-0.75">
                 <input type="checkbox" data-role="select-all" checked="{isPageAllSelected()}" aria-label="Select all" class="{checkboxClasses}" />
@@ -228,7 +241,17 @@
       <TableBody class="[&_[data-slot=table-row]:last-child]:border-b">
         <for each="row of rows()" key="row.id">
           <TableRow data-state="{isRowSelected(row.id) ? 'selected' : ''}">
-            <if when="selectable">
+            <if when="hasRowLink()">
+              <TableCell>
+                <a href="{linkFor(row).href}" class="inline-flex items-center gap-1.5 text-sm text-foreground hover:underline [&_svg]:size-4 [&_svg]:shrink-0">
+                  <if when="linkFor(row).icon">
+                    <span html="linkFor(row).icon"></span>
+                  </if>
+                  <if when="linkFor(row).text">{linkFor(row).text}</if>
+                </a>
+              </TableCell>
+            </if>
+            <if when="!hasRowLink() && selectable">
               <TableCell>
                 <span class="relative inline-flex size-4 shrink-0 top-0.75">
                   <input type="checkbox" data-row-id="{row.id}" checked="{isRowSelected(row.id)}" aria-label="Select row" class="{checkboxClasses}" />
@@ -245,14 +268,14 @@
         </for>
         <if when="rows().length === 0">
           <TableRow>
-            <TableCell colspan="{shown().length + (selectable ? 1 : 0)}" class="h-24 text-center">No results.</TableCell>
+            <TableCell colspan="{shown().length + (hasRowLink() || selectable ? 1 : 0)}" class="h-24 text-center">No results.</TableCell>
           </TableRow>
         </if>
       </TableBody>
     </Table>
   </div>
   <div class="grid grid-cols-3 items-center gap-2">
-    <if when="selectable">
+    <if when="!hasRowLink() && selectable">
       <div class="col-start-1 text-sm text-muted-foreground">{selectedCount()} of {filtered().length} row(s) selected.</div>
     </if>
     <div class="col-start-2 text-center text-sm text-muted-foreground">{shownCount()} of {filtered().length} entries</div>
