@@ -8,6 +8,63 @@
       "path": "src/components/Button/Button.html"
     },
     {
+      "name": "button-group",
+      "title": "Button Group",
+      "category": "forms",
+      "deps": [
+        "ButtonGroupSeparator.html",
+        "ButtonGroupText.html"
+      ],
+      "path": "src/components/ButtonGroup/ButtonGroup.html"
+    },
+    {
+      "name": "calendar",
+      "title": "Calendar",
+      "category": "forms",
+      "deps": [],
+      "path": "src/components/Calendar/Calendar.html"
+    },
+    {
+      "name": "checkbox",
+      "title": "Checkbox",
+      "category": "forms",
+      "deps": [],
+      "path": "src/components/Checkbox/Checkbox.html"
+    },
+    {
+      "name": "combobox",
+      "title": "Combobox",
+      "category": "forms",
+      "deps": [],
+      "path": "src/components/Combobox/Combobox.html"
+    },
+    {
+      "name": "date-picker",
+      "title": "Date Picker",
+      "category": "forms",
+      "deps": [
+        "Calendar/Calendar.html"
+      ],
+      "path": "src/components/DatePicker/DatePicker.html"
+    },
+    {
+      "name": "field",
+      "title": "Field",
+      "category": "forms",
+      "deps": [
+        "FieldContent.html",
+        "FieldDescription.html",
+        "FieldError.html",
+        "FieldGroup.html",
+        "FieldLabel.html",
+        "FieldLegend.html",
+        "FieldSeparator.html",
+        "FieldSet.html",
+        "Label/Label.html"
+      ],
+      "path": "src/components/Field/Field.html"
+    },
+    {
       "name": "input",
       "title": "Input",
       "category": "forms",
@@ -15,11 +72,666 @@
       "path": "src/components/Input/Input.html"
     },
     {
+      "name": "input-group",
+      "title": "Input Group",
+      "category": "forms",
+      "deps": [
+        "InputGroupAddon.html",
+        "InputGroupButton.html",
+        "InputGroupInput.html",
+        "InputGroupText.html",
+        "Button/Button.html",
+        "Input/Input.html"
+      ],
+      "path": "src/components/InputGroup/InputGroup.html"
+    },
+    {
+      "name": "input-otp",
+      "title": "Input OTP",
+      "category": "forms",
+      "deps": [
+        "InputOTPGroup.html",
+        "InputOTPSeparator.html",
+        "InputOTPSlot.html"
+      ],
+      "path": "src/components/InputOTP/InputOTP.html"
+    },
+    {
+      "name": "label",
+      "title": "Label",
+      "category": "forms",
+      "deps": [],
+      "path": "src/components/Label/Label.html"
+    },
+    {
+      "name": "native-select",
+      "title": "Native Select",
+      "category": "forms",
+      "deps": [
+        "NativeSelectOptGroup.html",
+        "NativeSelectOption.html"
+      ],
+      "path": "src/components/NativeSelect/NativeSelect.html"
+    },
+    {
+      "name": "radio-group",
+      "title": "Radio Group",
+      "category": "forms",
+      "deps": [
+        "RadioGroupItem.html"
+      ],
+      "path": "src/components/RadioGroup/RadioGroup.html"
+    },
+    {
+      "name": "select",
+      "title": "Select",
+      "category": "forms",
+      "deps": [
+        "SelectContent.html",
+        "SelectGroup.html",
+        "SelectItem.html",
+        "SelectLabel.html",
+        "SelectSeparator.html",
+        "SelectTrigger.html",
+        "SelectValue.html"
+      ],
+      "path": "src/components/Select/Select.html"
+    },
+    {
+      "name": "slider",
+      "title": "Slider",
+      "category": "forms",
+      "deps": [],
+      "path": "src/components/Slider/Slider.html"
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "category": "forms",
+      "deps": [],
+      "path": "src/components/Switch/Switch.html"
+    },
+    {
+      "name": "textarea",
+      "title": "Textarea",
+      "category": "forms",
+      "deps": [],
+      "path": "src/components/Textarea/Textarea.html"
+    },
+    {
+      "name": "toggle",
+      "title": "Toggle",
+      "category": "forms",
+      "deps": [],
+      "path": "src/components/Toggle/Toggle.html"
+    },
+    {
+      "name": "toggle-group",
+      "title": "Toggle Group",
+      "category": "forms",
+      "deps": [
+        "ToggleGroupItem.html",
+        "toggleGroupStore.js",
+        "Toggle/Toggle.html"
+      ],
+      "path": "src/components/ToggleGroup/ToggleGroup.html"
+    },
+    {
+      "name": "aspect-ratio",
+      "title": "Aspect Ratio",
+      "category": "layout",
+      "deps": [],
+      "path": "src/components/AspectRatio/AspectRatio.html"
+    },
+    {
+      "name": "card",
+      "title": "Card",
+      "category": "layout",
+      "deps": [
+        "CardAction.html",
+        "CardContent.html",
+        "CardDescription.html",
+        "CardFooter.html",
+        "CardHeader.html",
+        "CardTitle.html"
+      ],
+      "path": "src/components/Card/Card.html"
+    },
+    {
+      "name": "resizable",
+      "title": "Resizable",
+      "category": "layout",
+      "deps": [
+        "ResizableHandle.html",
+        "ResizablePanel.html"
+      ],
+      "path": "src/components/Resizable/ResizablePanelGroup.html"
+    },
+    {
+      "name": "scroll-area",
+      "title": "Scroll Area",
+      "category": "layout",
+      "deps": [],
+      "path": "src/components/ScrollArea/ScrollArea.html"
+    },
+    {
+      "name": "separator",
+      "title": "Separator",
+      "category": "layout",
+      "deps": [],
+      "path": "src/components/Separator/Separator.html"
+    },
+    {
+      "name": "sidebar",
+      "title": "Sidebar",
+      "category": "layout",
+      "deps": [
+        "SidebarContent.html",
+        "SidebarFooter.html",
+        "SidebarGroup.html",
+        "SidebarGroupContent.html",
+        "SidebarGroupLabel.html",
+        "SidebarHeader.html",
+        "SidebarInset.html",
+        "SidebarMenu.html",
+        "SidebarMenuButton.html",
+        "SidebarMenuItem.html",
+        "SidebarProvider.html",
+        "SidebarSeparator.html",
+        "SidebarTrigger.html"
+      ],
+      "path": "src/components/Sidebar/Sidebar.html"
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "category": "navigation",
+      "deps": [
+        "BreadcrumbEllipsis.html",
+        "BreadcrumbItem.html",
+        "BreadcrumbLink.html",
+        "BreadcrumbList.html",
+        "BreadcrumbPage.html",
+        "BreadcrumbSeparator.html"
+      ],
+      "path": "src/components/Breadcrumb/Breadcrumb.html"
+    },
+    {
+      "name": "command",
+      "title": "Command",
+      "category": "navigation",
+      "deps": [
+        "CommandDialog.html",
+        "CommandDialogContent.html",
+        "CommandDialogTrigger.html",
+        "CommandEmpty.html",
+        "CommandGroup.html",
+        "CommandInput.html",
+        "CommandItem.html",
+        "CommandList.html",
+        "CommandSeparator.html",
+        "CommandShortcut.html",
+        "Portal/portal.js"
+      ],
+      "path": "src/components/Command/Command.html"
+    },
+    {
+      "name": "menubar",
+      "title": "Menubar",
+      "category": "navigation",
+      "deps": [
+        "MenubarContent.html",
+        "MenubarMenu.html",
+        "MenubarTrigger.html",
+        "DropdownMenu/DropdownMenu.html",
+        "DropdownMenu/DropdownMenuContent.html",
+        "DropdownMenu/DropdownMenuTrigger.html"
+      ],
+      "path": "src/components/Menubar/Menubar.html"
+    },
+    {
+      "name": "navigation-menu",
+      "title": "Navigation Menu",
+      "category": "navigation",
+      "deps": [
+        "NavigationMenuContent.html",
+        "NavigationMenuItem.html",
+        "NavigationMenuLink.html",
+        "NavigationMenuList.html",
+        "NavigationMenuTrigger.html"
+      ],
+      "path": "src/components/NavigationMenu/NavigationMenu.html"
+    },
+    {
+      "name": "pagination",
+      "title": "Pagination",
+      "category": "navigation",
+      "deps": [
+        "PaginationContent.html",
+        "PaginationEllipsis.html",
+        "PaginationItem.html",
+        "PaginationLink.html",
+        "PaginationNext.html",
+        "PaginationPrevious.html"
+      ],
+      "path": "src/components/Pagination/Pagination.html"
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "category": "navigation",
+      "deps": [
+        "TabsContent.html",
+        "TabsList.html",
+        "TabsTrigger.html"
+      ],
+      "path": "src/components/Tabs/Tabs.html"
+    },
+    {
+      "name": "alert-dialog",
+      "title": "Alert Dialog",
+      "category": "overlay",
+      "deps": [
+        "AlertDialogAction.html",
+        "AlertDialogCancel.html",
+        "AlertDialogContent.html",
+        "AlertDialogDescription.html",
+        "AlertDialogFooter.html",
+        "AlertDialogHeader.html",
+        "AlertDialogMedia.html",
+        "AlertDialogTitle.html",
+        "AlertDialogTrigger.html",
+        "Button/Button.html",
+        "Portal/portal.js"
+      ],
+      "path": "src/components/AlertDialog/AlertDialog.html"
+    },
+    {
+      "name": "context-menu",
+      "title": "Context Menu",
+      "category": "overlay",
+      "deps": [
+        "ContextMenuContent.html",
+        "ContextMenuTrigger.html"
+      ],
+      "path": "src/components/ContextMenu/ContextMenu.html"
+    },
+    {
+      "name": "dialog",
+      "title": "Dialog",
+      "category": "overlay",
+      "deps": [
+        "DialogClose.html",
+        "DialogContent.html",
+        "DialogDescription.html",
+        "DialogFooter.html",
+        "DialogHeader.html",
+        "DialogTitle.html",
+        "DialogTrigger.html",
+        "Portal/portal.js"
+      ],
+      "path": "src/components/Dialog/Dialog.html"
+    },
+    {
+      "name": "drawer",
+      "title": "Drawer",
+      "category": "overlay",
+      "deps": [
+        "DrawerClose.html",
+        "DrawerContent.html",
+        "DrawerDescription.html",
+        "DrawerFooter.html",
+        "DrawerHeader.html",
+        "DrawerTitle.html",
+        "DrawerTrigger.html",
+        "Portal/portal.js"
+      ],
+      "path": "src/components/Drawer/Drawer.html"
+    },
+    {
+      "name": "dropdown-menu",
+      "title": "Dropdown Menu",
+      "category": "overlay",
+      "deps": [
+        "DropdownMenuCheckboxItem.html",
+        "DropdownMenuContent.html",
+        "DropdownMenuGroup.html",
+        "DropdownMenuItem.html",
+        "DropdownMenuLabel.html",
+        "DropdownMenuRadioGroup.html",
+        "DropdownMenuRadioItem.html",
+        "DropdownMenuSeparator.html",
+        "DropdownMenuShortcut.html",
+        "DropdownMenuSub.html",
+        "DropdownMenuSubContent.html",
+        "DropdownMenuSubTrigger.html",
+        "DropdownMenuTrigger.html"
+      ],
+      "path": "src/components/DropdownMenu/DropdownMenu.html"
+    },
+    {
+      "name": "hover-card",
+      "title": "Hover Card",
+      "category": "overlay",
+      "deps": [
+        "HoverCardContent.html",
+        "HoverCardTrigger.html"
+      ],
+      "path": "src/components/HoverCard/HoverCard.html"
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "category": "overlay",
+      "deps": [
+        "PopoverContent.html",
+        "PopoverDescription.html",
+        "PopoverHeader.html",
+        "PopoverTitle.html",
+        "PopoverTrigger.html"
+      ],
+      "path": "src/components/Popover/Popover.html"
+    },
+    {
+      "name": "sheet",
+      "title": "Sheet",
+      "category": "overlay",
+      "deps": [
+        "SheetClose.html",
+        "SheetContent.html",
+        "SheetDescription.html",
+        "SheetFooter.html",
+        "SheetHeader.html",
+        "SheetTitle.html",
+        "SheetTrigger.html",
+        "Portal/portal.js"
+      ],
+      "path": "src/components/Sheet/Sheet.html"
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "category": "overlay",
+      "deps": [
+        "TooltipContent.html",
+        "TooltipProvider.html",
+        "TooltipTrigger.html"
+      ],
+      "path": "src/components/Tooltip/Tooltip.html"
+    },
+    {
+      "name": "alert",
+      "title": "Alert",
+      "category": "feedback",
+      "deps": [
+        "AlertAction.html",
+        "AlertDescription.html",
+        "AlertTitle.html"
+      ],
+      "path": "src/components/Alert/Alert.html"
+    },
+    {
+      "name": "empty",
+      "title": "Empty",
+      "category": "feedback",
+      "deps": [
+        "EmptyContent.html",
+        "EmptyDescription.html",
+        "EmptyHeader.html",
+        "EmptyMedia.html",
+        "EmptyTitle.html"
+      ],
+      "path": "src/components/Empty/Empty.html"
+    },
+    {
+      "name": "progress",
+      "title": "Progress",
+      "category": "feedback",
+      "deps": [],
+      "path": "src/components/Progress/Progress.html"
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "category": "feedback",
+      "deps": [],
+      "path": "src/components/Skeleton/Skeleton.html"
+    },
+    {
+      "name": "spinner",
+      "title": "Spinner",
+      "category": "feedback",
+      "deps": [],
+      "path": "src/components/Spinner/Spinner.html"
+    },
+    {
+      "name": "toast",
+      "title": "Toast",
+      "category": "feedback",
+      "deps": [
+        "toast.js"
+      ],
+      "path": "src/components/Toast/Toaster.html"
+    },
+    {
       "name": "accordion",
       "title": "Accordion",
-      "category": "",
-      "deps": ["AccordionContent.html", "AccordionItem.html", "AccordionTrigger.html"],
+      "category": "data-display",
+      "deps": [
+        "AccordionContent.html",
+        "AccordionItem.html",
+        "AccordionTrigger.html"
+      ],
       "path": "src/components/Accordion/Accordion.html"
+    },
+    {
+      "name": "attachment",
+      "title": "Attachment",
+      "category": "data-display",
+      "deps": [
+        "AttachmentAction.html",
+        "AttachmentActions.html",
+        "AttachmentContent.html",
+        "AttachmentDescription.html",
+        "AttachmentGroup.html",
+        "AttachmentMedia.html",
+        "AttachmentTitle.html",
+        "Button/Button.html"
+      ],
+      "path": "src/components/Attachment/Attachment.html"
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "category": "data-display",
+      "deps": [
+        "AvatarBadge.html",
+        "AvatarFallback.html",
+        "AvatarGroup.html",
+        "AvatarGroupCount.html"
+      ],
+      "path": "src/components/Avatar/Avatar.html"
+    },
+    {
+      "name": "badge",
+      "title": "Badge",
+      "category": "data-display",
+      "deps": [],
+      "path": "src/components/Badge/Badge.html"
+    },
+    {
+      "name": "bubble",
+      "title": "Bubble",
+      "category": "data-display",
+      "deps": [
+        "BubbleContent.html",
+        "BubbleGroup.html"
+      ],
+      "path": "src/components/Bubble/Bubble.html"
+    },
+    {
+      "name": "carousel",
+      "title": "Carousel",
+      "category": "data-display",
+      "deps": [
+        "animate.js",
+        "CarouselContent.html",
+        "CarouselItem.html",
+        "CarouselNext.html",
+        "CarouselPrevious.html",
+        "carouselStore.js"
+      ],
+      "path": "src/components/Carousel/Carousel.html"
+    },
+    {
+      "name": "chart",
+      "title": "Chart",
+      "category": "data-display",
+      "deps": [
+        "AreaChart.html",
+        "chartId.js",
+        "ComposedChart.html",
+        "DonutChart.html",
+        "LineChart.html",
+        "RadialBarChart.html"
+      ],
+      "path": "src/components/Chart/BarChart.html"
+    },
+    {
+      "name": "collapsible",
+      "title": "Collapsible",
+      "category": "data-display",
+      "deps": [
+        "CollapsibleContent.html",
+        "CollapsibleTrigger.html"
+      ],
+      "path": "src/components/Collapsible/Collapsible.html"
+    },
+    {
+      "name": "data-table",
+      "title": "Data Table",
+      "category": "data-display",
+      "deps": [
+        "Button/Button.html",
+        "DropdownMenu/DropdownMenu.html",
+        "DropdownMenu/DropdownMenuCheckboxItem.html",
+        "DropdownMenu/DropdownMenuContent.html",
+        "DropdownMenu/DropdownMenuTrigger.html",
+        "Input/Input.html",
+        "Table/Table.html",
+        "Table/TableBody.html",
+        "Table/TableCell.html",
+        "Table/TableHead.html",
+        "Table/TableHeader.html",
+        "Table/TableRow.html"
+      ],
+      "path": "src/components/DataTable/DataTable.html"
+    },
+    {
+      "name": "item",
+      "title": "Item",
+      "category": "data-display",
+      "deps": [
+        "ItemActions.html",
+        "ItemContent.html",
+        "ItemDescription.html",
+        "ItemFooter.html",
+        "ItemGroup.html",
+        "ItemHeader.html",
+        "ItemMedia.html",
+        "ItemSeparator.html",
+        "ItemTitle.html",
+        "Separator/Separator.html"
+      ],
+      "path": "src/components/Item/Item.html"
+    },
+    {
+      "name": "kbd",
+      "title": "Kbd",
+      "category": "data-display",
+      "deps": [
+        "KbdGroup.html"
+      ],
+      "path": "src/components/Kbd/Kbd.html"
+    },
+    {
+      "name": "marker",
+      "title": "Marker",
+      "category": "data-display",
+      "deps": [
+        "MarkerContent.html",
+        "MarkerIcon.html"
+      ],
+      "path": "src/components/Marker/Marker.html"
+    },
+    {
+      "name": "message",
+      "title": "Message",
+      "category": "data-display",
+      "deps": [
+        "MessageAvatar.html",
+        "MessageContent.html",
+        "MessageFooter.html",
+        "MessageGroup.html",
+        "MessageHeader.html"
+      ],
+      "path": "src/components/Message/Message.html"
+    },
+    {
+      "name": "message-scroller",
+      "title": "Message Scroller",
+      "category": "data-display",
+      "deps": [
+        "MessageScrollerButton.html",
+        "MessageScrollerContent.html",
+        "MessageScrollerItem.html",
+        "MessageScrollerProvider.html",
+        "MessageScrollerViewport.html"
+      ],
+      "path": "src/components/MessageScroller/MessageScroller.html"
+    },
+    {
+      "name": "table",
+      "title": "Table",
+      "category": "data-display",
+      "deps": [
+        "TableBody.html",
+        "TableCaption.html",
+        "TableCell.html",
+        "TableFooter.html",
+        "TableHead.html",
+        "TableHeader.html",
+        "TableRow.html"
+      ],
+      "path": "src/components/Table/Table.html"
+    },
+    {
+      "name": "direction",
+      "title": "Direction",
+      "category": "utility",
+      "deps": [],
+      "path": "src/components/Direction/Direction.html"
+    },
+    {
+      "name": "portal",
+      "title": "Portal",
+      "category": "utility",
+      "deps": [],
+      "path": "src/components/Portal/portal.js"
+    },
+    {
+      "name": "demo",
+      "title": "Demo",
+      "category": "internal",
+      "deps": [],
+      "path": "src/components/Demo/Demo.html"
+    },
+    {
+      "name": "section",
+      "title": "Section",
+      "category": "internal",
+      "deps": [],
+      "path": "src/components/Section/Section.html"
     }
   ]
 }
