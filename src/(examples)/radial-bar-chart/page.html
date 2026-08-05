@@ -1,0 +1,17 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import RadialBarChart from "../../components/Chart/RadialBarChart";
+
+  const chartConfig = {
+    desktop: { label: "Desktop", color: "var(--color-chart-1)" },
+    mobile: { label: "Mobile", color: "var(--color-chart-2)" },
+  };
+
+  const radialChartData = [{ month: "january", desktop: 1260, mobile: 570 }];
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="radial-bar-chart" title="Radial Bar Chart">
+    <RadialBarChart data="{radialChartData}" config="{chartConfig}" centerLabel="Visitors" class="w-full max-w-md" />
+  </Section>
+</div>

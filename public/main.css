@@ -898,6 +898,9 @@
   .auto-rows-min {
     grid-auto-rows: min-content;
   }
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -978,9 +981,6 @@
   }
   .gap-10 {
     gap: calc(var(--spacing) * 10);
-  }
-  .gap-x-3 {
-    column-gap: calc(var(--spacing) * 3);
   }
   :where(.-space-x-2 > :not(:last-child)) {
     --tw-space-x-reverse: 0;
@@ -1457,9 +1457,6 @@
   }
   .underline {
     text-decoration-line: underline;
-  }
-  .underline-offset-3 {
-    text-underline-offset: 3px;
   }
   .underline-offset-4 {
     text-underline-offset: 4px;
@@ -2561,6 +2558,9 @@
     }
     .sm\:max-w-sm {
       max-width: var(--container-sm);
+    }
+    .sm\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     .sm\:flex-row {
       flex-direction: row;

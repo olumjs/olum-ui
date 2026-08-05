@@ -1,0 +1,34 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+  import BreadcrumbList from "../../components/Breadcrumb/BreadcrumbList";
+  import BreadcrumbItem from "../../components/Breadcrumb/BreadcrumbItem";
+  import BreadcrumbLink from "../../components/Breadcrumb/BreadcrumbLink";
+  import BreadcrumbPage from "../../components/Breadcrumb/BreadcrumbPage";
+  import BreadcrumbSeparator from "../../components/Breadcrumb/BreadcrumbSeparator";
+  import BreadcrumbEllipsis from "../../components/Breadcrumb/BreadcrumbEllipsis";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="breadcrumb" title="Breadcrumb">
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbEllipsis />
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Components</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  </Section>
+</div>

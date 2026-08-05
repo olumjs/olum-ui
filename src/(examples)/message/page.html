@@ -1,0 +1,43 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Avatar from "../../components/Avatar/Avatar";
+  import AvatarFallback from "../../components/Avatar/AvatarFallback";
+  import Bubble from "../../components/Bubble/Bubble";
+  import BubbleContent from "../../components/Bubble/BubbleContent";
+  import Message from "../../components/Message/Message";
+  import MessageGroup from "../../components/Message/MessageGroup";
+  import MessageAvatar from "../../components/Message/MessageAvatar";
+  import MessageContent from "../../components/Message/MessageContent";
+  import MessageHeader from "../../components/Message/MessageHeader";
+  import MessageFooter from "../../components/Message/MessageFooter";
+
+  const chatMessages = [
+    { id: "1", align: "start", text: "Hey, do you have the Q3 report ready?" },
+    { id: "2", align: "end", text: "Almost — just polishing the charts now." },
+    { id: "3", align: "start", text: "No rush, end of day is fine." },
+    { id: "4", align: "end", text: "Sounds good, I'll ping you when it's up." },
+  ];
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="message" title="Message">
+    <MessageGroup class="w-96">
+      <for each="m of chatMessages" key="m.id">
+        <Message align="{m.align}">
+          <MessageAvatar>
+            <Avatar size="sm">
+              <AvatarFallback>{m.align === "start" ? "JD" : "Me"}</AvatarFallback>
+            </Avatar>
+          </MessageAvatar>
+          <MessageContent>
+            <MessageHeader>{m.align === "start" ? "Jane Doe" : "You"}</MessageHeader>
+            <Bubble align="{m.align}">
+              <BubbleContent>{m.text}</BubbleContent>
+            </Bubble>
+            <MessageFooter>Seen</MessageFooter>
+          </MessageContent>
+        </Message>
+      </for>
+    </MessageGroup>
+  </Section>
+</div>

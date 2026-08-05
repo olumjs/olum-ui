@@ -1,0 +1,34 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import NavigationMenu from "../../components/NavigationMenu/NavigationMenu";
+  import NavigationMenuList from "../../components/NavigationMenu/NavigationMenuList";
+  import NavigationMenuItem from "../../components/NavigationMenu/NavigationMenuItem";
+  import NavigationMenuTrigger from "../../components/NavigationMenu/NavigationMenuTrigger";
+  import NavigationMenuContent from "../../components/NavigationMenu/NavigationMenuContent";
+  import NavigationMenuLink from "../../components/NavigationMenu/NavigationMenuLink";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="navigation-menu" title="Navigation Menu">
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul class="grid w-64 gap-1 p-2">
+              <li>
+                <NavigationMenuLink href="#">Analytics</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="#">Dashboards</NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="#" variant="trigger">Docs</NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  </Section>
+</div>

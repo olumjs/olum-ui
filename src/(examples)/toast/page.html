@@ -1,0 +1,25 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Button from "../../components/Button/Button";
+  import Toaster from "../../components/Toast/Toaster";
+  import { toast } from "../../components/Toast/toast";
+
+  const showDefaultToast = () => toast.add({ title: "Event created", description: "Monday, Jan 5 at 4:00pm", autoClose: false });
+  const showSuccessToast = () => toast.add({ title: "Saved successfully", type: "success", autoClose: false });
+  const showErrorToast = () => toast.add({ title: "Something went wrong", type: "error", autoClose: false });
+  const showWarningToast = () => toast.add({ title: "Low disk space", type: "warning", autoClose: false });
+  const showInfoToast = () => toast.add({ title: "New update available", type: "info", autoClose: false });
+  const showPersistentToast = () => toast.add({ title: "Action required", description: "This stays until you close it.", autoClose: false });
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="toast" title="Toast">
+    <Button variant="outline" onclick="{showDefaultToast}">Default</Button>
+    <Button variant="outline" onclick="{showSuccessToast}">Success</Button>
+    <Button variant="outline" onclick="{showErrorToast}">Error</Button>
+    <Button variant="outline" onclick="{showWarningToast}">Warning</Button>
+    <Button variant="outline" onclick="{showInfoToast}">Info</Button>
+    <Button variant="outline" onclick="{showPersistentToast}">Persistent</Button>
+    <Toaster />
+  </Section>
+</div>

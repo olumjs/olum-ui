@@ -1,0 +1,33 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Demo from "../../components/Demo/Demo";
+  import Tabs from "../../components/Tabs/Tabs";
+  import TabsList from "../../components/Tabs/TabsList";
+  import TabsTrigger from "../../components/Tabs/TabsTrigger";
+  import TabsContent from "../../components/Tabs/TabsContent";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="tabs" title="Tabs">
+    <Demo label="default">
+      <Tabs class="w-72">
+        <TabsList>
+          <TabsTrigger group="tabs1" value="account" defaultChecked="{true}">Account</TabsTrigger>
+          <TabsTrigger group="tabs1" value="password">Password</TabsTrigger>
+        </TabsList>
+        <TabsContent value="account">Manage your account settings.</TabsContent>
+        <TabsContent value="password">Change your password.</TabsContent>
+      </Tabs>
+    </Demo>
+    <Demo label="line variant">
+      <Tabs class="w-72">
+        <TabsList variant="line">
+          <TabsTrigger group="tabs2" variant="line" value="overview" defaultChecked="{true}">Overview</TabsTrigger>
+          <TabsTrigger group="tabs2" variant="line" value="analytics">Analytics</TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview">Overview content.</TabsContent>
+        <TabsContent value="analytics">Analytics content.</TabsContent>
+      </Tabs>
+    </Demo>
+  </Section>
+</div>

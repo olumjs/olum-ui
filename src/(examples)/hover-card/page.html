@@ -1,0 +1,30 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Avatar from "../../components/Avatar/Avatar";
+  import AvatarFallback from "../../components/Avatar/AvatarFallback";
+  import Button from "../../components/Button/Button";
+  import HoverCard from "../../components/HoverCard/HoverCard";
+  import HoverCardTrigger from "../../components/HoverCard/HoverCardTrigger";
+  import HoverCardContent from "../../components/HoverCard/HoverCardContent";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="hover-card" title="Hover Card">
+    <HoverCard>
+      <HoverCardTrigger>
+        <Button variant="link">@shadcn</Button>
+      </HoverCardTrigger>
+      <HoverCardContent>
+        <div class="flex justify-between gap-4">
+          <Avatar>
+            <AvatarFallback>SC</AvatarFallback>
+          </Avatar>
+          <div class="flex flex-col gap-1">
+            <h4 class="text-sm font-semibold">@shadcn</h4>
+            <p class="text-sm text-muted-foreground">Building beautiful components.</p>
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  </Section>
+</div>

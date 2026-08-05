@@ -1,0 +1,53 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import DropdownMenuItem from "../../components/DropdownMenu/DropdownMenuItem";
+  import DropdownMenuCheckboxItem from "../../components/DropdownMenu/DropdownMenuCheckboxItem";
+  import DropdownMenuRadioGroup from "../../components/DropdownMenu/DropdownMenuRadioGroup";
+  import DropdownMenuRadioItem from "../../components/DropdownMenu/DropdownMenuRadioItem";
+  import DropdownMenuSeparator from "../../components/DropdownMenu/DropdownMenuSeparator";
+  import DropdownMenuShortcut from "../../components/DropdownMenu/DropdownMenuShortcut";
+  import DropdownMenuSub from "../../components/DropdownMenu/DropdownMenuSub";
+  import DropdownMenuSubTrigger from "../../components/DropdownMenu/DropdownMenuSubTrigger";
+  import DropdownMenuSubContent from "../../components/DropdownMenu/DropdownMenuSubContent";
+  import Menubar from "../../components/Menubar/Menubar";
+  import MenubarMenu from "../../components/Menubar/MenubarMenu";
+  import MenubarTrigger from "../../components/Menubar/MenubarTrigger";
+  import MenubarContent from "../../components/Menubar/MenubarContent";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="menubar" title="Menubar">
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <DropdownMenuItem>
+            New tab <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            New window <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>Share</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>Email link</DropdownMenuItem>
+              <DropdownMenuItem>Copy link</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <DropdownMenuCheckboxItem defaultChecked="{true}">Always show bookmarks</DropdownMenuCheckboxItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup>
+            <DropdownMenuRadioItem name="mb-view" value="list" defaultChecked="{true}">List view</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem name="mb-view" value="grid">Grid view</DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  </Section>
+</div>

@@ -1,0 +1,31 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Bubble from "../../components/Bubble/Bubble";
+  import BubbleContent from "../../components/Bubble/BubbleContent";
+  import BubbleGroup from "../../components/Bubble/BubbleGroup";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="bubble" title="Bubble">
+    <BubbleGroup>
+      <Bubble align="start" variant="muted">
+        <BubbleContent>Hey there!</BubbleContent>
+      </Bubble>
+      <Bubble align="end" variant="default">
+        <BubbleContent>Hello, how can I help?</BubbleContent>
+      </Bubble>
+      <Bubble align="start" variant="tinted">
+        <BubbleContent>Tinted variant</BubbleContent>
+      </Bubble>
+      <Bubble align="start" variant="outline">
+        <BubbleContent>Outline variant</BubbleContent>
+      </Bubble>
+      <Bubble align="start" variant="ghost">
+        <BubbleContent>Ghost variant, no chrome</BubbleContent>
+      </Bubble>
+      <Bubble align="start" variant="destructive">
+        <BubbleContent>Something went wrong</BubbleContent>
+      </Bubble>
+    </BubbleGroup>
+  </Section>
+</div>

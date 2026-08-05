@@ -1,0 +1,33 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Select from "../../components/Select/Select";
+  import SelectTrigger from "../../components/Select/SelectTrigger";
+  import SelectValue from "../../components/Select/SelectValue";
+  import SelectContent from "../../components/Select/SelectContent";
+  import SelectGroup from "../../components/Select/SelectGroup";
+  import SelectLabel from "../../components/Select/SelectLabel";
+  import SelectItem from "../../components/Select/SelectItem";
+  import SelectSeparator from "../../components/Select/SelectSeparator";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="select" title="Select">
+    <Select defaultValue="apple">
+      <SelectTrigger class="w-48">
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruits</SelectLabel>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+        </SelectGroup>
+        <SelectSeparator />
+        <SelectGroup>
+          <SelectLabel>Vegetables</SelectLabel>
+          <SelectItem value="carrot">Carrot</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  </Section>
+</div>

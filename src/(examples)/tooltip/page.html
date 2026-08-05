@@ -1,0 +1,25 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Button from "../../components/Button/Button";
+  import Kbd from "../../components/Kbd/Kbd";
+  import Tooltip from "../../components/Tooltip/Tooltip";
+  import TooltipTrigger from "../../components/Tooltip/TooltipTrigger";
+  import TooltipContent from "../../components/Tooltip/TooltipContent";
+  import TooltipProvider from "../../components/Tooltip/TooltipProvider";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="tooltip" title="Tooltip">
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Button variant="outline">Hover me</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          Add to library
+          <Kbd>⌘L</Kbd>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  </Section>
+</div>

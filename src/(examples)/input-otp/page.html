@@ -1,0 +1,25 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import InputOTP from "../../components/InputOTP/InputOTP";
+  import InputOTPGroup from "../../components/InputOTP/InputOTPGroup";
+  import InputOTPSlot from "../../components/InputOTP/InputOTPSlot";
+  import InputOTPSeparator from "../../components/InputOTP/InputOTPSeparator";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="input-otp" title="Input OTP">
+    <InputOTP maxLength="{6}">
+      <InputOTPGroup>
+        <InputOTPSlot index="{0}" />
+        <InputOTPSlot index="{1}" />
+        <InputOTPSlot index="{2}" />
+      </InputOTPGroup>
+      <InputOTPSeparator />
+      <InputOTPGroup>
+        <InputOTPSlot index="{3}" />
+        <InputOTPSlot index="{4}" />
+        <InputOTPSlot index="{5}" />
+      </InputOTPGroup>
+    </InputOTP>
+  </Section>
+</div>

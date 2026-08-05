@@ -1,0 +1,20 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import NativeSelect from "../../components/NativeSelect/NativeSelect";
+  import NativeSelectOptGroup from "../../components/NativeSelect/NativeSelectOptGroup";
+  import NativeSelectOption from "../../components/NativeSelect/NativeSelectOption";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="native-select" title="Native Select">
+    <NativeSelect>
+      <NativeSelectOptGroup label="Fruits">
+        <NativeSelectOption value="apple">Apple</NativeSelectOption>
+        <NativeSelectOption value="banana">Banana</NativeSelectOption>
+      </NativeSelectOptGroup>
+      <NativeSelectOptGroup label="Vegetables">
+        <NativeSelectOption value="carrot">Carrot</NativeSelectOption>
+      </NativeSelectOptGroup>
+    </NativeSelect>
+  </Section>
+</div>

@@ -1,0 +1,39 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Field from "../../components/Field/Field";
+  import FieldContent from "../../components/Field/FieldContent";
+  import FieldDescription from "../../components/Field/FieldDescription";
+  import FieldError from "../../components/Field/FieldError";
+  import FieldGroup from "../../components/Field/FieldGroup";
+  import FieldLabel from "../../components/Field/FieldLabel";
+  import FieldLegend from "../../components/Field/FieldLegend";
+  import FieldSeparator from "../../components/Field/FieldSeparator";
+  import FieldSet from "../../components/Field/FieldSet";
+  import Input from "../../components/Input/Input";
+  import Switch from "../../components/Switch/Switch";
+
+  const fieldErrors = [{ message: "Email is required." }];
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="field" title="Field">
+    <FieldSet class="w-80">
+      <FieldLegend>Contact info</FieldLegend>
+      <FieldGroup>
+        <Field>
+          <FieldLabel for="field-email">Email</FieldLabel>
+          <Input id="field-email" type="email" placeholder="you@example.com" invalid="{true}" />
+          <FieldError errors="{fieldErrors}" />
+        </Field>
+        <FieldSeparator>Or</FieldSeparator>
+        <Field orientation="horizontal">
+          <FieldContent>
+            <FieldLabel for="field-notify">Notifications</FieldLabel>
+            <FieldDescription>Receive updates about your account.</FieldDescription>
+          </FieldContent>
+          <Switch id="field-notify" />
+        </Field>
+      </FieldGroup>
+    </FieldSet>
+  </Section>
+</div>

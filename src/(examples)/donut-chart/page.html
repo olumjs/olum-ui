@@ -1,0 +1,18 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import DonutChart from "../../components/Chart/DonutChart";
+
+  const donutChartData = [
+    { name: "Chrome", value: 275, color: "var(--color-chart-1)" },
+    { name: "Safari", value: 200, color: "var(--color-chart-2)" },
+    { name: "Firefox", value: 187, color: "var(--color-chart-3)" },
+    { name: "Edge", value: 173, color: "var(--color-chart-4)" },
+    { name: "Other", value: 90, color: "var(--color-chart-5)" },
+  ];
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="donut-chart" title="Donut Chart">
+    <DonutChart data="{donutChartData}" label="Visitors" class="w-full max-w-md" />
+  </Section>
+</div>

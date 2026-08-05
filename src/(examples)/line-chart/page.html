@@ -1,0 +1,24 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import LineChart from "../../components/Chart/LineChart";
+
+  const chartData = [
+    { month: "Jan", desktop: 186, mobile: 80 },
+    { month: "Feb", desktop: 305, mobile: 200 },
+    { month: "Mar", desktop: 237, mobile: 120 },
+    { month: "Apr", desktop: 73, mobile: 190 },
+    { month: "May", desktop: 209, mobile: 130 },
+    { month: "Jun", desktop: 214, mobile: 140 },
+  ];
+
+  const chartConfig = {
+    desktop: { label: "Desktop", color: "var(--color-chart-1)" },
+    mobile: { label: "Mobile", color: "var(--color-chart-2)" },
+  };
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="line-chart" title="Line Chart">
+    <LineChart data="{chartData}" config="{chartConfig}" class="h-64 w-full max-w-md" />
+  </Section>
+</div>

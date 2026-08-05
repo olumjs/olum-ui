@@ -1,0 +1,41 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Demo from "../../components/Demo/Demo";
+  import Accordion from "../../components/Accordion/Accordion";
+  import AccordionItem from "../../components/Accordion/AccordionItem";
+  import AccordionTrigger from "../../components/Accordion/AccordionTrigger";
+  import AccordionContent from "../../components/Accordion/AccordionContent";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="accordion" title="Accordion">
+    <Demo label="single, collapsible">
+      <Accordion class="w-80">
+        <AccordionItem type="radio" name="acc1" defaultOpen="{true}">
+          <AccordionTrigger>Is it accessible?</AccordionTrigger>
+          <AccordionContent>Yes, it adheres to the WAI-ARIA design pattern.</AccordionContent>
+        </AccordionItem>
+        <AccordionItem type="radio" name="acc1">
+          <AccordionTrigger>Is it styled?</AccordionTrigger>
+          <AccordionContent>Yes, it comes with default styles matching the theme.</AccordionContent>
+        </AccordionItem>
+        <AccordionItem type="radio" name="acc1" disabled="{true}">
+          <AccordionTrigger disabled="{true}">Disabled item</AccordionTrigger>
+          <AccordionContent>You should not see this.</AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </Demo>
+    <Demo label="multiple">
+      <Accordion class="w-80">
+        <AccordionItem type="checkbox" defaultOpen="{true}">
+          <AccordionTrigger>First section</AccordionTrigger>
+          <AccordionContent>Both sections can be open at once.</AccordionContent>
+        </AccordionItem>
+        <AccordionItem type="checkbox" defaultOpen="{true}">
+          <AccordionTrigger>Second section</AccordionTrigger>
+          <AccordionContent>Try collapsing one independently.</AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </Demo>
+  </Section>
+</div>

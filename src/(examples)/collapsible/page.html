@@ -1,0 +1,18 @@
+<script>
+  import Section from "../../components/Section/Section";
+  import Collapsible from "../../components/Collapsible/Collapsible";
+  import CollapsibleTrigger from "../../components/Collapsible/CollapsibleTrigger";
+  import CollapsibleContent from "../../components/Collapsible/CollapsibleContent";
+</script>
+
+<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
+  <Section id="collapsible" title="Collapsible">
+    <Collapsible class="w-72">
+      <CollapsibleTrigger class="flex w-full items-center justify-between rounded-lg border border-border bg-background hover:bg-muted h-8 px-2.5 text-sm">
+        Toggle details
+        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+      </CollapsibleTrigger>
+      <CollapsibleContent class="pt-2 text-sm text-muted-foreground">Collapsible content revealed on toggle.</CollapsibleContent>
+    </Collapsible>
+  </Section>
+</div>
