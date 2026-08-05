@@ -1,53 +1,20 @@
 <script>
-  import { props, onMount } from "olum";
-  import { twMerge } from "tailwind-merge";
+  import { props } from "olum";
 
-  const { open = false, onOpenChange, class: className = "", children } = props();
-
-  const dismiss = () => onOpenChange && onOpenChange(false);
-
-  // NOTE: unlike the other modals this one is NOT portaled, so it gets a
-  // plain dimmed scrim rather than the blurred page behind it.
-  //
-  // The others hang off a hidden checkbox and portal their overlay/panel into
-  // <body>, letting #app take a real filter: blur(). That doesn't work here.
-  // This component drives open/closed from a reactive `open` prop via
-  // <if when="open">, which means:
-  //   - portaling the overlay/panel doesn't survive, because <if> destroys and
-  //     re-creates them on every toggle and onMount only fires once, so there
-  //     is nothing to re-portal them;
-  //   - portaling the host doesn't survive either, because a prop change is a
-  //     re-render and renderChildren does placeholder.replaceWith(elm), which
-  //     drags the host back inside #app (verified live) -- so the dialog would
-  //     end up blurred along with the page.
-  // Giving it blur means converting it to the checkbox pattern the others use.
-  onMount(() => {
-    // Items are nested inside Command/CommandList/CommandGroup slots, so a
-    // callback prop on <CommandItem> can't resolve back to the opener. Close by
-    // delegating from the dialog itself instead.
-    const onItemClick = (e) => {
-      if (e.target.closest("[data-slot=command-item]")) dismiss();
-    };
-    const onKey = (e) => {
-      if (e.key === "Escape") dismiss();
-    };
-
-    host.addEventListener("click", onItemClick);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      host.removeEventListener("click", onItemClick);
-      document.removeEventListener("keydown", onKey);
-    };
-  });
-
-  const classes = () =>
-    twMerge(
-      "fixed top-1/3 left-1/2 z-50 w-full max-w-[calc(100%-2rem)] -translate-x-1/2 overflow-hidden rounded-xl bg-background p-0 text-sm text-foreground ring-1 ring-foreground/10 outline-none sm:max-w-sm",
-      className,
-    );
+  const { defaultOpen = false, children } = props();
 </script>
 
-<if when="open">
-  <div data-slot="command-dialog-overlay" class="fixed inset-0 z-50 bg-black/20" onclick="dismiss()"></div>
-  <div data-slot="command-dialog-content" class="{classes()}">{children}</div>
-</if>
+<!--
+  Open/closed hangs off this hidden checkbox rather than a reactive `open`
+  prop, matching Dialog/Sheet/Drawer/AlertDialog. That's what makes the portal
+  possible: a prop change would re-render this component, and renderChildren
+  does placeholder.replaceWith(elm), which drags the host -- and anything moved
+  out of it -- straight back inside #app. A checkbox toggle re-renders nothing,
+  so CommandDialogContent can move the overlay/panel into <body> once and have
+  them stay there, letting #app take a real filter: blur() while the dialog
+  itself, now outside it, stays sharp.
+-->
+<div data-slot="command-dialog" class="contents">
+  <input type="checkbox" class="hidden" checked="{defaultOpen}" />
+  {children}
+</div>

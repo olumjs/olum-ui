@@ -73,6 +73,8 @@
   import CollapsibleContent from "./components/Collapsible/CollapsibleContent";
   import Combobox from "./components/Combobox/Combobox";
   import CommandDialog from "./components/Command/CommandDialog";
+  import CommandDialogTrigger from "./components/Command/CommandDialogTrigger";
+  import CommandDialogContent from "./components/Command/CommandDialogContent";
   import Command from "./components/Command/Command";
   import CommandInput from "./components/Command/CommandInput";
   import CommandList from "./components/Command/CommandList";
@@ -326,14 +328,12 @@
   // wrapper component. The compiler now stamps the authoring component onto
   // the placeholder (data-o-props-owner), so page-level methods resolve no
   // matter how deeply the tag is slotted.
-  const state = { direction: "ltr", open: false };
+  const state = { direction: "ltr" };
 
   const paymentRowLink = (row) => ({ href: `mailto:${row.email}`, text: "", icon: icons.arrowRight });
 
   const setDirection = (checked) => (state.direction = checked ? "rtl" : "ltr");
 
-  const openCommand = () => (state.open = true);
-  const setCommandOpen = (value) => (state.open = value);
 
   const showDefaultToast = () => toast.add({ title: "Event created", description: "Monday, Jan 5 at 4:00pm", autoClose: false });
   const showSuccessToast = () => toast.add({ title: "Saved successfully", type: "success", autoClose: false });
@@ -871,28 +871,32 @@
       </Command>
     </Demo>
     <Demo label="dialog">
-      <Button variant="outline" onclick="{openCommand}">
-        Open command palette
-        <KbdGroup class="ml-2">
-          <Kbd>⌘</Kbd>
-          <Kbd>K</Kbd>
-        </KbdGroup>
-      </Button>
-      <CommandDialog open="{state.open}" onOpenChange="{setCommandOpen}">
-        <Command>
-          <CommandInput placeholder="Type a command…" />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Actions">
-              <CommandItem>
-                <div html="icons.plus"></div> New file
-              </CommandItem>
-              <CommandItem>
-                <div html="icons.folder"></div> New folder
-              </CommandItem>
-            </CommandGroup>
-          </CommandList>
-        </Command>
+      <CommandDialog>
+        <CommandDialogTrigger
+          class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:bg-muted"
+        >
+          Open command palette
+          <KbdGroup class="ml-2">
+            <Kbd>⌘</Kbd>
+            <Kbd>K</Kbd>
+          </KbdGroup>
+        </CommandDialogTrigger>
+        <CommandDialogContent>
+          <Command>
+            <CommandInput placeholder="Type a command…" />
+            <CommandList>
+              <CommandEmpty>No results found.</CommandEmpty>
+              <CommandGroup heading="Actions">
+                <CommandItem>
+                  <div html="icons.plus"></div> New file
+                </CommandItem>
+                <CommandItem>
+                  <div html="icons.folder"></div> New folder
+                </CommandItem>
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </CommandDialogContent>
       </CommandDialog>
     </Demo>
   </Section>
@@ -1742,3 +1746,4 @@
     </TooltipProvider>
   </Section>
 </div>
+
