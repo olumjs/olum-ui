@@ -42,20 +42,28 @@
   // with the rest of the props object, which silently drops function values.
   const onSearchInput = (e) => (state.q = e.target.value);
 
-  // Exports the currently filtered rows (respects search, ignores
-  // pagination) using the currently visible columns, as CSV -- a real .xlsx
-  // is a zipped OOXML binary and isn't something to hand-roll without a
-  // library; CSV opens correctly in Excel/Sheets/Numbers with zero deps.
+  // Exports as CSV using the currently visible columns -- a real .xlsx is a
+  // zipped OOXML binary and isn't something to hand-roll without a library;
+  // CSV opens correctly in Excel/Sheets/Numbers with zero deps.
   const csvEscape = (v) => {
     const s = v == null ? "" : String(v);
     return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  };
+
+  // Selected rows when there are any, otherwise every filtered row (which
+  // also covers selectable=false, where nothing can ever be selected).
+  // Either way it respects the active search and ignores pagination, so
+  // exporting isn't limited to the page currently on screen.
+  const exportRows = () => {
+    const selected = filtered().filter((row) => state.selected[row.id]);
+    return selected.length ? selected : filtered();
   };
 
   const exportCsv = () => {
     const cols = shown();
     const lines = [
       cols.map((c) => csvEscape(c.label)).join(","),
-      ...filtered().map((row) => cols.map((c) => csvEscape(fmt(row, c))).join(",")),
+      ...exportRows().map((row) => cols.map((c) => csvEscape(fmt(row, c))).join(",")),
     ];
     const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -202,11 +210,20 @@
 
   const classes = () => twMerge("flex w-full flex-col gap-3", className);
 
-  // Matches Checkbox.html's own markup/classes for visual parity. A native
-  // input is used directly (instead of the shared <Checkbox> component)
-  // because Checkbox only seeds its internal state.checked once from the
-  // `checked` prop at mount -- it won't stay in sync when "select all"
-  // toggles many already-rendered rows from outside.
+  // Matches Checkbox.html's own markup/classes for visual parity, but the
+  // selection checkboxes below are deliberately NATIVE <input> elements --
+  // don't swap them for <Checkbox> or <Input>:
+  //   - <Checkbox> seeds its internal state.checked once from the prop at
+  //     mount, so it won't re-sync when "select all" toggles many
+  //     already-rendered rows from outside.
+  //   - <Input> silently drops everything this feature needs. `checked`
+  //     isn't one of its props, and hyphenated attributes can't survive a
+  //     component tag at all: the compiler's prop-name regex is (\w+)= and
+  //     \w excludes '-', so data-role= parses as role=, aria-label= as
+  //     label=, and data-row-id= as **id=**. The delegated click handler's
+  //     input[data-role=...] / input[data-row-id] selectors then match
+  //     nothing and selection silently stops working.
+  // On a native element attributes pass through verbatim, no prop mapping.
   const checkboxClasses =
     "peer relative flex size-4 shrink-0 appearance-none items-center justify-center rounded-[4px] border border-border bg-background transition-colors outline-none cursor-pointer focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 checked:border-primary checked:bg-primary checked:text-primary-foreground";
   const checkIconClasses = "pointer-events-none absolute inset-0 m-auto size-3.5 text-primary-foreground";
@@ -249,7 +266,7 @@
           <if when="!hasRowLink() && selectable">
             <TableHead class="w-10">
               <span class="relative inline-flex size-4 shrink-0 top-0.75">
-                <Input type="checkbox" data-role="select-all" checked="{isPageAllSelected()}" aria-label="Select all" class="{checkboxClasses}" />
+                <input type="checkbox" data-role="select-all" checked="{isPageAllSelected()}" aria-label="Select all" class="{checkboxClasses}" />
                 <show when="isPageAllSelected()">
                   <svg class="{checkIconClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                 </show>
@@ -285,7 +302,7 @@
             <if when="!hasRowLink() && selectable">
               <TableCell>
                 <span class="relative inline-flex size-4 shrink-0 top-0.75">
-                  <Input type="checkbox" data-row-id="{row.id}" checked="{isRowSelected(row.id)}" aria-label="Select row" class="{checkboxClasses}" />
+                  <input type="checkbox" data-row-id="{row.id}" checked="{isRowSelected(row.id)}" aria-label="Select row" class="{checkboxClasses}" />
                   <show when="isRowSelected(row.id)">
                     <svg class="{checkIconClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                   </show>
