@@ -4,8 +4,10 @@
 
   const { class: className = "", children } = props();
 
+  // Same reach-through-the-wrapper fix as TableBody's selector: display:
+  // contents doesn't change what :last-child actually matches against.
   const classes = () =>
-    twMerge("table-footer-group border-t bg-muted/50 font-medium [&_[data-slot=table-row]:last-child]:border-b-0 [&>[data-olum]]:contents", className);
+    twMerge("table-footer-group border-t bg-muted/50 font-medium [&>*:last-child>[data-slot=table-row]]:border-b-0 [&>[data-olum]]:contents", className);
 </script>
 
 <div data-slot="table-footer" role="rowgroup" class="{classes()}">{children}</div>

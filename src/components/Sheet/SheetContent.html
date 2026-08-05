@@ -8,6 +8,7 @@
     const root = host.closest('[data-slot="sheet"]');
     const input = root && root.querySelector(":scope > input");
     const overlay = host.querySelector('[data-slot="sheet-overlay"]');
+    const content = host.querySelector('[data-slot="sheet-content"]');
     const closeBtn = host.querySelector("[data-builtin-close]");
 
     const close = () => {
@@ -21,35 +22,55 @@
     const onOverlayClick = (e) => {
       if (e.target === overlay) close();
     };
+    // Content/overlay stay permanently mounted now (no more hidden/flex
+    // display toggling) so the slide/fade can actually transition -- a
+    // display:none -> flex swap happens in a single frame with nothing to
+    // animate from. Visibility instead comes from data-state driving
+    // transform/opacity + pointer-events, kept in sync with the checkbox
+    // here since that's the actual source of truth for open/closed.
+    const syncState = () => {
+      const state = input && input.checked ? "open" : "closed";
+      overlay && overlay.setAttribute("data-state", state);
+      content && content.setAttribute("data-state", state);
+    };
 
     closeBtn && closeBtn.addEventListener("click", close);
     overlay && overlay.addEventListener("click", onOverlayClick);
     document.addEventListener("keydown", onKey);
+    input && input.addEventListener("change", syncState);
+    syncState();
     return () => {
       closeBtn && closeBtn.removeEventListener("click", close);
       overlay && overlay.removeEventListener("click", onOverlayClick);
       document.removeEventListener("keydown", onKey);
+      input && input.removeEventListener("change", syncState);
     };
   });
 
-  const base = "z-50 flex-col gap-4 bg-background bg-clip-padding text-sm text-foreground shadow-lg fixed";
+  // [&>[data-olum]]:contents collapses SheetHeader/SheetFooter's own host
+  // wrapper divs so they're the actual flex items here -- otherwise
+  // SheetFooter's mt-auto only pushes its own inner div down, not the bare
+  // wrapper div that's really the flex child, so it never reaches the
+  // bottom of a full-height (left/right) sheet.
+  const base =
+    "z-50 flex flex-col gap-4 bg-background bg-clip-padding text-sm text-foreground shadow-lg fixed pointer-events-none transition-transform duration-300 ease-in-out data-[state=open]:pointer-events-auto [&>[data-olum]]:contents";
 
   const sides = {
-    top: "inset-x-0 top-0 h-auto border-b",
-    bottom: "inset-x-0 bottom-0 h-auto border-t",
-    left: "inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm",
-    right: "inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
+    top: "inset-x-0 top-0 h-auto border-b -translate-y-full data-[state=open]:translate-y-0",
+    bottom: "inset-x-0 bottom-0 h-auto border-t translate-y-full data-[state=open]:translate-y-0",
+    left: "inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm -translate-x-full data-[state=open]:translate-x-0",
+    right: "inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm translate-x-full data-[state=open]:translate-x-0",
   };
 
   const classes = () => twMerge(base, sides[side] || sides.right, className);
 </script>
 
-<div data-slot="sheet-overlay" class="fixed inset-0 z-50 bg-black/10"></div>
+<div data-slot="sheet-overlay" class="fixed inset-0 z-50 bg-black/10 pointer-events-none opacity-0 transition-opacity duration-300 ease-in-out data-[state=open]:pointer-events-auto data-[state=open]:opacity-100"></div>
 <div data-slot="sheet-content" data-side="{side}" class="{classes()}">
   {children}
   <if when="showCloseButton">
     <button type="button" data-builtin-close class="absolute top-3 right-3 inline-flex size-7 items-center justify-center rounded-lg hover:bg-muted">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+      <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
       <span class="sr-only">Close</span>
     </button>
   </if>

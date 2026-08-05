@@ -269,7 +269,7 @@
           </for>
         </TableRow>
       </TableHeader>
-      <TableBody class="[&_[data-slot=table-row]:last-child]:border-b">
+      <TableBody class="[&>*:last-child>[data-slot=table-row]]:border-b">
         <for each="row of rows()" key="row.id">
           <TableRow data-state="{isRowSelected(row.id) ? 'selected' : ''}">
             <if when="hasRowLink()">

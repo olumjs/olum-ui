@@ -4,10 +4,7 @@
   const { defaultOpen = false, children } = props();
 </script>
 
-<div
-  data-slot="sheet"
-  class="contents [&_[data-slot=sheet-overlay]]:hidden [&_[data-slot=sheet-content]]:hidden has-[>input:checked]:[&_[data-slot=sheet-overlay]]:block has-[>input:checked]:[&_[data-slot=sheet-content]]:flex"
->
+<div data-slot="sheet" class="contents">
   <input type="checkbox" class="hidden" checked="{defaultOpen}" />
   {children}
 </div>
