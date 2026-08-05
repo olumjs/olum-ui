@@ -4,8 +4,13 @@
 
   const { variant = "default", size = "default", class: className = "", children } = props();
 
+  // [&>[data-olum]]:contents collapses ItemMedia/ItemContent/ItemActions'
+  // own OlumJS host wrapper divs so they aren't the actual flex items --
+  // otherwise ItemContent's flex-1 grows its own inner div but not the bare
+  // wrapper div Item is really laying out, so ItemActions never gets pushed
+  // all the way to the end.
   const base =
-    "group/item flex w-full flex-wrap items-center rounded-lg border text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted";
+    "group/item flex w-full flex-wrap items-center rounded-lg border text-sm transition-colors duration-100 outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 [a]:transition-colors [a]:hover:bg-muted [&>[data-olum]]:contents";
 
   const variants = {
     default: "border-transparent",

@@ -4,8 +4,14 @@
 
   const { index = 0, class: className = "" } = props();
 
+  // Rounding/left-border for the group's outer edges is applied by
+  // InputOTPGroup instead of here: each slot's real <input> lives inside its
+  // own OlumJS host wrapper div, so first:/last: (:first-child/:last-child)
+  // on this element's own class always matches trivially (it's the only
+  // child of that wrapper) regardless of its position among sibling slots --
+  // every slot would get rounded on both ends instead of just the group's.
   const base =
-    "relative flex size-8 items-center justify-center border-y border-r border-border bg-transparent text-center text-sm outline-none transition-all first:rounded-l-lg first:border-l last:rounded-r-lg focus:z-10 focus:border-ring focus:ring-3 focus:ring-ring/50 appearance-none";
+    "relative flex size-8 items-center justify-center border-y border-r border-border bg-transparent text-center text-sm outline-none transition-all focus:z-10 focus:border-ring focus:ring-3 focus:ring-ring/50 appearance-none";
 
   const classes = () => twMerge(base, className);
 
