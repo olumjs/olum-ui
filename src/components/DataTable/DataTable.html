@@ -40,7 +40,14 @@
   // the compiler only resolves bare-identifier function props through its
   // safe method-reference path; anything else gets JSON.stringify'd along
   // with the rest of the props object, which silently drops function values.
-  const onSearchInput = (e) => (state.q = e.target.value);
+  const onSearchInput = (e) => {
+    state.q = e.target.value;
+    // Jump back to the first page of the new results. Filtering shrinks the
+    // list but the page index doesn't follow, so searching from (say) page 3
+    // would slice past the end of a now-shorter list and render "No results."
+    // for a query that actually matched.
+    state.page = 0;
+  };
 
   // Exports as CSV using the currently visible columns -- a real .xlsx is a
   // zipped OOXML binary and isn't something to hand-roll without a library;
@@ -90,7 +97,8 @@
         return state.sortDir === "desc" ? -r : r;
       });
     }
-    return out.slice(state.page * pageSize, state.page * pageSize + pageSize);
+    const start = safePage() * pageSize;
+    return out.slice(start, start + pageSize);
   };
 
   const shown = () => columns.filter((c) => !state.hidden[c.key]);
@@ -113,17 +121,24 @@
     return row[col.key];
   };
 
-  const canPrev = () => state.page > 0;
-  const canNext = () => (state.page + 1) * pageSize < filtered().length;
-  const prevPage = () => canPrev() && state.page--;
-  const nextPage = () => canNext() && state.page++;
+  // Everything derived from the page index reads through this rather than
+  // state.page directly. A stale index can outlive the result set it was valid
+  // for -- filtering, a smaller `data`, a changed pageSize -- and slicing past
+  // the end silently renders an empty table. Clamping on read keeps the slice,
+  // the counter and the pager consistent without mutating state mid-render.
+  const safePage = () => Math.min(Math.max(0, state.page), totalPages() - 1);
+
+  const canPrev = () => safePage() > 0;
+  const canNext = () => (safePage() + 1) * pageSize < filtered().length;
+  const prevPage = () => canPrev() && (state.page = safePage() - 1);
+  const nextPage = () => canNext() && (state.page = safePage() + 1);
 
   // Cumulative count of rows shown through the current page (not just this
   // page's own row count), e.g. "10 of 30" on page 2 with pageSize 5, not "5".
-  const shownCount = () => Math.min((state.page + 1) * pageSize, filtered().length);
+  const shownCount = () => Math.min((safePage() + 1) * pageSize, filtered().length);
 
   const totalPages = () => Math.max(1, Math.ceil(filtered().length / pageSize));
-  const currentPage = () => state.page + 1;
+  const currentPage = () => safePage() + 1;
   const goToPage = (n) => (state.page = Math.min(Math.max(0, n - 1), totalPages() - 1));
   const goFirst = () => (state.page = 0);
   const goLast = () => (state.page = totalPages() - 1);
