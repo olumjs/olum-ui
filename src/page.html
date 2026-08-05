@@ -72,8 +72,8 @@
   import CollapsibleTrigger from "./components/Collapsible/CollapsibleTrigger";
   import CollapsibleContent from "./components/Collapsible/CollapsibleContent";
   import Combobox from "./components/Combobox/Combobox";
+  import CommandDialog from "./components/Command/CommandDialog";
   import Command from "./components/Command/Command";
-  import CommandDialogDemo from "./components/Command/CommandDialogDemo";
   import CommandInput from "./components/Command/CommandInput";
   import CommandList from "./components/Command/CommandList";
   import CommandEmpty from "./components/Command/CommandEmpty";
@@ -85,7 +85,6 @@
   import ContextMenuTrigger from "./components/ContextMenu/ContextMenuTrigger";
   import ContextMenuContent from "./components/ContextMenu/ContextMenuContent";
   import DataTable from "./components/DataTable/DataTable";
-  import DataTableRowLinkDemo from "./components/DataTable/DataTableRowLinkDemo";
   import DatePicker from "./components/DatePicker/DatePicker";
   import Dialog from "./components/Dialog/Dialog";
   import DialogTrigger from "./components/Dialog/DialogTrigger";
@@ -95,7 +94,7 @@
   import DialogFooter from "./components/Dialog/DialogFooter";
   import DialogTitle from "./components/Dialog/DialogTitle";
   import DialogDescription from "./components/Dialog/DialogDescription";
-  import DirectionDemo from "./components/Direction/DirectionDemo";
+  import Direction from "./components/Direction/Direction";
   import Drawer from "./components/Drawer/Drawer";
   import DrawerTrigger from "./components/Drawer/DrawerTrigger";
   import DrawerContent from "./components/Drawer/DrawerContent";
@@ -252,7 +251,8 @@
   import TabsTrigger from "./components/Tabs/TabsTrigger";
   import TabsContent from "./components/Tabs/TabsContent";
   import Textarea from "./components/Textarea/Textarea";
-  import ToastDemo from "./components/Toast/ToastDemo";
+  import Toaster from "./components/Toast/Toaster";
+  import { toast } from "./components/Toast/toast";
   import Toggle from "./components/Toggle/Toggle";
   import ToggleGroup from "./components/ToggleGroup/ToggleGroup";
   import ToggleGroupItem from "./components/ToggleGroup/ToggleGroupItem";
@@ -318,6 +318,29 @@
     { id: "2d7a8e36", amount: 680, status: "success", email: "william@example.com" },
     { id: "2d7a8e36", amount: 680, status: "success", email: "william@example.com" },
   ];
+
+  // Every handler below is referenced from markup nested inside <Section>'s
+  // slot. That used to be impossible from here -- function props resolved
+  // against the slot owner (Section) rather than the authoring component and
+  // were silently dropped, which is why each of these demos needed its own
+  // wrapper component. The compiler now stamps the authoring component onto
+  // the placeholder (data-o-props-owner), so page-level methods resolve no
+  // matter how deeply the tag is slotted.
+  const state = { direction: "ltr", open: false };
+
+  const paymentRowLink = (row) => ({ href: `mailto:${row.email}`, text: "", icon: icons.arrowRight });
+
+  const setDirection = (checked) => (state.direction = checked ? "rtl" : "ltr");
+
+  const openCommand = () => (state.open = true);
+  const setCommandOpen = (value) => (state.open = value);
+
+  const showDefaultToast = () => toast.add({ title: "Event created", description: "Monday, Jan 5 at 4:00pm", autoClose: false });
+  const showSuccessToast = () => toast.add({ title: "Saved successfully", type: "success", autoClose: false });
+  const showErrorToast = () => toast.add({ title: "Something went wrong", type: "error", autoClose: false });
+  const showWarningToast = () => toast.add({ title: "Low disk space", type: "warning", autoClose: false });
+  const showInfoToast = () => toast.add({ title: "New update available", type: "info", autoClose: false });
+  const showPersistentToast = () => toast.add({ title: "Action required", description: "This stays until you close it.", autoClose: false });
 
   const paymentColumns = [
     { key: "status", label: "Status", cellClass: "capitalize" },
@@ -848,7 +871,29 @@
       </Command>
     </Demo>
     <Demo label="dialog">
-      <CommandDialogDemo />
+      <Button variant="outline" onclick="{openCommand}">
+        Open command palette
+        <KbdGroup class="ml-2">
+          <Kbd>⌘</Kbd>
+          <Kbd>K</Kbd>
+        </KbdGroup>
+      </Button>
+      <CommandDialog open="{state.open}" onOpenChange="{setCommandOpen}">
+        <Command>
+          <CommandInput placeholder="Type a command…" />
+          <CommandList>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Actions">
+              <CommandItem>
+                <div html="icons.plus"></div> New file
+              </CommandItem>
+              <CommandItem>
+                <div html="icons.folder"></div> New folder
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </CommandDialog>
     </Demo>
   </Section>
 
@@ -910,7 +955,15 @@
 
   <Section id="data-table" title="Data Table">
     <div class="w-full">
-      <DataTableRowLinkDemo columns="{paymentColumns}" data="{payments}" icon="{icons.arrowRight}" />
+      <DataTable
+        columns="{paymentColumns}"
+        data="{payments}"
+        search="{true}"
+        searchPlaceholder="Filter rows…"
+        pageSize="{10}"
+        showExport="{true}"
+        rowLink="{paymentRowLink}"
+      />
     </div>
   </Section>
 
@@ -939,7 +992,21 @@
   </Section>
 
   <Section id="direction" title="Direction">
-    <DirectionDemo />
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-2">
+        <Switch id="dir-switch" onCheckedChange="{setDirection}" />
+        <Label for="dir-switch">Right-to-left</Label>
+      </div>
+      <Direction direction="{state.direction}">
+        <ButtonGroup>
+          <Button variant="outline">
+            <div data-icon="inline-start" html="icons.arrowRight"></div> First
+          </Button>
+          <Button variant="outline">Second</Button>
+          <Button variant="outline">Third</Button>
+        </ButtonGroup>
+      </Direction>
+    </div>
   </Section>
 
   <Section id="drawer" title="Drawer">
@@ -1611,7 +1678,13 @@
   </Section>
 
   <Section id="toast" title="Toast">
-    <ToastDemo />
+    <Button variant="outline" onclick="{showDefaultToast}">Default</Button>
+    <Button variant="outline" onclick="{showSuccessToast}">Success</Button>
+    <Button variant="outline" onclick="{showErrorToast}">Error</Button>
+    <Button variant="outline" onclick="{showWarningToast}">Warning</Button>
+    <Button variant="outline" onclick="{showInfoToast}">Info</Button>
+    <Button variant="outline" onclick="{showPersistentToast}">Persistent</Button>
+    <Toaster />
   </Section>
 
   <Section id="toggle" title="Toggle">

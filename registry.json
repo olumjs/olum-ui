@@ -4,13 +4,22 @@
       "name": "button",
       "title": "Button",
       "category": "forms",
-      "path": "src/components/Button.html"
+      "deps": [],
+      "path": "src/components/Button/Button.html"
     },
     {
       "name": "input",
       "title": "Input",
       "category": "forms",
-      "path": "src/components/Input.html"
+      "deps": [],
+      "path": "src/components/Input/Input.html"
+    },
+    {
+      "name": "accordion",
+      "title": "Accordion",
+      "category": "",
+      "deps": ["AccordionContent.html", "AccordionItem.html", "AccordionTrigger.html"],
+      "path": "src/components/Accordion/Accordion.html"
     }
   ]
 }

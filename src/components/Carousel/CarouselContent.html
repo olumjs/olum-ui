@@ -1,7 +1,7 @@
 <script>
   import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
-  import { carouselStore } from "./carouselStore";
+  import { carouselStore, applyOffset } from "./carouselStore";
   import { animateValue } from "./animate";
 
   const { class: className = "", children } = props();
@@ -34,10 +34,7 @@
 
     const maxOffset = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
 
-    const set = (value) => {
-      carouselStore.setOffset(state.id, value);
-      track.style.transform = `translateX(-${value}px)`;
-    };
+    const set = (value) => applyOffset(state.id, value);
 
     // Rubber-band only past the LAST card: the track still follows most of
     // the drag there (RESISTANCE close to 1 so it clearly moves, not a
@@ -117,5 +114,5 @@
 </script>
 
 <div data-slot="carousel-content" class="{classes()}">
-  <div data-slot="carousel-track" class="flex gap-4 [&>[data-olum]]:contents" style="transform: translateX(0px);">{children}</div>
+  <div data-slot="carousel-track" class="flex gap-4 [&>[data-olum]]:contents">{children}</div>
 </div>

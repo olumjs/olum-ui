@@ -1,7 +1,7 @@
 <script>
   import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
-  import { carouselStore } from "./carouselStore";
+  import { carouselStore, applyOffset } from "./carouselStore";
   import { animateValue } from "./animate";
 
   const { class: className = "" } = props();
@@ -34,8 +34,7 @@
     const current = carouselStore.getOffset(state.id);
     const target = Math.max(0, current - (viewport.clientWidth + 16));
     animateValue(current, target, 600, (v) => {
-      carouselStore.setOffset(state.id, v);
-      track.style.transform = `translateX(-${v}px)`;
+      applyOffset(state.id, v);
     });
   };
 
