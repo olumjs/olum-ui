@@ -2268,6 +2268,9 @@
   .has-data-\[slot\=alert-dialog-media\]\:text-left:has([data-slot="alert-dialog-media"]) {
     text-align: left;
   }
+  .has-data-\[slot\=avatar\]\:bg-transparent:has([data-slot="avatar"]) {
+    background-color: transparent;
+  }
   .has-data-\[slot\=card-action\]\:grid-cols-\[1fr_auto\]:has([data-slot="card-action"]) {
     grid-template-columns: 1fr auto;
   }
