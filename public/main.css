@@ -37,6 +37,7 @@
     --radius-md: calc(var(--olum-radius) * 0.8);
     --radius-2xl: 1rem;
     --radius-4xl: 2rem;
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --animate-spin: spin 1s linear infinite;
     --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -216,6 +217,9 @@
   .\!visible {
     visibility: visible !important;
   }
+  .collapse {
+    visibility: collapse;
+  }
   .invisible {
     visibility: hidden;
   }
@@ -275,6 +279,9 @@
   .top-3 {
     top: calc(var(--spacing) * 3);
   }
+  .top-4 {
+    top: calc(var(--spacing) * 4);
+  }
   .top-full {
     top: 100%;
   }
@@ -295,6 +302,9 @@
   }
   .right-3 {
     right: calc(var(--spacing) * 3);
+  }
+  .-bottom-1 {
+    bottom: calc(var(--spacing) * -1);
   }
   .bottom-0 {
     bottom: 0px;
@@ -518,6 +528,10 @@
   .size-2 {
     width: calc(var(--spacing) * 2);
     height: calc(var(--spacing) * 2);
+  }
+  .size-2\.5 {
+    width: calc(var(--spacing) * 2.5);
+    height: calc(var(--spacing) * 2.5);
   }
   .size-3 {
     width: calc(var(--spacing) * 3);
@@ -831,6 +845,9 @@
   .translate-y-full {
     --tw-translate-y: 100%;
     translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .rotate-45 {
+    rotate: 45deg;
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
@@ -1601,6 +1618,21 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .transition-\[opacity\,transform\] {
+    transition-property: opacity,transform;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-\[padding-top\,padding-bottom\] {
+    transition-property: padding-top,padding-bottom;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-\[padding-top\] {
+    transition-property: padding-top;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
   .transition-\[translate\,scale\,opacity\] {
     transition-property: translate,scale,opacity;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -1659,6 +1691,10 @@
   .ease-linear {
     --tw-ease: linear;
     transition-timing-function: linear;
+  }
+  .ease-out {
+    --tw-ease: var(--ease-out);
+    transition-timing-function: var(--ease-out);
   }
   .outline-none {
     --tw-outline-style: none;
@@ -2571,6 +2607,12 @@
     .sm\:right-4 {
       right: calc(var(--spacing) * 4);
     }
+    .sm\:right-auto {
+      right: auto;
+    }
+    .sm\:left-4 {
+      left: calc(var(--spacing) * 4);
+    }
     .sm\:left-auto {
       left: auto;
     }
@@ -2807,42 +2849,42 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
   }
-  .\[\&_\[data-slot\=sheet-content\]\]\:hidden [data-slot=sheet-content] {
-    display: none;
-  }
-  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=sheet-content\]\]\:flex:has( > input:checked) [data-slot=sheet-content] {
-    display: flex;
-  }
-  .\[\&_\[data-slot\=sheet-overlay\]\]\:hidden [data-slot=sheet-overlay] {
-    display: none;
-  }
-  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=sheet-overlay\]\]\:block:has( > input:checked) [data-slot=sheet-overlay] {
-    display: block;
-  }
   .\[\&_\[data-slot\=table-row\]\]\:border-b [data-slot=table-row] {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
   }
-  .\[\&_\[data-slot\=table-row\]\:last-child\]\:border-0 [data-slot=table-row]:last-child {
-    border-style: var(--tw-border-style);
-    border-width: 0px;
-  }
-  .\[\&_\[data-slot\=table-row\]\:last-child\]\:border-b [data-slot=table-row]:last-child {
-    border-bottom-style: var(--tw-border-style);
-    border-bottom-width: 1px;
-  }
-  .\[\&_\[data-slot\=table-row\]\:last-child\]\:border-b-0 [data-slot=table-row]:last-child {
-    border-bottom-style: var(--tw-border-style);
-    border-bottom-width: 0px;
-  }
   .\[\&_\[data-slot\=toggle\]\]\:rounded-none [data-slot=toggle] {
     border-radius: 0;
+  }
+  .\[\&_\[data-slot\=tooltip-content\]\]\:invisible [data-slot=tooltip-content] {
+    visibility: hidden;
   }
   .\[\&_\[data-slot\=tooltip-content\]\]\:hidden [data-slot=tooltip-content] {
     display: none;
   }
+  .\[\&_\[data-slot\=tooltip-content\]\]\:scale-95 [data-slot=tooltip-content] {
+    --tw-scale-x: 95%;
+    --tw-scale-y: 95%;
+    --tw-scale-z: 95%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
+  .\[\&_\[data-slot\=tooltip-content\]\]\:opacity-0 [data-slot=tooltip-content] {
+    opacity: 0%;
+  }
+  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=tooltip-content\]\]\:visible:has( > input:checked) [data-slot=tooltip-content] {
+    visibility: visible;
+  }
   .has-\[\>input\:checked\]\:\[\&_\[data-slot\=tooltip-content\]\]\:inline-flex:has( > input:checked) [data-slot=tooltip-content] {
     display: inline-flex;
+  }
+  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=tooltip-content\]\]\:scale-100:has( > input:checked) [data-slot=tooltip-content] {
+    --tw-scale-x: 100%;
+    --tw-scale-y: 100%;
+    --tw-scale-z: 100%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
+  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=tooltip-content\]\]\:opacity-100:has( > input:checked) [data-slot=tooltip-content] {
+    opacity: 100%;
   }
   .\[\&_\[data-slot\]\]\:rounded-none [data-slot] {
     border-radius: 0;

@@ -1631,24 +1631,24 @@
 
   <Section id="toggle-group" title="Toggle Group">
     <Demo label="single">
-      <ToggleGroup>
-        <ToggleGroupItem>
+      <ToggleGroup defaultValue="{['center']}">
+        <ToggleGroupItem value="left">
           <div html="icons.bold"></div>
         </ToggleGroupItem>
-        <ToggleGroupItem defaultPressed="{true}">
+        <ToggleGroupItem value="center">
           <div html="icons.italic"></div>
         </ToggleGroupItem>
-        <ToggleGroupItem>
+        <ToggleGroupItem value="right">
           <div html="icons.underline"></div>
         </ToggleGroupItem>
       </ToggleGroup>
     </Demo>
     <Demo label="multiple, outline">
-      <ToggleGroup>
-        <ToggleGroupItem variant="outline" defaultPressed="{true}">
+      <ToggleGroup multiple="{true}" defaultValue="{['star']}">
+        <ToggleGroupItem value="star" variant="outline">
           <div html="icons.star"></div>
         </ToggleGroupItem>
-        <ToggleGroupItem variant="outline">
+        <ToggleGroupItem value="heart" variant="outline">
           <div html="icons.heart"></div>
         </ToggleGroupItem>
       </ToggleGroup>

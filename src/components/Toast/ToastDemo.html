@@ -6,11 +6,13 @@
   // The handlers live here rather than in page.html: a method referenced from
   // markup passed into another component's slot resolves against that component,
   // so a page-level method never reaches a <Button> nested inside <Section>.
-  const showDefaultToast = () => toast.add({ title: "Event created", description: "Monday, Jan 5 at 4:00pm" });
-  const showSuccessToast = () => toast.add({ title: "Saved successfully", type: "success" });
-  const showErrorToast = () => toast.add({ title: "Something went wrong", type: "error" });
-  const showWarningToast = () => toast.add({ title: "Low disk space", type: "warning" });
-  const showInfoToast = () => toast.add({ title: "New update available", type: "info" });
+  const showDefaultToast = () => toast.add({ title: "Event created", description: "Monday, Jan 5 at 4:00pm", autoClose: false });
+  const showSuccessToast = () => toast.add({ title: "Saved successfully", type: "success", autoClose: false });
+  const showErrorToast = () => toast.add({ title: "Something went wrong", type: "error", autoClose: false });
+  const showWarningToast = () => toast.add({ title: "Low disk space", type: "warning", autoClose: false });
+  const showInfoToast = () => toast.add({ title: "New update available", type: "info", autoClose: false });
+  const showPersistentToast = () =>
+    toast.add({ title: "Action required", description: "This stays until you close it.", autoClose: false });
 </script>
 
 <div class="contents [&>[data-olum]]:contents">
@@ -19,5 +21,6 @@
   <Button variant="outline" onclick="{showErrorToast}">Error</Button>
   <Button variant="outline" onclick="{showWarningToast}">Warning</Button>
   <Button variant="outline" onclick="{showInfoToast}">Info</Button>
+  <Button variant="outline" onclick="{showPersistentToast}">Persistent</Button>
   <Toaster />
 </div>
