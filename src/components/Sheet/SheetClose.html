@@ -1,14 +1,16 @@
 <script>
   import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
+  import { findModalInput } from "../Portal/portal";
 
   const { class: className = "", children } = props();
 
   onMount(() => {
-    const root = host.closest('[data-slot="sheet"]');
-    const input = root && root.querySelector(":scope > input");
     const btn = host.querySelector("button");
     const onClick = () => {
+      // Resolved per click: this button is portaled into <body> with the
+      // content, so it can't rely on walking up to the root.
+      const input = findModalInput(host, "sheet", "sheet-content");
       if (!input) return;
       input.checked = false;
       input.dispatchEvent(new Event("change", { bubbles: true }));

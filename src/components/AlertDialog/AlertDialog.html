@@ -4,10 +4,15 @@
   const { defaultOpen = false, children } = props();
 </script>
 
-<div
-  data-slot="alert-dialog"
-  class="contents [&_[data-slot=alert-dialog-overlay]]:hidden [&_[data-slot=alert-dialog-content]]:hidden has-[>input:checked]:[&_[data-slot=alert-dialog-overlay]]:block has-[>input:checked]:[&_[data-slot=alert-dialog-content]]:grid"
->
+<!--
+  The checkbox stays the source of truth for open/closed, but visibility is
+  no longer driven from here by has-[>input:checked] descendant selectors:
+  AlertDialogContent moves the overlay/panel into <body> (see Portal/portal.js)
+  so the page can be blurred with a real filter, and once portaled they are no
+  longer descendants of this element for CSS to reach. AlertDialogContent
+  syncs them imperatively off this checkbox's change event instead.
+-->
+<div data-slot="alert-dialog" class="contents">
   <input type="checkbox" class="hidden" checked="{defaultOpen}" />
   {children}
 </div>

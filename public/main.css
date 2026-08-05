@@ -41,7 +41,6 @@
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --animate-spin: spin 1s linear infinite;
     --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    --blur-md: 12px;
     --aspect-video: 16 / 9;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1142,10 +1141,10 @@
   .bg-black {
     background-color: var(--color-black);
   }
-  .bg-black\/10 {
-    background-color: color-mix(in srgb, #000 10%, transparent);
+  .bg-black\/20 {
+    background-color: color-mix(in srgb, #000 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-black) 10%, transparent);
+      background-color: color-mix(in oklab, var(--color-black) 20%, transparent);
     }
   }
   .bg-border {
@@ -1539,6 +1538,13 @@
   .blur {
     --tw-blur: blur(8px);
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .filter {
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .backdrop-filter {
+    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
   }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
@@ -2528,13 +2534,6 @@
   .data-\[variant\=ghost\]\:max-w-full[data-variant="ghost"] {
     max-width: 100%;
   }
-  @supports (backdrop-filter: var(--tw)) {
-    .supports-backdrop-filter\:backdrop-blur-md {
-      --tw-backdrop-blur: blur(var(--blur-md));
-      -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-      backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-    }
-  }
   @media (width >= 40rem) {
     .sm\:right-4 {
       right: calc(var(--spacing) * 4);
@@ -2605,18 +2604,6 @@
     @supports (color: color-mix(in lab, red, red)) {
       color: color-mix(in oklab, var(--olum-destructive) 90%, transparent);
     }
-  }
-  .\[\&_\[data-slot\=alert-dialog-content\]\]\:hidden [data-slot=alert-dialog-content] {
-    display: none;
-  }
-  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=alert-dialog-content\]\]\:grid:has( > input:checked) [data-slot=alert-dialog-content] {
-    display: grid;
-  }
-  .\[\&_\[data-slot\=alert-dialog-overlay\]\]\:hidden [data-slot=alert-dialog-overlay] {
-    display: none;
-  }
-  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=alert-dialog-overlay\]\]\:block:has( > input:checked) [data-slot=alert-dialog-overlay] {
-    display: block;
   }
   .\[\&_\[data-slot\=attachment\]\]\:flex-none [data-slot=attachment] {
     flex: none;
@@ -2713,30 +2700,6 @@
     display: none;
   }
   .has-\[\>input\:checked\]\:\[\&_\[data-slot\=context-menu-content\]\]\:block:has( > input:checked) [data-slot=context-menu-content] {
-    display: block;
-  }
-  .\[\&_\[data-slot\=dialog-content\]\]\:hidden [data-slot=dialog-content] {
-    display: none;
-  }
-  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=dialog-content\]\]\:grid:has( > input:checked) [data-slot=dialog-content] {
-    display: grid;
-  }
-  .\[\&_\[data-slot\=dialog-overlay\]\]\:hidden [data-slot=dialog-overlay] {
-    display: none;
-  }
-  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=dialog-overlay\]\]\:block:has( > input:checked) [data-slot=dialog-overlay] {
-    display: block;
-  }
-  .\[\&_\[data-slot\=drawer-content\]\]\:hidden [data-slot=drawer-content] {
-    display: none;
-  }
-  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=drawer-content\]\]\:flex:has( > input:checked) [data-slot=drawer-content] {
-    display: flex;
-  }
-  .\[\&_\[data-slot\=drawer-overlay\]\]\:hidden [data-slot=drawer-overlay] {
-    display: none;
-  }
-  .has-\[\>input\:checked\]\:\[\&_\[data-slot\=drawer-overlay\]\]\:block:has( > input:checked) [data-slot=drawer-overlay] {
     display: block;
   }
   .\[\&_\[data-slot\=dropdown-menu-content\]\]\:hidden [data-slot=dropdown-menu-content] {
@@ -3446,34 +3409,6 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-duration {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-ease {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-content {
-  syntax: "*";
-  initial-value: "";
-  inherits: false;
-}
-@property --tw-scale-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
-@property --tw-scale-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
-@property --tw-scale-z {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1;
-}
 @property --tw-backdrop-blur {
   syntax: "*";
   inherits: false;
@@ -3509,6 +3444,34 @@
 @property --tw-backdrop-sepia {
   syntax: "*";
   inherits: false;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-content {
+  syntax: "*";
+  initial-value: "";
+  inherits: false;
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
 }
 @keyframes spin {
   to {
@@ -3573,12 +3536,6 @@
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
-      --tw-duration: initial;
-      --tw-ease: initial;
-      --tw-content: "";
-      --tw-scale-x: 1;
-      --tw-scale-y: 1;
-      --tw-scale-z: 1;
       --tw-backdrop-blur: initial;
       --tw-backdrop-brightness: initial;
       --tw-backdrop-contrast: initial;
@@ -3588,6 +3545,12 @@
       --tw-backdrop-opacity: initial;
       --tw-backdrop-saturate: initial;
       --tw-backdrop-sepia: initial;
+      --tw-duration: initial;
+      --tw-ease: initial;
+      --tw-content: "";
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
     }
   }
 }
