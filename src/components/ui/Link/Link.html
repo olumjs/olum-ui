@@ -2,7 +2,7 @@
   import { props } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { variant = "default", size = "default", href = "#", to, target, rel, class: className = "", disabled = false, children } = props();
+  const { variant = "default", size = "default", href = "#", to, target, rel, ariaLabel, class: className = "", disabled = false, children } = props();
 
   const base =
     "group/button inline-flex shrink-0 items-center justify-center rounded-lg border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4";
@@ -38,8 +38,8 @@
 </script>
 
 <if when="to">
-  <a data-slot="link" to="{to}" class="{classes()}" aria-disabled="{disabled}">{children}</a>
+  <a data-slot="link" to="{to}" aria-label="{ariaLabel}" class="{classes()}" aria-disabled="{disabled}">{children}</a>
 </if>
 <else>
-  <a data-slot="link" href="{href}" target="{target}" rel="{relValue()}" class="{classes()}" aria-disabled="{disabled}">{children}</a>
+  <a data-slot="link" href="{href}" aria-label="{ariaLabel}" target="{target}" rel="{relValue()}" class="{classes()}" aria-disabled="{disabled}">{children}</a>
 </else>

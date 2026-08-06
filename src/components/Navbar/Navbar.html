@@ -142,10 +142,7 @@
       </CommandDialogContent>
     </CommandDialog>
 
-    <Button variant="ghost"
-      onclick="toggleTheme()"
-      aria-label="Toggle dark mode"
-    >
+    <Button variant="ghost" onclick="{toggleTheme}" ariaLabel="Toggle dark mode">
       <div html="state.dark ? icons.sun : icons.moon"></div>
     </Button>
 
@@ -154,7 +151,7 @@
       href="{REPO}"
       target="_blank"
       rel="noreferrer"
-      aria-label="GitHub repository"
+      ariaLabel="GitHub repository"
     >
     <span html="icons.github"></span>
     </Link>
