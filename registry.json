@@ -5,7 +5,7 @@
       "title": "Button",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Button/Button.html"
+      "path": "src/components/ui/Button/Button.html"
     },
     {
       "name": "button-group",
@@ -15,28 +15,28 @@
         "ButtonGroupSeparator.html",
         "ButtonGroupText.html"
       ],
-      "path": "src/components/ButtonGroup/ButtonGroup.html"
+      "path": "src/components/ui/ButtonGroup/ButtonGroup.html"
     },
     {
       "name": "calendar",
       "title": "Calendar",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Calendar/Calendar.html"
+      "path": "src/components/ui/Calendar/Calendar.html"
     },
     {
       "name": "checkbox",
       "title": "Checkbox",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Checkbox/Checkbox.html"
+      "path": "src/components/ui/Checkbox/Checkbox.html"
     },
     {
       "name": "combobox",
       "title": "Combobox",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Combobox/Combobox.html"
+      "path": "src/components/ui/Combobox/Combobox.html"
     },
     {
       "name": "date-picker",
@@ -45,7 +45,7 @@
       "deps": [
         "Calendar/Calendar.html"
       ],
-      "path": "src/components/DatePicker/DatePicker.html"
+      "path": "src/components/ui/DatePicker/DatePicker.html"
     },
     {
       "name": "field",
@@ -62,14 +62,14 @@
         "FieldSet.html",
         "Label/Label.html"
       ],
-      "path": "src/components/Field/Field.html"
+      "path": "src/components/ui/Field/Field.html"
     },
     {
       "name": "input",
       "title": "Input",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Input/Input.html"
+      "path": "src/components/ui/Input/Input.html"
     },
     {
       "name": "input-group",
@@ -83,7 +83,7 @@
         "Button/Button.html",
         "Input/Input.html"
       ],
-      "path": "src/components/InputGroup/InputGroup.html"
+      "path": "src/components/ui/InputGroup/InputGroup.html"
     },
     {
       "name": "input-otp",
@@ -94,14 +94,14 @@
         "InputOTPSeparator.html",
         "InputOTPSlot.html"
       ],
-      "path": "src/components/InputOTP/InputOTP.html"
+      "path": "src/components/ui/InputOTP/InputOTP.html"
     },
     {
       "name": "label",
       "title": "Label",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Label/Label.html"
+      "path": "src/components/ui/Label/Label.html"
     },
     {
       "name": "native-select",
@@ -111,7 +111,7 @@
         "NativeSelectOptGroup.html",
         "NativeSelectOption.html"
       ],
-      "path": "src/components/NativeSelect/NativeSelect.html"
+      "path": "src/components/ui/NativeSelect/NativeSelect.html"
     },
     {
       "name": "radio-group",
@@ -120,7 +120,7 @@
       "deps": [
         "RadioGroupItem.html"
       ],
-      "path": "src/components/RadioGroup/RadioGroup.html"
+      "path": "src/components/ui/RadioGroup/RadioGroup.html"
     },
     {
       "name": "select",
@@ -135,35 +135,35 @@
         "SelectTrigger.html",
         "SelectValue.html"
       ],
-      "path": "src/components/Select/Select.html"
+      "path": "src/components/ui/Select/Select.html"
     },
     {
       "name": "slider",
       "title": "Slider",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Slider/Slider.html"
+      "path": "src/components/ui/Slider/Slider.html"
     },
     {
       "name": "switch",
       "title": "Switch",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Switch/Switch.html"
+      "path": "src/components/ui/Switch/Switch.html"
     },
     {
       "name": "textarea",
       "title": "Textarea",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Textarea/Textarea.html"
+      "path": "src/components/ui/Textarea/Textarea.html"
     },
     {
       "name": "toggle",
       "title": "Toggle",
       "category": "forms",
       "deps": [],
-      "path": "src/components/Toggle/Toggle.html"
+      "path": "src/components/ui/Toggle/Toggle.html"
     },
     {
       "name": "toggle-group",
@@ -174,14 +174,14 @@
         "toggleGroupStore.js",
         "Toggle/Toggle.html"
       ],
-      "path": "src/components/ToggleGroup/ToggleGroup.html"
+      "path": "src/components/ui/ToggleGroup/ToggleGroup.html"
     },
     {
       "name": "aspect-ratio",
       "title": "Aspect Ratio",
       "category": "layout",
       "deps": [],
-      "path": "src/components/AspectRatio/AspectRatio.html"
+      "path": "src/components/ui/AspectRatio/AspectRatio.html"
     },
     {
       "name": "card",
@@ -195,7 +195,7 @@
         "CardHeader.html",
         "CardTitle.html"
       ],
-      "path": "src/components/Card/Card.html"
+      "path": "src/components/ui/Card/Card.html"
     },
     {
       "name": "resizable",
@@ -205,21 +205,21 @@
         "ResizableHandle.html",
         "ResizablePanel.html"
       ],
-      "path": "src/components/Resizable/ResizablePanelGroup.html"
+      "path": "src/components/ui/Resizable/ResizablePanelGroup.html"
     },
     {
       "name": "scroll-area",
       "title": "Scroll Area",
       "category": "layout",
       "deps": [],
-      "path": "src/components/ScrollArea/ScrollArea.html"
+      "path": "src/components/ui/ScrollArea/ScrollArea.html"
     },
     {
       "name": "separator",
       "title": "Separator",
       "category": "layout",
       "deps": [],
-      "path": "src/components/Separator/Separator.html"
+      "path": "src/components/ui/Separator/Separator.html"
     },
     {
       "name": "sidebar",
@@ -240,7 +240,7 @@
         "SidebarSeparator.html",
         "SidebarTrigger.html"
       ],
-      "path": "src/components/Sidebar/Sidebar.html"
+      "path": "src/components/ui/Sidebar/Sidebar.html"
     },
     {
       "name": "breadcrumb",
@@ -254,7 +254,7 @@
         "BreadcrumbPage.html",
         "BreadcrumbSeparator.html"
       ],
-      "path": "src/components/Breadcrumb/Breadcrumb.html"
+      "path": "src/components/ui/Breadcrumb/Breadcrumb.html"
     },
     {
       "name": "command",
@@ -273,7 +273,7 @@
         "CommandShortcut.html",
         "Portal/portal.js"
       ],
-      "path": "src/components/Command/Command.html"
+      "path": "src/components/ui/Command/Command.html"
     },
     {
       "name": "menubar",
@@ -287,7 +287,7 @@
         "DropdownMenu/DropdownMenuContent.html",
         "DropdownMenu/DropdownMenuTrigger.html"
       ],
-      "path": "src/components/Menubar/Menubar.html"
+      "path": "src/components/ui/Menubar/Menubar.html"
     },
     {
       "name": "navigation-menu",
@@ -300,7 +300,7 @@
         "NavigationMenuList.html",
         "NavigationMenuTrigger.html"
       ],
-      "path": "src/components/NavigationMenu/NavigationMenu.html"
+      "path": "src/components/ui/NavigationMenu/NavigationMenu.html"
     },
     {
       "name": "pagination",
@@ -314,7 +314,7 @@
         "PaginationNext.html",
         "PaginationPrevious.html"
       ],
-      "path": "src/components/Pagination/Pagination.html"
+      "path": "src/components/ui/Pagination/Pagination.html"
     },
     {
       "name": "tabs",
@@ -325,7 +325,7 @@
         "TabsList.html",
         "TabsTrigger.html"
       ],
-      "path": "src/components/Tabs/Tabs.html"
+      "path": "src/components/ui/Tabs/Tabs.html"
     },
     {
       "name": "alert-dialog",
@@ -344,7 +344,7 @@
         "Button/Button.html",
         "Portal/portal.js"
       ],
-      "path": "src/components/AlertDialog/AlertDialog.html"
+      "path": "src/components/ui/AlertDialog/AlertDialog.html"
     },
     {
       "name": "context-menu",
@@ -354,7 +354,7 @@
         "ContextMenuContent.html",
         "ContextMenuTrigger.html"
       ],
-      "path": "src/components/ContextMenu/ContextMenu.html"
+      "path": "src/components/ui/ContextMenu/ContextMenu.html"
     },
     {
       "name": "dialog",
@@ -370,7 +370,7 @@
         "DialogTrigger.html",
         "Portal/portal.js"
       ],
-      "path": "src/components/Dialog/Dialog.html"
+      "path": "src/components/ui/Dialog/Dialog.html"
     },
     {
       "name": "drawer",
@@ -386,7 +386,7 @@
         "DrawerTrigger.html",
         "Portal/portal.js"
       ],
-      "path": "src/components/Drawer/Drawer.html"
+      "path": "src/components/ui/Drawer/Drawer.html"
     },
     {
       "name": "dropdown-menu",
@@ -407,7 +407,7 @@
         "DropdownMenuSubTrigger.html",
         "DropdownMenuTrigger.html"
       ],
-      "path": "src/components/DropdownMenu/DropdownMenu.html"
+      "path": "src/components/ui/DropdownMenu/DropdownMenu.html"
     },
     {
       "name": "hover-card",
@@ -417,7 +417,7 @@
         "HoverCardContent.html",
         "HoverCardTrigger.html"
       ],
-      "path": "src/components/HoverCard/HoverCard.html"
+      "path": "src/components/ui/HoverCard/HoverCard.html"
     },
     {
       "name": "popover",
@@ -430,7 +430,7 @@
         "PopoverTitle.html",
         "PopoverTrigger.html"
       ],
-      "path": "src/components/Popover/Popover.html"
+      "path": "src/components/ui/Popover/Popover.html"
     },
     {
       "name": "sheet",
@@ -446,7 +446,7 @@
         "SheetTrigger.html",
         "Portal/portal.js"
       ],
-      "path": "src/components/Sheet/Sheet.html"
+      "path": "src/components/ui/Sheet/Sheet.html"
     },
     {
       "name": "tooltip",
@@ -457,7 +457,7 @@
         "TooltipProvider.html",
         "TooltipTrigger.html"
       ],
-      "path": "src/components/Tooltip/Tooltip.html"
+      "path": "src/components/ui/Tooltip/Tooltip.html"
     },
     {
       "name": "alert",
@@ -468,7 +468,7 @@
         "AlertDescription.html",
         "AlertTitle.html"
       ],
-      "path": "src/components/Alert/Alert.html"
+      "path": "src/components/ui/Alert/Alert.html"
     },
     {
       "name": "empty",
@@ -481,28 +481,28 @@
         "EmptyMedia.html",
         "EmptyTitle.html"
       ],
-      "path": "src/components/Empty/Empty.html"
+      "path": "src/components/ui/Empty/Empty.html"
     },
     {
       "name": "progress",
       "title": "Progress",
       "category": "feedback",
       "deps": [],
-      "path": "src/components/Progress/Progress.html"
+      "path": "src/components/ui/Progress/Progress.html"
     },
     {
       "name": "skeleton",
       "title": "Skeleton",
       "category": "feedback",
       "deps": [],
-      "path": "src/components/Skeleton/Skeleton.html"
+      "path": "src/components/ui/Skeleton/Skeleton.html"
     },
     {
       "name": "spinner",
       "title": "Spinner",
       "category": "feedback",
       "deps": [],
-      "path": "src/components/Spinner/Spinner.html"
+      "path": "src/components/ui/Spinner/Spinner.html"
     },
     {
       "name": "toast",
@@ -511,7 +511,7 @@
       "deps": [
         "toast.js"
       ],
-      "path": "src/components/Toast/Toaster.html"
+      "path": "src/components/ui/Toast/Toaster.html"
     },
     {
       "name": "accordion",
@@ -522,7 +522,7 @@
         "AccordionItem.html",
         "AccordionTrigger.html"
       ],
-      "path": "src/components/Accordion/Accordion.html"
+      "path": "src/components/ui/Accordion/Accordion.html"
     },
     {
       "name": "attachment",
@@ -538,7 +538,7 @@
         "AttachmentTitle.html",
         "Button/Button.html"
       ],
-      "path": "src/components/Attachment/Attachment.html"
+      "path": "src/components/ui/Attachment/Attachment.html"
     },
     {
       "name": "avatar",
@@ -550,14 +550,14 @@
         "AvatarGroup.html",
         "AvatarGroupCount.html"
       ],
-      "path": "src/components/Avatar/Avatar.html"
+      "path": "src/components/ui/Avatar/Avatar.html"
     },
     {
       "name": "badge",
       "title": "Badge",
       "category": "data-display",
       "deps": [],
-      "path": "src/components/Badge/Badge.html"
+      "path": "src/components/ui/Badge/Badge.html"
     },
     {
       "name": "bubble",
@@ -567,7 +567,7 @@
         "BubbleContent.html",
         "BubbleGroup.html"
       ],
-      "path": "src/components/Bubble/Bubble.html"
+      "path": "src/components/ui/Bubble/Bubble.html"
     },
     {
       "name": "carousel",
@@ -581,7 +581,7 @@
         "CarouselPrevious.html",
         "carouselStore.js"
       ],
-      "path": "src/components/Carousel/Carousel.html"
+      "path": "src/components/ui/Carousel/Carousel.html"
     },
     {
       "name": "chart",
@@ -595,7 +595,7 @@
         "LineChart.html",
         "RadialBarChart.html"
       ],
-      "path": "src/components/Chart/BarChart.html"
+      "path": "src/components/ui/Chart/BarChart.html"
     },
     {
       "name": "collapsible",
@@ -605,7 +605,7 @@
         "CollapsibleContent.html",
         "CollapsibleTrigger.html"
       ],
-      "path": "src/components/Collapsible/Collapsible.html"
+      "path": "src/components/ui/Collapsible/Collapsible.html"
     },
     {
       "name": "data-table",
@@ -625,7 +625,7 @@
         "Table/TableHeader.html",
         "Table/TableRow.html"
       ],
-      "path": "src/components/DataTable/DataTable.html"
+      "path": "src/components/ui/DataTable/DataTable.html"
     },
     {
       "name": "item",
@@ -643,7 +643,7 @@
         "ItemTitle.html",
         "Separator/Separator.html"
       ],
-      "path": "src/components/Item/Item.html"
+      "path": "src/components/ui/Item/Item.html"
     },
     {
       "name": "kbd",
@@ -652,7 +652,7 @@
       "deps": [
         "KbdGroup.html"
       ],
-      "path": "src/components/Kbd/Kbd.html"
+      "path": "src/components/ui/Kbd/Kbd.html"
     },
     {
       "name": "marker",
@@ -662,7 +662,7 @@
         "MarkerContent.html",
         "MarkerIcon.html"
       ],
-      "path": "src/components/Marker/Marker.html"
+      "path": "src/components/ui/Marker/Marker.html"
     },
     {
       "name": "message",
@@ -675,7 +675,7 @@
         "MessageGroup.html",
         "MessageHeader.html"
       ],
-      "path": "src/components/Message/Message.html"
+      "path": "src/components/ui/Message/Message.html"
     },
     {
       "name": "message-scroller",
@@ -688,7 +688,7 @@
         "MessageScrollerProvider.html",
         "MessageScrollerViewport.html"
       ],
-      "path": "src/components/MessageScroller/MessageScroller.html"
+      "path": "src/components/ui/MessageScroller/MessageScroller.html"
     },
     {
       "name": "table",
@@ -703,35 +703,35 @@
         "TableHeader.html",
         "TableRow.html"
       ],
-      "path": "src/components/Table/Table.html"
+      "path": "src/components/ui/Table/Table.html"
     },
     {
       "name": "direction",
       "title": "Direction",
       "category": "utility",
       "deps": [],
-      "path": "src/components/Direction/Direction.html"
+      "path": "src/components/ui/Direction/Direction.html"
     },
     {
       "name": "portal",
       "title": "Portal",
       "category": "utility",
       "deps": [],
-      "path": "src/components/Portal/portal.js"
+      "path": "src/components/ui/Portal/portal.js"
     },
     {
       "name": "demo",
       "title": "Demo",
       "category": "internal",
       "deps": [],
-      "path": "src/components/Demo/Demo.html"
+      "path": "src/components/ui/Demo/Demo.html"
     },
     {
       "name": "section",
       "title": "Section",
       "category": "internal",
       "deps": [],
-      "path": "src/components/Section/Section.html"
+      "path": "src/components/ui/Section/Section.html"
     }
   ]
 }
