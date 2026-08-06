@@ -36,7 +36,11 @@
   --olum-accent: oklch(0.371 0 0);
   --olum-accent-foreground: oklch(0.985 0 0);
   --olum-destructive: oklch(0.704 0.191 22.216);
-  --olum-border: oklch(1 0 0 / 10%);
+  /* 20%, not shadcn's 10%: their surfaces sit on a lighter --card so an edge
+     reads from the surface change as much as the border. Ours are transparent
+     over the page background, so the border does all the work -- at 10% it
+     blends to roughly L 0.23 against this background and disappears. */
+  --olum-border: oklch(1 0 0 / 20%);
   --olum-ring: oklch(0.556 0 0);
   --olum-chart-1: oklch(0.488 0.243 264.376);
   --olum-chart-2: oklch(0.696 0.17 162.48);

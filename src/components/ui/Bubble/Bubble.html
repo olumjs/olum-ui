@@ -14,8 +14,13 @@
       "[&_[data-slot=bubble-content]]:bg-secondary [&_[data-slot=bubble-content]]:text-secondary-foreground [&_[data-slot=bubble-content]:is(button,a):hover]:bg-[color-mix(in_oklch,var(--olum-secondary),var(--olum-foreground)_5%)]",
     muted:
       "[&_[data-slot=bubble-content]]:bg-muted [&_[data-slot=bubble-content]:is(button,a):hover]:bg-[color-mix(in_oklch,var(--olum-muted),var(--olum-foreground)_5%)]",
+    // The tint pins its own lightness, so it needs a dark counterpart: at 0.93
+    // it sits under a near-white foreground in dark mode and vanishes. 0.3
+    // clears both the background (0.145) and muted (0.269) so it stays a
+    // distinct surface, and the extra chroma keeps the hue readable on a
+    // themed primary.
     tinted:
-      "[&_[data-slot=bubble-content]]:bg-[oklch(from_var(--olum-primary)_0.93_calc(c*0.4)_h)] [&_[data-slot=bubble-content]]:text-foreground [&_[data-slot=bubble-content]:is(button,a):hover]:bg-[oklch(from_var(--olum-primary)_0.88_calc(c*0.5)_h)]",
+      "[&_[data-slot=bubble-content]]:bg-[oklch(from_var(--olum-primary)_0.93_calc(c*0.4)_h)] [&_[data-slot=bubble-content]]:text-foreground [&_[data-slot=bubble-content]:is(button,a):hover]:bg-[oklch(from_var(--olum-primary)_0.88_calc(c*0.5)_h)] dark:[&_[data-slot=bubble-content]]:bg-[oklch(from_var(--olum-primary)_0.3_calc(c*0.6)_h)] dark:[&_[data-slot=bubble-content]:is(button,a):hover]:bg-[oklch(from_var(--olum-primary)_0.36_calc(c*0.7)_h)]",
     outline:
       "[&_[data-slot=bubble-content]]:border-border [&_[data-slot=bubble-content]]:bg-background [&_[data-slot=bubble-content]:is(button,a):hover]:bg-muted [&_[data-slot=bubble-content]:is(button,a):hover]:text-foreground",
     ghost:

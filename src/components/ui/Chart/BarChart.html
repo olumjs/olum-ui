@@ -106,7 +106,7 @@
     the cursor directly (no transition) so the tooltip doesn't lag the mouse.
   -->
   <div
-    class="pointer-events-none absolute z-10 grid min-w-32 gap-1.5 rounded-lg bg-background px-2.5 py-1.5 text-xs shadow-xl ring-1 ring-foreground/10 transition-opacity duration-150"
+    class="pointer-events-none absolute z-10 grid min-w-32 gap-1.5 rounded-lg bg-background px-2.5 py-1.5 text-xs shadow-xl ring-1 ring-border transition-opacity duration-150"
     style="left:{state.x}px; top:{state.y}px; transform: translate(-50%, calc(-100% - 12px)); opacity:{state.hover > -1 ? 1 : 0};"
   >
     <div class="font-medium">{hoverData()[xKey]}</div>

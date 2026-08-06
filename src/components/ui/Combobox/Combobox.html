@@ -70,7 +70,7 @@
     </else>
   </div>
   <if when="state.open">
-    <div data-slot="combobox-content" class="absolute top-full left-0 z-50 mt-1.5 w-full overflow-hidden rounded-lg bg-background text-foreground shadow-md ring-1 ring-foreground/10">
+    <div data-slot="combobox-content" class="absolute top-full left-0 z-50 mt-1.5 w-full overflow-hidden rounded-lg bg-background text-foreground shadow-md ring-1 ring-border">
       <div data-slot="combobox-list" class="max-h-64 scroll-py-1 overflow-y-auto overscroll-contain p-1">
         <if when="filtered().length === 0">
           <div data-slot="combobox-empty" class="flex w-full justify-center py-2 text-center text-sm text-muted-foreground">{emptyText}</div>

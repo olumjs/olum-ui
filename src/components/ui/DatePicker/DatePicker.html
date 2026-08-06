@@ -44,7 +44,7 @@
     {label()}
   </button>
   <if when="state.open">
-    <div class="absolute top-full left-0 z-50 mt-1 w-auto rounded-lg bg-background shadow-md ring-1 ring-foreground/10">
+    <div class="absolute top-full left-0 z-50 mt-1 w-auto rounded-lg bg-background shadow-md ring-1 ring-border">
       <Calendar selected="{state.ts}" onSelect="{pick}" />
     </div>
   </if>
