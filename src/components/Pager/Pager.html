@@ -16,8 +16,10 @@
      every page wrapper carries pb-24 so nothing scrolls underneath. h-14 is
      fixed rather than derived from the content because GalleryNav stops at
      bottom-14 to meet it. lg:pl-64 keeps the buttons aligned with the content
-     column, which body's padding-left can't do for a fixed element. -->
-<nav class="fixed inset-x-0 bottom-0 z-40 h-14 border-t border-border bg-background/80 backdrop-blur lg:pl-64">
+     column, which body's padding-left can't do for a fixed element. The matching
+     inset for the PageToc rail lives in src/main.css, since it must apply only
+     on pages that render one. -->
+<nav data-slot="pager" class="fixed inset-x-0 bottom-0 z-40 h-14 border-t border-border bg-background/80 backdrop-blur lg:pl-64">
   <div class="mx-auto flex h-full max-w-4xl items-center justify-between gap-4 px-6 sm:px-10">
     <div>
       <if when="prev()">

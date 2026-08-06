@@ -14,6 +14,7 @@
   import DropdownMenuSubContent from "../../components/ui/DropdownMenu/DropdownMenuSubContent";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -30,9 +31,12 @@
 
 <Navbar />
 <GalleryNav id="dropdown-menu" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="dropdown-menu" />
+
+  <InstallBlock id="dropdown-menu" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <DropdownMenu>
@@ -70,8 +74,6 @@
       </DropdownMenuContent>
     </DropdownMenu>
   </DemoBlock>
-
-  <InstallBlock id="dropdown-menu" />
 
   <Pager id="dropdown-menu" />
 </div>

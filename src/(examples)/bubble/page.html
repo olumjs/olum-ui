@@ -4,6 +4,7 @@
   import BubbleGroup from "../../components/ui/Bubble/BubbleGroup";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -13,9 +14,12 @@
 
 <Navbar />
 <GalleryNav id="bubble" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="bubble" />
+
+  <InstallBlock id="bubble" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <BubbleGroup>
@@ -39,8 +43,6 @@
       </Bubble>
     </BubbleGroup>
   </DemoBlock>
-
-  <InstallBlock id="bubble" />
 
   <Pager id="bubble" />
 </div>

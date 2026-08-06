@@ -2,6 +2,7 @@
   import ScrollArea from "../../components/ui/ScrollArea/ScrollArea";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -11,9 +12,12 @@
 
 <Navbar />
 <GalleryNav id="scroll-area" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="scroll-area" />
+
+  <InstallBlock id="scroll-area" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <ScrollArea class="h-40 w-56 rounded-lg border border-border">
@@ -24,8 +28,6 @@
       </div>
     </ScrollArea>
   </DemoBlock>
-
-  <InstallBlock id="scroll-area" />
 
   <Pager id="scroll-area" />
 </div>

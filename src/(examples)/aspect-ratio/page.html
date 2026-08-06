@@ -2,6 +2,7 @@
   import AspectRatio from "../../components/ui/AspectRatio/AspectRatio";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -15,9 +16,12 @@
 
 <Navbar />
 <GalleryNav id="aspect-ratio" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="aspect-ratio" />
+
+  <InstallBlock id="aspect-ratio" />
 
   <DemoBlock label="16 / 9" snippet="{snippets['16-9']}">
     <AspectRatio ratio="{16 / 9}" class="w-64 overflow-hidden rounded-lg bg-muted">
@@ -32,8 +36,6 @@
       <div class="flex size-full items-center justify-center text-sm text-muted-foreground">1:1</div>
     </AspectRatio>
   </DemoBlock>
-
-  <InstallBlock id="aspect-ratio" />
 
   <Pager id="aspect-ratio" />
 </div>

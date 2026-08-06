@@ -893,8 +893,8 @@
   .scroll-my-1 {
     scroll-margin-block: var(--spacing);
   }
-  .scroll-mt-16 {
-    scroll-margin-top: calc(var(--spacing) * 16);
+  .scroll-mt-20 {
+    scroll-margin-top: calc(var(--spacing) * 20);
   }
   .scroll-px-1 {
     scroll-padding-inline: var(--spacing);
@@ -2672,6 +2672,11 @@
       padding-left: calc(var(--spacing) * 64);
     }
   }
+  @media (width >= 80rem) {
+    .xl\:block {
+      display: block;
+    }
+  }
   @media (pointer: coarse) {
     .pointer-coarse\:inline-block {
       display: inline-block;
@@ -3333,6 +3338,14 @@
   @media (min-width: 64rem) {
     body {
       padding-left: 16rem;
+    }
+  }
+  @media (min-width: 80rem) {
+    body:has([data-slot="page-toc"]) {
+      padding-right: 14rem;
+    }
+    body:has([data-slot="page-toc"]) [data-slot="pager"] {
+      padding-right: 14rem;
     }
   }
 }

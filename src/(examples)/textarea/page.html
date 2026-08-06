@@ -2,6 +2,7 @@
   import Textarea from "../../components/ui/Textarea/Textarea";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -11,16 +12,17 @@
 
 <Navbar />
 <GalleryNav id="textarea" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="textarea" />
+
+  <InstallBlock id="textarea" />
 
   <DemoBlock label="states" snippet="{snippets['states']}">
     <Textarea placeholder="Type your message here." class="w-64" />
     <Textarea placeholder="Disabled" disabled="{true}" class="w-64" />
   </DemoBlock>
-
-  <InstallBlock id="textarea" />
 
   <Pager id="textarea" />
 </div>

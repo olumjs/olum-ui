@@ -6,6 +6,7 @@
   import CarouselNext from "../../components/ui/Carousel/CarouselNext";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -15,9 +16,12 @@
 
 <Navbar />
 <GalleryNav id="carousel" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="carousel" />
+
+  <InstallBlock id="carousel" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <Carousel class="w-64">
@@ -32,8 +36,6 @@
       <CarouselNext />
     </Carousel>
   </DemoBlock>
-
-  <InstallBlock id="carousel" />
 
   <Pager id="carousel" />
 </div>

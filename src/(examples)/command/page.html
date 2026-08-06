@@ -14,6 +14,7 @@
   import KbdGroup from "../../components/ui/Kbd/KbdGroup";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -32,9 +33,12 @@
 
 <Navbar />
 <GalleryNav id="command" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="command" />
+
+  <InstallBlock id="command" />
 
   <DemoBlock label="inline" snippet="{snippets['inline']}">
     <Command class="w-72 rounded-lg border border-border">
@@ -93,8 +97,6 @@
       </CommandDialogContent>
     </CommandDialog>
   </DemoBlock>
-
-  <InstallBlock id="command" />
 
   <Pager id="command" />
 </div>

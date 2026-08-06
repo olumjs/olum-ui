@@ -4,6 +4,7 @@
   import CollapsibleContent from "../../components/ui/Collapsible/CollapsibleContent";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -13,9 +14,12 @@
 
 <Navbar />
 <GalleryNav id="collapsible" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="collapsible" />
+
+  <InstallBlock id="collapsible" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <Collapsible class="w-72">
@@ -26,8 +30,6 @@
       <CollapsibleContent class="pt-2 text-sm text-muted-foreground">Collapsible content revealed on toggle.</CollapsibleContent>
     </Collapsible>
   </DemoBlock>
-
-  <InstallBlock id="collapsible" />
 
   <Pager id="collapsible" />
 </div>

@@ -11,6 +11,7 @@
   import MessageFooter from "../../components/ui/Message/MessageFooter";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -27,9 +28,12 @@
 
 <Navbar />
 <GalleryNav id="message" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="message" />
+
+  <InstallBlock id="message" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <MessageGroup class="w-96">
@@ -51,8 +55,6 @@
       </for>
     </MessageGroup>
   </DemoBlock>
-
-  <InstallBlock id="message" />
 
   <Pager id="message" />
 </div>

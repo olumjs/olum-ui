@@ -10,6 +10,7 @@
   import Input from "../../components/ui/Input/Input";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -23,9 +24,12 @@
 
 <Navbar />
 <GalleryNav id="card" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="card" />
+
+  <InstallBlock id="card" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <Card class="w-80">
@@ -49,8 +53,6 @@
       </CardFooter>
     </Card>
   </DemoBlock>
-
-  <InstallBlock id="card" />
 
   <Pager id="card" />
 </div>

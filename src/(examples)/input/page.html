@@ -2,6 +2,7 @@
   import Input from "../../components/ui/Input/Input";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -11,9 +12,12 @@
 
 <Navbar />
 <GalleryNav id="input" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="input" />
+
+  <InstallBlock id="input" />
 
   <DemoBlock label="states" snippet="{snippets['states']}">
     <Input placeholder="Enter text" />
@@ -24,8 +28,6 @@
   <DemoBlock label="password" snippet="{snippets['password']}">
     <Input type="password" placeholder="Password" />
   </DemoBlock>
-
-  <InstallBlock id="input" />
 
   <Pager id="input" />
 </div>

@@ -2,6 +2,7 @@
   import Badge from "../../components/ui/Badge/Badge";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -15,9 +16,12 @@
 
 <Navbar />
 <GalleryNav id="badge" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="badge" />
+
+  <InstallBlock id="badge" />
 
   <DemoBlock label="variants" snippet="{snippets['variants']}">
     <Badge>Default</Badge>
@@ -34,8 +38,6 @@
       Verified
     </Badge>
   </DemoBlock>
-
-  <InstallBlock id="badge" />
 
   <Pager id="badge" />
 </div>

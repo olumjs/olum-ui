@@ -5,6 +5,7 @@
   import AccordionContent from "../../components/ui/Accordion/AccordionContent";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
   import Navbar from "../../components/Navbar/Navbar";
   import PageHeader from "../../components/PageHeader/PageHeader";
@@ -14,9 +15,12 @@
 
 <Navbar />
 <GalleryNav id="accordion" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="accordion" />
+
+  <InstallBlock id="accordion" />
 
   <DemoBlock label="single" snippet="{snippets['single']}">
     <Accordion class="w-80">
@@ -47,8 +51,6 @@
       </AccordionItem>
     </Accordion>
   </DemoBlock>
-
-  <InstallBlock id="accordion" />
 
   <Pager id="accordion" />
 </div>

@@ -6,6 +6,7 @@
   import AvatarGroupCount from "../../components/ui/Avatar/AvatarGroupCount";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -15,9 +16,12 @@
 
 <Navbar />
 <GalleryNav id="avatar" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="avatar" />
+
+  <InstallBlock id="avatar" />
 
   <DemoBlock label="sizes" snippet="{snippets['sizes']}">
     <div class="flex items-center gap-2">
@@ -56,8 +60,6 @@
       <AvatarGroupCount>+4</AvatarGroupCount>
     </AvatarGroup>
   </DemoBlock>
-
-  <InstallBlock id="avatar" />
 
   <Pager id="avatar" />
 </div>

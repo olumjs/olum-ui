@@ -15,6 +15,7 @@
   import SidebarTrigger from "../../components/ui/Sidebar/SidebarTrigger";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -31,9 +32,12 @@
 
 <Navbar />
 <GalleryNav id="sidebar" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="sidebar" />
+
+  <InstallBlock id="sidebar" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <div class="relative isolate h-96 w-full overflow-hidden rounded-xl border border-border">
@@ -91,8 +95,6 @@
       </SidebarProvider>
     </div>
   </DemoBlock>
-
-  <InstallBlock id="sidebar" />
 
   <Pager id="sidebar" />
 </div>

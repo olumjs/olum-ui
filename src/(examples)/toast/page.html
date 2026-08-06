@@ -4,6 +4,7 @@
   import { toast } from "../../components/ui/Toast/toast";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -15,14 +16,16 @@
   const showErrorToast = () => toast.add({ title: "Something went wrong", type: "error", autoClose: false });
   const showWarningToast = () => toast.add({ title: "Low disk space", type: "warning", autoClose: false });
   const showInfoToast = () => toast.add({ title: "New update available", type: "info", autoClose: false });
-  const showPersistentToast = () => toast.add({ title: "Action required", description: "This stays until you close it.", autoClose: false });
 </script>
 
 <Navbar />
 <GalleryNav id="toast" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="toast" />
+
+  <InstallBlock id="toast" />
 
   <DemoBlock label="variants" snippet="{snippets['variants']}">
     <Button variant="outline" onclick="{showDefaultToast}">Default</Button>
@@ -30,11 +33,8 @@
     <Button variant="outline" onclick="{showErrorToast}">Error</Button>
     <Button variant="outline" onclick="{showWarningToast}">Warning</Button>
     <Button variant="outline" onclick="{showInfoToast}">Info</Button>
-    <Button variant="outline" onclick="{showPersistentToast}">Persistent</Button>
     <Toaster />
   </DemoBlock>
-
-  <InstallBlock id="toast" />
 
   <Pager id="toast" />
 </div>

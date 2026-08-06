@@ -6,6 +6,7 @@
   import Button from "../../components/ui/Button/Button";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -20,9 +21,12 @@
 
 <Navbar />
 <GalleryNav id="alert" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="alert" />
+
+  <InstallBlock id="alert" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <Alert class="w-80">
@@ -42,8 +46,6 @@
       </AlertAction>
     </Alert>
   </DemoBlock>
-
-  <InstallBlock id="alert" />
 
   <Pager id="alert" />
 </div>

@@ -2,6 +2,7 @@
   import Combobox from "../../components/ui/Combobox/Combobox";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -13,15 +14,16 @@
 
 <Navbar />
 <GalleryNav id="combobox" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="combobox" />
 
+  <InstallBlock id="combobox" />
+
   <DemoBlock label="default" snippet="{snippets['default']}">
     <Combobox items="{fruits}" placeholder="Search fruit…" showClear="{true}" emptyText="No fruit found." class="w-56" />
   </DemoBlock>
-
-  <InstallBlock id="combobox" />
 
   <Pager id="combobox" />
 </div>

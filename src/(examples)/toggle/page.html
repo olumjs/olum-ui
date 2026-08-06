@@ -2,6 +2,7 @@
   import Toggle from "../../components/ui/Toggle/Toggle";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -18,9 +19,12 @@
 
 <Navbar />
 <GalleryNav id="toggle" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="toggle" />
+
+  <InstallBlock id="toggle" />
 
   <DemoBlock label="variants" snippet="{snippets['variants']}">
     <Toggle aria-label="Toggle bold">
@@ -36,8 +40,6 @@
       <div html="icons.share"></div>
     </Toggle>
   </DemoBlock>
-
-  <InstallBlock id="toggle" />
 
   <Pager id="toggle" />
 </div>

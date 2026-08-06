@@ -1,14 +1,28 @@
 <script>
   import { props } from "olum";
   import CodeBlock from "../CodeBlock/CodeBlock";
-  import { packageOf } from "../../utils/components";
 
   const { id } = props();
 
-  const command = () => `olum add ${packageOf(id)}`;
+  const CLI = "npm i -g olum-cli";
+
+  const command = () => `olum add ${id}`;
 </script>
 
-<section class="flex flex-col gap-3">
+<section id="installation" class="flex scroll-mt-20 flex-col gap-3">
   <h2 class="text-lg font-semibold tracking-tight">Installation</h2>
+
+  <!-- Two blocks rather than one: the CLI is a one-time global install, so it
+       shouldn't end up on the clipboard every time someone copies the add
+       command. -->
+  <p class="text-sm text-muted-foreground">
+    <code class="rounded-sm bg-muted px-1 py-0.5 font-mono text-xs">olum add</code>
+    needs the CLI installed globally, once:
+  </p>
+
+  <CodeBlock code="{CLI}" />
+
+  <p class="text-sm text-muted-foreground">Then add the component:</p>
+
   <CodeBlock code="{command()}" />
 </section>

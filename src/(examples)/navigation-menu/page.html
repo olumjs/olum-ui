@@ -7,6 +7,7 @@
   import NavigationMenuLink from "../../components/ui/NavigationMenu/NavigationMenuLink";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import PageToc from "../../components/PageToc/PageToc";
   import Pager from "../../components/Pager/Pager";
   import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
@@ -16,9 +17,12 @@
 
 <Navbar />
 <GalleryNav id="navigation-menu" />
+<PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <PageHeader id="navigation-menu" />
+
+  <InstallBlock id="navigation-menu" />
 
   <DemoBlock label="default" snippet="{snippets['default']}">
     <NavigationMenu>
@@ -42,8 +46,6 @@
       </NavigationMenuList>
     </NavigationMenu>
   </DemoBlock>
-
-  <InstallBlock id="navigation-menu" />
 
   <Pager id="navigation-menu" />
 </div>
