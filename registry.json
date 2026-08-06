@@ -298,7 +298,7 @@
         "CommandList.html",
         "CommandSeparator.html",
         "CommandShortcut.html",
-        "Portal/portal.js"
+        "portal.js"
       ],
       "path": "src/components/ui/Command/Command.html"
     },
@@ -374,7 +374,7 @@
         "AlertDialogTitle.html",
         "AlertDialogTrigger.html",
         "Button/Button.html",
-        "Portal/portal.js"
+        "portal.js"
       ],
       "path": "src/components/ui/AlertDialog/AlertDialog.html"
     },
@@ -402,7 +402,7 @@
         "DialogHeader.html",
         "DialogTitle.html",
         "DialogTrigger.html",
-        "Portal/portal.js"
+        "portal.js"
       ],
       "path": "src/components/ui/Dialog/Dialog.html"
     },
@@ -419,7 +419,7 @@
         "DrawerHeader.html",
         "DrawerTitle.html",
         "DrawerTrigger.html",
-        "Portal/portal.js"
+        "portal.js"
       ],
       "path": "src/components/ui/Drawer/Drawer.html"
     },
@@ -483,7 +483,7 @@
         "SheetHeader.html",
         "SheetTitle.html",
         "SheetTrigger.html",
-        "Portal/portal.js"
+        "portal.js"
       ],
       "path": "src/components/ui/Sheet/Sheet.html"
     },
@@ -773,22 +773,6 @@
       "category": "utility",
       "deps": [],
       "path": "src/components/ui/Direction/Direction.html"
-    },
-    {
-      "name": "portal",
-      "title": "Portal",
-      "description": "Moves an element out to the document body so overlays escape any clipped or transformed ancestor. Used internally by the dialog, drawer, sheet, and command dialog.",
-      "category": "utility",
-      "deps": [],
-      "path": "src/components/ui/Portal/portal.js"
-    },
-    {
-      "name": "section",
-      "title": "Section",
-      "description": "Titled wrapper used by the older example pages, kept for backwards compatibility. New pages use the docs layout instead.",
-      "category": "internal",
-      "deps": [],
-      "path": "src/components/ui/Section/Section.html"
     }
   ]
 }

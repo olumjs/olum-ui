@@ -1,4 +1,4 @@
-@import "./olum-ui.css";
+@import "./components/ui/olum-ui.css";
 
 /* Geist, self-hosted from public/fonts so the site makes no third-party font
    requests and works offline. The woff2 files are copied out of
