@@ -59,6 +59,111 @@ const dedent = body => {
 
 const jsString = value => "`" + value.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${") + "`";
 
+// Docs chrome never belongs in a snippet. The reference check below already
+// filters these out (they appear outside every DemoBlock), but naming them keeps
+// the intent explicit if one is ever used inside a demo.
+const CHROME = /\/(Navbar|GalleryNav|PageToc|PageHeader|InstallBlock|Pager|DemoBlock|CodeBlock)\/|^\.\/snippets$/;
+
+// Paths are written for this repo's tree; a reader copying the snippet wants the
+// path from their own project root.
+const rewritePath = path => path.replace(/^(\.\.\/)+components\//, "./components/");
+
+const references = (code, name) => new RegExp(`\\b${name.replace(/\$/g, "\\$")}\\b`).test(code);
+
+// Walk a `const x = ...` (or let/function) from its opening line until every
+// bracket it opened has closed, so multi-line objects and arrays come out whole.
+const readDeclaration = (lines, start) => {
+  let depth = 0;
+  for (let i = start; i < lines.length; i += 1) {
+    for (const ch of lines[i]) {
+      if ("([{".includes(ch)) depth += 1;
+      else if (")]}".includes(ch)) depth -= 1;
+    }
+    if (depth <= 0 && /[;}]\s*$/.test(lines[i])) return lines.slice(start, i + 1);
+  }
+  return lines.slice(start, start + 1);
+};
+
+const parseScript = source => {
+  const match = /<script>\n([\s\S]*?)\n<\/script>/.exec(source);
+  if (!match) return { imports: [], decls: [] };
+  const lines = match[1].split("\n");
+
+  const imports = [];
+  const decls = [];
+
+  for (let i = 0; i < lines.length; i += 1) {
+    const imp = /^\s*import (?:(\{[^}]*\})|(\w+)) from "([^"]+)";\s*$/.exec(lines[i]);
+    if (imp) {
+      const names = imp[1] ? imp[1].replace(/[{}]/g, "").split(",").map(s => s.trim().split(/\s+as\s+/).pop()) : [imp[2]];
+      imports.push({ names, path: imp[3], text: lines[i].trim() });
+      continue;
+    }
+    const decl = /^\s*(?:const|let|function)\s+(\w+)/.exec(lines[i]);
+    if (decl) {
+      const text = readDeclaration(lines, i);
+      decls.push({ name: decl[1], text });
+      i += text.length - 1;
+    }
+  }
+  return { imports, decls };
+};
+
+// A lookup object like `icons` holds an entry per demo on the page, so a block
+// using two of five would otherwise carry three irrelevant SVG blobs. Drop the
+// unreferenced keys -- but only for the simple one-property-per-line shape, and
+// never when the object is indexed dynamically, since then the keys in play
+// can't be known from the markup.
+const pruneObject = (decl, scope) => {
+  const [open, ...rest] = decl.text;
+  const close = rest.at(-1);
+  const body = rest.slice(0, -1);
+  if (!/=\s*\{$/.test(open) || !/^\s*\};?$/.test(close ?? "")) return decl;
+  if (new RegExp(`\\b${decl.name}\\s*\\[`).test(scope)) return decl;
+
+  const props = body.map(line => ({ line, key: /^\s*([\w$]+|"[^"]+")\s*:/.exec(line)?.[1]?.replace(/"/g, "") }));
+  if (props.some(p => !p.key)) return decl;
+
+  const hit = new Set([...scope.matchAll(new RegExp(`\\b${decl.name}\\.([\\w$]+)`, "g"))].map(m => m[1]));
+  const keep = props.filter(p => hit.has(p.key));
+  if (!keep.length || keep.length === props.length) return decl;
+
+  return { ...decl, text: [open, ...keep.map(p => p.line), close] };
+};
+
+// Rebuild a standalone component file for one demo: its markup plus only the
+// imports and declarations that markup actually reaches, resolved transitively
+// so a config referencing another const brings it along.
+const buildSnippet = (markup, { imports, decls }) => {
+  const needed = new Set();
+  let changed = true;
+  while (changed) {
+    changed = false;
+    const scope = [markup, ...[...needed].map(n => decls.find(d => d.name === n).text.join("\n"))].join("\n");
+    for (const d of decls) {
+      if (!needed.has(d.name) && references(scope, d.name)) {
+        needed.add(d.name);
+        changed = true;
+      }
+    }
+  }
+
+  const raw = decls.filter(d => needed.has(d.name));
+  const fullScope = [markup, ...raw.map(d => d.text.join("\n"))].join("\n");
+  const kept = raw.map(d => pruneObject(d, fullScope));
+  const scope = [markup, ...kept.map(d => d.text.join("\n"))].join("\n");
+  const used = imports.filter(i => !CHROME.test(i.path) && i.names.some(n => references(scope, n)));
+
+  if (!used.length && !kept.length) return markup;
+
+  const head = [
+    ...used.map(i => `  ${i.text.replace(/"([^"]+)"/, (_, p) => `"${rewritePath(p)}"`)}`),
+    ...kept.flatMap(d => ["", ...d.text]),
+  ];
+
+  return ["<script>", ...head, "</script>", "", markup].join("\n");
+};
+
 let pages = 0;
 let total = 0;
 const routes = [];
@@ -69,9 +174,11 @@ for await (const page of glob("src/(examples)/*/page.html")) {
   const blocks = parseBlocks(source);
   if (!blocks.length) continue;
 
+  const script = parseScript(source);
+
   const entries = [];
   for (const { label, body } of blocks) {
-    const code = dedent(body);
+    const code = buildSnippet(dedent(body), script);
     const html = await codeToHtml(code, { lang: "html", themes: THEMES, defaultColor: false });
     // `key` is emitted alongside so DemoBlock's anchor id and PageToc's href
     // come from one place instead of each re-deriving the slug.
