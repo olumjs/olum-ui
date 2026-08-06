@@ -15,6 +15,49 @@
 }
 
 @layer base {
+  /* Slim scrollbars site-wide. Firefox reads the standard properties; WebKit
+     only honours the pseudo-elements, which is why components that already set
+     scrollbar-width were still drawing full-width bars in Chrome. These live in
+     @layer base so a component's own utility class still wins. */
+  /* Firefox has no ::-webkit-scrollbar, so the standard properties are its only
+     lever. They're scoped away from WebKit deliberately: specifying either one
+     makes Chrome ignore every ::-webkit-scrollbar rule for that element and fall
+     back to its own sizing, so the two approaches can't be combined. */
+  @supports not selector(::-webkit-scrollbar) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--olum-border) transparent;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--olum-border);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--olum-muted-foreground);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Elements asking for no scrollbar via Tailwind's [scrollbar-width:none] only
+     got it in Firefox; honour the same intent in WebKit. */
+  [class*="[scrollbar-width:none]"]::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     padding-top: 3.5rem;
   }

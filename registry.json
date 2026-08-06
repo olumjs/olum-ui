@@ -3,7 +3,7 @@
     {
       "name": "button",
       "title": "Button",
-      "description": "A clickable control for triggering an action, in a range of variants and sizes.",
+      "description": "A clickable control for triggering an action or submitting a form. Ships six variants and five sizes, and accepts leading or trailing icons that adjust its padding automatically.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Button/Button.html"
@@ -11,7 +11,7 @@
     {
       "name": "button-group",
       "title": "Button Group",
-      "description": "Buttons joined into a single segmented control with shared borders.",
+      "description": "Joins related buttons into one segmented control, collapsing the borders between them. Mix in separators and plain text segments to build split buttons and toolbars.",
       "category": "forms",
       "deps": [
         "ButtonGroupSeparator.html",
@@ -22,7 +22,7 @@
     {
       "name": "calendar",
       "title": "Calendar",
-      "description": "A month grid for picking a date, with keyboard and range support.",
+      "description": "A month grid for choosing a date, with arrows for moving between months. Supports preselected values and disabled days, and is the surface the date picker opens.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Calendar/Calendar.html"
@@ -30,7 +30,7 @@
     {
       "name": "checkbox",
       "title": "Checkbox",
-      "description": "A box that toggles between checked, unchecked, and indeterminate.",
+      "description": "A box that toggles between checked and unchecked, plus an indeterminate state for partial selections. Pair it with a label so the text is clickable too.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Checkbox/Checkbox.html"
@@ -38,7 +38,7 @@
     {
       "name": "combobox",
       "title": "Combobox",
-      "description": "A text input paired with a filterable list of options.",
+      "description": "A text field paired with a filterable option list, for picking one value out of many. Filters as you type, shows an empty message when nothing matches, and can offer a clear button.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Combobox/Combobox.html"
@@ -46,7 +46,7 @@
     {
       "name": "date-picker",
       "title": "Date Picker",
-      "description": "A calendar in a popover, driven by a trigger button.",
+      "description": "A trigger button that opens a calendar in a popover and reports the chosen date back. Built on the calendar component, so month navigation and disabled days come along.",
       "category": "forms",
       "deps": [
         "Calendar/Calendar.html"
@@ -56,7 +56,7 @@
     {
       "name": "field",
       "title": "Field",
-      "description": "Wraps a control with its label, description, and validation message.",
+      "description": "Wraps a control with everything that explains it: label, helper description, and validation error. Group several into a fieldset with a legend to build a whole form.",
       "category": "forms",
       "deps": [
         "FieldContent.html",
@@ -74,7 +74,7 @@
     {
       "name": "input",
       "title": "Input",
-      "description": "A single-line text field.",
+      "description": "A single-line text field for short values. Handles the usual native types and carries the theme's focus ring, invalid, and disabled treatments.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Input/Input.html"
@@ -82,7 +82,7 @@
     {
       "name": "input-group",
       "title": "Input Group",
-      "description": "An input with addons, buttons, or text attached inside its border.",
+      "description": "An input with addons sitting inside its border rather than beside it. Attach icons, text, or buttons at either end to build search fields, prefixes, and unit suffixes.",
       "category": "forms",
       "deps": [
         "InputGroupAddon.html",
@@ -97,7 +97,7 @@
     {
       "name": "input-otp",
       "title": "Input OTP",
-      "description": "Separate slots for entering a one-time passcode.",
+      "description": "Separate slots for entering a one-time passcode, one character per box. Advances and retreats as you type or delete, and takes an optional separator between groups.",
       "category": "forms",
       "deps": [
         "InputOTPGroup.html",
@@ -109,7 +109,7 @@
     {
       "name": "label",
       "title": "Label",
-      "description": "A caption bound to a form control.",
+      "description": "A caption bound to a form control, so clicking the text focuses or toggles the input. Picks up the disabled state of the control it points at.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Label/Label.html"
@@ -117,7 +117,7 @@
     {
       "name": "native-select",
       "title": "Native Select",
-      "description": "The browser's own select element, styled to match the theme.",
+      "description": "The browser's own select element, restyled to match the theme. Worth choosing over the custom select when you want native mobile pickers and option groups.",
       "category": "forms",
       "deps": [
         "NativeSelectOptGroup.html",
@@ -128,7 +128,7 @@
     {
       "name": "radio-group",
       "title": "Radio Group",
-      "description": "A set of options where exactly one can be chosen.",
+      "description": "A set of mutually exclusive options where exactly one can be chosen. Arrow keys move between items, and the whole group can be disabled at once.",
       "category": "forms",
       "deps": [
         "RadioGroupItem.html"
@@ -138,7 +138,7 @@
     {
       "name": "select",
       "title": "Select",
-      "description": "A custom dropdown for choosing a single option from a list.",
+      "description": "A custom dropdown for choosing a single option, with full control over how items look. Composes a trigger, a floating list, and optional group labels and separators.",
       "category": "forms",
       "deps": [
         "SelectContent.html",
@@ -154,7 +154,7 @@
     {
       "name": "slider",
       "title": "Slider",
-      "description": "Drag a handle along a track to pick a numeric value.",
+      "description": "Drag a handle along a track to pick a number. Takes a min, max, and step, and reports the value as it moves.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Slider/Slider.html"
@@ -162,7 +162,7 @@
     {
       "name": "switch",
       "title": "Switch",
-      "description": "An on/off toggle that applies its change immediately.",
+      "description": "An on/off toggle that applies its change immediately, with no separate save step. Comes in two sizes and reads as a labelled row next to its caption.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Switch/Switch.html"
@@ -170,7 +170,7 @@
     {
       "name": "textarea",
       "title": "Textarea",
-      "description": "A multi-line text field.",
+      "description": "A multi-line text field for longer input. Grows to the height you give it and carries the same focus and invalid states as the input.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Textarea/Textarea.html"
@@ -178,7 +178,7 @@
     {
       "name": "toggle",
       "title": "Toggle",
-      "description": "A button that stays pressed to represent an on state.",
+      "description": "A button that stays visually pressed to represent an on state. Useful for formatting controls, in default and outline variants across three sizes.",
       "category": "forms",
       "deps": [],
       "path": "src/components/ui/Toggle/Toggle.html"
@@ -186,7 +186,7 @@
     {
       "name": "toggle-group",
       "title": "Toggle Group",
-      "description": "Toggles grouped so one or several can be pressed at once.",
+      "description": "Toggles grouped into one control, either single-select or multi-select. Keeps the pressed state in a shared store so the items stay in sync.",
       "category": "forms",
       "deps": [
         "ToggleGroupItem.html",
@@ -198,7 +198,7 @@
     {
       "name": "aspect-ratio",
       "title": "Aspect Ratio",
-      "description": "Holds its children at a fixed width-to-height ratio.",
+      "description": "Holds its child at a fixed width-to-height ratio however wide the container gets. Keeps images and embeds from shifting the layout as they load.",
       "category": "layout",
       "deps": [],
       "path": "src/components/ui/AspectRatio/AspectRatio.html"
@@ -206,7 +206,7 @@
     {
       "name": "card",
       "title": "Card",
-      "description": "A bordered surface grouping a header, content, and footer.",
+      "description": "A bordered surface that groups related content into header, body, and footer regions. Title, description, and a corner action slot are all separate pieces you compose.",
       "category": "layout",
       "deps": [
         "CardAction.html",
@@ -221,7 +221,7 @@
     {
       "name": "resizable",
       "title": "Resizable",
-      "description": "Panels separated by handles the user can drag to resize.",
+      "description": "Panels split by handles the reader can drag to redistribute space. Works horizontally or vertically and nests for split-pane layouts.",
       "category": "layout",
       "deps": [
         "ResizableHandle.html",
@@ -232,7 +232,7 @@
     {
       "name": "scroll-area",
       "title": "Scroll Area",
-      "description": "A scrollable region with a styled scrollbar.",
+      "description": "A region that scrolls its overflow behind a styled scrollbar instead of the browser's. Keeps long lists inside a fixed footprint.",
       "category": "layout",
       "deps": [],
       "path": "src/components/ui/ScrollArea/ScrollArea.html"
@@ -240,7 +240,7 @@
     {
       "name": "separator",
       "title": "Separator",
-      "description": "A thin rule dividing content horizontally or vertically.",
+      "description": "A one-pixel rule dividing content, horizontally or vertically. Sizes itself to its container so it works in stacks and toolbars alike.",
       "category": "layout",
       "deps": [],
       "path": "src/components/ui/Separator/Separator.html"
@@ -248,7 +248,7 @@
     {
       "name": "sidebar",
       "title": "Sidebar",
-      "description": "A collapsible application sidebar with grouped navigation.",
+      "description": "A full application sidebar that collapses to an icon rail and remembers its state. Composes header, footer, and grouped menu sections, with a trigger and an inset content area.",
       "category": "layout",
       "deps": [
         "SidebarContent.html",
@@ -270,7 +270,7 @@
     {
       "name": "breadcrumb",
       "title": "Breadcrumb",
-      "description": "The trail of pages leading to the current one.",
+      "description": "The trail of pages leading to the one you're on, with the current page marked. Long trails can collapse behind an ellipsis.",
       "category": "navigation",
       "deps": [
         "BreadcrumbEllipsis.html",
@@ -285,7 +285,7 @@
     {
       "name": "command",
       "title": "Command",
-      "description": "A searchable command palette, inline or in a dialog.",
+      "description": "A searchable palette of commands, usable inline or as a modal dialog. Filters items as you type across grouped sections, with shortcut hints and an empty state.",
       "category": "navigation",
       "deps": [
         "CommandDialog.html",
@@ -305,7 +305,7 @@
     {
       "name": "menubar",
       "title": "Menubar",
-      "description": "A horizontal bar of application menus.",
+      "description": "A horizontal row of application menus, the kind that runs along the top of a desktop app. Each menu opens a dropdown, and moving sideways moves between them.",
       "category": "navigation",
       "deps": [
         "MenubarContent.html",
@@ -320,7 +320,7 @@
     {
       "name": "navigation-menu",
       "title": "Navigation Menu",
-      "description": "A site navigation bar with rich dropdown panels.",
+      "description": "A site navigation bar whose items open rich panels rather than plain lists. Suited to headers that need to show grouped links and descriptions.",
       "category": "navigation",
       "deps": [
         "NavigationMenuContent.html",
@@ -334,7 +334,7 @@
     {
       "name": "pagination",
       "title": "Pagination",
-      "description": "Page links with previous and next controls.",
+      "description": "Page number links with previous and next controls for stepping through results. Wide ranges collapse behind an ellipsis to keep the row short.",
       "category": "navigation",
       "deps": [
         "PaginationContent.html",
@@ -349,7 +349,7 @@
     {
       "name": "tabs",
       "title": "Tabs",
-      "description": "Switch between panels that share the same space.",
+      "description": "Switches between panels that share the same space, one visible at a time. Arrow keys move between tabs and only the active panel renders.",
       "category": "navigation",
       "deps": [
         "TabsContent.html",
@@ -361,7 +361,7 @@
     {
       "name": "alert-dialog",
       "title": "Alert Dialog",
-      "description": "A modal that interrupts to confirm a consequential action.",
+      "description": "A modal that interrupts to confirm something consequential, with explicit confirm and cancel actions. Unlike a dialog it can't be dismissed by clicking away.",
       "category": "overlay",
       "deps": [
         "AlertDialogAction.html",
@@ -381,7 +381,7 @@
     {
       "name": "context-menu",
       "title": "Context Menu",
-      "description": "A menu opened by right-clicking its target.",
+      "description": "A menu opened by right-clicking its target, at the pointer. Takes the same item types as the dropdown menu.",
       "category": "overlay",
       "deps": [
         "ContextMenuContent.html",
@@ -392,7 +392,7 @@
     {
       "name": "dialog",
       "title": "Dialog",
-      "description": "A modal window layered over the page.",
+      "description": "A modal window layered over the page, for focused tasks and forms. Escape and a click outside both close it, and the page behind is blurred while it's open.",
       "category": "overlay",
       "deps": [
         "DialogClose.html",
@@ -409,7 +409,7 @@
     {
       "name": "drawer",
       "title": "Drawer",
-      "description": "A panel that slides in from an edge of the screen.",
+      "description": "A panel that slides in from an edge of the screen and can be dragged shut. A better fit than a dialog on narrow screens.",
       "category": "overlay",
       "deps": [
         "DrawerClose.html",
@@ -426,7 +426,7 @@
     {
       "name": "dropdown-menu",
       "title": "Dropdown Menu",
-      "description": "A menu of actions opened from a trigger.",
+      "description": "A menu of actions opened from a trigger, supporting checkbox and radio items, nested submenus, labels, and shortcut hints. The base for the menubar and context menu.",
       "category": "overlay",
       "deps": [
         "DropdownMenuCheckboxItem.html",
@@ -448,7 +448,7 @@
     {
       "name": "hover-card",
       "title": "Hover Card",
-      "description": "A preview card shown when a link is hovered.",
+      "description": "A preview card that appears when a link is hovered, for showing detail without a click. Opens after a short delay so it doesn't flicker in passing.",
       "category": "overlay",
       "deps": [
         "HoverCardContent.html",
@@ -459,7 +459,7 @@
     {
       "name": "popover",
       "title": "Popover",
-      "description": "Floating content anchored to a trigger.",
+      "description": "Floating content anchored to a trigger, for anything richer than a tooltip. Composes its own title and description, and closes on Escape or an outside click.",
       "category": "overlay",
       "deps": [
         "PopoverContent.html",
@@ -473,7 +473,7 @@
     {
       "name": "sheet",
       "title": "Sheet",
-      "description": "A side panel for secondary content or forms.",
+      "description": "A side panel for secondary content or forms, entering from any of the four edges. Composes header, footer, and a close control.",
       "category": "overlay",
       "deps": [
         "SheetClose.html",
@@ -490,7 +490,7 @@
     {
       "name": "tooltip",
       "title": "Tooltip",
-      "description": "A short label revealed on hover or focus.",
+      "description": "A short label revealed on hover or keyboard focus, for naming an unlabelled control. A provider shares the open delay across every tooltip on the page.",
       "category": "overlay",
       "deps": [
         "TooltipContent.html",
@@ -502,7 +502,7 @@
     {
       "name": "alert",
       "title": "Alert",
-      "description": "A callout drawing attention to a message.",
+      "description": "A callout that draws attention to a message in place, rather than interrupting like a dialog. Composes an icon, title, description, and an optional action.",
       "category": "feedback",
       "deps": [
         "AlertAction.html",
@@ -514,7 +514,7 @@
     {
       "name": "empty",
       "title": "Empty",
-      "description": "A placeholder shown when there is nothing to display.",
+      "description": "The placeholder shown when there's nothing to display yet. Composes media, a title, a description, and a call to action for first-run and no-results states.",
       "category": "feedback",
       "deps": [
         "EmptyContent.html",
@@ -528,7 +528,7 @@
     {
       "name": "progress",
       "title": "Progress",
-      "description": "A bar showing how far a task has advanced.",
+      "description": "A bar showing how far along a known-length task is. Give it a value from 0 to 100 and it fills accordingly.",
       "category": "feedback",
       "deps": [],
       "path": "src/components/ui/Progress/Progress.html"
@@ -536,7 +536,7 @@
     {
       "name": "skeleton",
       "title": "Skeleton",
-      "description": "A muted placeholder standing in for loading content.",
+      "description": "A muted shape standing in for content that hasn't loaded. Match it to the real layout so nothing jumps when the data arrives.",
       "category": "feedback",
       "deps": [],
       "path": "src/components/ui/Skeleton/Skeleton.html"
@@ -544,7 +544,7 @@
     {
       "name": "spinner",
       "title": "Spinner",
-      "description": "An indeterminate loading indicator.",
+      "description": "An indeterminate loading indicator for waits of unknown length. Inherits the current text colour and scales with whatever size class you give it.",
       "category": "feedback",
       "deps": [],
       "path": "src/components/ui/Spinner/Spinner.html"
@@ -552,7 +552,7 @@
     {
       "name": "toast",
       "title": "Toast",
-      "description": "A brief message that appears and dismisses itself.",
+      "description": "A brief message that appears in a corner and dismisses itself. Fired from anywhere by calling the toast helper, in success, error, warning, and info flavours, or made persistent.",
       "category": "feedback",
       "deps": [
         "toast.js"
@@ -562,7 +562,7 @@
     {
       "name": "accordion",
       "title": "Accordion",
-      "description": "Stacked headings that each expand to reveal a section of content.",
+      "description": "Stacked headings that each expand to reveal a section of content. Configure it so one panel opens at a time or several stay open at once.",
       "category": "data-display",
       "deps": [
         "AccordionContent.html",
@@ -574,7 +574,7 @@
     {
       "name": "attachment",
       "title": "Attachment",
-      "description": "A file attachment with its name, size, and actions.",
+      "description": "A file attachment rendered as a row with its name, size, and a thumbnail or type icon. Add actions for downloading or removing, and group several together.",
       "category": "data-display",
       "deps": [
         "AttachmentAction.html",
@@ -591,7 +591,7 @@
     {
       "name": "avatar",
       "title": "Avatar",
-      "description": "A user image with initials as a fallback.",
+      "description": "A user's image, falling back to their initials when it's missing or slow. Stack several into a group with an overflow count, and mark presence with a badge.",
       "category": "data-display",
       "deps": [
         "AvatarBadge.html",
@@ -604,7 +604,7 @@
     {
       "name": "badge",
       "title": "Badge",
-      "description": "A small label for status, counts, or categories.",
+      "description": "A small label for status, counts, and categories. Six variants, and it accepts a leading or trailing icon that sizes itself to the text.",
       "category": "data-display",
       "deps": [],
       "path": "src/components/ui/Badge/Badge.html"
@@ -612,7 +612,7 @@
     {
       "name": "bubble",
       "title": "Bubble",
-      "description": "A chat message bubble, grouped by sender.",
+      "description": "A chat message bubble, grouped and aligned by who sent it. The building block for conversation views.",
       "category": "data-display",
       "deps": [
         "BubbleContent.html",
@@ -623,7 +623,7 @@
     {
       "name": "carousel",
       "title": "Carousel",
-      "description": "A horizontally scrolling set of slides with controls.",
+      "description": "A horizontally scrolling set of slides with previous and next controls. Snaps between items and keeps its position in a shared store.",
       "category": "data-display",
       "deps": [
         "animate.js",
@@ -638,7 +638,7 @@
     {
       "name": "chart",
       "title": "Chart",
-      "description": "Bar, line, area, donut, radial, and composed charts on shared axes.",
+      "description": "Bar, line, area, donut, radial, and composed charts drawn as plain inline SVG, with no charting library. All six read the same data and config shape, and take their colours from the theme.",
       "category": "data-display",
       "deps": [
         "AreaChart.html",
@@ -653,7 +653,7 @@
     {
       "name": "collapsible",
       "title": "Collapsible",
-      "description": "A region that expands and collapses from a trigger.",
+      "description": "A region that expands and collapses from its trigger. The simpler single-section counterpart to the accordion.",
       "category": "data-display",
       "deps": [
         "CollapsibleContent.html",
@@ -664,7 +664,7 @@
     {
       "name": "data-table",
       "title": "Data Table",
-      "description": "A table with sorting, filtering, selection, and column controls.",
+      "description": "A table with sorting, text filtering, row selection, and a column visibility menu. Assembled from the table, input, button, and dropdown menu pieces.",
       "category": "data-display",
       "deps": [
         "Button/Button.html",
@@ -685,7 +685,7 @@
     {
       "name": "item",
       "title": "Item",
-      "description": "A row pairing media, title, description, and actions.",
+      "description": "A row pairing media, a title, a description, and trailing actions. Repeat it in a group to build lists and settings panes without hand-rolling the layout.",
       "category": "data-display",
       "deps": [
         "ItemActions.html",
@@ -704,7 +704,7 @@
     {
       "name": "kbd",
       "title": "Kbd",
-      "description": "Renders a keyboard key or shortcut.",
+      "description": "Renders a keyboard key the way a manual would. Group several to spell out a shortcut like Ctrl Alt Del.",
       "category": "data-display",
       "deps": [
         "KbdGroup.html"
@@ -714,7 +714,7 @@
     {
       "name": "marker",
       "title": "Marker",
-      "description": "Highlights or annotates a span of content.",
+      "description": "Highlights or annotates a span of content, with an optional leading icon. For call-outs, inline notes, and dividers within prose.",
       "category": "data-display",
       "deps": [
         "MarkerContent.html",
@@ -725,7 +725,7 @@
     {
       "name": "message",
       "title": "Message",
-      "description": "A chat message with avatar, header, and footer.",
+      "description": "A chat message with its avatar, header, body, and footer. Groups consecutive messages from the same sender.",
       "category": "data-display",
       "deps": [
         "MessageAvatar.html",
@@ -739,7 +739,7 @@
     {
       "name": "message-scroller",
       "title": "Message Scroller",
-      "description": "A message list that keeps itself pinned to the newest entry.",
+      "description": "A message list that stays pinned to the newest entry as items arrive, and stops following once you scroll up. Offers a jump-to-latest button when you've scrolled away.",
       "category": "data-display",
       "deps": [
         "MessageScrollerButton.html",
@@ -753,7 +753,7 @@
     {
       "name": "table",
       "title": "Table",
-      "description": "A data table with header, body, footer, and caption.",
+      "description": "A data table with header, body, footer, and caption regions. The plain foundation the data table builds sorting and filtering on top of.",
       "category": "data-display",
       "deps": [
         "TableBody.html",
@@ -769,7 +769,7 @@
     {
       "name": "direction",
       "title": "Direction",
-      "description": "Flips the layout between left-to-right and right-to-left.",
+      "description": "Flips a subtree between left-to-right and right-to-left. Wrap part of the page to preview how components read in either direction.",
       "category": "utility",
       "deps": [],
       "path": "src/components/ui/Direction/Direction.html"
@@ -777,7 +777,7 @@
     {
       "name": "portal",
       "title": "Portal",
-      "description": "Moves an element out to the document body.",
+      "description": "Moves an element out to the document body so overlays escape any clipped or transformed ancestor. Used internally by the dialog, drawer, sheet, and command dialog.",
       "category": "utility",
       "deps": [],
       "path": "src/components/ui/Portal/portal.js"
@@ -785,7 +785,7 @@
     {
       "name": "section",
       "title": "Section",
-      "description": "Titled wrapper used by the older example pages.",
+      "description": "Titled wrapper used by the older example pages, kept for backwards compatibility. New pages use the docs layout instead.",
       "category": "internal",
       "deps": [],
       "path": "src/components/ui/Section/Section.html"
