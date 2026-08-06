@@ -74,8 +74,25 @@ export function findModalInput(host, rootSlot, contentSlot) {
  * kill those transitions).
  */
 export function wireModal({ input, nodes, displays, onOpen, onClose }) {
+  // A route change can re-run this without the previous teardown having fired:
+  // the portaled nodes live in <body>, so discarding the old host doesn't take
+  // them with it, and the checkbox they're wired to survives the re-render. The
+  // result is one set of overlay/content per navigation, every one of them still
+  // listening to the same input -- stacked scrims that darken with each visit,
+  // plus an openCount that never returns to zero so the page blur sticks.
+  //
+  // A portal set whose checkbox is no longer in the document can never be opened
+  // or closed again -- it's orphaned, so dispose it. That also covers re-wiring
+  // the same input. Live modals on the page keep their own attached inputs and
+  // are left alone, so this is safe with several dialogs mounted at once.
+  document.querySelectorAll("body > [data-olum-portal]").forEach((node) => {
+    const portal = node.__olumPortal;
+    if (portal && (portal.input === input || !portal.input.isConnected)) portal.dispose();
+  });
+
   const teardown = mountPortal(nodes);
   let opened = false;
+  let disposed = false;
 
   const sync = () => {
     const open = !!input.checked;
@@ -98,9 +115,21 @@ export function wireModal({ input, nodes, displays, onOpen, onClose }) {
   sync();
   input.addEventListener("change", sync);
 
-  return () => {
+  // Idempotent: the sweep above and a normal unmount can both reach it.
+  const dispose = () => {
+    if (disposed) return;
+    disposed = true;
     input.removeEventListener("change", sync);
     if (opened) releasePageBlur();
     teardown();
   };
+
+  // Stamped on the nodes so a later mount can find and dispose this set.
+  nodes.forEach((node) => {
+    if (!node) return;
+    node.setAttribute("data-olum-portal", "");
+    node.__olumPortal = { input, dispose };
+  });
+
+  return dispose;
 }

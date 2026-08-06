@@ -73,10 +73,22 @@
       });
     };
 
+    // Every route change remounts this component, and onMount's cleanup doesn't
+    // run then, so a plain addEventListener accumulates one document listener per
+    // visit. Each stale closure still holds its own detached host, so one Ctrl+K
+    // opened every past palette at once -- seven stacked overlays reading as a
+    // much darker scrim. (Clicking never showed it: only the live trigger button
+    // is in the DOM to receive a click.) Park the handler on `document` so a
+    // remount can retire the previous one; top-level consts here are per-instance
+    // and can't hold it.
+    if (document.__olumPaletteKeydown) document.removeEventListener("keydown", document.__olumPaletteKeydown);
     document.addEventListener("keydown", onKey);
+    document.__olumPaletteKeydown = onKey;
+
     host.addEventListener("change", onChange);
     return () => {
       document.removeEventListener("keydown", onKey);
+      if (document.__olumPaletteKeydown === onKey) document.__olumPaletteKeydown = null;
       host.removeEventListener("change", onChange);
     };
   });
