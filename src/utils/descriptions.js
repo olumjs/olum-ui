@@ -36,6 +36,7 @@ export const descriptions = {
   "item": "A row pairing media, a title, a description, and trailing actions. Repeat it in a group to build lists and settings panes without hand-rolling the layout.",
   "kbd": "Renders a keyboard key the way a manual would. Group several to spell out a shortcut like Ctrl Alt Del.",
   "label": "A caption bound to a form control, so clicking the text focuses or toggles the input. Picks up the disabled state of the control it points at.",
+  "link": "An anchor styled as a button, for navigation that should look like an action. Takes the same variants and sizes as Button, and works with a router `to` path or a plain href.",
   "marker": "Highlights or annotates a span of content, with an optional leading icon. For call-outs, inline notes, and dividers within prose.",
   "menubar": "A horizontal row of application menus, the kind that runs along the top of a desktop app. Each menu opens a dropdown, and moving sideways moves between them.",
   "message": "A chat message with its avatar, header, body, and footer. Groups consecutive messages from the same sender.",

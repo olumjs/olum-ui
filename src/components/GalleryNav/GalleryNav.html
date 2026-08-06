@@ -1,10 +1,11 @@
 <script>
   import { onMount, props } from "olum";
   import { BASE, components, label } from "../../utils/components";
+  import Link from "../ui/Link/Link";
 
   const { id } = props();
 
-  const base = "block rounded-md px-2 py-1.5 text-sm capitalize transition-colors";
+  const base = "rounded-md px-2 py-1.5 text-sm capitalize transition-colors";
   const active = "bg-muted font-medium text-foreground";
   const idle = "text-muted-foreground hover:bg-muted hover:text-foreground";
 
@@ -30,7 +31,7 @@
   <div class="flex flex-col gap-4 px-6 py-8">
     <nav class="flex flex-col gap-0.5">
       <for each="cid of components" key="cid">
-        <a to="{BASE}/{cid}" data-active="{cid === id}" class="{itemClass(cid)}">{label(cid)}</a>
+        <Link to="{BASE}/{cid}" data-active="{cid === id}" class="{itemClass(cid)}" variant="ghost">{label(cid)}</Link>
       </for>
     </nav>
   </div>

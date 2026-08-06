@@ -11,7 +11,7 @@ export const BASE = "/elements";
 // both the index grid and the prev/next pager at the bottom of every example.
 export const components = [
   "accordion", "alert", "alert-dialog", "aspect-ratio", "attachment", "avatar", "badge",
-  "breadcrumb", "bubble", "button", "button-group", "calendar", "card", "carousel", "chart",
+  "breadcrumb", "bubble", "button", "link", "button-group", "calendar", "card", "carousel", "chart",
   "checkbox", "collapsible", "combobox", "command", "context-menu", "data-table", "date-picker",
   "dialog", "direction", "drawer", "dropdown-menu", "empty", "field", "hover-card", "input",
   "input-group", "input-otp", "item", "kbd", "label", "marker", "menubar", "message",

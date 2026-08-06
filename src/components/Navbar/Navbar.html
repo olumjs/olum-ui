@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "olum";
+  import { onMount, pathname } from "olum";
   import Command from "../ui/Command/Command";
   import CommandDialog from "../ui/Command/CommandDialog";
   import CommandDialogContent from "../ui/Command/CommandDialogContent";
@@ -11,6 +11,8 @@
   import Kbd from "../ui/Kbd/Kbd";
   import KbdGroup from "../ui/Kbd/KbdGroup";
   import { BASE, components, label } from "../../utils/components";
+  import Link from "../ui/Link/Link";
+  import Button from "../ui/Button/Button";
 
   const state = { dark: false };
 
@@ -32,6 +34,12 @@
   // Command's own filtering and CommandDialogContent's close-on-select.
   const item =
     "flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm capitalize outline-none select-none hover:bg-muted hover:text-foreground";
+
+  // The router's own `active` class only fires on an exact path match (see
+  // olum-router's `active()`), so it never lights up for "/elements" while
+  // browsing "/elements/accordion". This checks the prefix instead, so the
+  // link stays highlighted anywhere under the section it points at.
+  const isElementsActive = () => pathname() === BASE || pathname().startsWith(`${BASE}/`);
 
   const applyTheme = dark => {
     state.dark = dark;
@@ -95,16 +103,17 @@
 </script>
 
 <header data-slot="navbar" class="fixed inset-x-0 top-0 z-50 h-14 border-b border-border bg-background/80 backdrop-blur">
-  <div class="flex h-full items-center gap-3 px-4 sm:px-6">
-    <!-- mr-auto lives on the logo, not on the search: a margin on anything
-         inside CommandDialog would sit below its host div rather than on the
-         flex item, so it wouldn't push. -->
-    <!-- pointer-events-none on the mark: a router `to` anchor navigates off
-         e.target, so a nested icon would swallow clicks that land on it. -->
-    <a to="/" class="mr-auto flex shrink-0 items-center gap-2 text-sm font-semibold tracking-tight">
-      <div class="pointer-events-none size-4 [&_svg]:size-4" html="icons.logo"></div>
-      olum/ui
-    </a>
+  <div class="flex h-full items-center justify-between px-4 sm:px-6">
+    <div class="flex gap-x-2">
+      <Link variant="ghost" to="/" class="flex shrink-0 items-center gap-2 text-sm font-semibold tracking-tight">
+        <div class="pointer-events-none size-4 [&_svg]:size-4" html="icons.logo"></div>
+        olum/ui
+      </Link>
+      
+      <Link variant="ghost" to="{BASE}" class="">Elements</Link>
+    </div>
+
+    <div class="flex gap-x-2 justify-between">
 
     <CommandDialog>
       <CommandDialogTrigger
@@ -133,22 +142,23 @@
       </CommandDialogContent>
     </CommandDialog>
 
-    <button
-      type="button"
+    <Button variant="ghost"
       onclick="toggleTheme()"
       aria-label="Toggle dark mode"
-      class="inline-flex size-8 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-foreground transition-all hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px [&_svg]:size-4"
     >
       <div html="state.dark ? icons.sun : icons.moon"></div>
-    </button>
+    </Button>
 
-    <a
+    <Link
+      variant="ghost"
       href="{REPO}"
       target="_blank"
       rel="noreferrer"
       aria-label="GitHub repository"
-      class="inline-flex size-8 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-foreground transition-all hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px [&_svg]:size-4"
-      html="icons.github"
-    ></a>
+    >
+    <span html="icons.github"></span>
+    </Link>
+
+    </div>
   </div>
 </header>
