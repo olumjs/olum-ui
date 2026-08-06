@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "npm run css && npm run snippets && concurrently -k -n css,app -c magenta,green \"npm run css:watch\" \"npm run dev:app\"",
-    "build": "npm run snippets && olum-compiler build",
+    "build": "rm -rf ./docs && npm run snippets && olum-compiler build && mv ./dist ./docs && echo ui.olumjs.top > ./docs/CNAME",
     "start": "olum-compiler start",
     "css": "tailwindcss -i src/main.css -o public/main.css",
     "css:watch": "npm run css -- --watch",
