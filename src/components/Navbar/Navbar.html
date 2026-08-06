@@ -10,7 +10,7 @@
   import CommandList from "../ui/Command/CommandList";
   import Kbd from "../ui/Kbd/Kbd";
   import KbdGroup from "../ui/Kbd/KbdGroup";
-  import { components, label } from "../../utils/components";
+  import { BASE, components, label } from "../../utils/components";
 
   const state = { dark: false };
 
@@ -94,7 +94,7 @@
   });
 </script>
 
-<header class="fixed inset-x-0 top-0 z-50 h-14 border-b border-border bg-background/80 backdrop-blur">
+<header data-slot="navbar" class="fixed inset-x-0 top-0 z-50 h-14 border-b border-border bg-background/80 backdrop-blur">
   <div class="flex h-full items-center gap-3 px-4 sm:px-6">
     <!-- mr-auto lives on the logo, not on the search: a margin on anything
          inside CommandDialog would sit below its host div rather than on the
@@ -125,7 +125,7 @@
             <CommandEmpty>No components found.</CommandEmpty>
             <CommandGroup heading="Components">
               <for each="id of components" key="id">
-                <a to="/{id}" data-slot="command-item" class="{item}">{label(id)}</a>
+                <a to="{BASE}/{id}" data-slot="command-item" class="{item}">{label(id)}</a>
               </for>
             </CommandGroup>
           </CommandList>

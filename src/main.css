@@ -84,12 +84,15 @@
     display: none;
   }
 
-  body {
+  /* Each inset is conditional on the chrome that needs it, so the home route --
+     which renders neither the navbar nor the rail -- isn't pushed down and to
+     the right by space nothing occupies. */
+  body:has([data-slot="navbar"]) {
     padding-top: 3.5rem;
   }
 
   @media (min-width: 64rem) {
-    body {
+    body:has([data-slot="gallery-nav"]) {
       padding-left: 16rem;
     }
   }

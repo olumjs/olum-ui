@@ -168,7 +168,7 @@ let pages = 0;
 let total = 0;
 const routes = [];
 
-for await (const page of glob("src/(examples)/*/page.html")) {
+for await (const page of glob("src/elements/*/page.html")) {
   routes.push(basename(dirname(page)));
   const source = await readFile(page, "utf8");
   const blocks = parseBlocks(source);

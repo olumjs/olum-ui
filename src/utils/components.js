@@ -2,6 +2,11 @@
 // by scripts/gen-snippets.mjs.
 import { descriptions } from "./descriptions.js";
 
+// Every component page lives under src/elements/, so its route is prefixed.
+// Kept here so the rail, pager, palette, and index grid all build links from one
+// place -- they were hardcoding "/" + id, which broke when the pages moved.
+export const BASE = "/elements";
+
 // Single source of truth for the component gallery: the ordered id list drives
 // both the index grid and the prev/next pager at the bottom of every example.
 export const components = [

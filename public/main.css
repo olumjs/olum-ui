@@ -3622,11 +3622,11 @@
   [class*="[scrollbar-width:none]"]::-webkit-scrollbar {
     display: none;
   }
-  body {
+  body:has([data-slot="navbar"]) {
     padding-top: 3.5rem;
   }
   @media (min-width: 64rem) {
-    body {
+    body:has([data-slot="gallery-nav"]) {
       padding-left: 16rem;
     }
   }
