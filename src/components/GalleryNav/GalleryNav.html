@@ -27,8 +27,6 @@
   class="fixed bottom-14 left-0 top-14 z-50 hidden w-64 overflow-y-auto border-r border-border bg-background [scrollbar-width:none] lg:block [&::-webkit-scrollbar]:hidden"
 >
   <div class="flex flex-col gap-4 px-6 py-8">
-    <!-- <a to="/" class="text-sm font-semibold">Component Gallery</a> -->
-
     <nav class="flex flex-col gap-0.5">
       <for each="cid of components" key="cid">
         <a to="/{cid}" data-active="{cid === id}" class="{itemClass(cid)}">{label(cid)}</a>

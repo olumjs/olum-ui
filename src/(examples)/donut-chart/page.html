@@ -3,6 +3,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const donutChartData = [
     { name: "Chrome", value: 275, color: "var(--color-chart-1)" },
@@ -17,7 +21,13 @@
 <GalleryNav id="donut-chart" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <DonutChart data="{donutChartData}" label="Visitors" class="w-full max-w-md" />
+  <PageHeader id="donut-chart" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <DonutChart data="{donutChartData}" label="Visitors" class="w-full max-w-md" />
+  </DemoBlock>
+
+  <InstallBlock id="donut-chart" />
 
   <Pager id="donut-chart" />
 </div>

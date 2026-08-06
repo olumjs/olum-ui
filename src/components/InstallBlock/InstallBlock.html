@@ -1,0 +1,14 @@
+<script>
+  import { props } from "olum";
+  import CodeBlock from "../CodeBlock/CodeBlock";
+  import { packageOf } from "../../utils/components";
+
+  const { id } = props();
+
+  const command = () => `olum add ${packageOf(id)}`;
+</script>
+
+<section class="flex flex-col gap-3">
+  <h2 class="text-lg font-semibold tracking-tight">Installation</h2>
+  <CodeBlock code="{command()}" />
+</section>

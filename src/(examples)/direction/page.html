@@ -7,6 +7,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const state = { direction: "ltr" };
   const setDirection = (checked) => (state.direction = checked ? "rtl" : "ltr");
@@ -20,21 +24,27 @@
 <GalleryNav id="direction" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <div class="flex flex-col gap-3">
-    <div class="flex items-center gap-2">
-      <Switch id="dir-switch" onCheckedChange="{setDirection}" />
-      <Label for="dir-switch">Right-to-left</Label>
+  <PageHeader id="direction" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-2">
+        <Switch id="dir-switch" onCheckedChange="{setDirection}" />
+        <Label for="dir-switch">Right-to-left</Label>
+      </div>
+      <Direction direction="{state.direction}">
+        <ButtonGroup>
+          <Button variant="outline">
+            <div data-icon="inline-start" html="icons.arrowRight"></div> First
+          </Button>
+          <Button variant="outline">Second</Button>
+          <Button variant="outline">Third</Button>
+        </ButtonGroup>
+      </Direction>
     </div>
-    <Direction direction="{state.direction}">
-      <ButtonGroup>
-        <Button variant="outline">
-          <div data-icon="inline-start" html="icons.arrowRight"></div> First
-        </Button>
-        <Button variant="outline">Second</Button>
-        <Button variant="outline">Third</Button>
-      </ButtonGroup>
-    </Direction>
-  </div>
+  </DemoBlock>
+
+  <InstallBlock id="direction" />
 
   <Pager id="direction" />
 </div>

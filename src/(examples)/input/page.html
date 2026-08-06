@@ -3,16 +3,29 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="input" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Input placeholder="Enter text" />
-  <Input placeholder="Error" invalid="{true}" />
-  <Input placeholder="Disabled" disabled="{true}" />
-  <Input type="password" placeholder="Password" />
+  <PageHeader id="input" />
+
+  <DemoBlock label="states" snippet="{snippets['states']}">
+    <Input placeholder="Enter text" />
+    <Input placeholder="Error" invalid="{true}" />
+    <Input placeholder="Disabled" disabled="{true}" />
+  </DemoBlock>
+
+  <DemoBlock label="password" snippet="{snippets['password']}">
+    <Input type="password" placeholder="Password" />
+  </DemoBlock>
+
+  <InstallBlock id="input" />
 
   <Pager id="input" />
 </div>

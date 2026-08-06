@@ -3,6 +3,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape"];
 </script>
@@ -11,7 +15,13 @@
 <GalleryNav id="combobox" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Combobox items="{fruits}" placeholder="Search fruit…" showClear="{true}" emptyText="No fruit found." class="w-56" />
+  <PageHeader id="combobox" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <Combobox items="{fruits}" placeholder="Search fruit…" showClear="{true}" emptyText="No fruit found." class="w-56" />
+  </DemoBlock>
+
+  <InstallBlock id="combobox" />
 
   <Pager id="combobox" />
 </div>

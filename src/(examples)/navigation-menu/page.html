@@ -8,32 +8,42 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="navigation-menu" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <NavigationMenu>
-    <NavigationMenuList>
-      <NavigationMenuItem>
-        <NavigationMenuTrigger>Products</NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <ul class="grid w-64 gap-1 p-2">
-            <li>
-              <NavigationMenuLink href="#">Analytics</NavigationMenuLink>
-            </li>
-            <li>
-              <NavigationMenuLink href="#">Dashboards</NavigationMenuLink>
-            </li>
-          </ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink href="#" variant="trigger">Docs</NavigationMenuLink>
-      </NavigationMenuItem>
-    </NavigationMenuList>
-  </NavigationMenu>
+  <PageHeader id="navigation-menu" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul class="grid w-64 gap-1 p-2">
+              <li>
+                <NavigationMenuLink href="#">Analytics</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="#">Dashboards</NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="#" variant="trigger">Docs</NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  </DemoBlock>
+
+  <InstallBlock id="navigation-menu" />
 
   <Pager id="navigation-menu" />
 </div>

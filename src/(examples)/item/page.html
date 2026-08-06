@@ -11,6 +11,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const icons = {
     user: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>`,
@@ -23,32 +27,38 @@
 <GalleryNav id="item" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <ItemGroup class="w-96">
-    <Item variant="outline">
-      <ItemMedia variant="icon">
-        <div html="icons.user"></div>
-      </ItemMedia>
-      <ItemContent>
-        <ItemTitle>Ada Lovelace</ItemTitle>
-        <ItemDescription>Mathematician</ItemDescription>
-      </ItemContent>
-      <ItemActions>
-        <Button size="icon-sm" variant="ghost">
-          <div html="icons.settings"></div>
-        </Button>
-      </ItemActions>
-    </Item>
-    <ItemSeparator />
-    <Item variant="muted" size="sm">
-      <ItemMedia variant="icon">
-        <div html="icons.bell"></div>
-      </ItemMedia>
-      <ItemContent>
-        <ItemTitle>Notifications</ItemTitle>
-        <ItemDescription>Manage your alerts</ItemDescription>
-      </ItemContent>
-    </Item>
-  </ItemGroup>
+  <PageHeader id="item" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <ItemGroup class="w-96">
+      <Item variant="outline">
+        <ItemMedia variant="icon">
+          <div html="icons.user"></div>
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>Ada Lovelace</ItemTitle>
+          <ItemDescription>Mathematician</ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button size="icon-sm" variant="ghost">
+            <div html="icons.settings"></div>
+          </Button>
+        </ItemActions>
+      </Item>
+      <ItemSeparator />
+      <Item variant="muted" size="sm">
+        <ItemMedia variant="icon">
+          <div html="icons.bell"></div>
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>Notifications</ItemTitle>
+          <ItemDescription>Manage your alerts</ItemDescription>
+        </ItemContent>
+      </Item>
+    </ItemGroup>
+  </DemoBlock>
+
+  <InstallBlock id="item" />
 
   <Pager id="item" />
 </div>

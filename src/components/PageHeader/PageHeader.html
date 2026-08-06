@@ -1,0 +1,14 @@
+<script>
+  import { props } from "olum";
+  import { describe, label } from "../../utils/components";
+
+  const { id } = props();
+</script>
+
+<header class="flex flex-col gap-2">
+  <h1 class="text-3xl font-semibold tracking-tight capitalize">{label(id)}</h1>
+
+  <if when="describe(id)">
+    <p class="text-base text-muted-foreground">{describe(id)}</p>
+  </if>
+</header>

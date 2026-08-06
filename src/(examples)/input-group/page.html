@@ -1,5 +1,4 @@
 <script>
-  import Demo from "../../components/ui/Demo/Demo";
   import InputGroup from "../../components/ui/InputGroup/InputGroup";
   import InputGroupAddon from "../../components/ui/InputGroup/InputGroupAddon";
   import InputGroupButton from "../../components/ui/InputGroup/InputGroupButton";
@@ -8,6 +7,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const icons = {
     search: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>`,
@@ -18,30 +21,36 @@
 <GalleryNav id="input-group" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Demo label="with icon addon">
+  <PageHeader id="input-group" />
+
+  <DemoBlock label="with icon addon" snippet="{snippets['with-icon-addon']}">
     <InputGroup class="w-64">
       <InputGroupInput placeholder="Search…" />
       <InputGroupAddon>
         <div html="icons.search"></div>
       </InputGroupAddon>
     </InputGroup>
-  </Demo>
-  <Demo label="with button addon">
+  </DemoBlock>
+
+  <DemoBlock label="with button addon" snippet="{snippets['with-button-addon']}">
     <InputGroup class="w-64">
       <InputGroupInput placeholder="you@example.com" />
       <InputGroupAddon align="inline-end">
         <InputGroupButton>Send</InputGroupButton>
       </InputGroupAddon>
     </InputGroup>
-  </Demo>
-  <Demo label="with text addon">
+  </DemoBlock>
+
+  <DemoBlock label="with text addon" snippet="{snippets['with-text-addon']}">
     <InputGroup class="w-64">
       <InputGroupAddon>
         <InputGroupText>$</InputGroupText>
       </InputGroupAddon>
       <InputGroupInput placeholder="0.00" />
     </InputGroup>
-  </Demo>
+  </DemoBlock>
+
+  <InstallBlock id="input-group" />
 
   <Pager id="input-group" />
 </div>

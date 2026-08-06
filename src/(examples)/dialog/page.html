@@ -13,29 +13,39 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="dialog" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Dialog>
-    <DialogTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Edit profile</DialogTrigger>
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>Edit profile</DialogTitle>
-        <DialogDescription>Make changes to your profile here.</DialogDescription>
-      </DialogHeader>
-      <div class="flex flex-col gap-2">
-        <Label for="dialog-name">Name</Label>
-        <Input id="dialog-name" value="Ada Lovelace" />
-      </div>
-      <DialogFooter>
-        <DialogClose class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Cancel</DialogClose>
-        <Button>Save changes</Button>
-      </DialogFooter>
-    </DialogContent>
-  </Dialog>
+  <PageHeader id="dialog" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <Dialog>
+      <DialogTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Edit profile</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>Make changes to your profile here.</DialogDescription>
+        </DialogHeader>
+        <div class="flex flex-col gap-2">
+          <Label for="dialog-name">Name</Label>
+          <Input id="dialog-name" value="Ada Lovelace" />
+        </div>
+        <DialogFooter>
+          <DialogClose class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Cancel</DialogClose>
+          <Button>Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  </DemoBlock>
+
+  <InstallBlock id="dialog" />
 
   <Pager id="dialog" />
 </div>

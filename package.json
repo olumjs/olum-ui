@@ -4,12 +4,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run css && concurrently -k -n css,app -c magenta,green \"npm run css:watch\" \"npm run dev:app\"",
-    "build": "olum-compiler build",
+    "dev": "npm run css && npm run snippets && concurrently -k -n css,app -c magenta,green \"npm run css:watch\" \"npm run dev:app\"",
+    "build": "npm run snippets && olum-compiler build",
     "start": "olum-compiler start",
     "css": "tailwindcss -i src/main.css -o public/main.css",
     "css:watch": "npm run css -- --watch",
-    "dev:app": "olum-compiler dev"
+    "dev:app": "olum-compiler dev",
+    "snippets": "node scripts/gen-snippets.mjs"
   },
   "keywords": [
     "olum"
@@ -27,6 +28,7 @@
     "@tailwindcss/cli": "latest",
     "concurrently": "latest",
     "olum-compiler": "latest",
+    "shiki": "^4.4.2",
     "tailwindcss": "latest",
     "vite": "^8.2.0"
   }

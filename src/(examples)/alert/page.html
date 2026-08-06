@@ -1,5 +1,4 @@
 <script>
-  import Demo from "../../components/ui/Demo/Demo";
   import Alert from "../../components/ui/Alert/Alert";
   import AlertTitle from "../../components/ui/Alert/AlertTitle";
   import AlertDescription from "../../components/ui/Alert/AlertDescription";
@@ -8,6 +7,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const icons = {
     inbox: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12" /><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /></svg>`,
@@ -19,14 +22,17 @@
 <GalleryNav id="alert" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Demo label="default">
+  <PageHeader id="alert" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
     <Alert class="w-80">
       <div data-icon html="icons.inbox"></div>
       <AlertTitle>New message</AlertTitle>
       <AlertDescription>You have a new message from the team.</AlertDescription>
     </Alert>
-  </Demo>
-  <Demo label="destructive with action">
+  </DemoBlock>
+
+  <DemoBlock label="destructive with action" snippet="{snippets['destructive-with-action']}">
     <Alert variant="destructive" class="w-80">
       <div data-icon html="icons.trash"></div>
       <AlertTitle>Failed to delete</AlertTitle>
@@ -35,7 +41,9 @@
         <Button size="sm" variant="outline">Retry</Button>
       </AlertAction>
     </Alert>
-  </Demo>
+  </DemoBlock>
+
+  <InstallBlock id="alert" />
 
   <Pager id="alert" />
 </div>

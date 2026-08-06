@@ -10,25 +10,35 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="popover" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Popover>
-    <PopoverTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Open popover</PopoverTrigger>
-    <PopoverContent>
-      <PopoverHeader>
-        <PopoverTitle>Dimensions</PopoverTitle>
-        <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>
-      </PopoverHeader>
-      <div class="flex items-center gap-2">
-        <Label for="popover-width" class="w-16">Width</Label>
-        <Input id="popover-width" value="100%" class="h-7" />
-      </div>
-    </PopoverContent>
-  </Popover>
+  <PageHeader id="popover" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <Popover>
+      <PopoverTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Open popover</PopoverTrigger>
+      <PopoverContent>
+        <PopoverHeader>
+          <PopoverTitle>Dimensions</PopoverTitle>
+          <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>
+        </PopoverHeader>
+        <div class="flex items-center gap-2">
+          <Label for="popover-width" class="w-16">Width</Label>
+          <Input id="popover-width" value="100%" class="h-7" />
+        </div>
+      </PopoverContent>
+    </Popover>
+  </DemoBlock>
+
+  <InstallBlock id="popover" />
 
   <Pager id="popover" />
 </div>

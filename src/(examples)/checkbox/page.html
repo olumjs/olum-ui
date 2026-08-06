@@ -4,24 +4,34 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="checkbox" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <div class="flex items-center gap-2">
-    <Checkbox id="cb-1" defaultChecked="{true}" />
-    <Label for="cb-1">Accept terms</Label>
-  </div>
-  <div class="flex items-center gap-2">
-    <Checkbox id="cb-2" />
-    <Label for="cb-2">Subscribe to newsletter</Label>
-  </div>
-  <div class="flex items-center gap-2">
-    <Checkbox id="cb-3" disabled="{true}" />
-    <Label for="cb-3">Disabled</Label>
-  </div>
+  <PageHeader id="checkbox" />
+
+  <DemoBlock label="states" snippet="{snippets['states']}">
+    <div class="flex items-center gap-2">
+      <Checkbox id="cb-1" defaultChecked="{true}" />
+      <Label for="cb-1">Accept terms</Label>
+    </div>
+    <div class="flex items-center gap-2">
+      <Checkbox id="cb-2" />
+      <Label for="cb-2">Subscribe to newsletter</Label>
+    </div>
+    <div class="flex items-center gap-2">
+      <Checkbox id="cb-3" disabled="{true}" />
+      <Label for="cb-3">Disabled</Label>
+    </div>
+  </DemoBlock>
+
+  <InstallBlock id="checkbox" />
 
   <Pager id="checkbox" />
 </div>

@@ -5,32 +5,42 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="bubble" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <BubbleGroup>
-    <Bubble align="start" variant="muted">
-      <BubbleContent>Hey there!</BubbleContent>
-    </Bubble>
-    <Bubble align="end" variant="default">
-      <BubbleContent>Hello, how can I help?</BubbleContent>
-    </Bubble>
-    <Bubble align="start" variant="tinted">
-      <BubbleContent>Tinted variant</BubbleContent>
-    </Bubble>
-    <Bubble align="start" variant="outline">
-      <BubbleContent>Outline variant</BubbleContent>
-    </Bubble>
-    <Bubble align="start" variant="ghost">
-      <BubbleContent>Ghost variant, no chrome</BubbleContent>
-    </Bubble>
-    <Bubble align="start" variant="destructive">
-      <BubbleContent>Something went wrong</BubbleContent>
-    </Bubble>
-  </BubbleGroup>
+  <PageHeader id="bubble" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <BubbleGroup>
+      <Bubble align="start" variant="muted">
+        <BubbleContent>Hey there!</BubbleContent>
+      </Bubble>
+      <Bubble align="end" variant="default">
+        <BubbleContent>Hello, how can I help?</BubbleContent>
+      </Bubble>
+      <Bubble align="start" variant="tinted">
+        <BubbleContent>Tinted variant</BubbleContent>
+      </Bubble>
+      <Bubble align="start" variant="outline">
+        <BubbleContent>Outline variant</BubbleContent>
+      </Bubble>
+      <Bubble align="start" variant="ghost">
+        <BubbleContent>Ghost variant, no chrome</BubbleContent>
+      </Bubble>
+      <Bubble align="start" variant="destructive">
+        <BubbleContent>Something went wrong</BubbleContent>
+      </Bubble>
+    </BubbleGroup>
+  </DemoBlock>
+
+  <InstallBlock id="bubble" />
 
   <Pager id="bubble" />
 </div>

@@ -5,6 +5,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const showDefaultToast = () => toast.add({ title: "Event created", description: "Monday, Jan 5 at 4:00pm", autoClose: false });
   const showSuccessToast = () => toast.add({ title: "Saved successfully", type: "success", autoClose: false });
@@ -18,13 +22,19 @@
 <GalleryNav id="toast" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Button variant="outline" onclick="{showDefaultToast}">Default</Button>
-  <Button variant="outline" onclick="{showSuccessToast}">Success</Button>
-  <Button variant="outline" onclick="{showErrorToast}">Error</Button>
-  <Button variant="outline" onclick="{showWarningToast}">Warning</Button>
-  <Button variant="outline" onclick="{showInfoToast}">Info</Button>
-  <Button variant="outline" onclick="{showPersistentToast}">Persistent</Button>
-  <Toaster />
+  <PageHeader id="toast" />
+
+  <DemoBlock label="variants" snippet="{snippets['variants']}">
+    <Button variant="outline" onclick="{showDefaultToast}">Default</Button>
+    <Button variant="outline" onclick="{showSuccessToast}">Success</Button>
+    <Button variant="outline" onclick="{showErrorToast}">Error</Button>
+    <Button variant="outline" onclick="{showWarningToast}">Warning</Button>
+    <Button variant="outline" onclick="{showInfoToast}">Info</Button>
+    <Button variant="outline" onclick="{showPersistentToast}">Persistent</Button>
+    <Toaster />
+  </DemoBlock>
+
+  <InstallBlock id="toast" />
 
   <Pager id="toast" />
 </div>

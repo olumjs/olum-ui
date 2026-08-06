@@ -8,23 +8,33 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="tooltip" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <TooltipProvider>
-    <Tooltip>
-      <TooltipTrigger>
-        <Button variant="outline">Hover me</Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        Add to library
-        <Kbd>⌘L</Kbd>
-      </TooltipContent>
-    </Tooltip>
-  </TooltipProvider>
+  <PageHeader id="tooltip" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Button variant="outline">Hover me</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          Add to library
+          <Kbd>⌘L</Kbd>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  </DemoBlock>
+
+  <InstallBlock id="tooltip" />
 
   <Pager id="tooltip" />
 </div>

@@ -11,27 +11,37 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="drawer" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Drawer>
-    <DrawerTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Open drawer</DrawerTrigger>
-    <DrawerContent>
-      <DrawerHeader>
-        <DrawerTitle>Move goal</DrawerTitle>
-        <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-      </DrawerHeader>
-      <div class="px-4 pt-4 pb-4">
-        <Slider defaultValue="{[350]}" max="{1000}" step="{50}" />
-      </div>
-      <DrawerFooter>
-        <Button size="lg" class="w-full">Submit</Button>
-      </DrawerFooter>
-    </DrawerContent>
-  </Drawer>
+  <PageHeader id="drawer" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <Drawer>
+      <DrawerTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Open drawer</DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Move goal</DrawerTitle>
+          <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+        </DrawerHeader>
+        <div class="px-4 pt-4 pb-4">
+          <Slider defaultValue="{[350]}" max="{1000}" step="{50}" />
+        </div>
+        <DrawerFooter>
+          <Button size="lg" class="w-full">Submit</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  </DemoBlock>
+
+  <InstallBlock id="drawer" />
 
   <Pager id="drawer" />
 </div>

@@ -3,6 +3,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const icons = {
     check: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>`,
@@ -13,16 +17,25 @@
 <GalleryNav id="badge" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Badge>Default</Badge>
-  <Badge variant="secondary">Secondary</Badge>
-  <Badge variant="destructive">Destructive</Badge>
-  <Badge variant="outline">Outline</Badge>
-  <Badge variant="ghost">Ghost</Badge>
-  <Badge variant="link">Link</Badge>
-  <Badge>
-    <div data-icon="inline-start" html="icons.check"></div>
-    Verified
-  </Badge>
+  <PageHeader id="badge" />
+
+  <DemoBlock label="variants" snippet="{snippets['variants']}">
+    <Badge>Default</Badge>
+    <Badge variant="secondary">Secondary</Badge>
+    <Badge variant="destructive">Destructive</Badge>
+    <Badge variant="outline">Outline</Badge>
+    <Badge variant="ghost">Ghost</Badge>
+    <Badge variant="link">Link</Badge>
+  </DemoBlock>
+
+  <DemoBlock label="with icon" snippet="{snippets['with-icon']}">
+    <Badge>
+      <div data-icon="inline-start" html="icons.check"></div>
+      Verified
+    </Badge>
+  </DemoBlock>
+
+  <InstallBlock id="badge" />
 
   <Pager id="badge" />
 </div>

@@ -3,22 +3,35 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="separator" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <div class="flex w-56 flex-col gap-3 [&>[data-olum]]:contents">
-    <div class="text-sm">Above</div>
-    <Separator />
-    <div class="text-sm">Below</div>
-  </div>
-  <div class="flex h-8 items-center gap-3 [&>[data-olum]]:contents">
-    <span class="text-sm">Left</span>
-    <Separator orientation="vertical" />
-    <span class="text-sm">Right</span>
-  </div>
+  <PageHeader id="separator" />
+
+  <DemoBlock label="horizontal" snippet="{snippets['horizontal']}">
+    <div class="flex w-56 flex-col gap-3 [&>[data-olum]]:contents">
+      <div class="text-sm">Above</div>
+      <Separator />
+      <div class="text-sm">Below</div>
+    </div>
+  </DemoBlock>
+
+  <DemoBlock label="vertical" snippet="{snippets['vertical']}">
+    <div class="flex h-8 items-center gap-3 [&>[data-olum]]:contents">
+      <span class="text-sm">Left</span>
+      <Separator orientation="vertical" />
+      <span class="text-sm">Right</span>
+    </div>
+  </DemoBlock>
+
+  <InstallBlock id="separator" />
 
   <Pager id="separator" />
 </div>

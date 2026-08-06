@@ -1,21 +1,29 @@
 <script>
-  import Demo from "../../components/ui/Demo/Demo";
   import Slider from "../../components/ui/Slider/Slider";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="slider" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Demo label="single">
+  <PageHeader id="slider" />
+
+  <DemoBlock label="single" snippet="{snippets['single']}">
     <Slider defaultValue="{[50]}" class="w-56" />
-  </Demo>
-  <Demo label="range">
+  </DemoBlock>
+
+  <DemoBlock label="range" snippet="{snippets['range']}">
     <Slider defaultValue="{[25, 75]}" class="w-56" />
-  </Demo>
+  </DemoBlock>
+
+  <InstallBlock id="slider" />
 
   <Pager id="slider" />
 </div>

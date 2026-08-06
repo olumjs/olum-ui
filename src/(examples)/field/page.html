@@ -13,6 +13,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const fieldErrors = [{ message: "Email is required." }];
 </script>
@@ -21,24 +25,30 @@
 <GalleryNav id="field" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <FieldSet class="w-80">
-    <FieldLegend>Contact info</FieldLegend>
-    <FieldGroup>
-      <Field>
-        <FieldLabel for="field-email">Email</FieldLabel>
-        <Input id="field-email" type="email" placeholder="you@example.com" invalid="{true}" />
-        <FieldError errors="{fieldErrors}" />
-      </Field>
-      <FieldSeparator>Or</FieldSeparator>
-      <Field orientation="horizontal">
-        <FieldContent>
-          <FieldLabel for="field-notify">Notifications</FieldLabel>
-          <FieldDescription>Receive updates about your account.</FieldDescription>
-        </FieldContent>
-        <Switch id="field-notify" />
-      </Field>
-    </FieldGroup>
-  </FieldSet>
+  <PageHeader id="field" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <FieldSet class="w-80">
+      <FieldLegend>Contact info</FieldLegend>
+      <FieldGroup>
+        <Field>
+          <FieldLabel for="field-email">Email</FieldLabel>
+          <Input id="field-email" type="email" placeholder="you@example.com" invalid="{true}" />
+          <FieldError errors="{fieldErrors}" />
+        </Field>
+        <FieldSeparator>Or</FieldSeparator>
+        <Field orientation="horizontal">
+          <FieldContent>
+            <FieldLabel for="field-notify">Notifications</FieldLabel>
+            <FieldDescription>Receive updates about your account.</FieldDescription>
+          </FieldContent>
+          <Switch id="field-notify" />
+        </Field>
+      </FieldGroup>
+    </FieldSet>
+  </DemoBlock>
+
+  <InstallBlock id="field" />
 
   <Pager id="field" />
 </div>

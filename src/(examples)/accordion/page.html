@@ -1,19 +1,24 @@
 <script>
-  import Demo from "../../components/ui/Demo/Demo";
   import Accordion from "../../components/ui/Accordion/Accordion";
   import AccordionItem from "../../components/ui/Accordion/AccordionItem";
   import AccordionTrigger from "../../components/ui/Accordion/AccordionTrigger";
   import AccordionContent from "../../components/ui/Accordion/AccordionContent";
-  import Navbar from "../../components/Navbar/Navbar";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import Navbar from "../../components/Navbar/Navbar";
+  import PageHeader from "../../components/PageHeader/PageHeader";
   import Pager from "../../components/Pager/Pager";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="accordion" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Demo label="single, collapsible">
+  <PageHeader id="accordion" />
+
+  <DemoBlock label="single" snippet="{snippets['single']}">
     <Accordion class="w-80">
       <AccordionItem type="radio" name="acc1" defaultOpen="{true}">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
@@ -28,8 +33,9 @@
         <AccordionContent>You should not see this.</AccordionContent>
       </AccordionItem>
     </Accordion>
-  </Demo>
-  <Demo label="multiple">
+  </DemoBlock>
+
+  <DemoBlock label="multiple" snippet="{snippets['multiple']}">
     <Accordion class="w-80">
       <AccordionItem type="checkbox" defaultOpen="{true}">
         <AccordionTrigger>First section</AccordionTrigger>
@@ -40,7 +46,9 @@
         <AccordionContent>Try collapsing one independently.</AccordionContent>
       </AccordionItem>
     </Accordion>
-  </Demo>
+  </DemoBlock>
+
+  <InstallBlock id="accordion" />
 
   <Pager id="accordion" />
 </div>

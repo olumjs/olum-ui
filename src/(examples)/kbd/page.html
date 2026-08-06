@@ -4,22 +4,32 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 </script>
 
 <Navbar />
 <GalleryNav id="kbd" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <KbdGroup>
-    <Kbd>Ctrl</Kbd>
-    <Kbd>Alt</Kbd>
-    <Kbd>Del</Kbd>
-  </KbdGroup>
-  <KbdGroup>
-    <Kbd>⌘</Kbd>
-    <Kbd>Shift</Kbd>
-    <Kbd>P</Kbd>
-  </KbdGroup>
+  <PageHeader id="kbd" />
+
+  <DemoBlock label="shortcuts" snippet="{snippets['shortcuts']}">
+    <KbdGroup>
+      <Kbd>Ctrl</Kbd>
+      <Kbd>Alt</Kbd>
+      <Kbd>Del</Kbd>
+    </KbdGroup>
+    <KbdGroup>
+      <Kbd>⌘</Kbd>
+      <Kbd>Shift</Kbd>
+      <Kbd>P</Kbd>
+    </KbdGroup>
+  </DemoBlock>
+
+  <InstallBlock id="kbd" />
 
   <Pager id="kbd" />
 </div>

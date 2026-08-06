@@ -12,6 +12,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const chatMessages = [
     { id: "1", align: "start", text: "Hey, do you have the Q3 report ready?" },
@@ -25,26 +29,32 @@
 <GalleryNav id="message-scroller" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <MessageScrollerProvider>
-    <MessageScroller class="h-64 w-96 rounded-xl border border-border">
-      <MessageScrollerViewport>
-        <MessageScrollerContent class="p-4">
-          <for each="m of chatMessages" key="m.id">
-            <MessageScrollerItem>
-              <Message align="{m.align}">
-                <MessageContent>
-                  <Bubble align="{m.align}" variant="{m.align === 'end' ? 'default' : 'muted'}">
-                    <BubbleContent>{m.text}</BubbleContent>
-                  </Bubble>
-                </MessageContent>
-              </Message>
-            </MessageScrollerItem>
-          </for>
-        </MessageScrollerContent>
-      </MessageScrollerViewport>
-      <MessageScrollerButton />
-    </MessageScroller>
-  </MessageScrollerProvider>
+  <PageHeader id="message-scroller" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <MessageScrollerProvider>
+      <MessageScroller class="h-64 w-96 rounded-xl border border-border">
+        <MessageScrollerViewport>
+          <MessageScrollerContent class="p-4">
+            <for each="m of chatMessages" key="m.id">
+              <MessageScrollerItem>
+                <Message align="{m.align}">
+                  <MessageContent>
+                    <Bubble align="{m.align}" variant="{m.align === 'end' ? 'default' : 'muted'}">
+                      <BubbleContent>{m.text}</BubbleContent>
+                    </Bubble>
+                  </MessageContent>
+                </Message>
+              </MessageScrollerItem>
+            </for>
+          </MessageScrollerContent>
+        </MessageScrollerViewport>
+        <MessageScrollerButton />
+      </MessageScroller>
+    </MessageScrollerProvider>
+  </DemoBlock>
+
+  <InstallBlock id="message-scroller" />
 
   <Pager id="message-scroller" />
 </div>

@@ -3,6 +3,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const payments = [
     { id: "728ed52f", amount: 100, status: "pending", email: "m@example.com" },
@@ -50,17 +54,23 @@
 <GalleryNav id="data-table" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <div class="w-full">
-    <DataTable
-      columns="{paymentColumns}"
-      data="{payments}"
-      search="{true}"
-      searchPlaceholder="Filter rows…"
-      pageSize="{10}"
-      showExport="{true}"
-      rowLink="{paymentRowLink}"
-    />
-  </div>
+  <PageHeader id="data-table" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <div class="w-full">
+      <DataTable
+        columns="{paymentColumns}"
+        data="{payments}"
+        search="{true}"
+        searchPlaceholder="Filter rows…"
+        pageSize="{10}"
+        showExport="{true}"
+        rowLink="{paymentRowLink}"
+      />
+    </div>
+  </DemoBlock>
+
+  <InstallBlock id="data-table" />
 
   <Pager id="data-table" />
 </div>

@@ -1,3 +1,7 @@
+// Descriptions are authored in registry.json and mirrored into descriptions.js
+// by scripts/gen-snippets.mjs.
+import { descriptions, packages } from "./descriptions.js";
+
 // Single source of truth for the component gallery: the ordered id list drives
 // both the index grid and the prev/next pager at the bottom of every example.
 export const components = [
@@ -16,6 +20,13 @@ export const components = [
 const labels = { "input-otp": "Input OTP" };
 
 export const label = id => labels[id] || id.replaceAll("-", " ");
+
+// PageHeader omits the paragraph when a route has no description.
+export const describe = id => descriptions[id] || "";
+
+// The registry component a route installs -- same as the route id unless the
+// page is one of several shipping from a single component (the charts).
+export const packageOf = id => packages[id] || id;
 
 export const prevOf = id => {
   const i = components.indexOf(id);

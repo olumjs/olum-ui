@@ -12,6 +12,10 @@
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import Pager from "../../components/Pager/Pager";
+  import DemoBlock from "../../components/DemoBlock/DemoBlock";
+  import InstallBlock from "../../components/InstallBlock/InstallBlock";
+  import PageHeader from "../../components/PageHeader/PageHeader";
+  import { snippets } from "./snippets";
 
   const chatMessages = [
     { id: "1", align: "start", text: "Hey, do you have the Q3 report ready?" },
@@ -25,24 +29,30 @@
 <GalleryNav id="message" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <MessageGroup class="w-96">
-    <for each="m of chatMessages" key="m.id">
-      <Message align="{m.align}">
-        <MessageAvatar>
-          <Avatar size="sm">
-            <AvatarFallback>{m.align === "start" ? "JD" : "Me"}</AvatarFallback>
-          </Avatar>
-        </MessageAvatar>
-        <MessageContent>
-          <MessageHeader>{m.align === "start" ? "Jane Doe" : "You"}</MessageHeader>
-          <Bubble align="{m.align}">
-            <BubbleContent>{m.text}</BubbleContent>
-          </Bubble>
-          <MessageFooter>Seen</MessageFooter>
-        </MessageContent>
-      </Message>
-    </for>
-  </MessageGroup>
+  <PageHeader id="message" />
+
+  <DemoBlock label="default" snippet="{snippets['default']}">
+    <MessageGroup class="w-96">
+      <for each="m of chatMessages" key="m.id">
+        <Message align="{m.align}">
+          <MessageAvatar>
+            <Avatar size="sm">
+              <AvatarFallback>{m.align === "start" ? "JD" : "Me"}</AvatarFallback>
+            </Avatar>
+          </MessageAvatar>
+          <MessageContent>
+            <MessageHeader>{m.align === "start" ? "Jane Doe" : "You"}</MessageHeader>
+            <Bubble align="{m.align}">
+              <BubbleContent>{m.text}</BubbleContent>
+            </Bubble>
+            <MessageFooter>Seen</MessageFooter>
+          </MessageContent>
+        </Message>
+      </for>
+    </MessageGroup>
+  </DemoBlock>
+
+  <InstallBlock id="message" />
 
   <Pager id="message" />
 </div>
