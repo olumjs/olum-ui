@@ -1,6 +1,8 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import RadialBarChart from "../../components/ui/Chart/RadialBarChart";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const chartConfig = {
     desktop: { label: "Desktop", color: "var(--color-chart-1)" },
@@ -10,8 +12,11 @@
   const radialChartData = [{ month: "january", desktop: 1260, mobile: 570 }];
 </script>
 
+<Navbar />
+<GalleryNav id="radial-bar-chart" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="radial-bar-chart" title="Radial Bar Chart">
-    <RadialBarChart data="{radialChartData}" config="{chartConfig}" centerLabel="Visitors" class="w-full max-w-md" />
-  </Section>
+  <RadialBarChart data="{radialChartData}" config="{chartConfig}" centerLabel="Visitors" class="w-full max-w-md" />
+
+  <Pager id="radial-bar-chart" />
 </div>

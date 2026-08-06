@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Pagination from "../../components/ui/Pagination/Pagination";
   import PaginationContent from "../../components/ui/Pagination/PaginationContent";
   import PaginationItem from "../../components/ui/Pagination/PaginationItem";
@@ -7,31 +6,37 @@
   import PaginationPrevious from "../../components/ui/Pagination/PaginationPrevious";
   import PaginationNext from "../../components/ui/Pagination/PaginationNext";
   import PaginationEllipsis from "../../components/ui/Pagination/PaginationEllipsis";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="pagination" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="pagination" title="Pagination">
-    <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive="{true}">2</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
-  </Section>
+  <Pagination>
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious href="#" />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">1</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#" isActive="{true}">2</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">3</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationEllipsis />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationNext href="#" />
+      </PaginationItem>
+    </PaginationContent>
+  </Pagination>
+
+  <Pager id="pagination" />
 </div>

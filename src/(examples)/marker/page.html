@@ -1,8 +1,10 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Marker from "../../components/ui/Marker/Marker";
   import MarkerIcon from "../../components/ui/Marker/MarkerIcon";
   import MarkerContent from "../../components/ui/Marker/MarkerContent";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const icons = {
     check: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>`,
@@ -10,23 +12,26 @@
   };
 </script>
 
+<Navbar />
+<GalleryNav id="marker" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="marker" title="Marker">
-    <div class="flex w-72 flex-col gap-3">
-      <Marker>
-        <MarkerIcon>
-          <div html="icons.check"></div>
-        </MarkerIcon>
-        <MarkerContent>Order placed</MarkerContent>
-      </Marker>
-      <Marker>
-        <MarkerIcon>
-          <div html="icons.star"></div>
-        </MarkerIcon>
-        <MarkerContent>Order shipped</MarkerContent>
-      </Marker>
-      <Marker variant="separator">or</Marker>
-      <Marker variant="border">Section divider</Marker>
-    </div>
-  </Section>
+  <div class="flex w-72 flex-col gap-3">
+    <Marker>
+      <MarkerIcon>
+        <div html="icons.check"></div>
+      </MarkerIcon>
+      <MarkerContent>Order placed</MarkerContent>
+    </Marker>
+    <Marker>
+      <MarkerIcon>
+        <div html="icons.star"></div>
+      </MarkerIcon>
+      <MarkerContent>Order shipped</MarkerContent>
+    </Marker>
+    <Marker variant="separator">or</Marker>
+    <Marker variant="border">Section divider</Marker>
+  </div>
+
+  <Pager id="marker" />
 </div>

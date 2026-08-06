@@ -1,0 +1,142 @@
+<script>
+  import { onMount } from "olum";
+  import Command from "../ui/Command/Command";
+  import CommandDialog from "../ui/Command/CommandDialog";
+  import CommandDialogContent from "../ui/Command/CommandDialogContent";
+  import CommandDialogTrigger from "../ui/Command/CommandDialogTrigger";
+  import CommandEmpty from "../ui/Command/CommandEmpty";
+  import CommandGroup from "../ui/Command/CommandGroup";
+  import CommandInput from "../ui/Command/CommandInput";
+  import CommandList from "../ui/Command/CommandList";
+  import Kbd from "../ui/Kbd/Kbd";
+  import KbdGroup from "../ui/Kbd/KbdGroup";
+  import { components, label } from "../../utils/components";
+
+  const state = { dark: false };
+
+  const REPO = "https://github.com/olumjs/olum-ui";
+
+  const icons = {
+    // Same path as public/favicon.svg, inlined so it can take currentColor --
+    // the file itself is fill="black" and would disappear in dark mode.
+    logo: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M250 465.217L0 30.4346L500 30.4346L250 465.217Z" /></svg>`,
+    sun: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>`,
+    moon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>`,
+    search: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>`,
+    github: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.2c-3.34.72-4.04-1.42-4.04-1.42-.55-1.38-1.34-1.75-1.34-1.75-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96 0-1.31.47-2.39 1.24-3.23-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.23 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z" /></svg>`,
+  };
+
+  // Palette rows are plain router anchors rather than <CommandItem>: an item
+  // needs to carry its target id, and dashed attributes get truncated on a
+  // component tag. Wearing data-slot="command-item" still opts them into
+  // Command's own filtering and CommandDialogContent's close-on-select.
+  const item =
+    "flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm capitalize outline-none select-none hover:bg-muted hover:text-foreground";
+
+  const applyTheme = dark => {
+    state.dark = dark;
+    document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  };
+
+  const toggleTheme = () => applyTheme(!state.dark);
+
+  // One onMount per component, so theme restore and the hotkey share it.
+  onMount(() => {
+    const saved = localStorage.getItem("theme");
+    applyTheme(saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+    // CommandDialog keeps its open state on a hidden checkbox, so opening the
+    // palette by hand means flipping that the same way the trigger does.
+    const onKey = e => {
+      if (e.key !== "k" || (!e.metaKey && !e.ctrlKey)) return;
+      const box = host.querySelector('[data-slot="command-dialog"] > input');
+      if (!box || box.checked) return;
+      e.preventDefault();
+      box.checked = true;
+      box.dispatchEvent(new Event("change", { bubbles: true }));
+    };
+
+    // CommandDialogContent doesn't focus the field, which makes a keyboard-only
+    // palette useless. Both open paths dispatch change on the checkbox, so this
+    // covers the hotkey and the trigger click. The field is portaled into
+    // <body> by then, hence the class hook rather than a host lookup -- the
+    // /command example page has a second dialog, so it has to be unambiguous.
+    const onChange = e => {
+      if (!e.target.checked) return;
+      requestAnimationFrame(() => {
+        const field = document.querySelector("input.navbar-command-input");
+        if (!field) return;
+        field.value = "";
+        field.dispatchEvent(new Event("input", { bubbles: true })); // reset the filter
+        field.focus();
+      });
+    };
+
+    document.addEventListener("keydown", onKey);
+    host.addEventListener("change", onChange);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      host.removeEventListener("change", onChange);
+    };
+  });
+</script>
+
+<header class="fixed inset-x-0 top-0 z-50 h-14 border-b border-border bg-background/80 backdrop-blur">
+  <div class="flex h-full items-center gap-3 px-4 sm:px-6">
+    <!-- mr-auto lives on the logo, not on the search: a margin on anything
+         inside CommandDialog would sit below its host div rather than on the
+         flex item, so it wouldn't push. -->
+    <!-- pointer-events-none on the mark: a router `to` anchor navigates off
+         e.target, so a nested icon would swallow clicks that land on it. -->
+    <a to="/" class="mr-auto flex shrink-0 items-center gap-2 text-sm font-semibold tracking-tight">
+      <div class="pointer-events-none size-4 [&_svg]:size-4" html="icons.logo"></div>
+      olum/ui
+    </a>
+
+    <CommandDialog>
+      <CommandDialogTrigger
+        class="inline-flex h-8 w-44 items-center gap-2 rounded-lg border border-border bg-background pr-1.5 pl-2.5 text-sm text-muted-foreground transition-all outline-none select-none hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-64 [&_svg]:size-4"
+      >
+        <div html="icons.search"></div>
+        Search...
+        <KbdGroup class="ml-auto">
+          <Kbd>Ctrl</Kbd>
+          <Kbd>K</Kbd>
+        </KbdGroup>
+      </CommandDialogTrigger>
+
+      <CommandDialogContent>
+        <Command>
+          <CommandInput class="navbar-command-input" placeholder="Search components..." />
+          <CommandList>
+            <CommandEmpty>No components found.</CommandEmpty>
+            <CommandGroup heading="Components">
+              <for each="id of components" key="id">
+                <a to="/{id}" data-slot="command-item" class="{item}">{label(id)}</a>
+              </for>
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </CommandDialogContent>
+    </CommandDialog>
+
+    <button
+      type="button"
+      onclick="toggleTheme()"
+      aria-label="Toggle dark mode"
+      class="inline-flex size-8 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-foreground transition-all hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px [&_svg]:size-4"
+    >
+      <div html="state.dark ? icons.sun : icons.moon"></div>
+    </button>
+
+    <a
+      href="{REPO}"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="GitHub repository"
+      class="inline-flex size-8 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-foreground transition-all hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px [&_svg]:size-4"
+      html="icons.github"
+    ></a>
+  </div>
+</header>

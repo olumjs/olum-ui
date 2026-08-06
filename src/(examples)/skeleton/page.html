@@ -1,16 +1,21 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Skeleton from "../../components/ui/Skeleton/Skeleton";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="skeleton" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="skeleton" title="Skeleton">
-    <div class="flex items-center gap-3">
-      <Skeleton class="size-10 rounded-full" />
-      <div class="flex flex-col gap-2">
-        <Skeleton class="h-4 w-40" />
-        <Skeleton class="h-4 w-24" />
-      </div>
+  <div class="flex items-center gap-3">
+    <Skeleton class="size-10 rounded-full" />
+    <div class="flex flex-col gap-2">
+      <Skeleton class="h-4 w-40" />
+      <Skeleton class="h-4 w-24" />
     </div>
-  </Section>
+  </div>
+
+  <Pager id="skeleton" />
 </div>

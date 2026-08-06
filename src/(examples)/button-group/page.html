@@ -1,11 +1,13 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Demo from "../../components/ui/Demo/Demo";
   import Button from "../../components/ui/Button/Button";
   import ButtonGroup from "../../components/ui/ButtonGroup/ButtonGroup";
   import ButtonGroupText from "../../components/ui/ButtonGroup/ButtonGroupText";
   import ButtonGroupSeparator from "../../components/ui/ButtonGroup/ButtonGroupSeparator";
   import Input from "../../components/ui/Input/Input";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const icons = {
     bold: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8" /></svg>`,
@@ -14,34 +16,37 @@
   };
 </script>
 
+<Navbar />
+<GalleryNav id="button-group" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="button-group" title="Button Group">
-    <Demo label="horizontal">
-      <ButtonGroup>
-        <Button variant="outline">Day</Button>
-        <Button variant="outline">Week</Button>
-        <Button variant="outline">Month</Button>
-      </ButtonGroup>
-    </Demo>
-    <Demo label="with text &amp; separator">
-      <ButtonGroup>
-        <ButtonGroupText>https://</ButtonGroupText>
-        <ButtonGroupSeparator />
-        <Input placeholder="example.com" class="w-40" />
-      </ButtonGroup>
-    </Demo>
-    <Demo label="vertical">
-      <ButtonGroup orientation="vertical">
-        <Button variant="outline" size="icon">
-          <div html="icons.bold"></div>
-        </Button>
-        <Button variant="outline" size="icon">
-          <div html="icons.italic"></div>
-        </Button>
-        <Button variant="outline" size="icon">
-          <div html="icons.underline"></div>
-        </Button>
-      </ButtonGroup>
-    </Demo>
-  </Section>
+  <Demo label="horizontal">
+    <ButtonGroup>
+      <Button variant="outline">Day</Button>
+      <Button variant="outline">Week</Button>
+      <Button variant="outline">Month</Button>
+    </ButtonGroup>
+  </Demo>
+  <Demo label="with text &amp; separator">
+    <ButtonGroup>
+      <ButtonGroupText>https://</ButtonGroupText>
+      <ButtonGroupSeparator />
+      <Input placeholder="example.com" class="w-40" />
+    </ButtonGroup>
+  </Demo>
+  <Demo label="vertical">
+    <ButtonGroup orientation="vertical">
+      <Button variant="outline" size="icon">
+        <div html="icons.bold"></div>
+      </Button>
+      <Button variant="outline" size="icon">
+        <div html="icons.italic"></div>
+      </Button>
+      <Button variant="outline" size="icon">
+        <div html="icons.underline"></div>
+      </Button>
+    </ButtonGroup>
+  </Demo>
+
+  <Pager id="button-group" />
 </div>

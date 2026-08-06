@@ -1,12 +1,17 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Combobox from "../../components/ui/Combobox/Combobox";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape"];
 </script>
 
+<Navbar />
+<GalleryNav id="combobox" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="combobox" title="Combobox">
-    <Combobox items="{fruits}" placeholder="Search fruit…" showClear="{true}" emptyText="No fruit found." class="w-56" />
-  </Section>
+  <Combobox items="{fruits}" placeholder="Search fruit…" showClear="{true}" emptyText="No fruit found." class="w-56" />
+
+  <Pager id="combobox" />
 </div>

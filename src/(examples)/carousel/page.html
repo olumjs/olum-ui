@@ -1,24 +1,29 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Carousel from "../../components/ui/Carousel/Carousel";
   import CarouselContent from "../../components/ui/Carousel/CarouselContent";
   import CarouselItem from "../../components/ui/Carousel/CarouselItem";
   import CarouselPrevious from "../../components/ui/Carousel/CarouselPrevious";
   import CarouselNext from "../../components/ui/Carousel/CarouselNext";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="carousel" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="carousel" title="Carousel">
-    <Carousel class="w-64">
-      <CarouselContent>
-        <for each="i of 5">
-          <CarouselItem>
-            <div class="flex aspect-square items-center justify-center rounded-lg border border-border bg-muted text-2xl font-semibold">{i}</div>
-          </CarouselItem>
-        </for>
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
-  </Section>
+  <Carousel class="w-64">
+    <CarouselContent>
+      <for each="i of 5">
+        <CarouselItem>
+          <div class="flex aspect-square items-center justify-center rounded-lg border border-border bg-muted text-2xl font-semibold">{i}</div>
+        </CarouselItem>
+      </for>
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+  </Carousel>
+
+  <Pager id="carousel" />
 </div>

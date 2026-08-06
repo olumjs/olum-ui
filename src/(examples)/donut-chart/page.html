@@ -1,6 +1,8 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import DonutChart from "../../components/ui/Chart/DonutChart";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const donutChartData = [
     { name: "Chrome", value: 275, color: "var(--color-chart-1)" },
@@ -11,8 +13,11 @@
   ];
 </script>
 
+<Navbar />
+<GalleryNav id="donut-chart" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="donut-chart" title="Donut Chart">
-    <DonutChart data="{donutChartData}" label="Visitors" class="w-full max-w-md" />
-  </Section>
+  <DonutChart data="{donutChartData}" label="Visitors" class="w-full max-w-md" />
+
+  <Pager id="donut-chart" />
 </div>

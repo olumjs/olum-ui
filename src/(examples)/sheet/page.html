@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Sheet from "../../components/ui/Sheet/Sheet";
   import SheetTrigger from "../../components/ui/Sheet/SheetTrigger";
   import SheetClose from "../../components/ui/Sheet/SheetClose";
@@ -8,57 +7,63 @@
   import SheetFooter from "../../components/ui/Sheet/SheetFooter";
   import SheetTitle from "../../components/ui/Sheet/SheetTitle";
   import SheetDescription from "../../components/ui/Sheet/SheetDescription";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="sheet" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="sheet" title="Sheet">
-    <Sheet>
-      <SheetTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm capitalize hover:bg-muted">Top</SheetTrigger>
-      <SheetContent side="top">
-        <SheetHeader>
-          <SheetTitle>Top sheet</SheetTitle>
-          <SheetDescription>This sheet slides in from the top.</SheetDescription>
-        </SheetHeader>
-        <SheetFooter>
-          <SheetClose class="inline-flex h-8 w-full items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Close</SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
-    <Sheet>
-      <SheetTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm capitalize hover:bg-muted">Right</SheetTrigger>
-      <SheetContent side="right">
-        <SheetHeader>
-          <SheetTitle>Right sheet</SheetTitle>
-          <SheetDescription>This sheet slides in from the right.</SheetDescription>
-        </SheetHeader>
-        <SheetFooter>
-          <SheetClose class="inline-flex h-8 w-full items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Close</SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
-    <Sheet>
-      <SheetTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm capitalize hover:bg-muted">Bottom</SheetTrigger>
-      <SheetContent side="bottom">
-        <SheetHeader>
-          <SheetTitle>Bottom sheet</SheetTitle>
-          <SheetDescription>This sheet slides in from the bottom.</SheetDescription>
-        </SheetHeader>
-        <SheetFooter>
-          <SheetClose class="inline-flex h-8 w-full items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Close</SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
-    <Sheet>
-      <SheetTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm capitalize hover:bg-muted">Left</SheetTrigger>
-      <SheetContent side="left">
-        <SheetHeader>
-          <SheetTitle>Left sheet</SheetTitle>
-          <SheetDescription>This sheet slides in from the left.</SheetDescription>
-        </SheetHeader>
-        <SheetFooter>
-          <SheetClose class="inline-flex h-8 w-full items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Close</SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
-  </Section>
+  <Sheet>
+    <SheetTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm capitalize hover:bg-muted">Top</SheetTrigger>
+    <SheetContent side="top">
+      <SheetHeader>
+        <SheetTitle>Top sheet</SheetTitle>
+        <SheetDescription>This sheet slides in from the top.</SheetDescription>
+      </SheetHeader>
+      <SheetFooter>
+        <SheetClose class="inline-flex h-8 w-full items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Close</SheetClose>
+      </SheetFooter>
+    </SheetContent>
+  </Sheet>
+  <Sheet>
+    <SheetTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm capitalize hover:bg-muted">Right</SheetTrigger>
+    <SheetContent side="right">
+      <SheetHeader>
+        <SheetTitle>Right sheet</SheetTitle>
+        <SheetDescription>This sheet slides in from the right.</SheetDescription>
+      </SheetHeader>
+      <SheetFooter>
+        <SheetClose class="inline-flex h-8 w-full items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Close</SheetClose>
+      </SheetFooter>
+    </SheetContent>
+  </Sheet>
+  <Sheet>
+    <SheetTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm capitalize hover:bg-muted">Bottom</SheetTrigger>
+    <SheetContent side="bottom">
+      <SheetHeader>
+        <SheetTitle>Bottom sheet</SheetTitle>
+        <SheetDescription>This sheet slides in from the bottom.</SheetDescription>
+      </SheetHeader>
+      <SheetFooter>
+        <SheetClose class="inline-flex h-8 w-full items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Close</SheetClose>
+      </SheetFooter>
+    </SheetContent>
+  </Sheet>
+  <Sheet>
+    <SheetTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm capitalize hover:bg-muted">Left</SheetTrigger>
+    <SheetContent side="left">
+      <SheetHeader>
+        <SheetTitle>Left sheet</SheetTitle>
+        <SheetDescription>This sheet slides in from the left.</SheetDescription>
+      </SheetHeader>
+      <SheetFooter>
+        <SheetClose class="inline-flex h-8 w-full items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Close</SheetClose>
+      </SheetFooter>
+    </SheetContent>
+  </Sheet>
+
+  <Pager id="sheet" />
 </div>

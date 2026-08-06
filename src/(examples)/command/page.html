@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Demo from "../../components/ui/Demo/Demo";
   import CommandDialog from "../../components/ui/Command/CommandDialog";
   import CommandDialogTrigger from "../../components/ui/Command/CommandDialogTrigger";
@@ -14,6 +13,9 @@
   import CommandShortcut from "../../components/ui/Command/CommandShortcut";
   import Kbd from "../../components/ui/Kbd/Kbd";
   import KbdGroup from "../../components/ui/Kbd/KbdGroup";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const icons = {
     calendar: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4" /><path d="M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" /></svg>`,
@@ -25,63 +27,66 @@
   };
 </script>
 
+<Navbar />
+<GalleryNav id="command" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="command" title="Command">
-    <Demo label="inline">
-      <Command class="w-72 rounded-lg border border-border">
-        <CommandInput placeholder="Type a command…" />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
-            <CommandItem>
-              <div html="icons.calendar"></div> Calendar
-            </CommandItem>
-            <CommandItem>
-              <div html="icons.search"></div> Search
-            </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="Settings">
-            <CommandItem>
-              <div html="icons.user"></div> Profile
-              <CommandShortcut>⌘P</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <div html="icons.settings"></div> Settings
-              <CommandShortcut>⌘S</CommandShortcut>
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
-      </Command>
-    </Demo>
-    <Demo label="dialog">
-      <CommandDialog>
-        <CommandDialogTrigger
-          class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:bg-muted"
-        >
-          Open command palette
-          <KbdGroup class="ml-2">
-            <Kbd>⌘</Kbd>
-            <Kbd>K</Kbd>
-          </KbdGroup>
-        </CommandDialogTrigger>
-        <CommandDialogContent>
-          <Command>
-            <CommandInput placeholder="Type a command…" />
-            <CommandList>
-              <CommandEmpty>No results found.</CommandEmpty>
-              <CommandGroup heading="Actions">
-                <CommandItem>
-                  <div html="icons.plus"></div> New file
-                </CommandItem>
-                <CommandItem>
-                  <div html="icons.folder"></div> New folder
-                </CommandItem>
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        </CommandDialogContent>
-      </CommandDialog>
-    </Demo>
-  </Section>
+  <Demo label="inline">
+    <Command class="w-72 rounded-lg border border-border">
+      <CommandInput placeholder="Type a command…" />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem>
+            <div html="icons.calendar"></div> Calendar
+          </CommandItem>
+          <CommandItem>
+            <div html="icons.search"></div> Search
+          </CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Settings">
+          <CommandItem>
+            <div html="icons.user"></div> Profile
+            <CommandShortcut>⌘P</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            <div html="icons.settings"></div> Settings
+            <CommandShortcut>⌘S</CommandShortcut>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  </Demo>
+  <Demo label="dialog">
+    <CommandDialog>
+      <CommandDialogTrigger
+        class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:bg-muted"
+      >
+        Open command palette
+        <KbdGroup class="ml-2">
+          <Kbd>⌘</Kbd>
+          <Kbd>K</Kbd>
+        </KbdGroup>
+      </CommandDialogTrigger>
+      <CommandDialogContent>
+        <Command>
+          <CommandInput placeholder="Type a command…" />
+          <CommandList>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Actions">
+              <CommandItem>
+                <div html="icons.plus"></div> New file
+              </CommandItem>
+              <CommandItem>
+                <div html="icons.folder"></div> New folder
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </CommandDialogContent>
+    </CommandDialog>
+  </Demo>
+
+  <Pager id="command" />
 </div>

@@ -1,42 +1,47 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Demo from "../../components/ui/Demo/Demo";
   import InputGroup from "../../components/ui/InputGroup/InputGroup";
   import InputGroupAddon from "../../components/ui/InputGroup/InputGroupAddon";
   import InputGroupButton from "../../components/ui/InputGroup/InputGroupButton";
   import InputGroupText from "../../components/ui/InputGroup/InputGroupText";
   import InputGroupInput from "../../components/ui/InputGroup/InputGroupInput";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const icons = {
     search: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>`,
   };
 </script>
 
+<Navbar />
+<GalleryNav id="input-group" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="input-group" title="Input Group">
-    <Demo label="with icon addon">
-      <InputGroup class="w-64">
-        <InputGroupInput placeholder="Search…" />
-        <InputGroupAddon>
-          <div html="icons.search"></div>
-        </InputGroupAddon>
-      </InputGroup>
-    </Demo>
-    <Demo label="with button addon">
-      <InputGroup class="w-64">
-        <InputGroupInput placeholder="you@example.com" />
-        <InputGroupAddon align="inline-end">
-          <InputGroupButton>Send</InputGroupButton>
-        </InputGroupAddon>
-      </InputGroup>
-    </Demo>
-    <Demo label="with text addon">
-      <InputGroup class="w-64">
-        <InputGroupAddon>
-          <InputGroupText>$</InputGroupText>
-        </InputGroupAddon>
-        <InputGroupInput placeholder="0.00" />
-      </InputGroup>
-    </Demo>
-  </Section>
+  <Demo label="with icon addon">
+    <InputGroup class="w-64">
+      <InputGroupInput placeholder="Search…" />
+      <InputGroupAddon>
+        <div html="icons.search"></div>
+      </InputGroupAddon>
+    </InputGroup>
+  </Demo>
+  <Demo label="with button addon">
+    <InputGroup class="w-64">
+      <InputGroupInput placeholder="you@example.com" />
+      <InputGroupAddon align="inline-end">
+        <InputGroupButton>Send</InputGroupButton>
+      </InputGroupAddon>
+    </InputGroup>
+  </Demo>
+  <Demo label="with text addon">
+    <InputGroup class="w-64">
+      <InputGroupAddon>
+        <InputGroupText>$</InputGroupText>
+      </InputGroupAddon>
+      <InputGroupInput placeholder="0.00" />
+    </InputGroup>
+  </Demo>
+
+  <Pager id="input-group" />
 </div>

@@ -1,22 +1,27 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Label from "../../components/ui/Label/Label";
   import Switch from "../../components/ui/Switch/Switch";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="switch" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="switch" title="Switch">
-    <div class="flex items-center gap-2">
-      <Switch id="switch-default" defaultChecked="{true}" />
-      <Label for="switch-default">Default</Label>
-    </div>
-    <div class="flex items-center gap-2">
-      <Switch id="switch-sm" size="sm" />
-      <Label for="switch-sm">Small</Label>
-    </div>
-    <div class="flex items-center gap-2">
-      <Switch id="switch-disabled" disabled="{true}" />
-      <Label for="switch-disabled">Disabled</Label>
-    </div>
-  </Section>
+  <div class="flex items-center gap-2">
+    <Switch id="switch-default" defaultChecked="{true}" />
+    <Label for="switch-default">Default</Label>
+  </div>
+  <div class="flex items-center gap-2">
+    <Switch id="switch-sm" size="sm" />
+    <Label for="switch-sm">Small</Label>
+  </div>
+  <div class="flex items-center gap-2">
+    <Switch id="switch-disabled" disabled="{true}" />
+    <Label for="switch-disabled">Disabled</Label>
+  </div>
+
+  <Pager id="switch" />
 </div>

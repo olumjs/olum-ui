@@ -1,0 +1,34 @@
+<script>
+  import { props } from "olum";
+  import { label, nextOf, prevOf } from "../../utils/components";
+
+  const { id } = props();
+
+  const prev = () => prevOf(id);
+  const next = () => nextOf(id);
+
+  // Router `to` anchors must hold plain text -- a nested icon element swallows
+  // the click -- so the arrows are text, not svg.
+  const link = "inline-flex h-8 items-center rounded-lg border border-border bg-background px-2.5 text-sm font-medium capitalize transition-all hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px";
+</script>
+
+<!-- Pinned to the viewport bottom, full width so the rail sits on top of it;
+     every page wrapper carries pb-24 so nothing scrolls underneath. h-14 is
+     fixed rather than derived from the content because GalleryNav stops at
+     bottom-14 to meet it. lg:pl-64 keeps the buttons aligned with the content
+     column, which body's padding-left can't do for a fixed element. -->
+<nav class="fixed inset-x-0 bottom-0 z-40 h-14 border-t border-border bg-background/80 backdrop-blur lg:pl-64">
+  <div class="mx-auto flex h-full max-w-4xl items-center justify-between gap-4 px-6 sm:px-10">
+    <div>
+      <if when="prev()">
+        <a to="/{prev()}" class="{link}">← {label(prev())}</a>
+      </if>
+    </div>
+
+    <div>
+      <if when="next()">
+        <a to="/{next()}" class="{link}">{label(next())} →</a>
+      </if>
+    </div>
+  </div>
+</nav>

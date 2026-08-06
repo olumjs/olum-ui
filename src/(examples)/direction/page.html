@@ -1,10 +1,12 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Button from "../../components/ui/Button/Button";
   import ButtonGroup from "../../components/ui/ButtonGroup/ButtonGroup";
   import Direction from "../../components/ui/Direction/Direction";
   import Label from "../../components/ui/Label/Label";
   import Switch from "../../components/ui/Switch/Switch";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const state = { direction: "ltr" };
   const setDirection = (checked) => (state.direction = checked ? "rtl" : "ltr");
@@ -14,22 +16,25 @@
   };
 </script>
 
+<Navbar />
+<GalleryNav id="direction" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="direction" title="Direction">
-    <div class="flex flex-col gap-3">
-      <div class="flex items-center gap-2">
-        <Switch id="dir-switch" onCheckedChange="{setDirection}" />
-        <Label for="dir-switch">Right-to-left</Label>
-      </div>
-      <Direction direction="{state.direction}">
-        <ButtonGroup>
-          <Button variant="outline">
-            <div data-icon="inline-start" html="icons.arrowRight"></div> First
-          </Button>
-          <Button variant="outline">Second</Button>
-          <Button variant="outline">Third</Button>
-        </ButtonGroup>
-      </Direction>
+  <div class="flex flex-col gap-3">
+    <div class="flex items-center gap-2">
+      <Switch id="dir-switch" onCheckedChange="{setDirection}" />
+      <Label for="dir-switch">Right-to-left</Label>
     </div>
-  </Section>
+    <Direction direction="{state.direction}">
+      <ButtonGroup>
+        <Button variant="outline">
+          <div data-icon="inline-start" html="icons.arrowRight"></div> First
+        </Button>
+        <Button variant="outline">Second</Button>
+        <Button variant="outline">Third</Button>
+      </ButtonGroup>
+    </Direction>
+  </div>
+
+  <Pager id="direction" />
 </div>

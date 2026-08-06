@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Field from "../../components/ui/Field/Field";
   import FieldContent from "../../components/ui/Field/FieldContent";
   import FieldDescription from "../../components/ui/Field/FieldDescription";
@@ -11,29 +10,35 @@
   import FieldSet from "../../components/ui/Field/FieldSet";
   import Input from "../../components/ui/Input/Input";
   import Switch from "../../components/ui/Switch/Switch";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const fieldErrors = [{ message: "Email is required." }];
 </script>
 
+<Navbar />
+<GalleryNav id="field" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="field" title="Field">
-    <FieldSet class="w-80">
-      <FieldLegend>Contact info</FieldLegend>
-      <FieldGroup>
-        <Field>
-          <FieldLabel for="field-email">Email</FieldLabel>
-          <Input id="field-email" type="email" placeholder="you@example.com" invalid="{true}" />
-          <FieldError errors="{fieldErrors}" />
-        </Field>
-        <FieldSeparator>Or</FieldSeparator>
-        <Field orientation="horizontal">
-          <FieldContent>
-            <FieldLabel for="field-notify">Notifications</FieldLabel>
-            <FieldDescription>Receive updates about your account.</FieldDescription>
-          </FieldContent>
-          <Switch id="field-notify" />
-        </Field>
-      </FieldGroup>
-    </FieldSet>
-  </Section>
+  <FieldSet class="w-80">
+    <FieldLegend>Contact info</FieldLegend>
+    <FieldGroup>
+      <Field>
+        <FieldLabel for="field-email">Email</FieldLabel>
+        <Input id="field-email" type="email" placeholder="you@example.com" invalid="{true}" />
+        <FieldError errors="{fieldErrors}" />
+      </Field>
+      <FieldSeparator>Or</FieldSeparator>
+      <Field orientation="horizontal">
+        <FieldContent>
+          <FieldLabel for="field-notify">Notifications</FieldLabel>
+          <FieldDescription>Receive updates about your account.</FieldDescription>
+        </FieldContent>
+        <Switch id="field-notify" />
+      </Field>
+    </FieldGroup>
+  </FieldSet>
+
+  <Pager id="field" />
 </div>

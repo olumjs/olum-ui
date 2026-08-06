@@ -1,14 +1,19 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Checkbox from "../../components/ui/Checkbox/Checkbox";
   import Label from "../../components/ui/Label/Label";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="label" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="label" title="Label">
-    <div class="flex items-center gap-2">
-      <Checkbox id="label-demo" />
-      <Label for="label-demo">Label paired with checkbox</Label>
-    </div>
-  </Section>
+  <div class="flex items-center gap-2">
+    <Checkbox id="label-demo" />
+    <Label for="label-demo">Label paired with checkbox</Label>
+  </div>
+
+  <Pager id="label" />
 </div>

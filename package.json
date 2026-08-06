@@ -27,7 +27,6 @@
     "@tailwindcss/cli": "latest",
     "concurrently": "latest",
     "olum-compiler": "latest",
-    "olum-devtool": "latest",
     "tailwindcss": "latest",
     "vite": "^8.2.0"
   }

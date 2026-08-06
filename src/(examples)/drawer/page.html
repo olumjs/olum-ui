@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Button from "../../components/ui/Button/Button";
   import Drawer from "../../components/ui/Drawer/Drawer";
   import DrawerTrigger from "../../components/ui/Drawer/DrawerTrigger";
@@ -9,24 +8,30 @@
   import DrawerTitle from "../../components/ui/Drawer/DrawerTitle";
   import DrawerDescription from "../../components/ui/Drawer/DrawerDescription";
   import Slider from "../../components/ui/Slider/Slider";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="drawer" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="drawer" title="Drawer">
-    <Drawer>
-      <DrawerTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Open drawer</DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Move goal</DrawerTitle>
-          <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-        </DrawerHeader>
-        <div class="px-4 pt-4 pb-4">
-          <Slider defaultValue="{[350]}" max="{1000}" step="{50}" />
-        </div>
-        <DrawerFooter>
-          <Button size="lg" class="w-full">Submit</Button>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  </Section>
+  <Drawer>
+    <DrawerTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Open drawer</DrawerTrigger>
+    <DrawerContent>
+      <DrawerHeader>
+        <DrawerTitle>Move goal</DrawerTitle>
+        <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+      </DrawerHeader>
+      <div class="px-4 pt-4 pb-4">
+        <Slider defaultValue="{[350]}" max="{1000}" step="{50}" />
+      </div>
+      <DrawerFooter>
+        <Button size="lg" class="w-full">Submit</Button>
+      </DrawerFooter>
+    </DrawerContent>
+  </Drawer>
+
+  <Pager id="drawer" />
 </div>

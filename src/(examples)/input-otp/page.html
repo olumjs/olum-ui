@@ -1,25 +1,30 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import InputOTP from "../../components/ui/InputOTP/InputOTP";
   import InputOTPGroup from "../../components/ui/InputOTP/InputOTPGroup";
   import InputOTPSlot from "../../components/ui/InputOTP/InputOTPSlot";
   import InputOTPSeparator from "../../components/ui/InputOTP/InputOTPSeparator";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="input-otp" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="input-otp" title="Input OTP">
-    <InputOTP maxLength="{6}">
-      <InputOTPGroup>
-        <InputOTPSlot index="{0}" />
-        <InputOTPSlot index="{1}" />
-        <InputOTPSlot index="{2}" />
-      </InputOTPGroup>
-      <InputOTPSeparator />
-      <InputOTPGroup>
-        <InputOTPSlot index="{3}" />
-        <InputOTPSlot index="{4}" />
-        <InputOTPSlot index="{5}" />
-      </InputOTPGroup>
-    </InputOTP>
-  </Section>
+  <InputOTP maxLength="{6}">
+    <InputOTPGroup>
+      <InputOTPSlot index="{0}" />
+      <InputOTPSlot index="{1}" />
+      <InputOTPSlot index="{2}" />
+    </InputOTPGroup>
+    <InputOTPSeparator />
+    <InputOTPGroup>
+      <InputOTPSlot index="{3}" />
+      <InputOTPSlot index="{4}" />
+      <InputOTPSlot index="{5}" />
+    </InputOTPGroup>
+  </InputOTP>
+
+  <Pager id="input-otp" />
 </div>

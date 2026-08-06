@@ -1,33 +1,38 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Demo from "../../components/ui/Demo/Demo";
   import Tabs from "../../components/ui/Tabs/Tabs";
   import TabsList from "../../components/ui/Tabs/TabsList";
   import TabsTrigger from "../../components/ui/Tabs/TabsTrigger";
   import TabsContent from "../../components/ui/Tabs/TabsContent";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="tabs" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="tabs" title="Tabs">
-    <Demo label="default">
-      <Tabs class="w-72">
-        <TabsList>
-          <TabsTrigger group="tabs1" value="account" defaultChecked="{true}">Account</TabsTrigger>
-          <TabsTrigger group="tabs1" value="password">Password</TabsTrigger>
-        </TabsList>
-        <TabsContent value="account">Manage your account settings.</TabsContent>
-        <TabsContent value="password">Change your password.</TabsContent>
-      </Tabs>
-    </Demo>
-    <Demo label="line variant">
-      <Tabs class="w-72">
-        <TabsList variant="line">
-          <TabsTrigger group="tabs2" variant="line" value="overview" defaultChecked="{true}">Overview</TabsTrigger>
-          <TabsTrigger group="tabs2" variant="line" value="analytics">Analytics</TabsTrigger>
-        </TabsList>
-        <TabsContent value="overview">Overview content.</TabsContent>
-        <TabsContent value="analytics">Analytics content.</TabsContent>
-      </Tabs>
-    </Demo>
-  </Section>
+  <Demo label="default">
+    <Tabs class="w-72">
+      <TabsList>
+        <TabsTrigger group="tabs1" value="account" defaultChecked="{true}">Account</TabsTrigger>
+        <TabsTrigger group="tabs1" value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">Manage your account settings.</TabsContent>
+      <TabsContent value="password">Change your password.</TabsContent>
+    </Tabs>
+  </Demo>
+  <Demo label="line variant">
+    <Tabs class="w-72">
+      <TabsList variant="line">
+        <TabsTrigger group="tabs2" variant="line" value="overview" defaultChecked="{true}">Overview</TabsTrigger>
+        <TabsTrigger group="tabs2" variant="line" value="analytics">Analytics</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview">Overview content.</TabsContent>
+      <TabsContent value="analytics">Analytics content.</TabsContent>
+    </Tabs>
+  </Demo>
+
+  <Pager id="tabs" />
 </div>

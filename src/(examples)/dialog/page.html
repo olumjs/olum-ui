@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Button from "../../components/ui/Button/Button";
   import Dialog from "../../components/ui/Dialog/Dialog";
   import DialogTrigger from "../../components/ui/Dialog/DialogTrigger";
@@ -11,26 +10,32 @@
   import DialogDescription from "../../components/ui/Dialog/DialogDescription";
   import Input from "../../components/ui/Input/Input";
   import Label from "../../components/ui/Label/Label";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="dialog" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="dialog" title="Dialog">
-    <Dialog>
-      <DialogTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Edit profile</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>Make changes to your profile here.</DialogDescription>
-        </DialogHeader>
-        <div class="flex flex-col gap-2">
-          <Label for="dialog-name">Name</Label>
-          <Input id="dialog-name" value="Ada Lovelace" />
-        </div>
-        <DialogFooter>
-          <DialogClose class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Cancel</DialogClose>
-          <Button>Save changes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  </Section>
+  <Dialog>
+    <DialogTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Edit profile</DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Edit profile</DialogTitle>
+        <DialogDescription>Make changes to your profile here.</DialogDescription>
+      </DialogHeader>
+      <div class="flex flex-col gap-2">
+        <Label for="dialog-name">Name</Label>
+        <Input id="dialog-name" value="Ada Lovelace" />
+      </div>
+      <DialogFooter>
+        <DialogClose class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Cancel</DialogClose>
+        <Button>Save changes</Button>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+
+  <Pager id="dialog" />
 </div>

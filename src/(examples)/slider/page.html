@@ -1,16 +1,21 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Demo from "../../components/ui/Demo/Demo";
   import Slider from "../../components/ui/Slider/Slider";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="slider" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="slider" title="Slider">
-    <Demo label="single">
-      <Slider defaultValue="{[50]}" class="w-56" />
-    </Demo>
-    <Demo label="range">
-      <Slider defaultValue="{[25, 75]}" class="w-56" />
-    </Demo>
-  </Section>
+  <Demo label="single">
+    <Slider defaultValue="{[50]}" class="w-56" />
+  </Demo>
+  <Demo label="range">
+    <Slider defaultValue="{[25, 75]}" class="w-56" />
+  </Demo>
+
+  <Pager id="slider" />
 </div>

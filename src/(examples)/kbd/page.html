@@ -1,20 +1,25 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Kbd from "../../components/ui/Kbd/Kbd";
   import KbdGroup from "../../components/ui/Kbd/KbdGroup";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="kbd" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="kbd" title="Kbd">
-    <KbdGroup>
-      <Kbd>Ctrl</Kbd>
-      <Kbd>Alt</Kbd>
-      <Kbd>Del</Kbd>
-    </KbdGroup>
-    <KbdGroup>
-      <Kbd>⌘</Kbd>
-      <Kbd>Shift</Kbd>
-      <Kbd>P</Kbd>
-    </KbdGroup>
-  </Section>
+  <KbdGroup>
+    <Kbd>Ctrl</Kbd>
+    <Kbd>Alt</Kbd>
+    <Kbd>Del</Kbd>
+  </KbdGroup>
+  <KbdGroup>
+    <Kbd>⌘</Kbd>
+    <Kbd>Shift</Kbd>
+    <Kbd>P</Kbd>
+  </KbdGroup>
+
+  <Pager id="kbd" />
 </div>

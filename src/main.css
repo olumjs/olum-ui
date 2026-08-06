@@ -1,56 +1,13 @@
-@import "tailwindcss";
-
-:root {
-  --olum-radius: 0.625rem;
-  --olum-background: oklch(1 0 0);
-  --olum-foreground: oklch(0.145 0 0);
-  --olum-primary: oklch(0.205 0 0);
-  --olum-primary-foreground: oklch(0.985 0 0);
-  --olum-secondary: oklch(0.97 0 0);
-  --olum-secondary-foreground: oklch(0.205 0 0);
-  --olum-muted: oklch(0.97 0 0);
-  --olum-muted-foreground: oklch(0.556 0 0);
-  --olum-accent: oklch(0.97 0 0);
-  --olum-accent-foreground: oklch(0.205 0 0);
-  --olum-destructive: oklch(0.577 0.245 27.325);
-  --olum-border: oklch(0.922 0 0);
-  --olum-ring: oklch(0.708 0 0);
-  --olum-chart-1: oklch(0.646 0.222 41.116);
-  --olum-chart-2: oklch(0.6 0.118 184.704);
-  --olum-chart-3: oklch(0.398 0.07 227.392);
-  --olum-chart-4: oklch(0.828 0.189 84.429);
-  --olum-chart-5: oklch(0.769 0.188 70.08);
-}
+@import "./olum-ui.css";
 
 @layer base {
-  *,
-  ::after,
-  ::before {
-    border-color: var(--color-border);
+  body {
+    padding-top: 3.5rem;
   }
-}
 
-@theme inline {
-  --color-background: var(--olum-background);
-  --color-foreground: var(--olum-foreground);
-  --color-primary: var(--olum-primary);
-  --color-primary-foreground: var(--olum-primary-foreground);
-  --color-secondary: var(--olum-secondary);
-  --color-secondary-foreground: var(--olum-secondary-foreground);
-  --color-muted: var(--olum-muted);
-  --color-muted-foreground: var(--olum-muted-foreground);
-  --color-accent: var(--olum-accent);
-  --color-accent-foreground: var(--olum-accent-foreground);
-  --color-destructive: var(--olum-destructive);
-  --color-border: var(--olum-border);
-  --color-ring: var(--olum-ring);
-  --color-chart-1: var(--olum-chart-1);
-  --color-chart-2: var(--olum-chart-2);
-  --color-chart-3: var(--olum-chart-3);
-  --color-chart-4: var(--olum-chart-4);
-  --color-chart-5: var(--olum-chart-5);
-  --radius-sm: calc(var(--olum-radius) * 0.6);
-  --radius-md: calc(var(--olum-radius) * 0.8);
-  --radius-lg: var(--olum-radius);
-  --radius-xl: calc(var(--olum-radius) * 1.4);
+  @media (min-width: 64rem) {
+    body {
+      padding-left: 16rem;
+    }
+  }
 }

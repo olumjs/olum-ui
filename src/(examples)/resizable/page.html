@@ -1,20 +1,25 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import ResizablePanelGroup from "../../components/ui/Resizable/ResizablePanelGroup";
   import ResizablePanel from "../../components/ui/Resizable/ResizablePanel";
   import ResizableHandle from "../../components/ui/Resizable/ResizableHandle";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="resizable" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="resizable" title="Resizable">
-    <ResizablePanelGroup orientation="horizontal" class="h-40 w-96 rounded-lg border border-border">
-      <ResizablePanel defaultSize="{50}">
-        <div class="flex h-full items-center justify-center text-sm text-muted-foreground">One</div>
-      </ResizablePanel>
-      <ResizableHandle withHandle="{true}" />
-      <ResizablePanel defaultSize="{50}">
-        <div class="flex h-full items-center justify-center text-sm text-muted-foreground">Two</div>
-      </ResizablePanel>
-    </ResizablePanelGroup>
-  </Section>
+  <ResizablePanelGroup orientation="horizontal" class="h-40 w-96 rounded-lg border border-border">
+    <ResizablePanel defaultSize="{50}">
+      <div class="flex h-full items-center justify-center text-sm text-muted-foreground">One</div>
+    </ResizablePanel>
+    <ResizableHandle withHandle="{true}" />
+    <ResizablePanel defaultSize="{50}">
+      <div class="flex h-full items-center justify-center text-sm text-muted-foreground">Two</div>
+    </ResizablePanel>
+  </ResizablePanelGroup>
+
+  <Pager id="resizable" />
 </div>

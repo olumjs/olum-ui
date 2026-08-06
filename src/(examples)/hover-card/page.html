@@ -1,30 +1,35 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Avatar from "../../components/ui/Avatar/Avatar";
   import AvatarFallback from "../../components/ui/Avatar/AvatarFallback";
   import Button from "../../components/ui/Button/Button";
   import HoverCard from "../../components/ui/HoverCard/HoverCard";
   import HoverCardTrigger from "../../components/ui/HoverCard/HoverCardTrigger";
   import HoverCardContent from "../../components/ui/HoverCard/HoverCardContent";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="hover-card" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="hover-card" title="Hover Card">
-    <HoverCard>
-      <HoverCardTrigger>
-        <Button variant="link">@shadcn</Button>
-      </HoverCardTrigger>
-      <HoverCardContent>
-        <div class="flex justify-between gap-4">
-          <Avatar>
-            <AvatarFallback>SC</AvatarFallback>
-          </Avatar>
-          <div class="flex flex-col gap-1">
-            <h4 class="text-sm font-semibold">@shadcn</h4>
-            <p class="text-sm text-muted-foreground">Building beautiful components.</p>
-          </div>
+  <HoverCard>
+    <HoverCardTrigger>
+      <Button variant="link">@shadcn</Button>
+    </HoverCardTrigger>
+    <HoverCardContent>
+      <div class="flex justify-between gap-4">
+        <Avatar>
+          <AvatarFallback>SC</AvatarFallback>
+        </Avatar>
+        <div class="flex flex-col gap-1">
+          <h4 class="text-sm font-semibold">@shadcn</h4>
+          <p class="text-sm text-muted-foreground">Building beautiful components.</p>
         </div>
-      </HoverCardContent>
-    </HoverCard>
-  </Section>
+      </div>
+    </HoverCardContent>
+  </HoverCard>
+
+  <Pager id="hover-card" />
 </div>

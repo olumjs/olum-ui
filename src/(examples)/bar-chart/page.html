@@ -1,6 +1,8 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import BarChart from "../../components/ui/Chart/BarChart";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const chartData = [
     { month: "Jan", desktop: 186, mobile: 80 },
@@ -17,8 +19,11 @@
   };
 </script>
 
+<Navbar />
+<GalleryNav id="bar-chart" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="bar-chart" title="Bar Chart">
-    <BarChart data="{chartData}" config="{chartConfig}" class="h-64 w-full max-w-md" />
-  </Section>
+  <BarChart data="{chartData}" config="{chartConfig}" class="h-64 w-full max-w-md" />
+
+  <Pager id="bar-chart" />
 </div>

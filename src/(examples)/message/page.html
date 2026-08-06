@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Avatar from "../../components/ui/Avatar/Avatar";
   import AvatarFallback from "../../components/ui/Avatar/AvatarFallback";
   import Bubble from "../../components/ui/Bubble/Bubble";
@@ -10,6 +9,9 @@
   import MessageContent from "../../components/ui/Message/MessageContent";
   import MessageHeader from "../../components/ui/Message/MessageHeader";
   import MessageFooter from "../../components/ui/Message/MessageFooter";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const chatMessages = [
     { id: "1", align: "start", text: "Hey, do you have the Q3 report ready?" },
@@ -19,25 +21,28 @@
   ];
 </script>
 
+<Navbar />
+<GalleryNav id="message" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="message" title="Message">
-    <MessageGroup class="w-96">
-      <for each="m of chatMessages" key="m.id">
-        <Message align="{m.align}">
-          <MessageAvatar>
-            <Avatar size="sm">
-              <AvatarFallback>{m.align === "start" ? "JD" : "Me"}</AvatarFallback>
-            </Avatar>
-          </MessageAvatar>
-          <MessageContent>
-            <MessageHeader>{m.align === "start" ? "Jane Doe" : "You"}</MessageHeader>
-            <Bubble align="{m.align}">
-              <BubbleContent>{m.text}</BubbleContent>
-            </Bubble>
-            <MessageFooter>Seen</MessageFooter>
-          </MessageContent>
-        </Message>
-      </for>
-    </MessageGroup>
-  </Section>
+  <MessageGroup class="w-96">
+    <for each="m of chatMessages" key="m.id">
+      <Message align="{m.align}">
+        <MessageAvatar>
+          <Avatar size="sm">
+            <AvatarFallback>{m.align === "start" ? "JD" : "Me"}</AvatarFallback>
+          </Avatar>
+        </MessageAvatar>
+        <MessageContent>
+          <MessageHeader>{m.align === "start" ? "Jane Doe" : "You"}</MessageHeader>
+          <Bubble align="{m.align}">
+            <BubbleContent>{m.text}</BubbleContent>
+          </Bubble>
+          <MessageFooter>Seen</MessageFooter>
+        </MessageContent>
+      </Message>
+    </for>
+  </MessageGroup>
+
+  <Pager id="message" />
 </div>

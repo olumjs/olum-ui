@@ -1,25 +1,30 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Label from "../../components/ui/Label/Label";
   import RadioGroup from "../../components/ui/RadioGroup/RadioGroup";
   import RadioGroupItem from "../../components/ui/RadioGroup/RadioGroupItem";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="radio-group" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="radio-group" title="Radio Group">
-    <RadioGroup class="w-48">
-      <div class="flex items-center gap-2">
-        <RadioGroupItem name="r" value="default" id="r1" />
-        <Label for="r1">Default</Label>
-      </div>
-      <div class="flex items-center gap-2">
-        <RadioGroupItem name="r" value="comfortable" id="r2" defaultChecked="{true}" />
-        <Label for="r2">Comfortable</Label>
-      </div>
-      <div class="flex items-center gap-2">
-        <RadioGroupItem name="r" value="compact" id="r3" disabled="{true}" />
-        <Label for="r3">Compact (disabled)</Label>
-      </div>
-    </RadioGroup>
-  </Section>
+  <RadioGroup class="w-48">
+    <div class="flex items-center gap-2">
+      <RadioGroupItem name="r" value="default" id="r1" />
+      <Label for="r1">Default</Label>
+    </div>
+    <div class="flex items-center gap-2">
+      <RadioGroupItem name="r" value="comfortable" id="r2" defaultChecked="{true}" />
+      <Label for="r2">Comfortable</Label>
+    </div>
+    <div class="flex items-center gap-2">
+      <RadioGroupItem name="r" value="compact" id="r3" disabled="{true}" />
+      <Label for="r3">Compact (disabled)</Label>
+    </div>
+  </RadioGroup>
+
+  <Pager id="radio-group" />
 </div>

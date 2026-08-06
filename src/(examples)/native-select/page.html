@@ -1,20 +1,25 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import NativeSelect from "../../components/ui/NativeSelect/NativeSelect";
   import NativeSelectOptGroup from "../../components/ui/NativeSelect/NativeSelectOptGroup";
   import NativeSelectOption from "../../components/ui/NativeSelect/NativeSelectOption";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="native-select" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="native-select" title="Native Select">
-    <NativeSelect>
-      <NativeSelectOptGroup label="Fruits">
-        <NativeSelectOption value="apple">Apple</NativeSelectOption>
-        <NativeSelectOption value="banana">Banana</NativeSelectOption>
-      </NativeSelectOptGroup>
-      <NativeSelectOptGroup label="Vegetables">
-        <NativeSelectOption value="carrot">Carrot</NativeSelectOption>
-      </NativeSelectOptGroup>
-    </NativeSelect>
-  </Section>
+  <NativeSelect>
+    <NativeSelectOptGroup label="Fruits">
+      <NativeSelectOption value="apple">Apple</NativeSelectOption>
+      <NativeSelectOption value="banana">Banana</NativeSelectOption>
+    </NativeSelectOptGroup>
+    <NativeSelectOptGroup label="Vegetables">
+      <NativeSelectOption value="carrot">Carrot</NativeSelectOption>
+    </NativeSelectOptGroup>
+  </NativeSelect>
+
+  <Pager id="native-select" />
 </div>

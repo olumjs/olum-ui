@@ -1,19 +1,24 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Separator from "../../components/ui/Separator/Separator";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="separator" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="separator" title="Separator">
-    <div class="flex w-56 flex-col gap-3 [&>[data-olum]]:contents">
-      <div class="text-sm">Above</div>
-      <Separator />
-      <div class="text-sm">Below</div>
-    </div>
-    <div class="flex h-8 items-center gap-3 [&>[data-olum]]:contents">
-      <span class="text-sm">Left</span>
-      <Separator orientation="vertical" />
-      <span class="text-sm">Right</span>
-    </div>
-  </Section>
+  <div class="flex w-56 flex-col gap-3 [&>[data-olum]]:contents">
+    <div class="text-sm">Above</div>
+    <Separator />
+    <div class="text-sm">Below</div>
+  </div>
+  <div class="flex h-8 items-center gap-3 [&>[data-olum]]:contents">
+    <span class="text-sm">Left</span>
+    <Separator orientation="vertical" />
+    <span class="text-sm">Right</span>
+  </div>
+
+  <Pager id="separator" />
 </div>

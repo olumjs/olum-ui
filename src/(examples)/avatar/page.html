@@ -1,49 +1,54 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Demo from "../../components/ui/Demo/Demo";
   import Avatar from "../../components/ui/Avatar/Avatar";
   import AvatarFallback from "../../components/ui/Avatar/AvatarFallback";
   import AvatarBadge from "../../components/ui/Avatar/AvatarBadge";
   import AvatarGroup from "../../components/ui/Avatar/AvatarGroup";
   import AvatarGroupCount from "../../components/ui/Avatar/AvatarGroupCount";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="avatar" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="avatar" title="Avatar">
-    <Demo label="sizes">
-      <div class="flex items-center gap-2">
-        <Avatar size="sm">
-          <AvatarFallback>SM</AvatarFallback>
-        </Avatar>
-        <Avatar>
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <Avatar size="lg">
-          <AvatarFallback>LG</AvatarFallback>
-        </Avatar>
-      </div>
-    </Demo>
-    <Demo label="with badge">
-      <Avatar>
-        <AvatarFallback>JD</AvatarFallback>
-        <AvatarBadge>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-        </AvatarBadge>
+  <Demo label="sizes">
+    <div class="flex items-center gap-2">
+      <Avatar size="sm">
+        <AvatarFallback>SM</AvatarFallback>
       </Avatar>
-    </Demo>
-    <Demo label="group">
-      <AvatarGroup>
-        <Avatar>
-          <AvatarFallback>A</AvatarFallback>
-        </Avatar>
-        <Avatar>
-          <AvatarFallback>B</AvatarFallback>
-        </Avatar>
-        <Avatar>
-          <AvatarFallback>C</AvatarFallback>
-        </Avatar>
-        <AvatarGroupCount>+4</AvatarGroupCount>
-      </AvatarGroup>
-    </Demo>
-  </Section>
+      <Avatar>
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+      <Avatar size="lg">
+        <AvatarFallback>LG</AvatarFallback>
+      </Avatar>
+    </div>
+  </Demo>
+  <Demo label="with badge">
+    <Avatar>
+      <AvatarFallback>JD</AvatarFallback>
+      <AvatarBadge>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+      </AvatarBadge>
+    </Avatar>
+  </Demo>
+  <Demo label="group">
+    <AvatarGroup>
+      <Avatar>
+        <AvatarFallback>A</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>B</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>C</AvatarFallback>
+      </Avatar>
+      <AvatarGroupCount>+4</AvatarGroupCount>
+    </AvatarGroup>
+  </Demo>
+
+  <Pager id="avatar" />
 </div>

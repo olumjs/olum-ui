@@ -1,22 +1,27 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Checkbox from "../../components/ui/Checkbox/Checkbox";
   import Label from "../../components/ui/Label/Label";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="checkbox" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="checkbox" title="Checkbox">
-    <div class="flex items-center gap-2">
-      <Checkbox id="cb-1" defaultChecked="{true}" />
-      <Label for="cb-1">Accept terms</Label>
-    </div>
-    <div class="flex items-center gap-2">
-      <Checkbox id="cb-2" />
-      <Label for="cb-2">Subscribe to newsletter</Label>
-    </div>
-    <div class="flex items-center gap-2">
-      <Checkbox id="cb-3" disabled="{true}" />
-      <Label for="cb-3">Disabled</Label>
-    </div>
-  </Section>
+  <div class="flex items-center gap-2">
+    <Checkbox id="cb-1" defaultChecked="{true}" />
+    <Label for="cb-1">Accept terms</Label>
+  </div>
+  <div class="flex items-center gap-2">
+    <Checkbox id="cb-2" />
+    <Label for="cb-2">Subscribe to newsletter</Label>
+  </div>
+  <div class="flex items-center gap-2">
+    <Checkbox id="cb-3" disabled="{true}" />
+    <Label for="cb-3">Disabled</Label>
+  </div>
+
+  <Pager id="checkbox" />
 </div>

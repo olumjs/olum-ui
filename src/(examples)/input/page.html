@@ -1,13 +1,18 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Input from "../../components/ui/Input/Input";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="input" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="input" title="Input">
-    <Input placeholder="Enter text" />
-    <Input placeholder="Error" invalid="{true}" />
-    <Input placeholder="Disabled" disabled="{true}" />
-    <Input type="password" placeholder="Password" />
-  </Section>
+  <Input placeholder="Enter text" />
+  <Input placeholder="Error" invalid="{true}" />
+  <Input placeholder="Disabled" disabled="{true}" />
+  <Input type="password" placeholder="Password" />
+
+  <Pager id="input" />
 </div>

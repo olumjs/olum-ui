@@ -1,11 +1,16 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Progress from "../../components/ui/Progress/Progress";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="progress" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="progress" title="Progress">
-    <Progress value="{66}" class="w-64" />
-    <Progress value="{33}" class="w-64" />
-  </Section>
+  <Progress value="{66}" class="w-64" />
+  <Progress value="{33}" class="w-64" />
+
+  <Pager id="progress" />
 </div>

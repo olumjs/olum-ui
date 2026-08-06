@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Select from "../../components/ui/Select/Select";
   import SelectTrigger from "../../components/ui/Select/SelectTrigger";
   import SelectValue from "../../components/ui/Select/SelectValue";
@@ -8,26 +7,32 @@
   import SelectLabel from "../../components/ui/Select/SelectLabel";
   import SelectItem from "../../components/ui/Select/SelectItem";
   import SelectSeparator from "../../components/ui/Select/SelectSeparator";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="select" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="select" title="Select">
-    <Select defaultValue="apple">
-      <SelectTrigger class="w-48">
-        <SelectValue placeholder="Select a fruit" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Fruits</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-        </SelectGroup>
-        <SelectSeparator />
-        <SelectGroup>
-          <SelectLabel>Vegetables</SelectLabel>
-          <SelectItem value="carrot">Carrot</SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-  </Section>
+  <Select defaultValue="apple">
+    <SelectTrigger class="w-48">
+      <SelectValue placeholder="Select a fruit" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectGroup>
+        <SelectLabel>Fruits</SelectLabel>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+      </SelectGroup>
+      <SelectSeparator />
+      <SelectGroup>
+        <SelectLabel>Vegetables</SelectLabel>
+        <SelectItem value="carrot">Carrot</SelectItem>
+      </SelectGroup>
+    </SelectContent>
+  </Select>
+
+  <Pager id="select" />
 </div>

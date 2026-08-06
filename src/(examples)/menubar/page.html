@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import DropdownMenuItem from "../../components/ui/DropdownMenu/DropdownMenuItem";
   import DropdownMenuCheckboxItem from "../../components/ui/DropdownMenu/DropdownMenuCheckboxItem";
   import DropdownMenuRadioGroup from "../../components/ui/DropdownMenu/DropdownMenuRadioGroup";
@@ -13,41 +12,47 @@
   import MenubarMenu from "../../components/ui/Menubar/MenubarMenu";
   import MenubarTrigger from "../../components/ui/Menubar/MenubarTrigger";
   import MenubarContent from "../../components/ui/Menubar/MenubarContent";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="menubar" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="menubar" title="Menubar">
-    <Menubar>
-      <MenubarMenu>
-        <MenubarTrigger>File</MenubarTrigger>
-        <MenubarContent>
-          <DropdownMenuItem>
-            New tab <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            New window <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>Share</DropdownMenuSubTrigger>
-            <DropdownMenuSubContent>
-              <DropdownMenuItem>Email link</DropdownMenuItem>
-              <DropdownMenuItem>Copy link</DropdownMenuItem>
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
-        </MenubarContent>
-      </MenubarMenu>
-      <MenubarMenu>
-        <MenubarTrigger>Edit</MenubarTrigger>
-        <MenubarContent>
-          <DropdownMenuCheckboxItem defaultChecked="{true}">Always show bookmarks</DropdownMenuCheckboxItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuRadioGroup>
-            <DropdownMenuRadioItem name="mb-view" value="list" defaultChecked="{true}">List view</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem name="mb-view" value="grid">Grid view</DropdownMenuRadioItem>
-          </DropdownMenuRadioGroup>
-        </MenubarContent>
-      </MenubarMenu>
-    </Menubar>
-  </Section>
+  <Menubar>
+    <MenubarMenu>
+      <MenubarTrigger>File</MenubarTrigger>
+      <MenubarContent>
+        <DropdownMenuItem>
+          New tab <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          New window <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>Share</DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem>Email link</DropdownMenuItem>
+            <DropdownMenuItem>Copy link</DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+      </MenubarContent>
+    </MenubarMenu>
+    <MenubarMenu>
+      <MenubarTrigger>Edit</MenubarTrigger>
+      <MenubarContent>
+        <DropdownMenuCheckboxItem defaultChecked="{true}">Always show bookmarks</DropdownMenuCheckboxItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup>
+          <DropdownMenuRadioItem name="mb-view" value="list" defaultChecked="{true}">List view</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem name="mb-view" value="grid">Grid view</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </MenubarContent>
+    </MenubarMenu>
+  </Menubar>
+
+  <Pager id="menubar" />
 </div>

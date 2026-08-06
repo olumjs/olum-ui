@@ -1,8 +1,10 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Demo from "../../components/ui/Demo/Demo";
   import ToggleGroup from "../../components/ui/ToggleGroup/ToggleGroup";
   import ToggleGroupItem from "../../components/ui/ToggleGroup/ToggleGroupItem";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const icons = {
     bold: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8" /></svg>`,
@@ -13,30 +15,33 @@
   };
 </script>
 
+<Navbar />
+<GalleryNav id="toggle-group" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="toggle-group" title="Toggle Group">
-    <Demo label="single">
-      <ToggleGroup defaultValue="{['center']}">
-        <ToggleGroupItem value="left">
-          <div html="icons.bold"></div>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="center">
-          <div html="icons.italic"></div>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="right">
-          <div html="icons.underline"></div>
-        </ToggleGroupItem>
-      </ToggleGroup>
-    </Demo>
-    <Demo label="multiple, outline">
-      <ToggleGroup multiple="{true}" defaultValue="{['star']}">
-        <ToggleGroupItem value="star" variant="outline">
-          <div html="icons.star"></div>
-        </ToggleGroupItem>
-        <ToggleGroupItem value="heart" variant="outline">
-          <div html="icons.heart"></div>
-        </ToggleGroupItem>
-      </ToggleGroup>
-    </Demo>
-  </Section>
+  <Demo label="single">
+    <ToggleGroup defaultValue="{['center']}">
+      <ToggleGroupItem value="left">
+        <div html="icons.bold"></div>
+      </ToggleGroupItem>
+      <ToggleGroupItem value="center">
+        <div html="icons.italic"></div>
+      </ToggleGroupItem>
+      <ToggleGroupItem value="right">
+        <div html="icons.underline"></div>
+      </ToggleGroupItem>
+    </ToggleGroup>
+  </Demo>
+  <Demo label="multiple, outline">
+    <ToggleGroup multiple="{true}" defaultValue="{['star']}">
+      <ToggleGroupItem value="star" variant="outline">
+        <div html="icons.star"></div>
+      </ToggleGroupItem>
+      <ToggleGroupItem value="heart" variant="outline">
+        <div html="icons.heart"></div>
+      </ToggleGroupItem>
+    </ToggleGroup>
+  </Demo>
+
+  <Pager id="toggle-group" />
 </div>

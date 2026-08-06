@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import ContextMenu from "../../components/ui/ContextMenu/ContextMenu";
   import ContextMenuTrigger from "../../components/ui/ContextMenu/ContextMenuTrigger";
   import ContextMenuContent from "../../components/ui/ContextMenu/ContextMenuContent";
@@ -14,62 +13,68 @@
   import DropdownMenuSub from "../../components/ui/DropdownMenu/DropdownMenuSub";
   import DropdownMenuSubTrigger from "../../components/ui/DropdownMenu/DropdownMenuSubTrigger";
   import DropdownMenuSubContent from "../../components/ui/DropdownMenu/DropdownMenuSubContent";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="context-menu" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="context-menu" title="Context Menu">
-    <ContextMenu>
-      <ContextMenuTrigger class="flex aspect-video min-h-40 w-full max-w-sm items-center justify-center rounded-xl border border-dashed text-sm">
-        <span class="hidden pointer-fine:inline-block">Right click here</span>
-        <span class="hidden pointer-coarse:inline-block">Long press here</span>
-      </ContextMenuTrigger>
-      <ContextMenuContent class="w-48">
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Back
-            <DropdownMenuShortcut>⌘[</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem disabled="{true}">
-            Forward
-            <DropdownMenuShortcut>⌘]</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Reload
-            <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>More Tools</DropdownMenuSubTrigger>
-            <DropdownMenuSubContent class="w-44">
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Save Page...</DropdownMenuItem>
-                <DropdownMenuItem>Create Shortcut...</DropdownMenuItem>
-                <DropdownMenuItem>Name Window...</DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Developer Tools</DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuCheckboxItem defaultChecked="{true}">Show Bookmarks</DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem>Show Full URLs</DropdownMenuCheckboxItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuRadioGroup>
-            <DropdownMenuLabel>People</DropdownMenuLabel>
-            <DropdownMenuRadioItem name="cm-people" value="pedro" defaultChecked="{true}">Pedro Duarte</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem name="cm-people" value="colm">Colm Tuite</DropdownMenuRadioItem>
-          </DropdownMenuRadioGroup>
-        </DropdownMenuGroup>
-      </ContextMenuContent>
-    </ContextMenu>
-  </Section>
+  <ContextMenu>
+    <ContextMenuTrigger class="flex aspect-video min-h-40 w-full max-w-sm items-center justify-center rounded-xl border border-dashed text-sm">
+      <span class="hidden pointer-fine:inline-block">Right click here</span>
+      <span class="hidden pointer-coarse:inline-block">Long press here</span>
+    </ContextMenuTrigger>
+    <ContextMenuContent class="w-48">
+      <DropdownMenuGroup>
+        <DropdownMenuItem>
+          Back
+          <DropdownMenuShortcut>⌘[</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem disabled="{true}">
+          Forward
+          <DropdownMenuShortcut>⌘]</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          Reload
+          <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>More Tools</DropdownMenuSubTrigger>
+          <DropdownMenuSubContent class="w-44">
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Save Page...</DropdownMenuItem>
+              <DropdownMenuItem>Create Shortcut...</DropdownMenuItem>
+              <DropdownMenuItem>Name Window...</DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Developer Tools</DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+      </DropdownMenuGroup>
+      <DropdownMenuSeparator />
+      <DropdownMenuGroup>
+        <DropdownMenuCheckboxItem defaultChecked="{true}">Show Bookmarks</DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem>Show Full URLs</DropdownMenuCheckboxItem>
+      </DropdownMenuGroup>
+      <DropdownMenuSeparator />
+      <DropdownMenuGroup>
+        <DropdownMenuRadioGroup>
+          <DropdownMenuLabel>People</DropdownMenuLabel>
+          <DropdownMenuRadioItem name="cm-people" value="pedro" defaultChecked="{true}">Pedro Duarte</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem name="cm-people" value="colm">Colm Tuite</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuGroup>
+    </ContextMenuContent>
+  </ContextMenu>
+
+  <Pager id="context-menu" />
 </div>

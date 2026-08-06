@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Bubble from "../../components/ui/Bubble/Bubble";
   import BubbleContent from "../../components/ui/Bubble/BubbleContent";
   import Message from "../../components/ui/Message/Message";
@@ -10,6 +9,9 @@
   import MessageScrollerContent from "../../components/ui/MessageScroller/MessageScrollerContent";
   import MessageScrollerItem from "../../components/ui/MessageScroller/MessageScrollerItem";
   import MessageScrollerButton from "../../components/ui/MessageScroller/MessageScrollerButton";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const chatMessages = [
     { id: "1", align: "start", text: "Hey, do you have the Q3 report ready?" },
@@ -19,27 +21,30 @@
   ];
 </script>
 
+<Navbar />
+<GalleryNav id="message-scroller" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="message-scroller" title="Message Scroller">
-    <MessageScrollerProvider>
-      <MessageScroller class="h-64 w-96 rounded-xl border border-border">
-        <MessageScrollerViewport>
-          <MessageScrollerContent class="p-4">
-            <for each="m of chatMessages" key="m.id">
-              <MessageScrollerItem>
-                <Message align="{m.align}">
-                  <MessageContent>
-                    <Bubble align="{m.align}" variant="{m.align === 'end' ? 'default' : 'muted'}">
-                      <BubbleContent>{m.text}</BubbleContent>
-                    </Bubble>
-                  </MessageContent>
-                </Message>
-              </MessageScrollerItem>
-            </for>
-          </MessageScrollerContent>
-        </MessageScrollerViewport>
-        <MessageScrollerButton />
-      </MessageScroller>
-    </MessageScrollerProvider>
-  </Section>
+  <MessageScrollerProvider>
+    <MessageScroller class="h-64 w-96 rounded-xl border border-border">
+      <MessageScrollerViewport>
+        <MessageScrollerContent class="p-4">
+          <for each="m of chatMessages" key="m.id">
+            <MessageScrollerItem>
+              <Message align="{m.align}">
+                <MessageContent>
+                  <Bubble align="{m.align}" variant="{m.align === 'end' ? 'default' : 'muted'}">
+                    <BubbleContent>{m.text}</BubbleContent>
+                  </Bubble>
+                </MessageContent>
+              </Message>
+            </MessageScrollerItem>
+          </for>
+        </MessageScrollerContent>
+      </MessageScrollerViewport>
+      <MessageScrollerButton />
+    </MessageScroller>
+  </MessageScrollerProvider>
+
+  <Pager id="message-scroller" />
 </div>

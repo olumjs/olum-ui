@@ -1,0 +1,38 @@
+<script>
+  import { onMount, props } from "olum";
+  import { components, label } from "../../utils/components";
+
+  const { id } = props();
+
+  const base = "block rounded-md px-2 py-1.5 text-sm capitalize transition-colors";
+  const active = "bg-muted font-medium text-foreground";
+  const idle = "text-muted-foreground hover:bg-muted hover:text-foreground";
+
+  const itemClass = cid => `${base} ${cid === id ? active : idle}`;
+
+  // Each route remounts this list, so the scroll position resets to the top --
+  // pull the current component back into view.
+  onMount(() => {
+    const current = host.querySelector('[data-active="true"]');
+    if (!current) return;
+    const list = host.querySelector("aside");
+    list.scrollTop = current.offsetTop - list.clientHeight / 2 + current.offsetHeight / 2;
+  });
+</script>
+
+<!-- Fixed rail; body carries a matching padding-left at lg (see src/main.css).
+     Named GalleryNav, not Sidebar, so it can't collide with the ui/Sidebar port
+     that the sidebar example imports. -->
+<aside
+  class="fixed bottom-14 left-0 top-14 z-50 hidden w-64 overflow-y-auto border-r border-border bg-background [scrollbar-width:none] lg:block [&::-webkit-scrollbar]:hidden"
+>
+  <div class="flex flex-col gap-4 px-6 py-8">
+    <!-- <a to="/" class="text-sm font-semibold">Component Gallery</a> -->
+
+    <nav class="flex flex-col gap-0.5">
+      <for each="cid of components" key="cid">
+        <a to="/{cid}" data-active="{cid === id}" class="{itemClass(cid)}">{label(cid)}</a>
+      </for>
+    </nav>
+  </div>
+</aside>

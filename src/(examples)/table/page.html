@@ -1,5 +1,4 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Table from "../../components/ui/Table/Table";
   import TableHeader from "../../components/ui/Table/TableHeader";
   import TableBody from "../../components/ui/Table/TableBody";
@@ -8,38 +7,44 @@
   import TableHead from "../../components/ui/Table/TableHead";
   import TableCell from "../../components/ui/Table/TableCell";
   import TableCaption from "../../components/ui/Table/TableCaption";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="table" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="table" title="Table">
-    <Table>
-      <TableCaption>A list of recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead class="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>INV001</TableCell>
-          <TableCell>Paid</TableCell>
-          <TableCell class="text-right">$250.00</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>INV002</TableCell>
-          <TableCell>Pending</TableCell>
-          <TableCell class="text-right">$150.00</TableCell>
-        </TableRow>
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell>Total</TableCell>
-          <TableCell></TableCell>
-          <TableCell class="text-right">$400.00</TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
-  </Section>
+  <Table>
+    <TableCaption>A list of recent invoices.</TableCaption>
+    <TableHeader>
+      <TableRow>
+        <TableHead>Invoice</TableHead>
+        <TableHead>Status</TableHead>
+        <TableHead class="text-right">Amount</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>INV001</TableCell>
+        <TableCell>Paid</TableCell>
+        <TableCell class="text-right">$250.00</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>INV002</TableCell>
+        <TableCell>Pending</TableCell>
+        <TableCell class="text-right">$150.00</TableCell>
+      </TableRow>
+    </TableBody>
+    <TableFooter>
+      <TableRow>
+        <TableCell>Total</TableCell>
+        <TableCell></TableCell>
+        <TableCell class="text-right">$400.00</TableCell>
+      </TableRow>
+    </TableFooter>
+  </Table>
+
+  <Pager id="table" />
 </div>

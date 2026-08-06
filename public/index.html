@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-olum>
   <head>
-    <title>Olum App</title>
+    <title>Olum/ui</title>
     <meta charset="UTF-8" />
     <meta name="generator" content="OlumJS">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,6 +12,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/main.css" />
+    <script>
+      // Runs before first paint so a dark-theme reload doesn't flash white.
+      // The Navbar owns the toggle and writes the same localStorage key.
+      (() => {
+        const saved = localStorage.getItem("theme");
+        const dark = saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", dark);
+      })();
+    </script>
   </head>
   <body></body>
 </html>

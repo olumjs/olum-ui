@@ -1,10 +1,15 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import DatePicker from "../../components/ui/DatePicker/DatePicker";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 </script>
 
+<Navbar />
+<GalleryNav id="date-picker" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="date-picker" title="Date Picker">
-    <DatePicker />
-  </Section>
+  <DatePicker />
+
+  <Pager id="date-picker" />
 </div>

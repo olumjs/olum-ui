@@ -1,17 +1,12 @@
 <script>
-  const sections = [
-    "accordion", "alert", "alert-dialog", "aspect-ratio", "attachment", "avatar", "badge",
-    "breadcrumb", "bubble", "button", "button-group", "calendar", "card", "carousel", "bar-chart",
-    "line-chart", "area-chart", "donut-chart", "composed-chart", "radial-bar-chart",
-    "checkbox", "collapsible", "combobox", "command", "context-menu", "data-table", "date-picker",
-    "dialog", "direction", "drawer", "dropdown-menu", "empty", "field", "hover-card", "input",
-    "input-group", "input-otp", "item", "kbd", "label", "marker", "menubar", "message",
-    "message-scroller", "native-select", "navigation-menu", "pagination", "popover", "progress",
-    "radio-group", "resizable", "scroll-area", "select", "separator", "sheet", "sidebar",
-    "skeleton", "slider", "spinner", "switch", "table", "tabs", "textarea", "toast", "toggle",
-    "toggle-group", "tooltip",
-  ];
+  import GalleryNav from "./components/GalleryNav/GalleryNav";
+  import Navbar from "./components/Navbar/Navbar";
+  import Pager from "./components/Pager/Pager";
+  import { components, label } from "./utils/components";
 </script>
+
+<Navbar />
+<GalleryNav />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
   <header class="flex flex-col gap-3">
@@ -21,9 +16,15 @@
     </p>
   </header>
 
-  <nav class="grid grid-cols-2 gap-2 sm:grid-cols-3">
-    <for each="id of sections" key="id">
-      <a to="/{id}" class="cursor-pointer rounded-lg border border-border px-3 py-2 text-sm capitalize hover:bg-muted">{id.replaceAll("-", " ")}</a>
-    </for>
-  </nav>
+  <section class="flex flex-col gap-6">
+    <h2 class="text-lg font-semibold">All Components</h2>
+
+    <nav class="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3">
+      <for each="id of components" key="id">
+        <a to="/{id}" class="w-fit cursor-pointer text-sm font-medium capitalize underline-offset-4 hover:underline">{label(id)}</a>
+      </for>
+    </nav>
+  </section>
+
+  <Pager />
 </div>

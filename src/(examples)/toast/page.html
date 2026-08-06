@@ -1,8 +1,10 @@
 <script>
-  import Section from "../../components/ui/Section/Section";
   import Button from "../../components/ui/Button/Button";
   import Toaster from "../../components/ui/Toast/Toaster";
   import { toast } from "../../components/ui/Toast/toast";
+  import Navbar from "../../components/Navbar/Navbar";
+  import GalleryNav from "../../components/GalleryNav/GalleryNav";
+  import Pager from "../../components/Pager/Pager";
 
   const showDefaultToast = () => toast.add({ title: "Event created", description: "Monday, Jan 5 at 4:00pm", autoClose: false });
   const showSuccessToast = () => toast.add({ title: "Saved successfully", type: "success", autoClose: false });
@@ -12,14 +14,17 @@
   const showPersistentToast = () => toast.add({ title: "Action required", description: "This stays until you close it.", autoClose: false });
 </script>
 
+<Navbar />
+<GalleryNav id="toast" />
+
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-  <Section id="toast" title="Toast">
-    <Button variant="outline" onclick="{showDefaultToast}">Default</Button>
-    <Button variant="outline" onclick="{showSuccessToast}">Success</Button>
-    <Button variant="outline" onclick="{showErrorToast}">Error</Button>
-    <Button variant="outline" onclick="{showWarningToast}">Warning</Button>
-    <Button variant="outline" onclick="{showInfoToast}">Info</Button>
-    <Button variant="outline" onclick="{showPersistentToast}">Persistent</Button>
-    <Toaster />
-  </Section>
+  <Button variant="outline" onclick="{showDefaultToast}">Default</Button>
+  <Button variant="outline" onclick="{showSuccessToast}">Success</Button>
+  <Button variant="outline" onclick="{showErrorToast}">Error</Button>
+  <Button variant="outline" onclick="{showWarningToast}">Warning</Button>
+  <Button variant="outline" onclick="{showInfoToast}">Info</Button>
+  <Button variant="outline" onclick="{showPersistentToast}">Persistent</Button>
+  <Toaster />
+
+  <Pager id="toast" />
 </div>
