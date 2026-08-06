@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="favicon.svg" />
+    <!-- Both are used on first paint (body text and code blocks), and being
+         self-hosted they're only discovered once main.css parses -- preloading
+         skips the swap from the fallback stack. -->
+    <link rel="preload" href="/fonts/geist-latin-variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/geist-mono-latin-variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/main.css" />
     <script>
       // Runs before first paint so a dark-theme reload doesn't flash white.
