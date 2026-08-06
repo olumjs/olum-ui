@@ -1,12 +1,1878 @@
 <script>
-  import GalleryNav from "./components/GalleryNav/GalleryNav";
+  import { onMount } from "olum";
+  import Footer from "./components/Footer/Footer";
   import Navbar from "./components/Navbar/Navbar";
-  import Pager from "./components/Pager/Pager";
-  import { BASE, components, label } from "./utils/components";
+  import Accordion from "./components/ui/Accordion/Accordion";
+  import AccordionContent from "./components/ui/Accordion/AccordionContent";
+  import AccordionItem from "./components/ui/Accordion/AccordionItem";
+  import AccordionTrigger from "./components/ui/Accordion/AccordionTrigger";
+  import Alert from "./components/ui/Alert/Alert";
+  import AlertAction from "./components/ui/Alert/AlertAction";
+  import AlertDescription from "./components/ui/Alert/AlertDescription";
+  import AlertTitle from "./components/ui/Alert/AlertTitle";
+  import AlertDialog from "./components/ui/AlertDialog/AlertDialog";
+  import AlertDialogAction from "./components/ui/AlertDialog/AlertDialogAction";
+  import AlertDialogCancel from "./components/ui/AlertDialog/AlertDialogCancel";
+  import AlertDialogContent from "./components/ui/AlertDialog/AlertDialogContent";
+  import AlertDialogDescription from "./components/ui/AlertDialog/AlertDialogDescription";
+  import AlertDialogFooter from "./components/ui/AlertDialog/AlertDialogFooter";
+  import AlertDialogHeader from "./components/ui/AlertDialog/AlertDialogHeader";
+  import AlertDialogTitle from "./components/ui/AlertDialog/AlertDialogTitle";
+  import AlertDialogTrigger from "./components/ui/AlertDialog/AlertDialogTrigger";
+  import AspectRatio from "./components/ui/AspectRatio/AspectRatio";
+  import Attachment from "./components/ui/Attachment/Attachment";
+  import AttachmentAction from "./components/ui/Attachment/AttachmentAction";
+  import AttachmentActions from "./components/ui/Attachment/AttachmentActions";
+  import AttachmentContent from "./components/ui/Attachment/AttachmentContent";
+  import AttachmentDescription from "./components/ui/Attachment/AttachmentDescription";
+  import AttachmentGroup from "./components/ui/Attachment/AttachmentGroup";
+  import AttachmentMedia from "./components/ui/Attachment/AttachmentMedia";
+  import AttachmentTitle from "./components/ui/Attachment/AttachmentTitle";
+  import Avatar from "./components/ui/Avatar/Avatar";
+  import AvatarBadge from "./components/ui/Avatar/AvatarBadge";
+  import AvatarFallback from "./components/ui/Avatar/AvatarFallback";
+  import AvatarGroup from "./components/ui/Avatar/AvatarGroup";
+  import AvatarGroupCount from "./components/ui/Avatar/AvatarGroupCount";
+  import Badge from "./components/ui/Badge/Badge";
+  import Breadcrumb from "./components/ui/Breadcrumb/Breadcrumb";
+  import BreadcrumbEllipsis from "./components/ui/Breadcrumb/BreadcrumbEllipsis";
+  import BreadcrumbItem from "./components/ui/Breadcrumb/BreadcrumbItem";
+  import BreadcrumbLink from "./components/ui/Breadcrumb/BreadcrumbLink";
+  import BreadcrumbList from "./components/ui/Breadcrumb/BreadcrumbList";
+  import BreadcrumbPage from "./components/ui/Breadcrumb/BreadcrumbPage";
+  import BreadcrumbSeparator from "./components/ui/Breadcrumb/BreadcrumbSeparator";
+  import Bubble from "./components/ui/Bubble/Bubble";
+  import BubbleContent from "./components/ui/Bubble/BubbleContent";
+  import BubbleGroup from "./components/ui/Bubble/BubbleGroup";
+  import Button from "./components/ui/Button/Button";
+  import ButtonGroup from "./components/ui/ButtonGroup/ButtonGroup";
+  import ButtonGroupSeparator from "./components/ui/ButtonGroup/ButtonGroupSeparator";
+  import ButtonGroupText from "./components/ui/ButtonGroup/ButtonGroupText";
+  import Calendar from "./components/ui/Calendar/Calendar";
+  import Card from "./components/ui/Card/Card";
+  import CardAction from "./components/ui/Card/CardAction";
+  import CardContent from "./components/ui/Card/CardContent";
+  import CardDescription from "./components/ui/Card/CardDescription";
+  import CardFooter from "./components/ui/Card/CardFooter";
+  import CardHeader from "./components/ui/Card/CardHeader";
+  import CardTitle from "./components/ui/Card/CardTitle";
+  import Carousel from "./components/ui/Carousel/Carousel";
+  import CarouselContent from "./components/ui/Carousel/CarouselContent";
+  import CarouselItem from "./components/ui/Carousel/CarouselItem";
+  import CarouselNext from "./components/ui/Carousel/CarouselNext";
+  import CarouselPrevious from "./components/ui/Carousel/CarouselPrevious";
+  import AreaChart from "./components/ui/Chart/AreaChart";
+  import BarChart from "./components/ui/Chart/BarChart";
+  import DonutChart from "./components/ui/Chart/DonutChart";
+  import Checkbox from "./components/ui/Checkbox/Checkbox";
+  import Collapsible from "./components/ui/Collapsible/Collapsible";
+  import CollapsibleContent from "./components/ui/Collapsible/CollapsibleContent";
+  import CollapsibleTrigger from "./components/ui/Collapsible/CollapsibleTrigger";
+  import Combobox from "./components/ui/Combobox/Combobox";
+  import Command from "./components/ui/Command/Command";
+  import CommandEmpty from "./components/ui/Command/CommandEmpty";
+  import CommandGroup from "./components/ui/Command/CommandGroup";
+  import CommandInput from "./components/ui/Command/CommandInput";
+  import CommandItem from "./components/ui/Command/CommandItem";
+  import CommandList from "./components/ui/Command/CommandList";
+  import CommandSeparator from "./components/ui/Command/CommandSeparator";
+  import CommandShortcut from "./components/ui/Command/CommandShortcut";
+  import ContextMenu from "./components/ui/ContextMenu/ContextMenu";
+  import ContextMenuContent from "./components/ui/ContextMenu/ContextMenuContent";
+  import ContextMenuTrigger from "./components/ui/ContextMenu/ContextMenuTrigger";
+  import DataTable from "./components/ui/DataTable/DataTable";
+  import DatePicker from "./components/ui/DatePicker/DatePicker";
+  import Dialog from "./components/ui/Dialog/Dialog";
+  import DialogClose from "./components/ui/Dialog/DialogClose";
+  import DialogContent from "./components/ui/Dialog/DialogContent";
+  import DialogDescription from "./components/ui/Dialog/DialogDescription";
+  import DialogFooter from "./components/ui/Dialog/DialogFooter";
+  import DialogHeader from "./components/ui/Dialog/DialogHeader";
+  import DialogTitle from "./components/ui/Dialog/DialogTitle";
+  import DialogTrigger from "./components/ui/Dialog/DialogTrigger";
+  import Direction from "./components/ui/Direction/Direction";
+  import Drawer from "./components/ui/Drawer/Drawer";
+  import DrawerContent from "./components/ui/Drawer/DrawerContent";
+  import DrawerDescription from "./components/ui/Drawer/DrawerDescription";
+  import DrawerFooter from "./components/ui/Drawer/DrawerFooter";
+  import DrawerHeader from "./components/ui/Drawer/DrawerHeader";
+  import DrawerTitle from "./components/ui/Drawer/DrawerTitle";
+  import DrawerTrigger from "./components/ui/Drawer/DrawerTrigger";
+  import DropdownMenu from "./components/ui/DropdownMenu/DropdownMenu";
+  import DropdownMenuCheckboxItem from "./components/ui/DropdownMenu/DropdownMenuCheckboxItem";
+  import DropdownMenuContent from "./components/ui/DropdownMenu/DropdownMenuContent";
+  import DropdownMenuGroup from "./components/ui/DropdownMenu/DropdownMenuGroup";
+  import DropdownMenuItem from "./components/ui/DropdownMenu/DropdownMenuItem";
+  import DropdownMenuLabel from "./components/ui/DropdownMenu/DropdownMenuLabel";
+  import DropdownMenuRadioGroup from "./components/ui/DropdownMenu/DropdownMenuRadioGroup";
+  import DropdownMenuRadioItem from "./components/ui/DropdownMenu/DropdownMenuRadioItem";
+  import DropdownMenuSeparator from "./components/ui/DropdownMenu/DropdownMenuSeparator";
+  import DropdownMenuShortcut from "./components/ui/DropdownMenu/DropdownMenuShortcut";
+  import DropdownMenuSub from "./components/ui/DropdownMenu/DropdownMenuSub";
+  import DropdownMenuSubContent from "./components/ui/DropdownMenu/DropdownMenuSubContent";
+  import DropdownMenuSubTrigger from "./components/ui/DropdownMenu/DropdownMenuSubTrigger";
+  import DropdownMenuTrigger from "./components/ui/DropdownMenu/DropdownMenuTrigger";
+  import Empty from "./components/ui/Empty/Empty";
+  import EmptyContent from "./components/ui/Empty/EmptyContent";
+  import EmptyDescription from "./components/ui/Empty/EmptyDescription";
+  import EmptyHeader from "./components/ui/Empty/EmptyHeader";
+  import EmptyMedia from "./components/ui/Empty/EmptyMedia";
+  import EmptyTitle from "./components/ui/Empty/EmptyTitle";
+  import Field from "./components/ui/Field/Field";
+  import FieldContent from "./components/ui/Field/FieldContent";
+  import FieldDescription from "./components/ui/Field/FieldDescription";
+  import FieldGroup from "./components/ui/Field/FieldGroup";
+  import FieldLabel from "./components/ui/Field/FieldLabel";
+  import FieldSeparator from "./components/ui/Field/FieldSeparator";
+  import HoverCard from "./components/ui/HoverCard/HoverCard";
+  import HoverCardContent from "./components/ui/HoverCard/HoverCardContent";
+  import HoverCardTrigger from "./components/ui/HoverCard/HoverCardTrigger";
+  import Input from "./components/ui/Input/Input";
+  import InputGroup from "./components/ui/InputGroup/InputGroup";
+  import InputGroupAddon from "./components/ui/InputGroup/InputGroupAddon";
+  import InputGroupButton from "./components/ui/InputGroup/InputGroupButton";
+  import InputGroupInput from "./components/ui/InputGroup/InputGroupInput";
+  import InputOTP from "./components/ui/InputOTP/InputOTP";
+  import InputOTPGroup from "./components/ui/InputOTP/InputOTPGroup";
+  import InputOTPSeparator from "./components/ui/InputOTP/InputOTPSeparator";
+  import InputOTPSlot from "./components/ui/InputOTP/InputOTPSlot";
+  import Item from "./components/ui/Item/Item";
+  import ItemContent from "./components/ui/Item/ItemContent";
+  import ItemDescription from "./components/ui/Item/ItemDescription";
+  import ItemGroup from "./components/ui/Item/ItemGroup";
+  import ItemMedia from "./components/ui/Item/ItemMedia";
+  import ItemTitle from "./components/ui/Item/ItemTitle";
+  import Kbd from "./components/ui/Kbd/Kbd";
+  import KbdGroup from "./components/ui/Kbd/KbdGroup";
+  import Label from "./components/ui/Label/Label";
+  import Link from "./components/ui/Link/Link";
+  import Marker from "./components/ui/Marker/Marker";
+  import MarkerContent from "./components/ui/Marker/MarkerContent";
+  import MarkerIcon from "./components/ui/Marker/MarkerIcon";
+  import Menubar from "./components/ui/Menubar/Menubar";
+  import MenubarContent from "./components/ui/Menubar/MenubarContent";
+  import MenubarMenu from "./components/ui/Menubar/MenubarMenu";
+  import MenubarTrigger from "./components/ui/Menubar/MenubarTrigger";
+  import Message from "./components/ui/Message/Message";
+  import MessageAvatar from "./components/ui/Message/MessageAvatar";
+  import MessageContent from "./components/ui/Message/MessageContent";
+  import MessageScroller from "./components/ui/MessageScroller/MessageScroller";
+  import MessageScrollerButton from "./components/ui/MessageScroller/MessageScrollerButton";
+  import MessageScrollerContent from "./components/ui/MessageScroller/MessageScrollerContent";
+  import MessageScrollerItem from "./components/ui/MessageScroller/MessageScrollerItem";
+  import MessageScrollerProvider from "./components/ui/MessageScroller/MessageScrollerProvider";
+  import MessageScrollerViewport from "./components/ui/MessageScroller/MessageScrollerViewport";
+  import NativeSelect from "./components/ui/NativeSelect/NativeSelect";
+  import NativeSelectOptGroup from "./components/ui/NativeSelect/NativeSelectOptGroup";
+  import NativeSelectOption from "./components/ui/NativeSelect/NativeSelectOption";
+  import NavigationMenu from "./components/ui/NavigationMenu/NavigationMenu";
+  import NavigationMenuContent from "./components/ui/NavigationMenu/NavigationMenuContent";
+  import NavigationMenuItem from "./components/ui/NavigationMenu/NavigationMenuItem";
+  import NavigationMenuLink from "./components/ui/NavigationMenu/NavigationMenuLink";
+  import NavigationMenuList from "./components/ui/NavigationMenu/NavigationMenuList";
+  import NavigationMenuTrigger from "./components/ui/NavigationMenu/NavigationMenuTrigger";
+  import Pagination from "./components/ui/Pagination/Pagination";
+  import PaginationContent from "./components/ui/Pagination/PaginationContent";
+  import PaginationEllipsis from "./components/ui/Pagination/PaginationEllipsis";
+  import PaginationItem from "./components/ui/Pagination/PaginationItem";
+  import PaginationLink from "./components/ui/Pagination/PaginationLink";
+  import PaginationNext from "./components/ui/Pagination/PaginationNext";
+  import PaginationPrevious from "./components/ui/Pagination/PaginationPrevious";
+  import Popover from "./components/ui/Popover/Popover";
+  import PopoverContent from "./components/ui/Popover/PopoverContent";
+  import PopoverDescription from "./components/ui/Popover/PopoverDescription";
+  import PopoverHeader from "./components/ui/Popover/PopoverHeader";
+  import PopoverTitle from "./components/ui/Popover/PopoverTitle";
+  import PopoverTrigger from "./components/ui/Popover/PopoverTrigger";
+  import Progress from "./components/ui/Progress/Progress";
+  import RadioGroup from "./components/ui/RadioGroup/RadioGroup";
+  import RadioGroupItem from "./components/ui/RadioGroup/RadioGroupItem";
+  import ResizableHandle from "./components/ui/Resizable/ResizableHandle";
+  import ResizablePanel from "./components/ui/Resizable/ResizablePanel";
+  import ResizablePanelGroup from "./components/ui/Resizable/ResizablePanelGroup";
+  import ScrollArea from "./components/ui/ScrollArea/ScrollArea";
+  import Select from "./components/ui/Select/Select";
+  import SelectContent from "./components/ui/Select/SelectContent";
+  import SelectItem from "./components/ui/Select/SelectItem";
+  import SelectTrigger from "./components/ui/Select/SelectTrigger";
+  import SelectValue from "./components/ui/Select/SelectValue";
+  import Separator from "./components/ui/Separator/Separator";
+  import Sheet from "./components/ui/Sheet/Sheet";
+  import SheetClose from "./components/ui/Sheet/SheetClose";
+  import SheetContent from "./components/ui/Sheet/SheetContent";
+  import SheetDescription from "./components/ui/Sheet/SheetDescription";
+  import SheetFooter from "./components/ui/Sheet/SheetFooter";
+  import SheetHeader from "./components/ui/Sheet/SheetHeader";
+  import SheetTitle from "./components/ui/Sheet/SheetTitle";
+  import SheetTrigger from "./components/ui/Sheet/SheetTrigger";
+  import Sidebar from "./components/ui/Sidebar/Sidebar";
+  import SidebarContent from "./components/ui/Sidebar/SidebarContent";
+  import SidebarFooter from "./components/ui/Sidebar/SidebarFooter";
+  import SidebarGroup from "./components/ui/Sidebar/SidebarGroup";
+  import SidebarGroupContent from "./components/ui/Sidebar/SidebarGroupContent";
+  import SidebarGroupLabel from "./components/ui/Sidebar/SidebarGroupLabel";
+  import SidebarHeader from "./components/ui/Sidebar/SidebarHeader";
+  import SidebarInset from "./components/ui/Sidebar/SidebarInset";
+  import SidebarMenu from "./components/ui/Sidebar/SidebarMenu";
+  import SidebarMenuButton from "./components/ui/Sidebar/SidebarMenuButton";
+  import SidebarMenuItem from "./components/ui/Sidebar/SidebarMenuItem";
+  import SidebarProvider from "./components/ui/Sidebar/SidebarProvider";
+  import SidebarSeparator from "./components/ui/Sidebar/SidebarSeparator";
+  import SidebarTrigger from "./components/ui/Sidebar/SidebarTrigger";
+  import Skeleton from "./components/ui/Skeleton/Skeleton";
+  import Slider from "./components/ui/Slider/Slider";
+  import Spinner from "./components/ui/Spinner/Spinner";
+  import Switch from "./components/ui/Switch/Switch";
+  import Table from "./components/ui/Table/Table";
+  import TableBody from "./components/ui/Table/TableBody";
+  import TableCell from "./components/ui/Table/TableCell";
+  import TableFooter from "./components/ui/Table/TableFooter";
+  import TableRow from "./components/ui/Table/TableRow";
+  import Tabs from "./components/ui/Tabs/Tabs";
+  import TabsContent from "./components/ui/Tabs/TabsContent";
+  import TabsList from "./components/ui/Tabs/TabsList";
+  import TabsTrigger from "./components/ui/Tabs/TabsTrigger";
+  import Textarea from "./components/ui/Textarea/Textarea";
+  import Toaster from "./components/ui/Toast/Toaster";
+  import { toast } from "./components/ui/Toast/toast";
+  import Toggle from "./components/ui/Toggle/Toggle";
+  import ToggleGroup from "./components/ui/ToggleGroup/ToggleGroup";
+  import ToggleGroupItem from "./components/ui/ToggleGroup/ToggleGroupItem";
+  import Tooltip from "./components/ui/Tooltip/Tooltip";
+  import TooltipContent from "./components/ui/Tooltip/TooltipContent";
+  import TooltipProvider from "./components/ui/Tooltip/TooltipProvider";
+  import TooltipTrigger from "./components/ui/Tooltip/TooltipTrigger";
+  import { BASE, components } from "./utils/components";
+
+  const state = { direction: "ltr" };
+
+  const icons = {
+    arrowRight: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>`,
+    arrowUp: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7" /><path d="M12 19V5" /></svg>`,
+    search: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>`,
+    plus: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>`,
+    x: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>`,
+    refresh: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></svg>`,
+    chevronDown: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>`,
+    chevronUp: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6" /></svg>`,
+    trash: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18" /><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /></svg>`,
+    file: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v5h6" /></svg>`,
+    image: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21" /></svg>`,
+    wallet: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5" /><path d="M18 12h.01" /></svg>`,
+    chart: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18" /><rect x="7" y="12" width="3" height="6" rx="1" /><rect x="13" y="8" width="3" height="10" rx="1" /></svg>`,
+    target: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></svg>`,
+    calendar: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4" /><path d="M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" /></svg>`,
+    help: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>`,
+    book: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" /></svg>`,
+    mail: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>`,
+    activity: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>`,
+    users: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /></svg>`,
+    swap: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 3 4 4-4 4" /><path d="M21 7H3" /><path d="m7 21-4-4 4-4" /><path d="M3 17h18" /></svg>`,
+    trending: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6" /><path d="m22 7-8.5 8.5-5-5L2 17" /></svg>`,
+    bank: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-6 9 6" /><path d="M5 10v9" /><path d="M19 10v9" /><path d="M9 10v9" /><path d="M15 10v9" /><path d="M3 21h18" /></svg>`,
+    coins: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6" /><path d="M18.09 10.37A6 6 0 1 1 10.34 18" /><path d="M7 6h1v4" /></svg>`,
+    user: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>`,
+    card: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2" /><path d="M2 10h20" /></svg>`,
+    bell: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.27 21a2 2 0 0 0 3.46 0" /><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /></svg>`,
+    shield: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /></svg>`,
+    palette: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" /><circle cx="17.5" cy="10.5" r=".5" /><circle cx="6.5" cy="12.5" r=".5" /><circle cx="8.5" cy="7.5" r=".5" /><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" /></svg>`,
+    home: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>`,
+    inbox: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12" /><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /></svg>`,
+    settings: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" /><circle cx="12" cy="12" r="3" /></svg>`,
+    bold: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8" /></svg>`,
+    italic: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 4h-9" /><path d="M14 20H5" /><path d="m15 4-4 16" /></svg>`,
+    underline: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v6a6 6 0 0 0 12 0V4" /><line x1="4" x2="20" y1="20" y2="20" /></svg>`,
+    check: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>`,
+    rocket: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /></svg>`,
+  };
+
+  // A decorative QR block: a fixed seed keeps the pattern stable between renders
+  // so the card doesn't flicker into a different code on every navigation.
+  const qr = (() => {
+    const n = 21;
+    const cell = 8;
+    const size = n * cell;
+    let seed = 1987;
+    const rand = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
+    // The three finder squares are drawn last, so the noise never overlaps them.
+    const inFinder = (c, r) => (c < 8 && r < 8) || (c > n - 9 && r < 8) || (c < 8 && r > n - 9);
+    const box = (c, r, w, h, fill) => `<rect x="${c * cell}" y="${r * cell}" width="${w * cell}" height="${h * cell}" fill="${fill}" />`;
+    const finder = (c, r) => box(c, r, 7, 7, "currentColor") + box(c + 1, r + 1, 5, 5, "var(--olum-background)") + box(c + 2, r + 2, 3, 3, "currentColor");
+
+    let noise = "";
+    for (let r = 0; r < n; r++) {
+      for (let c = 0; c < n; c++) {
+        if (!inFinder(c, r) && rand() > 0.48) noise += box(c, r, 1, 1, "currentColor");
+      }
+    }
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" class="size-36">${noise}${finder(0, 0)}${finder(n - 7, 0)}${finder(0, n - 7)}</svg>`;
+  })();
+
+  // The cartesian charts stay monochrome so the gallery reads as one surface
+  // rather than a colour swatch page; the donut is the one place a palette
+  // actually carries meaning (one slice per source).
+  const contributions = [
+    { month: "Dec", amount: 320 },
+    { month: "Jan", amount: 610 },
+    { month: "Feb", amount: 480 },
+    { month: "Mar", amount: 720 },
+    { month: "Apr", amount: 415 },
+    { month: "May", amount: 560 },
+  ];
+
+  const contributionConfig = { amount: { label: "Contributions", color: "var(--olum-foreground)" } };
+
+  const visitors = [
+    { month: "Jan", visitors: 186 },
+    { month: "Feb", visitors: 245 },
+    { month: "Mar", visitors: 207 },
+    { month: "Apr", visitors: 296 },
+    { month: "May", visitors: 254 },
+    { month: "Jun", visitors: 318 },
+  ];
+
+  const visitorConfig = { visitors: { label: "Visitors", color: "var(--olum-muted-foreground)" } };
+
+  const sources = [
+    { name: "Direct", value: 275, color: "var(--color-chart-1)" },
+    { name: "Search", value: 200, color: "var(--color-chart-2)" },
+    { name: "Social", value: 187, color: "var(--color-chart-3)" },
+    { name: "Referral", value: 96, color: "var(--color-chart-4)" },
+  ];
+
+  const planning = [
+    { label: "Documents", icon: icons.file },
+    { label: "Budget", icon: icons.wallet },
+    { label: "Reports", icon: icons.chart },
+    { label: "Goals", icon: icons.target },
+    { label: "Calendar", icon: icons.calendar },
+  ];
+
+  const support = [
+    { label: "Help Center", icon: icons.help },
+    { label: "Docs", icon: icons.book },
+    { label: "Contact Us", icon: icons.mail },
+    { label: "Status", icon: icons.activity },
+    { label: "Community", icon: icons.users },
+  ];
+
+  const overview = [
+    { label: "Analytics", icon: icons.chart, variant: "muted" },
+    { label: "Transactions", icon: icons.swap, variant: "default" },
+    { label: "Investments", icon: icons.trending, variant: "default" },
+    { label: "Accounts", icon: icons.bank, variant: "default" },
+    { label: "Spending", icon: icons.coins, variant: "default" },
+  ];
+
+  const account = [
+    { label: "Profile", icon: icons.user, variant: "default" },
+    { label: "Billing", icon: icons.card, variant: "muted" },
+    { label: "Notifications", icon: icons.bell, variant: "default" },
+    { label: "Security", icon: icons.shield, variant: "default" },
+    { label: "Appearance", icon: icons.palette, variant: "default" },
+  ];
+
+  const alerts = [
+    { id: "n-tx", title: "Transaction alerts", desc: "Deposits, withdrawals, and transfers.", on: true },
+    { id: "n-sec", title: "Security alerts", desc: "Login attempts and account changes.", on: true },
+    { id: "n-goal", title: "Goal milestones", desc: "Updates at 25%, 50%, 75%, and 100%.", on: false },
+    { id: "n-market", title: "Market updates", desc: "Daily portfolio summary and price alerts.", on: false },
+  ];
+
+  const targets = [
+    { label: "Retirement", amount: "$42,000 of $60,000", value: 70 },
+    { label: "Emergency fund", amount: "$9,600 of $12,000", value: 80 },
+    { label: "New car", amount: "$4,150 of $15,000", value: 28 },
+  ];
+
+  const royalties = [
+    { label: "Net Royalties", amount: "$1,248.75" },
+    { label: "Processing Fee", amount: "-$37.46" },
+  ];
+
+  const faq = [
+    { q: "Is it accessible?", a: "Every component ships with the roles, labels, and keyboard behaviour of its shadcn counterpart." },
+    { q: "Is it styled?", a: "Yes — the same Tailwind tokens drive light and dark mode across the whole set." },
+    { q: "Can I own the code?", a: "Copy the component folder into your project and edit it. There is no runtime to upgrade around." },
+  ];
+
+  const files = [
+    { name: "q3-report.pdf", meta: "2.4 MB", state: "done", icon: icons.file },
+    { name: "launch-video.mp4", meta: "Uploading…", state: "uploading", icon: null },
+    { name: "assets.zip", meta: "Upload failed", state: "error", icon: icons.file },
+  ];
+
+  const activity = [
+    { text: "Ada approved the Q3 budget", icon: icons.check },
+    { text: "Payment of $1,248.75 cleared", icon: icons.coins },
+    { text: "New device linked from Cairo", icon: icons.shield },
+    { text: "Goal “New car” reached 28%", icon: icons.target },
+    { text: "Report exported to CSV", icon: icons.file },
+    { text: "Jane commented on the roadmap", icon: icons.users },
+    { text: "Release v1.4.0 published", icon: icons.rocket },
+  ];
+
+  const chat = [
+    { id: "m1", align: "start", text: "Hey, do you have the Q3 report ready?" },
+    { id: "m2", align: "end", text: "Almost — just polishing the charts now." },
+    { id: "m3", align: "start", text: "No rush, end of day is fine." },
+    { id: "m4", align: "end", text: "Sounds good, I'll ping you when it's up." },
+  ];
+
+  const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape"];
+
+  const payments = [
+    { id: "728ed52f", amount: 100, status: "pending", email: "m@example.com" },
+    { id: "489e1d42", amount: 125, status: "processing", email: "ada@example.com" },
+    { id: "5c3e1d42", amount: 250, status: "success", email: "jane@example.com" },
+    { id: "8f2e1d42", amount: 75, status: "failed", email: "john@example.com" },
+    { id: "1a2b3c4d", amount: 300, status: "success", email: "alex@example.com" },
+    { id: "9d8f7a61", amount: 180, status: "pending", email: "emma@example.com" },
+  ];
+
+  const paymentColumns = [
+    { key: "status", label: "Status", cellClass: "capitalize" },
+    { key: "amount", label: "Amount", format: "currency", sortable: true, headClass: "text-right", cellClass: "text-right font-medium" },
+  ];
+
+  const toasts = {
+    "toast:default": { title: "Event created", description: "Monday, Jan 5 at 4:00pm" },
+    "toast:success": { title: "Saved successfully", type: "success" },
+    "toast:error": { title: "Something went wrong", type: "error" },
+    "toast:warning": { title: "Low disk space", type: "warning" },
+  };
+
+  // Ghost columns flanking the gallery -- pure scenery, so the heights are just
+  // a list rather than anything derived from real content.
+  const ghosts = [140, 96, 210, 120, 168, 88, 190];
+
+  // Every nav Item is a pointer target, which Item only styles for real anchors.
+  const navItem = "cursor-pointer hover:bg-muted";
+
+  // Card is overflow-hidden (it clips a leading <img> to its rounded corners),
+  // which also clips any overlay that positions itself inline rather than
+  // through portal.js -- Select, Popover, HoverCard, Tooltip, Combobox,
+  // DatePicker, NavigationMenu, DropdownMenu/Menubar/ContextMenu all do. Cards
+  // hosting one opt back out; Dialog/Sheet/Drawer/AlertDialog portal to <body>
+  // and are unaffected.
+  const overlayCard = "overflow-visible";
+
+  // Overlay triggers (Dialog/Sheet/Drawer/Popover/DropdownMenu) render their own
+  // bare <button>, so the button look has to come from the trigger's class.
+  const trigger =
+    "inline-flex h-8 w-full cursor-pointer items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm font-medium whitespace-nowrap transition-colors outline-none select-none hover:bg-muted";
+
+  // Both interactions below live inside a Card's slot, where a callback prop
+  // would be dropped (the slot-owning component resolves it, not this page), so
+  // they're delegated from the page host instead -- toasts key off the Button's
+  // `value` (rendered as data-value) and the RTL switch off its id.
+  onMount(() => {
+    const onClick = e => {
+      const btn = e.target.closest("[data-value^='toast:']");
+      if (!btn || !host.contains(btn)) return;
+      toast.add({ ...toasts[btn.dataset.value], autoClose: false });
+    };
+
+    const onChange = e => {
+      if (e.target.id !== "home-rtl") return;
+      state.direction = e.target.checked ? "rtl" : "ltr";
+    };
+
+    host.addEventListener("click", onClick);
+    host.addEventListener("change", onChange);
+    return () => {
+      host.removeEventListener("click", onClick);
+      host.removeEventListener("change", onChange);
+    };
+  });
 </script>
 
 <Navbar />
 
-<div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 pb-24 sm:p-10">
-</div>
+<main class="relative overflow-hidden">
+  <section class="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 pt-16 pb-14 text-center sm:pt-24">
+    <a
+      to="{BASE}"
+      class="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-full border border-border bg-background px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted [&_svg]:size-3"
+    >
+      New: {components.length} components ported to OlumJS
+      <span class="pointer-events-none" html="icons.arrowRight"></span>
+    </a>
 
+    <h1 class="text-4xl font-semibold tracking-tighter text-balance sm:text-6xl">shadcn/ui, rebuilt for OlumJS</h1>
+
+    <p class="max-w-2xl text-base text-balance text-muted-foreground sm:text-lg">
+      The whole component set ported to plain OlumJS files — same markup, same behaviour, no React. Copy a folder into your project and edit it like code you wrote yourself.
+    </p>
+
+    <Link to="{BASE}" size="lg" class="gap-2 px-4">
+      Browse Components
+      <span html="icons.arrowRight"></span>
+    </Link>
+
+    <p class="text-xs text-muted-foreground">
+      A community port of shadcn/ui (MIT). Not affiliated with or endorsed by the original project.
+    </p>
+  </section>
+
+  <section class="relative px-4 pb-16 sm:px-6">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-y-0 -left-8 hidden w-44 flex-col gap-4 opacity-50 blur-[2px] 2xl:flex">
+      <for each="h of ghosts" key="h">
+        <div class="w-full shrink-0 rounded-xl bg-muted" style="height: {h}px;"></div>
+      </for>
+    </div>
+
+    <div aria-hidden="true" class="pointer-events-none absolute inset-y-0 -right-8 hidden w-44 flex-col gap-4 opacity-50 blur-[2px] 2xl:flex">
+      <for each="h of ghosts" key="h">
+        <div class="w-full shrink-0 rounded-xl bg-muted" style="height: {h}px;"></div>
+      </for>
+    </div>
+
+    <div class="relative mx-auto max-w-[1500px] columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5">
+      <!-- Kitchen sink: the components a visitor most likely came to look at. -->
+      <div class="mb-4 break-inside-avoid">
+        <Card class="gap-3">
+          <CardContent class="flex flex-col gap-3">
+            <div class="flex flex-wrap items-center gap-2">
+              <Button class="gap-1.5">
+                Button
+                <span class="[&_svg]:size-3.5" html="icons.arrowRight"></span>
+              </Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="outline">Outline</Button>
+            </div>
+
+            <InputGroup>
+              <InputGroupInput placeholder="Name" />
+              <InputGroupAddon align="inline-end">
+                <div html="icons.search"></div>
+              </InputGroupAddon>
+            </InputGroup>
+
+            <Textarea placeholder="Message" rows="3" class="bg-muted/50" />
+
+            <div class="flex flex-wrap items-center gap-2">
+              <Badge>Badge</Badge>
+              <Badge variant="secondary">Secondary</Badge>
+              <Badge variant="outline">Outline</Badge>
+              <span class="ml-auto flex items-center gap-2">
+                <Checkbox id="home-cb-a" />
+                <Checkbox id="home-cb-b" defaultChecked="{true}" />
+              </span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <AlertDialog>
+                <AlertDialogTrigger
+                  class="inline-flex h-7 cursor-pointer items-center justify-center rounded-lg border border-border bg-background px-2.5 text-[0.8rem] font-medium transition-colors hover:bg-muted"
+                >
+                  Alert Dialog
+                </AlertDialogTrigger>
+                <AlertDialogContent size="sm">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Discard this draft?</AlertDialogTitle>
+                    <AlertDialogDescription>Your changes haven't been saved and can't be recovered.</AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Keep editing</AlertDialogCancel>
+                    <AlertDialogAction>Discard</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
+              <ButtonGroup>
+                <Button variant="outline" size="sm">Button Group</Button>
+                <Button variant="outline" size="icon-sm">
+                  <span html="icons.chevronUp"></span>
+                </Button>
+              </ButtonGroup>
+
+              <Switch id="home-switch" class="ml-auto" defaultChecked="{true}" />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Contribution History</CardTitle>
+            <CardDescription>Last 6 months of activity</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <BarChart data="{contributions}" config="{contributionConfig}" class="h-48 w-full" />
+          </CardContent>
+          <CardContent>
+            <ItemGroup class="grid grid-cols-2 gap-2">
+              <Item variant="muted" size="sm">
+                <ItemContent>
+                  <ItemDescription class="text-[10px] tracking-wide uppercase">Upcoming</ItemDescription>
+                  <ItemTitle>May 2024</ItemTitle>
+                  <ItemDescription class="text-xs">Scheduled</ItemDescription>
+                </ItemContent>
+              </Item>
+              <Item variant="muted" size="sm">
+                <ItemContent>
+                  <ItemDescription class="text-[10px] tracking-wide uppercase">Savings plan</ItemDescription>
+                  <ItemTitle>Accelerated</ItemTitle>
+                  <ItemDescription class="text-xs">Recurring</ItemDescription>
+                </ItemContent>
+              </Item>
+            </ItemGroup>
+          </CardContent>
+          <CardContent>
+            <Button class="w-full">View Full Report</Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Set a new milestone</CardTitle>
+            <CardDescription>Define your financial target and we'll help you pace your savings.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FieldGroup class="gap-4">
+              <Field>
+                <FieldLabel for="home-goal">Goal Name</FieldLabel>
+                <Input id="home-goal" placeholder="e.g. New Car, Home Downpayment" class="bg-muted/50" />
+              </Field>
+
+              <div class="grid grid-cols-2 gap-2">
+                <Field>
+                  <FieldLabel for="home-amount">Target Amount</FieldLabel>
+                  <Input id="home-amount" value="$15,000" class="bg-muted/50" />
+                </Field>
+                <Field>
+                  <FieldLabel for="home-date">Target Date</FieldLabel>
+                  <Input id="home-date" value="Dec 2025" class="bg-muted/50" />
+                </Field>
+              </div>
+
+              <FieldSeparator>Then</FieldSeparator>
+
+              <Field>
+                <Button class="w-full">Create Goal</Button>
+                <Button variant="outline" class="w-full">Cancel</Button>
+              </Field>
+            </FieldGroup>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardContent>
+            <Empty>
+              <EmptyHeader>
+                <EmptyMedia class="rounded-xl border border-border p-3">
+                  <div html="qr"></div>
+                </EmptyMedia>
+                <EmptyTitle>Scan to connect your mobile device</EmptyTitle>
+                <EmptyDescription>Open the Ledger mobile app and scan this code to link your device.</EmptyDescription>
+              </EmptyHeader>
+            </Empty>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Two nav lists stacked, mirroring a settings shell. Side by side they'd
+           each get half a masonry column, which truncates the longer labels. -->
+      <div class="mb-4 flex flex-col gap-4 break-inside-avoid">
+        <Card size="sm" class="gap-2">
+          <CardHeader>
+            <CardDescription class="text-xs">Planning</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ItemGroup>
+              <for each="link of planning" key="link.label">
+                <Item size="xs" class="{navItem}">
+                  <ItemMedia variant="icon">
+                    <div html="link.icon"></div>
+                  </ItemMedia>
+                  <ItemContent>
+                    <ItemTitle>{link.label}</ItemTitle>
+                  </ItemContent>
+                </Item>
+              </for>
+            </ItemGroup>
+          </CardContent>
+        </Card>
+
+        <Card size="sm" class="gap-2">
+          <CardHeader>
+            <CardDescription class="text-xs">Support</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ItemGroup>
+              <for each="link of support" key="link.label">
+                <Item size="xs" class="{navItem}">
+                  <ItemMedia variant="icon">
+                    <div html="link.icon"></div>
+                  </ItemMedia>
+                  <ItemContent>
+                    <ItemTitle>{link.label}</ItemTitle>
+                  </ItemContent>
+                </Item>
+              </for>
+            </ItemGroup>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardDescription>Claimable Balance</CardDescription>
+            <CardTitle class="text-3xl font-semibold tracking-tight">$1,211.29</CardTitle>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-3">
+            <Badge variant="outline" class="gap-1.5">
+              <span class="size-1.5 rounded-full bg-chart-4"></span>
+              Pending Setup
+            </Badge>
+
+            <Table>
+              <TableBody>
+                <for each="line of royalties" key="line.label">
+                  <TableRow>
+                    <TableCell class="text-muted-foreground">{line.label}</TableCell>
+                    <TableCell class="text-right font-medium">{line.amount}</TableCell>
+                  </TableRow>
+                </for>
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TableCell class="text-muted-foreground text-xs">Total Ready to Claim</TableCell>
+                  <TableCell class="text-right font-semibold">$1,211.29 USD</TableCell>
+                </TableRow>
+              </TableFooter>
+            </Table>
+
+            <p class="text-xs leading-relaxed text-muted-foreground">
+              Once your bank is connected, balances over $10.00 are automatically eligible for monthly distribution on the 15th of each month.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card class="{overlayCard}">
+          <CardHeader>
+            <CardTitle>Payout Threshold</CardTitle>
+            <CardDescription>Set the minimum balance required before a payout is triggered.</CardDescription>
+            <CardAction>
+              <Button variant="ghost" size="icon-sm" ariaLabel="Dismiss">
+                <span html="icons.x"></span>
+              </Button>
+            </CardAction>
+          </CardHeader>
+          <CardContent>
+            <FieldGroup class="gap-4">
+              <Field>
+                <FieldLabel for="home-currency">Preferred Currency</FieldLabel>
+                <Select defaultValue="usd">
+                  <SelectTrigger id="home-currency" class="w-full">
+                    <SelectValue placeholder="USD — United States Dollar" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="usd">USD — United States Dollar</SelectItem>
+                    <SelectItem value="eur">EUR — Euro</SelectItem>
+                    <SelectItem value="egp">EGP — Egyptian Pound</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
+
+              <Field>
+                <FieldContent class="gap-2">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <FieldLabel>Minimum Payout Amount</FieldLabel>
+                    <span class="text-xl font-semibold tracking-tight">$2,500.00</span>
+                  </div>
+                  <Slider defaultValue="{[25]}" />
+                  <div class="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>$50 (MIN)</span>
+                    <span>$10,000 (MAX)</span>
+                  </div>
+                </FieldContent>
+              </Field>
+
+              <Field>
+                <FieldLabel for="home-notes">Notes</FieldLabel>
+                <Textarea id="home-notes" rows="3" placeholder="Add any notes for this payout configuration..." class="bg-muted/50" />
+                <FieldDescription>Only visible to workspace admins.</FieldDescription>
+              </Field>
+
+              <Button class="w-full">Save Threshold</Button>
+            </FieldGroup>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card class="gap-3">
+          <CardHeader>
+            <CardTitle>New Chat</CardTitle>
+            <CardDescription>How can I help you today?</CardDescription>
+            <CardAction>
+              <Button variant="ghost" size="icon-sm" ariaLabel="Reset conversation">
+                <span html="icons.refresh"></span>
+              </Button>
+            </CardAction>
+          </CardHeader>
+          <CardContent>
+            <Empty class="py-6">
+              <EmptyHeader>
+                <EmptyMedia variant="icon">
+                  <Spinner class="size-5" />
+                </EmptyMedia>
+                <EmptyTitle>Morning, olum!</EmptyTitle>
+                <EmptyDescription>What are we working on today? Press send to start a new conversation.</EmptyDescription>
+              </EmptyHeader>
+            </Empty>
+          </CardContent>
+          <CardContent class="flex flex-col gap-2">
+            <BubbleGroup>
+              <Bubble align="end" variant="muted">
+                <BubbleContent class="text-xs leading-relaxed">
+                  I'm building a chat for our app and the scroll behavior is driving me nuts. Every time the...
+                </BubbleContent>
+              </Bubble>
+            </BubbleGroup>
+
+            <InputGroup>
+              <InputGroupAddon>
+                <InputGroupButton size="icon-xs">
+                  <div html="icons.plus"></div>
+                </InputGroupButton>
+              </InputGroupAddon>
+              <InputGroupInput placeholder="Ask anything..." />
+              <InputGroupAddon align="inline-end">
+                <InputGroupButton variant="default" size="icon-xs">
+                  <div html="icons.arrowUp"></div>
+                </InputGroupButton>
+              </InputGroupAddon>
+            </InputGroup>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardContent>
+            <Empty>
+              <EmptyHeader>
+                <EmptyMedia variant="icon" class="rounded-full border border-dashed border-border">
+                  <div html="icons.plus"></div>
+                </EmptyMedia>
+                <EmptyTitle>Distribute Track</EmptyTitle>
+                <EmptyDescription>Upload your first master to start reaching listeners on Spotify, Apple Music, and more.</EmptyDescription>
+              </EmptyHeader>
+              <EmptyContent>
+                <Button size="sm">Create Release</Button>
+              </EmptyContent>
+            </Empty>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Analytics</CardTitle>
+            <CardAction>
+              <Button variant="outline" size="sm">View Analytics</Button>
+            </CardAction>
+          </CardHeader>
+          <CardContent class="flex items-center gap-2">
+            <span class="text-sm font-medium">418.2K Visitors</span>
+            <Badge variant="secondary">+10%</Badge>
+          </CardContent>
+          <CardContent>
+            <AreaChart data="{visitors}" config="{visitorConfig}" class="h-36 w-full" />
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Stacked for the same reason as Planning/Support above. -->
+      <div class="mb-4 flex flex-col gap-4 break-inside-avoid">
+        <Card size="sm" class="gap-2">
+          <CardHeader>
+            <CardDescription class="text-xs">Overview</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ItemGroup>
+              <for each="link of overview" key="link.label">
+                <Item size="xs" variant="{link.variant}" class="{navItem}">
+                  <ItemMedia variant="icon">
+                    <div html="link.icon"></div>
+                  </ItemMedia>
+                  <ItemContent>
+                    <ItemTitle>{link.label}</ItemTitle>
+                  </ItemContent>
+                </Item>
+              </for>
+            </ItemGroup>
+          </CardContent>
+        </Card>
+
+        <Card size="sm" class="gap-2">
+          <CardHeader>
+            <CardDescription class="text-xs">Account</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ItemGroup>
+              <for each="link of account" key="link.label">
+                <Item size="xs" variant="{link.variant}" class="{navItem}">
+                  <ItemMedia variant="icon">
+                    <div html="link.icon"></div>
+                  </ItemMedia>
+                  <ItemContent>
+                    <ItemTitle>{link.label}</ItemTitle>
+                  </ItemContent>
+                </Item>
+              </for>
+            </ItemGroup>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Savings Targets</CardTitle>
+            <CardDescription>Active milestones for 2024 across your portfolio.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ItemGroup>
+              <for each="target of targets" key="target.label">
+                <Item variant="outline" size="sm">
+                  <ItemContent>
+                    <ItemTitle class="w-full justify-between">
+                      {target.label}
+                      <span class="text-xs font-normal text-muted-foreground">{target.value}%</span>
+                    </ItemTitle>
+                    <Progress value="{target.value}" />
+                    <ItemDescription class="text-xs">{target.amount}</ItemDescription>
+                  </ItemContent>
+                </Item>
+              </for>
+            </ItemGroup>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Notifications</CardTitle>
+            <CardDescription>Choose which email and push alerts you want to receive.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FieldGroup class="gap-3.5">
+              <for each="alert of alerts" key="alert.id">
+                <Field orientation="horizontal" class="items-start">
+                  <Checkbox id="{alert.id}" defaultChecked="{alert.on}" />
+                  <FieldContent class="gap-0.5">
+                    <FieldLabel for="{alert.id}">{alert.title}</FieldLabel>
+                    <FieldDescription>{alert.desc}</FieldDescription>
+                  </FieldContent>
+                </Field>
+              </for>
+            </FieldGroup>
+          </CardContent>
+          <CardContent>
+            <Button class="w-full">Save Preferences</Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Tabs + Separator -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Workspace</CardTitle>
+            <CardDescription>Everything about this project in one place.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Tabs>
+              <TabsList class="w-full">
+                <TabsTrigger group="home-tabs" value="overview" defaultChecked="{true}">Overview</TabsTrigger>
+                <TabsTrigger group="home-tabs" value="members">Members</TabsTrigger>
+                <TabsTrigger group="home-tabs" value="usage">Usage</TabsTrigger>
+              </TabsList>
+              <TabsContent value="overview">
+                <div class="flex flex-col gap-2 text-sm text-muted-foreground">
+                  <span>Deployed from <code class="font-mono text-xs text-foreground">main</code> 4 minutes ago.</span>
+                  <Separator />
+                  <span>Region: fra1 · Runtime: edge</span>
+                </div>
+              </TabsContent>
+              <TabsContent value="members">
+                <div class="flex items-center gap-2">
+                  <AvatarGroup>
+                    <Avatar size="sm"><AvatarFallback>AD</AvatarFallback></Avatar>
+                    <Avatar size="sm"><AvatarFallback>JD</AvatarFallback></Avatar>
+                    <Avatar size="sm"><AvatarFallback>MK</AvatarFallback></Avatar>
+                    <AvatarGroupCount>+4</AvatarGroupCount>
+                  </AvatarGroup>
+                  <span class="text-sm text-muted-foreground">7 members</span>
+                </div>
+              </TabsContent>
+              <TabsContent value="usage">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-muted-foreground">Bandwidth</span>
+                    <span class="font-medium">62%</span>
+                  </div>
+                  <Progress value="{62}" />
+                </div>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Accordion -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Frequently asked</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Accordion>
+              <for each="(entry, i) of faq" key="entry.q">
+                <AccordionItem type="radio" name="home-faq" defaultOpen="{i === 0}">
+                  <AccordionTrigger>{entry.q}</AccordionTrigger>
+                  <AccordionContent>{entry.a}</AccordionContent>
+                </AccordionItem>
+              </for>
+            </Accordion>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Alert -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardContent class="flex flex-col gap-3">
+            <Alert>
+              <div data-icon html="icons.inbox"></div>
+              <AlertTitle>New message</AlertTitle>
+              <AlertDescription>You have a new message from the team.</AlertDescription>
+            </Alert>
+            <Alert variant="destructive">
+              <div data-icon html="icons.trash"></div>
+              <AlertTitle>Failed to delete</AlertTitle>
+              <AlertDescription>This item could not be removed. Try again.</AlertDescription>
+              <AlertAction>
+                <Button size="sm" variant="outline">Retry</Button>
+              </AlertAction>
+            </Alert>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Attachment -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Attachments</CardTitle>
+            <CardDescription>Files shared in this thread.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <AttachmentGroup class="flex-col">
+              <for each="file of files" key="file.name">
+                <Attachment state="{file.state}">
+                  <AttachmentMedia>
+                    <if when="file.icon">
+                      <div html="file.icon"></div>
+                    </if>
+                    <else>
+                      <Spinner />
+                    </else>
+                  </AttachmentMedia>
+                  <AttachmentContent>
+                    <AttachmentTitle>{file.name}</AttachmentTitle>
+                    <AttachmentDescription>{file.meta}</AttachmentDescription>
+                  </AttachmentContent>
+                  <AttachmentActions>
+                    <AttachmentAction>
+                      <div class="[&_svg]:size-3!" html="icons.x"></div>
+                    </AttachmentAction>
+                  </AttachmentActions>
+                </Attachment>
+              </for>
+            </AttachmentGroup>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Avatar + HoverCard + Tooltip + Kbd -->
+      <div class="mb-4 break-inside-avoid">
+        <Card class="{overlayCard}">
+          <CardHeader>
+            <CardTitle>Your team</CardTitle>
+            <CardDescription>Three people are working on this release.</CardDescription>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-3">
+            <div class="flex items-center gap-3">
+              <Avatar size="lg">
+                <AvatarFallback>AD</AvatarFallback>
+                <AvatarBadge>
+                  <div html="icons.check"></div>
+                </AvatarBadge>
+              </Avatar>
+              <AvatarGroup>
+                <Avatar><AvatarFallback>JD</AvatarFallback></Avatar>
+                <Avatar><AvatarFallback>MK</AvatarFallback></Avatar>
+                <Avatar><AvatarFallback>SL</AvatarFallback></Avatar>
+                <AvatarGroupCount>+4</AvatarGroupCount>
+              </AvatarGroup>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <HoverCard>
+                <HoverCardTrigger>
+                  <Button variant="link" class="px-0">@olum-ui</Button>
+                </HoverCardTrigger>
+                <HoverCardContent>
+                  <div class="flex justify-between gap-4">
+                    <Avatar>
+                      <AvatarFallback>OU</AvatarFallback>
+                    </Avatar>
+                    <div class="flex flex-col gap-1">
+                      <h4 class="text-sm font-semibold">@olum-ui</h4>
+                      <p class="text-sm text-muted-foreground">Building beautiful components.</p>
+                    </div>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button variant="outline" size="sm" class="ml-auto">Invite</Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Send an invite
+                    <Kbd>⌘I</Kbd>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Breadcrumb + Pagination + NavigationMenu -->
+      <div class="mb-4 break-inside-avoid">
+        <Card class="{overlayCard}">
+          <CardHeader>
+            <CardTitle>Navigation</CardTitle>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-4">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbEllipsis />
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Components</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+
+            <Separator />
+
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul class="grid w-56 gap-1 p-2">
+                      <li><NavigationMenuLink href="#">Analytics</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="#">Dashboards</NavigationMenuLink></li>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#" variant="trigger">Docs</NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+                <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink href="#" isActive="{true}">2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationEllipsis /></PaginationItem>
+                <PaginationItem><PaginationNext href="#" /></PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Calendar -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardContent>
+            <Calendar class="w-full" />
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Carousel + AspectRatio -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Gallery</CardTitle>
+            <CardDescription>Swipe through the latest cover art.</CardDescription>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-3">
+            <!-- The arrows default to sitting outside the track (-left-12), which
+                 the card's own overflow would clip -- pull them back inside. -->
+            <Carousel class="w-full">
+              <CarouselContent>
+                <for each="i of 5">
+                  <CarouselItem>
+                    <div class="flex aspect-square items-center justify-center rounded-lg border border-border bg-muted text-2xl font-semibold">{i}</div>
+                  </CarouselItem>
+                </for>
+              </CarouselContent>
+              <CarouselPrevious class="left-1" />
+              <CarouselNext class="right-1" />
+            </Carousel>
+
+            <AspectRatio ratio="{16 / 9}" class="w-full overflow-hidden rounded-lg bg-muted">
+              <div class="flex size-full items-center justify-center gap-2 text-sm text-muted-foreground [&_svg]:size-4">
+                <div html="icons.image"></div>
+                16 : 9
+              </div>
+            </AspectRatio>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Collapsible -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Deployment</CardTitle>
+            <CardDescription>v1.4.0 · promoted to production</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Collapsible>
+              <CollapsibleTrigger class="flex h-8 w-full cursor-pointer items-center justify-between rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">
+                Build details
+                <span class="[&_svg]:size-4" html="icons.chevronDown"></span>
+              </CollapsibleTrigger>
+              <CollapsibleContent class="pt-2 text-sm text-muted-foreground">
+                Built in 42s from commit <code class="font-mono text-xs">a99588b</code>, 218 modules, 0 warnings.
+              </CollapsibleContent>
+            </Collapsible>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Combobox + DatePicker + NativeSelect + Label -->
+      <div class="mb-4 break-inside-avoid">
+        <Card class="{overlayCard}">
+          <CardHeader>
+            <CardTitle>Filters</CardTitle>
+            <CardDescription>Narrow the report before exporting.</CardDescription>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-3">
+            <div class="flex flex-col gap-1.5">
+              <Label>Product</Label>
+              <Combobox items="{fruits}" placeholder="Search fruit…" showClear="{true}" emptyText="No fruit found." class="w-full" />
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <Label>Date</Label>
+              <DatePicker />
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <Label for="home-region">Region</Label>
+              <NativeSelect id="home-region" class="w-full">
+                <NativeSelectOptGroup label="Europe">
+                  <NativeSelectOption value="fra">Frankfurt</NativeSelectOption>
+                  <NativeSelectOption value="lhr">London</NativeSelectOption>
+                </NativeSelectOptGroup>
+                <NativeSelectOptGroup label="Africa">
+                  <NativeSelectOption value="cai">Cairo</NativeSelectOption>
+                </NativeSelectOptGroup>
+              </NativeSelect>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Command -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardContent>
+            <Command class="rounded-lg border border-border">
+              <CommandInput placeholder="Type a command…" />
+              <CommandList>
+                <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup heading="Suggestions">
+                  <CommandItem>
+                    <div html="icons.calendar"></div>
+                    Calendar
+                  </CommandItem>
+                  <CommandItem>
+                    <div html="icons.search"></div>
+                    Search
+                  </CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup heading="Settings">
+                  <CommandItem>
+                    <div html="icons.user"></div>
+                    Profile
+                    <CommandShortcut>⌘P</CommandShortcut>
+                  </CommandItem>
+                  <CommandItem>
+                    <div html="icons.settings"></div>
+                    Settings
+                    <CommandShortcut>⌘S</CommandShortcut>
+                  </CommandItem>
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- ContextMenu + DropdownMenu + Menubar -->
+      <div class="mb-4 break-inside-avoid">
+        <Card class="{overlayCard}">
+          <CardHeader>
+            <CardTitle>Menus</CardTitle>
+            <CardDescription>Right click the canvas, or open one from the bar.</CardDescription>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-3">
+            <Menubar>
+              <MenubarMenu>
+                <MenubarTrigger>File</MenubarTrigger>
+                <MenubarContent>
+                  <DropdownMenuItem>
+                    New tab
+                    <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuSub>
+                    <DropdownMenuSubTrigger>Share</DropdownMenuSubTrigger>
+                    <DropdownMenuSubContent>
+                      <DropdownMenuItem>Email link</DropdownMenuItem>
+                      <DropdownMenuItem>Copy link</DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuSub>
+                </MenubarContent>
+              </MenubarMenu>
+              <MenubarMenu>
+                <MenubarTrigger>View</MenubarTrigger>
+                <MenubarContent>
+                  <DropdownMenuCheckboxItem defaultChecked="{true}">Show bookmarks</DropdownMenuCheckboxItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuRadioGroup>
+                    <DropdownMenuRadioItem name="home-view" value="list" defaultChecked="{true}">List view</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem name="home-view" value="grid">Grid view</DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </MenubarContent>
+              </MenubarMenu>
+            </Menubar>
+
+            <ContextMenu>
+              <ContextMenuTrigger class="flex aspect-video w-full items-center justify-center rounded-xl border border-dashed border-border text-sm text-muted-foreground">
+                <span class="hidden pointer-fine:inline-block">Right click here</span>
+                <span class="hidden pointer-coarse:inline-block">Long press here</span>
+              </ContextMenuTrigger>
+              <ContextMenuContent class="w-48">
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    Back
+                    <DropdownMenuShortcut>⌘[</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem disabled="{true}">
+                    Forward
+                    <DropdownMenuShortcut>⌘]</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+                </DropdownMenuGroup>
+              </ContextMenuContent>
+            </ContextMenu>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger class="{trigger}">Open menu</DropdownMenuTrigger>
+              <DropdownMenuContent class="w-56">
+                <DropdownMenuLabel>My account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <div html="icons.user"></div>
+                    Profile
+                    <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div html="icons.card"></div>
+                    Billing
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem variant="destructive">
+                  <div html="icons.trash"></div>
+                  Delete account
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Dialog + Sheet + Drawer + Popover -->
+      <div class="mb-4 break-inside-avoid">
+        <Card class="{overlayCard}">
+          <CardHeader>
+            <CardTitle>Overlays</CardTitle>
+            <CardDescription>Four ways to ask for one more thing.</CardDescription>
+          </CardHeader>
+          <CardContent class="grid grid-cols-2 gap-2">
+            <Dialog>
+              <DialogTrigger class="{trigger}">Dialog</DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Edit profile</DialogTitle>
+                  <DialogDescription>Make changes to your profile here.</DialogDescription>
+                </DialogHeader>
+                <Field>
+                  <FieldLabel for="home-dialog-name">Name</FieldLabel>
+                  <Input id="home-dialog-name" value="Ada Lovelace" />
+                </Field>
+                <DialogFooter>
+                  <DialogClose class="{trigger}">Cancel</DialogClose>
+                  <Button>Save changes</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            <Sheet>
+              <SheetTrigger class="{trigger}">Sheet</SheetTrigger>
+              <SheetContent side="right">
+                <SheetHeader>
+                  <SheetTitle>Quick settings</SheetTitle>
+                  <SheetDescription>This sheet slides in from the right.</SheetDescription>
+                </SheetHeader>
+                <SheetFooter>
+                  <SheetClose class="{trigger}">Close</SheetClose>
+                </SheetFooter>
+              </SheetContent>
+            </Sheet>
+
+            <Drawer>
+              <DrawerTrigger class="{trigger}">Drawer</DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Move goal</DrawerTitle>
+                  <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+                </DrawerHeader>
+                <div class="px-4 py-4">
+                  <Slider defaultValue="{[350]}" max="{1000}" step="{50}" />
+                </div>
+                <DrawerFooter>
+                  <Button size="lg" class="w-full">Submit</Button>
+                </DrawerFooter>
+              </DrawerContent>
+            </Drawer>
+
+            <Popover>
+              <PopoverTrigger class="{trigger}">Popover</PopoverTrigger>
+              <PopoverContent>
+                <PopoverHeader>
+                  <PopoverTitle>Dimensions</PopoverTitle>
+                  <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>
+                </PopoverHeader>
+                <div class="flex items-center gap-2">
+                  <Label for="home-width" class="w-16">Width</Label>
+                  <Input id="home-width" value="100%" class="h-7" />
+                </div>
+              </PopoverContent>
+            </Popover>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- InputOTP -->
+      <div class="mb-4 break-inside-avoid">
+        <Card class="text-center">
+          <CardHeader>
+            <CardTitle>Verify your device</CardTitle>
+            <CardDescription>Enter the 6-digit code we just sent you.</CardDescription>
+          </CardHeader>
+          <CardContent class="flex flex-col items-center gap-3">
+            <InputOTP maxLength="{6}">
+              <InputOTPGroup>
+                <InputOTPSlot index="{0}" />
+                <InputOTPSlot index="{1}" />
+                <InputOTPSlot index="{2}" />
+              </InputOTPGroup>
+              <InputOTPSeparator />
+              <InputOTPGroup>
+                <InputOTPSlot index="{3}" />
+                <InputOTPSlot index="{4}" />
+                <InputOTPSlot index="{5}" />
+              </InputOTPGroup>
+            </InputOTP>
+            <Button size="sm" variant="ghost">Resend code</Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- RadioGroup + Label -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Density</CardTitle>
+            <CardDescription>How much breathing room the tables get.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <RadioGroup class="w-full">
+              <div class="flex items-center gap-2">
+                <RadioGroupItem name="home-density" value="default" id="home-d1" />
+                <Label for="home-d1">Default</Label>
+              </div>
+              <div class="flex items-center gap-2">
+                <RadioGroupItem name="home-density" value="comfortable" id="home-d2" defaultChecked="{true}" />
+                <Label for="home-d2">Comfortable</Label>
+              </div>
+              <div class="flex items-center gap-2">
+                <RadioGroupItem name="home-density" value="compact" id="home-d3" disabled="{true}" />
+                <Label for="home-d3">Compact (soon)</Label>
+              </div>
+            </RadioGroup>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Toggle + ToggleGroup + Kbd + ButtonGroupText -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Editor</CardTitle>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-3">
+            <div class="flex items-center gap-2">
+              <Toggle>
+                <div html="icons.bold"></div>
+              </Toggle>
+              <Toggle variant="outline">
+                <div html="icons.italic"></div>
+              </Toggle>
+              <Toggle size="sm" defaultPressed="{true}">
+                <div html="icons.underline"></div>
+              </Toggle>
+            </div>
+
+            <ToggleGroup multiple="{true}" defaultValue="{['bold']}">
+              <ToggleGroupItem value="bold" variant="outline">
+                <div html="icons.bold"></div>
+              </ToggleGroupItem>
+              <ToggleGroupItem value="italic" variant="outline">
+                <div html="icons.italic"></div>
+              </ToggleGroupItem>
+              <ToggleGroupItem value="underline" variant="outline">
+                <div html="icons.underline"></div>
+              </ToggleGroupItem>
+            </ToggleGroup>
+
+            <ButtonGroup>
+              <ButtonGroupText>olum.dev/</ButtonGroupText>
+              <ButtonGroupSeparator />
+              <Input placeholder="my-project" class="w-full" />
+            </ButtonGroup>
+
+            <div class="flex items-center gap-2 text-xs text-muted-foreground">
+              Save with
+              <KbdGroup>
+                <Kbd>Ctrl</Kbd>
+                <Kbd>S</Kbd>
+              </KbdGroup>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- ScrollArea + Marker -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Activity</CardTitle>
+            <CardDescription>Last 24 hours</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ScrollArea class="h-48 rounded-lg border border-border">
+              <div class="flex flex-col gap-3 p-3">
+                <for each="entry of activity" key="entry.text">
+                  <Marker>
+                    <MarkerIcon>
+                      <div html="entry.icon"></div>
+                    </MarkerIcon>
+                    <MarkerContent>{entry.text}</MarkerContent>
+                  </Marker>
+                </for>
+              </div>
+            </ScrollArea>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- DataTable -->
+      <div class="mb-4 break-inside-avoid">
+        <Card class="{overlayCard}">
+          <CardHeader>
+            <CardTitle>Payments</CardTitle>
+            <CardDescription>Sortable, paginated, filterable.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <DataTable columns="{paymentColumns}" data="{payments}" pageSize="{4}" showPagination="{false}" />
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Message + MessageScroller -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Conversation</CardTitle>
+            <CardDescription>Auto-scrolls to the newest message.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <MessageScrollerProvider>
+              <MessageScroller class="h-56 rounded-xl border border-border">
+                <MessageScrollerViewport>
+                  <MessageScrollerContent class="p-3">
+                    <for each="m of chat" key="m.id">
+                      <MessageScrollerItem>
+                        <Message align="{m.align}">
+                          <MessageAvatar>
+                            <Avatar size="sm">
+                              <AvatarFallback>{m.align === "start" ? "JD" : "Me"}</AvatarFallback>
+                            </Avatar>
+                          </MessageAvatar>
+                          <MessageContent>
+                            <Bubble align="{m.align}" variant="{m.align === 'end' ? 'default' : 'muted'}">
+                              <BubbleContent>{m.text}</BubbleContent>
+                            </Bubble>
+                          </MessageContent>
+                        </Message>
+                      </MessageScrollerItem>
+                    </for>
+                  </MessageScrollerContent>
+                </MessageScrollerViewport>
+                <MessageScrollerButton />
+              </MessageScroller>
+            </MessageScrollerProvider>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Resizable -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Layout</CardTitle>
+            <CardDescription>Drag the handle to resize.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ResizablePanelGroup orientation="horizontal" class="h-32 w-full rounded-lg border border-border">
+              <ResizablePanel defaultSize="{55}">
+                <div class="flex h-full items-center justify-center text-sm text-muted-foreground">Editor</div>
+              </ResizablePanel>
+              <ResizableHandle withHandle="{true}" />
+              <ResizablePanel defaultSize="{45}">
+                <div class="flex h-full items-center justify-center text-sm text-muted-foreground">Preview</div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>App shell</CardTitle>
+            <CardDescription>Collapsible to icons.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div class="relative isolate h-72 w-full overflow-hidden rounded-xl border border-border">
+              <SidebarProvider class="h-full min-h-0">
+                <Sidebar collapsible="icon">
+                  <SidebarHeader>
+                    <div class="px-2 text-sm font-semibold">Acme Inc</div>
+                  </SidebarHeader>
+                  <SidebarSeparator />
+                  <SidebarContent>
+                    <SidebarGroup>
+                      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+                      <SidebarGroupContent>
+                        <SidebarMenu>
+                          <SidebarMenuItem>
+                            <SidebarMenuButton tooltip="Home" isActive="{true}">
+                              <div html="icons.home"></div>
+                              <span>Home</span>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                          <SidebarMenuItem>
+                            <SidebarMenuButton tooltip="Inbox">
+                              <div html="icons.inbox"></div>
+                              <span>Inbox</span>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                          <SidebarMenuItem>
+                            <SidebarMenuButton tooltip="Settings">
+                              <div html="icons.settings"></div>
+                              <span>Settings</span>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        </SidebarMenu>
+                      </SidebarGroupContent>
+                    </SidebarGroup>
+                  </SidebarContent>
+                  <SidebarFooter>
+                    <SidebarMenu>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton>
+                          <div html="icons.user"></div>
+                          <span>Account</span>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    </SidebarMenu>
+                  </SidebarFooter>
+                </Sidebar>
+                <SidebarInset class="flex-1">
+                  <div class="flex items-center gap-2 border-b border-border p-2">
+                    <SidebarTrigger />
+                    <span class="text-sm text-muted-foreground">Toggle</span>
+                  </div>
+                  <div class="p-3 text-sm text-muted-foreground">Main content area.</div>
+                </SidebarInset>
+              </SidebarProvider>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Skeleton -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Loading</CardTitle>
+            <CardDescription>Skeletons keep the layout from jumping.</CardDescription>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-4">
+            <div class="flex items-center gap-3">
+              <Skeleton class="size-10 rounded-full" />
+              <div class="flex flex-col gap-2">
+                <Skeleton class="h-4 w-40" />
+                <Skeleton class="h-4 w-24" />
+              </div>
+            </div>
+            <Skeleton class="h-24 w-full" />
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Toast -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Toasts</CardTitle>
+            <CardDescription>Fire one to see it stack in the corner.</CardDescription>
+          </CardHeader>
+          <CardContent class="flex flex-wrap gap-2">
+            <Button variant="outline" size="sm" value="toast:default">Default</Button>
+            <Button variant="outline" size="sm" value="toast:success">Success</Button>
+            <Button variant="outline" size="sm" value="toast:error">Error</Button>
+            <Button variant="outline" size="sm" value="toast:warning">Warning</Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Direction -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Direction</CardTitle>
+            <CardDescription>Every component mirrors under RTL.</CardDescription>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-3">
+            <div class="flex items-center gap-2">
+              <Switch id="home-rtl" />
+              <Label for="home-rtl">Right-to-left</Label>
+            </div>
+            <Direction direction="{state.direction}">
+              <ButtonGroup>
+                <Button variant="outline">
+                  <div data-icon="inline-start" html="icons.arrowRight"></div>
+                  First
+                </Button>
+                <Button variant="outline">Second</Button>
+                <Button variant="outline">Third</Button>
+              </ButtonGroup>
+            </Direction>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- DonutChart -->
+      <div class="mb-4 break-inside-avoid">
+        <Card>
+          <CardHeader>
+            <CardTitle>Traffic sources</CardTitle>
+            <CardDescription>Sessions this month</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <DonutChart data="{sources}" label="Visitors" class="w-full" />
+          </CardContent>
+        </Card>
+      </div>
+
+      <div class="mb-4 break-inside-avoid">
+        <Card size="sm">
+          <CardHeader>
+            <CardTitle>Q2 Dividend Income</CardTitle>
+            <CardDescription>Quarterly dividend payouts across your portfolio holdings.</CardDescription>
+            <CardAction>
+              <Button variant="ghost" size="icon-sm" ariaLabel="Dismiss">
+                <span html="icons.x"></span>
+              </Button>
+            </CardAction>
+          </CardHeader>
+          <CardFooter class="justify-between gap-2">
+            <span class="text-xs text-muted-foreground">Paid Jun 30</span>
+            <span class="text-sm font-semibold">$318.02</span>
+          </CardFooter>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <Toaster />
+</main>
