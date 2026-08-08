@@ -2994,6 +2994,12 @@
   .data-\[placeholder\]\:text-muted-foreground[data-placeholder] {
     color: var(--olum-muted-foreground);
   }
+  .data-\[selected\=true\]\:bg-accent[data-selected="true"] {
+    background-color: var(--olum-accent);
+  }
+  .data-\[selected\=true\]\:text-accent-foreground[data-selected="true"] {
+    color: var(--olum-accent-foreground);
+  }
   .data-\[size\=default\]\:max-w-xs[data-size="default"] {
     max-width: var(--container-xs);
   }
@@ -3118,9 +3124,6 @@
     .lg\:h-80 {
       height: calc(var(--spacing) * 80);
     }
-    .lg\:columns-3 {
-      columns: 3;
-    }
     .lg\:columns-4 {
       columns: 4;
     }
@@ -3132,9 +3135,6 @@
     .xl\:h-64 {
       height: calc(var(--spacing) * 64);
     }
-    .xl\:columns-4 {
-      columns: 4;
-    }
     .xl\:columns-5 {
       columns: 5;
     }
@@ -3142,9 +3142,6 @@
   @media (width >= 96rem) {
     .\32 xl\:flex {
       display: flex;
-    }
-    .\32 xl\:columns-5 {
-      columns: 5;
     }
     .\32 xl\:columns-6 {
       columns: 6;

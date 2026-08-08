@@ -34,7 +34,23 @@
     content.addEventListener("click", onItemClick);
     document.addEventListener("keydown", onKey);
 
-    const unwire = wireModal({ input, nodes: [overlay, content], displays: ["block", "block"] });
+    // Focus the field on every open -- hotkey or click, both of which land here
+    // through the checkbox -- since a palette you still have to click into is no
+    // palette at all. rAF because the nodes are display:none until sync() runs
+    // and focus() on a hidden element is a no-op. Scoped to `content` rather
+    // than the document: the field has been portaled out of this host by now,
+    // and a page can hold more than one dialog. Clearing the query resets the
+    // filter, which also re-seeds the arrow-key selection to the first item.
+    const focusInput = () =>
+      requestAnimationFrame(() => {
+        const field = content.querySelector('[data-slot="command-input"]');
+        if (!field) return;
+        field.value = "";
+        field.dispatchEvent(new Event("input", { bubbles: true }));
+        field.focus();
+      });
+
+    const unwire = wireModal({ input, nodes: [overlay, content], displays: ["block", "block"], onOpen: focusInput });
 
     return () => {
       overlay.removeEventListener("click", onOverlayClick);

@@ -65,7 +65,7 @@
   // component tag. Wearing data-slot="command-item" still opts them into
   // Command's own filtering and CommandDialogContent's close-on-select.
   const item =
-    "flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm capitalize outline-none select-none hover:bg-muted hover:text-foreground";
+    "flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm capitalize outline-none select-none hover:bg-muted hover:text-foreground data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground";
 
   // The router's own `active` class only fires on an exact path match (see
   // olum-router's `active()`), so it never lights up for "/elements" while
@@ -99,22 +99,6 @@
       box.dispatchEvent(new Event("change", { bubbles: true }));
     };
 
-    // CommandDialogContent doesn't focus the field, which makes a keyboard-only
-    // palette useless. Both open paths dispatch change on the checkbox, so this
-    // covers the hotkey and the trigger click. The field is portaled into
-    // <body> by then, hence the class hook rather than a host lookup -- the
-    // /command example page has a second dialog, so it has to be unambiguous.
-    const onChange = (e) => {
-      if (!e.target.checked) return;
-      requestAnimationFrame(() => {
-        const field = document.querySelector("input.navbar-command-input");
-        if (!field) return;
-        field.value = "";
-        field.dispatchEvent(new Event("input", { bubbles: true })); // reset the filter
-        field.focus();
-      });
-    };
-
     // Every route change remounts this component, and onMount's cleanup doesn't
     // run then, so a plain addEventListener accumulates one document listener per
     // visit. Each stale closure still holds its own detached host, so one Ctrl+K
@@ -127,11 +111,9 @@
     document.addEventListener("keydown", onKey);
     document.__olumPaletteKeydown = onKey;
 
-    host.addEventListener("change", onChange);
     return () => {
       document.removeEventListener("keydown", onKey);
       if (document.__olumPaletteKeydown === onKey) document.__olumPaletteKeydown = null;
-      host.removeEventListener("change", onChange);
     };
   });
 </script>
@@ -164,7 +146,7 @@
 
         <CommandDialogContent>
           <Command>
-            <CommandInput class="navbar-command-input" placeholder="Search components..." />
+            <CommandInput placeholder="Search components..." />
             <CommandList>
               <CommandEmpty>No components found.</CommandEmpty>
               <CommandGroup heading="Components">
