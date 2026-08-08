@@ -58,21 +58,21 @@
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 sm:p-10">
   <PageHeader id="data-table" />
 
-  <InstallBlock id="data-table" />
-
+  
   <DemoBlock label="default" snippet="{snippets['default']}">
     <div class="w-full">
       <DataTable
-        columns="{paymentColumns}"
-        data="{payments}"
-        search="{true}"
-        searchPlaceholder="Filter rows…"
-        pageSize="{10}"
-        showExport="{true}"
-        rowLink="{paymentRowLink}"
+      columns="{paymentColumns}"
+      data="{payments}"
+      search="{true}"
+      searchPlaceholder="Filter rows…"
+      pageSize="{10}"
+      showExport="{true}"
+      rowLink="{paymentRowLink}"
       />
     </div>
   </DemoBlock>
+  <InstallBlock id="data-table" />
 
   <Pager id="data-table" />
 </div>

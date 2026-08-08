@@ -47,13 +47,13 @@ export const snippets = {
 
 <div class="w-full">
   <DataTable
-    columns="{paymentColumns}"
-    data="{payments}"
-    search="{true}"
-    searchPlaceholder="Filter rows…"
-    pageSize="{10}"
-    showExport="{true}"
-    rowLink="{paymentRowLink}"
+  columns="{paymentColumns}"
+  data="{payments}"
+  search="{true}"
+  searchPlaceholder="Filter rows…"
+  pageSize="{10}"
+  showExport="{true}"
+  rowLink="{paymentRowLink}"
   />
 </div>`, html: `<pre class="shiki shiki-themes min-light material-theme-palenight" style="--shiki-light:#24292eff;--shiki-dark:#babed8;--shiki-light-bg:#ffffff;--shiki-dark-bg:#292D3E" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#89DDFF">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#F07178">script</span><span style="--shiki-light:#24292EFF;--shiki-dark:#89DDFF">></span></span>
 <span class="line"><span style="--shiki-light:#D32F2F;--shiki-light-font-style:inherit;--shiki-dark:#89DDFF;--shiki-dark-font-style:italic">  import</span><span style="--shiki-light:#24292EFF;--shiki-dark:#BABED8"> DataTable </span><span style="--shiki-light:#D32F2F;--shiki-light-font-style:inherit;--shiki-dark:#89DDFF;--shiki-dark-font-style:italic">from</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF"> "</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">./components/ui/DataTable/DataTable</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#24292EFF;--shiki-dark:#89DDFF">;</span></span>
@@ -102,13 +102,13 @@ export const snippets = {
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#89DDFF">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#F07178">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA"> class</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">w-full</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#24292EFF;--shiki-dark:#89DDFF">></span></span>
 <span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#89DDFF">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#F07178">DataTable</span></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">    columns</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{paymentColumns}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">    data</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{payments}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">    search</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{true}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">    searchPlaceholder</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">Filter rows…</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">    pageSize</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{10}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">    showExport</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{true}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">    rowLink</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{paymentRowLink}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">  columns</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{paymentColumns}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">  data</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{payments}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">  search</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{true}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">  searchPlaceholder</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">Filter rows…</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">  pageSize</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{10}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">  showExport</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{true}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#C792EA">  rowLink</span><span style="--shiki-light:#D32F2F;--shiki-dark:#89DDFF">=</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span><span style="--shiki-light:#22863A;--shiki-dark:#C3E88D">{paymentRowLink}</span><span style="--shiki-light:#22863A;--shiki-dark:#89DDFF">"</span></span>
 <span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#89DDFF">  /></span></span>
 <span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#89DDFF">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#F07178">div</span><span style="--shiki-light:#24292EFF;--shiki-dark:#89DDFF">></span></span></code></pre>` },
 };
