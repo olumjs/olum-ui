@@ -32,6 +32,7 @@
     "@tailwindcss/cli": "latest",
     "concurrently": "latest",
     "olum-compiler": "latest",
+    "olum-devtool": "latest",
     "shiki": "^4.4.2",
     "tailwindcss": "latest",
     "vite": "^8.2.0"

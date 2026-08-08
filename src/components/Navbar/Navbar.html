@@ -13,10 +13,42 @@
   import { BASE, components, label } from "../../utils/components";
   import Anchor from "../ui/Anchor/Anchor";
   import Button from "../ui/Button/Button";
+  import Separator from "../ui/Separator/Separator";
 
-  const state = { dark: false };
+  const state = { dark: false, stars: null };
 
   const REPO = "https://github.com/olumjs/olum-ui";
+  const REPO_API = REPO.replace("https://github.com/", "https://api.github.com/repos/");
+
+  // Cached in sessionStorage so navigating between component pages -- which
+  // remounts this component every time (see the onMount comment below) --
+  // doesn't refire the request and burn the 60/hr unauthenticated rate limit.
+  // sessionStorage over localStorage: the count is low-stakes enough that
+  // self-clearing per tab beats risking an hour-stale number on a shared machine.
+  const STARS_CACHE_KEY = "gh-stars";
+  const STARS_TTL = 60 * 60 * 1000;
+
+  const formatStars = (n) => {
+    if (n <= 0) return "";
+    return n >= 1000 ? `${(n / 1000).toFixed(1).replace(/\.0$/, "")}k` : `${n}`
+  };
+
+  const loadStars = async () => {
+    const cached = JSON.parse(sessionStorage.getItem(STARS_CACHE_KEY) || "null");
+    if (cached && Date.now() - cached.at < STARS_TTL) {
+      state.stars = cached.value;
+      return;
+    }
+    try {
+      const res = await fetch(REPO_API);
+      if (!res.ok) return;
+      const data = await res.json();
+      if (typeof data.stargazers_count !== "number") return;
+      // state.stars = formatStars(data.stargazers_count);
+      state.stars = data.stargazers_count;
+      sessionStorage.setItem(STARS_CACHE_KEY, JSON.stringify({ value: state.stars, at: Date.now() }));
+    } catch {}
+  };
 
   const icons = {
     // Same path as public/favicon.svg, inlined so it can take currentColor --
@@ -41,7 +73,7 @@
   // link stays highlighted anywhere under the section it points at.
   const isElementsActive = () => pathname() === BASE || pathname().startsWith(`${BASE}/`);
 
-  const applyTheme = dark => {
+  const applyTheme = (dark) => {
     state.dark = dark;
     document.documentElement.classList.toggle("dark", dark);
     localStorage.setItem("theme", dark ? "dark" : "light");
@@ -54,9 +86,11 @@
     const saved = localStorage.getItem("theme");
     applyTheme(saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches);
 
+    loadStars();
+
     // CommandDialog keeps its open state on a hidden checkbox, so opening the
     // palette by hand means flipping that the same way the trigger does.
-    const onKey = e => {
+    const onKey = (e) => {
       if (e.key !== "k" || (!e.metaKey && !e.ctrlKey)) return;
       const box = host.querySelector('[data-slot="command-dialog"] > input');
       if (!box || box.checked) return;
@@ -70,7 +104,7 @@
     // covers the hotkey and the trigger click. The field is portaled into
     // <body> by then, hence the class hook rather than a host lookup -- the
     // /command example page has a second dialog, so it has to be unambiguous.
-    const onChange = e => {
+    const onChange = (e) => {
       if (!e.target.checked) return;
       requestAnimationFrame(() => {
         const field = document.querySelector("input.navbar-command-input");
@@ -113,49 +147,48 @@
       <Anchor variant="ghost" to="{BASE}" class="">Components</Anchor>
     </div>
 
-    <div class="flex gap-x-2 justify-between">
+    <!-- Separator renders inside its own OlumJS host div, so the row has to
+         collapse those wrappers for the vertical rule to actually take height. -->
+    <div class="flex items-center gap-x-2 justify-between [&>[data-olum]]:contents">
+      <CommandDialog>
+        <CommandDialogTrigger
+          class="inline-flex h-8 w-44 items-center gap-2 rounded-lg border border-border bg-background pr-1.5 pl-2.5 text-sm text-muted-foreground transition-all outline-none select-none hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-64 [&_svg]:size-4"
+        >
+          <div html="icons.search"></div>
+          Search...
+          <KbdGroup class="ml-auto">
+            <Kbd>Ctrl</Kbd>
+            <Kbd>K</Kbd>
+          </KbdGroup>
+        </CommandDialogTrigger>
 
-    <CommandDialog>
-      <CommandDialogTrigger
-        class="inline-flex h-8 w-44 items-center gap-2 rounded-lg border border-border bg-background pr-1.5 pl-2.5 text-sm text-muted-foreground transition-all outline-none select-none hover:bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-64 [&_svg]:size-4"
-      >
-        <div html="icons.search"></div>
-        Search...
-        <KbdGroup class="ml-auto">
-          <Kbd>Ctrl</Kbd>
-          <Kbd>K</Kbd>
-        </KbdGroup>
-      </CommandDialogTrigger>
+        <CommandDialogContent>
+          <Command>
+            <CommandInput class="navbar-command-input" placeholder="Search components..." />
+            <CommandList>
+              <CommandEmpty>No components found.</CommandEmpty>
+              <CommandGroup heading="Components">
+                <for each="id of components" key="id">
+                  <a to="{BASE}/{id}" data-slot="command-item" class="{item}">{label(id)}</a>
+                </for>
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </CommandDialogContent>
+      </CommandDialog>
 
-      <CommandDialogContent>
-        <Command>
-          <CommandInput class="navbar-command-input" placeholder="Search components..." />
-          <CommandList>
-            <CommandEmpty>No components found.</CommandEmpty>
-            <CommandGroup heading="Components">
-              <for each="id of components" key="id">
-                <a to="{BASE}/{id}" data-slot="command-item" class="{item}">{label(id)}</a>
-              </for>
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </CommandDialogContent>
-    </CommandDialog>
+      <Separator orientation="vertical" class="h-4 self-center" />
 
-    <Button variant="ghost" onclick="{toggleTheme}" ariaLabel="Toggle dark mode">
-      <div html="state.dark ? icons.sun : icons.moon"></div>
-    </Button>
+      <Anchor variant="ghost" href="{REPO}" target="_blank" rel="noreferrer" ariaLabel="GitHub repository">
+        <span html="icons.github"></span>
+        <if when="state.stars">
+          <span class="flex items-center gap-1 text-xs text-muted-foreground">{formatStars(state.stars)}</span>
+        </if>
+      </Anchor>
 
-    <Anchor
-      variant="ghost"
-      href="{REPO}"
-      target="_blank"
-      rel="noreferrer"
-      ariaLabel="GitHub repository"
-    >
-    <span html="icons.github"></span>
-    </Anchor>
-
+      <Button variant="ghost" onclick="{toggleTheme}" ariaLabel="Toggle dark mode">
+        <div html="state.dark ? icons.sun : icons.moon"></div>
+      </Button>
     </div>
   </div>
 </header>
