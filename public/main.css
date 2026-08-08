@@ -1851,8 +1851,14 @@
   .underline {
     text-decoration-line: underline;
   }
+  .decoration-border {
+    text-decoration-color: var(--olum-border);
+  }
   .underline-offset-4 {
     text-underline-offset: 4px;
+  }
+  .underline-offset-8 {
+    text-underline-offset: 8px;
   }
   .antialiased {
     -webkit-font-smoothing: antialiased;
@@ -2540,6 +2546,9 @@
     }
     .hover\:underline:hover {
       text-decoration-line: underline;
+    }
+    .hover\:decoration-foreground:hover {
+      text-decoration-color: var(--olum-foreground);
     }
     .group-has-\[\>input\:checked\]\/nav-item\:hover\:bg-muted:is(:where(.group\/nav-item):has( > input:checked) *):hover {
       background-color: var(--olum-muted);
