@@ -40,6 +40,27 @@
   color: var(--shiki-dark);
 }
 
+/* Line numbers as a counter rather than markup: the gutter never reaches the
+   clipboard, since CodeBlock copies the raw `code` string and generated content
+   isn't selectable anyway. Grid puts every .line on its own row so the numbers
+   stay aligned when a long line overflows into the container's scroll. */
+.shiki code {
+  display: grid;
+  counter-reset: line;
+}
+
+.shiki .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  min-width: 2ch;
+  margin-right: 1.5rem;
+  text-align: right;
+  color: var(--olum-muted-foreground);
+  opacity: 0.6;
+  user-select: none;
+}
+
 @layer base {
   /* Slim scrollbars site-wide. Firefox reads the standard properties; WebKit
      only honours the pseudo-elements, which is why components that already set

@@ -1,6 +1,7 @@
 <script>
   import { props } from "olum";
   import { BASE, label, nextOf, prevOf } from "../../utils/components";
+import Link from "../ui/Link/Link";
 
   const { id } = props();
 
@@ -23,13 +24,13 @@
   <div class="mx-auto flex h-full max-w-4xl items-center justify-between gap-4 px-6 sm:px-10">
     <div>
       <if when="prev()">
-        <a to="{BASE}/{prev()}" class="{link}">← {label(prev())}</a>
+        <Link to="{BASE}/{prev()}" variant="secondary">← {label(prev())}</Link>
       </if>
     </div>
 
     <div>
       <if when="next()">
-        <a to="{BASE}/{next()}" class="{link}">{label(next())} →</a>
+        <Link to="{BASE}/{next()}" variant="secondary">{label(next())} →</Link>
       </if>
     </div>
   </div>

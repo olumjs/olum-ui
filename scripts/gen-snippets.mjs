@@ -9,9 +9,25 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { glob } from "node:fs/promises";
 import { basename, dirname, join } from "node:path";
-import { codeToHtml } from "shiki";
+import { bundledThemes, codeToHtml } from "shiki";
 
-const THEMES = { light: "github-light", dark: "github-dark" };
+// The one knob for syntax colours. Every span is emitted carrying both palettes
+// as --shiki-light/--shiki-dark custom properties (defaultColor: false), so the
+// pair is baked into the generated HTML -- rerun `npm run snippets` after
+// editing it. main.css picks the side to show; nothing re-highlights at runtime.
+//
+// `npm run themes` lists all 65 bundled names split by light/dark. To audition a
+// pair without touching this file:
+//   SHIKI_LIGHT=vitesse-light SHIKI_DARK=vitesse-dark npm run snippets
+const THEMES = {
+  light: process.env.SHIKI_LIGHT || "min-light",
+  dark: process.env.SHIKI_DARK || "material-theme-palenight",
+};
+
+// A typo would otherwise surface as an opaque Shiki resolve error mid-run.
+for (const [mode, name] of Object.entries(THEMES)) {
+  if (!(name in bundledThemes)) throw new Error(`unknown Shiki theme "${name}" for ${mode} mode -- run \`npm run themes\` for the list`);
+}
 
 
 const slug = label =>

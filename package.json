@@ -11,6 +11,7 @@
     "css:watch": "npm run css -- --watch",
     "dev:app": "olum-compiler dev",
     "snippets": "node scripts/gen-snippets.mjs",
+    "themes": "node scripts/list-themes.mjs",
     "fonts": "cp node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2 public/fonts/geist-latin-variable.woff2 && cp node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2 public/fonts/geist-mono-latin-variable.woff2"
   },
   "keywords": [

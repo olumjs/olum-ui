@@ -25,7 +25,12 @@
     <div class="{preview()}">{children}</div>
 
     <if when="snippet.html">
-      <CodeBlock class="rounded-none border-0 border-t border-border" code="{snippet.code}" html="{snippet.html}" />
+      <CodeBlock
+        class="rounded-none border-0 border-t border-border"
+        code="{snippet.code}"
+        html="{snippet.html}"
+        collapsible="{true}"
+      />
     </if>
   </div>
 </section>
