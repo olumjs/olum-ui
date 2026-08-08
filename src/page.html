@@ -270,13 +270,13 @@
     trigger,
   } from "./utils/data.js";
 
+  const state = { direction: "ltr" };
   import { onMount } from "olum";
   import { BASE, components } from "./utils/components";
   import Footer from "./components/Footer/Footer";
   import Navbar from "./components/Navbar/Navbar";
+  import Logo from "./components/Logo";
   import { qr } from "./utils/index";
-
-  const state = { direction: "ltr" };
 
   // Both interactions below live inside a Card's slot, where a callback prop
   // would be dropped (the slot-owning component resolves it, not this page), so
@@ -317,13 +317,7 @@
 
     <h1 class="text-4xl font-semibold tracking-tighter text-balance sm:text-6xl">
       shadcn/ui, rebuilt for
-      <a
-        href="https://olumjs.top"
-        target="_blank"
-        rel="noreferrer"
-        class="underline decoration-border underline-offset-8 transition-colors hover:decoration-foreground"
-        >OlumJS</a
-      >
+      <Logo title="OlumJS"/>
     </h1>
 
     <p class="max-w-2xl text-base text-balance text-muted-foreground sm:text-lg">
