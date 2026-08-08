@@ -359,12 +359,12 @@
       "path": "src/components/ui/Tabs/Tabs.html"
     },
     {
-      "name": "link",
-      "title": "Link",
+      "name": "anchor",
+      "title": "Anchor",
       "description": "An anchor styled as a button, for navigation that should look like an action. Takes the same variants and sizes as Button, and works with a router `to` path or a plain href.",
       "category": "navigation",
       "deps": [],
-      "path": "src/components/ui/Link/Link.html"
+      "path": "src/components/ui/Anchor/Anchor.html"
     },
     {
       "name": "alert-dialog",

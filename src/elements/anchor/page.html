@@ -1,5 +1,5 @@
 <script>
-  import Link from "../../components/ui/Link/Link";
+  import Anchor from "../../components/ui/Anchor/Anchor";
   import Navbar from "../../components/Navbar/Navbar";
   import GalleryNav from "../../components/GalleryNav/GalleryNav";
   import PageToc from "../../components/PageToc/PageToc";
@@ -18,71 +18,71 @@
 </script>
 
 <Navbar />
-<GalleryNav id="link" />
+<GalleryNav id="anchor" />
 <PageToc snippets="{snippets}" />
 
 <div class="mx-auto flex max-w-4xl flex-col gap-10 p-6 sm:p-10">
-  <PageHeader id="link" />
+  <PageHeader id="anchor" />
 
   <DemoBlock label="variants" snippet="{snippets['variants']}">
-    <Link>Link</Link>
-    <Link variant="outline">Outline</Link>
-    <Link variant="secondary">Secondary</Link>
-    <Link variant="ghost">Ghost</Link>
-    <Link variant="destructive">Destructive</Link>
-    <Link variant="link">Link</Link>
+    <Anchor>Anchor</Anchor>
+    <Anchor variant="outline">Outline</Anchor>
+    <Anchor variant="secondary">Secondary</Anchor>
+    <Anchor variant="ghost">Ghost</Anchor>
+    <Anchor variant="destructive">Destructive</Anchor>
+    <Anchor variant="link">Link</Anchor>
   </DemoBlock>
 
-  <InstallBlock id="link" />
+  <InstallBlock id="anchor" />
   <DemoBlock label="icon" snippet="{snippets['icon']}">
-    <Link variant="outline" size="icon">
+    <Anchor variant="outline" size="icon">
       <div html="icons.circleFadingArrowUp"></div>
-    </Link>
+    </Anchor>
   </DemoBlock>
 
   <DemoBlock label="sizes" snippet="{snippets['sizes']}">
     <div class="flex items-center gap-2">
-      <Link size="xs">xs</Link>
-      <Link size="sm">sm</Link>
-      <Link size="default">default</Link>
-      <Link size="lg">lg</Link>
+      <Anchor size="xs">xs</Anchor>
+      <Anchor size="sm">sm</Anchor>
+      <Anchor size="default">default</Anchor>
+      <Anchor size="lg">lg</Anchor>
     </div>
   </DemoBlock>
 
   <DemoBlock label="with icon" snippet="{snippets['with-icon']}">
     <div class="flex gap-2">
-      <Link variant="outline">
+      <Anchor variant="outline">
         <div data-icon="inline-start" html="icons.gitBranch"></div>
         New Branch
-      </Link>
-      <Link variant="outline">
+      </Anchor>
+      <Anchor variant="outline">
         Fork
         <div data-icon="inline-end" html="icons.gitFork"></div>
-      </Link>
+      </Anchor>
     </div>
   </DemoBlock>
 
   <DemoBlock label="pill" snippet="{snippets['pill']}">
     <div class="flex gap-2">
-      <Link class="rounded-full">Get Started</Link>
-      <Link variant="outline" size="icon" class="rounded-full">
+      <Anchor class="rounded-full">Get Started</Anchor>
+      <Anchor variant="outline" size="icon" class="rounded-full">
         <div html="icons.arrowUp"></div>
-      </Link>
+      </Anchor>
     </div>
   </DemoBlock>
 
   <DemoBlock label="loading" snippet="{snippets['loading']}">
     <div class="flex gap-2">
-      <Link variant="outline" disabled="{true}">
+      <Anchor variant="outline" disabled="{true}">
         <div data-icon="inline-start" html="icons.spinner"></div>
         Generating
-      </Link>
-      <Link variant="secondary" disabled="{true}">
+      </Anchor>
+      <Anchor variant="secondary" disabled="{true}">
         Downloading
         <div data-icon="inline-start" html="icons.spinner"></div>
-      </Link>
+      </Anchor>
     </div>
   </DemoBlock>
 
-  <Pager id="link" />
+  <Pager id="anchor" />
 </div>

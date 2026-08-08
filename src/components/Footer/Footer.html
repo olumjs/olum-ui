@@ -1,5 +1,5 @@
 <script>
-  import Link from "../ui/Link/Link";
+  import Anchor from "../ui/Anchor/Anchor";
   import Separator from "../ui/Separator/Separator";
   import { BASE } from "../../utils/components";
 
@@ -11,21 +11,21 @@
 
 <footer data-slot="footer" class="border-t border-border">
   <div class="mx-auto flex max-w-[1500px] flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-muted-foreground sm:flex-row">
-    <!-- Link's own host wrapper is a block div, which would break the sentence
+    <!-- Anchor's own host wrapper is a block div, which would break the sentence
          onto a second line -- collapse it so the anchor flows with the text. -->
     <p class="text-center text-balance sm:text-left [&>[data-olum]]:contents">
       Built with OlumJS. The source code is available on
-      <Link variant="link" href="{REPO}" target="_blank" class="h-auto px-0 text-foreground">GitHub</Link>.
+      <Anchor variant="link" href="{REPO}" target="_blank" class="h-auto px-0 text-foreground">GitHub</Anchor>.
     </p>
 
     <!-- Separator renders inside its own OlumJS host div, so the row has to
          collapse those wrappers for the vertical rules to sit between links. -->
     <div class="flex items-center gap-3 [&>[data-olum]]:contents">
-      <Link variant="link" to="{BASE}" class="{link}">Components</Link>
+      <Anchor variant="link" to="{BASE}" class="{link}">Components</Anchor>
       <Separator orientation="vertical" class="h-4 self-center" />
-      <Link variant="link" href="{SITE}" target="_blank" class="{link}">OlumJS</Link>
+      <Anchor variant="link" href="{SITE}" target="_blank" class="{link}">OlumJS</Anchor>
       <Separator orientation="vertical" class="h-4 self-center" />
-      <Link variant="link" href="{REPO}" target="_blank" class="{link}">GitHub</Link>
+      <Anchor variant="link" href="{REPO}" target="_blank" class="{link}">GitHub</Anchor>
     </div>
   </div>
 </footer>

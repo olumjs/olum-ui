@@ -11,7 +11,7 @@
   import Kbd from "../ui/Kbd/Kbd";
   import KbdGroup from "../ui/Kbd/KbdGroup";
   import { BASE, components, label } from "../../utils/components";
-  import Link from "../ui/Link/Link";
+  import Anchor from "../ui/Anchor/Anchor";
   import Button from "../ui/Button/Button";
 
   const state = { dark: false };
@@ -105,12 +105,12 @@
 <header data-slot="navbar" class="fixed inset-x-0 top-0 z-50 h-14 border-b border-border bg-background/80 backdrop-blur">
   <div class="flex h-full items-center justify-between px-4 sm:px-6">
     <div class="flex gap-x-2">
-      <Link variant="ghost" to="/" class="flex shrink-0 items-center gap-2 text-sm font-semibold tracking-tight">
+      <Anchor variant="ghost" to="/" class="flex shrink-0 items-center gap-2 text-sm font-semibold tracking-tight">
         <div class="pointer-events-none size-4 [&_svg]:size-4" html="icons.logo"></div>
         olum/ui
-      </Link>
-      
-      <Link variant="ghost" to="{BASE}" class="">Components</Link>
+      </Anchor>
+
+      <Anchor variant="ghost" to="{BASE}" class="">Components</Anchor>
     </div>
 
     <div class="flex gap-x-2 justify-between">
@@ -146,7 +146,7 @@
       <div html="state.dark ? icons.sun : icons.moon"></div>
     </Button>
 
-    <Link
+    <Anchor
       variant="ghost"
       href="{REPO}"
       target="_blank"
@@ -154,7 +154,7 @@
       ariaLabel="GitHub repository"
     >
     <span html="icons.github"></span>
-    </Link>
+    </Anchor>
 
     </div>
   </div>

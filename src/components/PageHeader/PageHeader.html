@@ -1,7 +1,7 @@
 <script>
   import { props } from "olum";
   import { BASE, describe, label, nextOf, prevOf } from "../../utils/components";
-  import Link from "../ui/Link/Link";
+  import Anchor from "../ui/Anchor/Anchor";
 
   const { id } = props();
 
@@ -19,20 +19,20 @@
     <h1 class="text-3xl font-semibold tracking-tight capitalize">{label(id)}</h1>
 
     <!-- Icon-only, so each link needs an aria-label naming its destination --
-         the chevron alone tells a screen reader nothing. Each Link renders in
+         the chevron alone tells a screen reader nothing. Each Anchor renders in
          its own OlumJS host div, which would become the flex item instead of
          the anchor; `contents` collapses them so the pair sits together. -->
     <nav aria-label="Component" class="flex shrink-0 items-center gap-1 [&>[data-olum]]:contents">
       <if when="prev()">
-        <Link to="{BASE}/{prev()}" variant="secondary" size="icon-sm" ariaLabel="Previous: {label(prev())}">
+        <Anchor to="{BASE}/{prev()}" variant="secondary" size="icon-sm" ariaLabel="Previous: {label(prev())}">
           <span html="icons.chevronLeft"></span>
-        </Link>
+        </Anchor>
       </if>
 
       <if when="next()">
-        <Link to="{BASE}/{next()}" variant="secondary" size="icon-sm" ariaLabel="Next: {label(next())}">
+        <Anchor to="{BASE}/{next()}" variant="secondary" size="icon-sm" ariaLabel="Next: {label(next())}">
           <span html="icons.chevronRight"></span>
-        </Link>
+        </Anchor>
       </if>
     </nav>
   </div>

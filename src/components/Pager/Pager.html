@@ -1,7 +1,7 @@
 <script>
   import { props } from "olum";
   import { BASE, label, nextOf, prevOf } from "../../utils/components";
-  import Link from "../ui/Link/Link";
+  import Anchor from "../ui/Anchor/Anchor";
 
   const { id } = props();
 
@@ -23,13 +23,13 @@
 <nav data-slot="pager" class="flex items-center justify-between gap-4 mb-14">
   <div>
     <if when="prev()">
-      <Link to="{BASE}/{prev()}" variant="secondary" class="capitalize"><span html="icons.chevronLeft"></span> {label(prev())}</Link>
+      <Anchor to="{BASE}/{prev()}" variant="secondary" class="capitalize"><span html="icons.chevronLeft"></span> {label(prev())}</Anchor>
     </if>
   </div>
 
   <div>
     <if when="next()">
-      <Link to="{BASE}/{next()}" variant="secondary" class="capitalize">{label(next())} <span html="icons.chevronRight"></span></Link>
+      <Anchor to="{BASE}/{next()}" variant="secondary" class="capitalize">{label(next())} <span html="icons.chevronRight"></span></Anchor>
     </if>
   </div>
 </nav>

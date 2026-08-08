@@ -1,7 +1,7 @@
 <script>
   import { onMount, props } from "olum";
   import { BASE, components, label } from "../../utils/components";
-  import Link from "../ui/Link/Link";
+  import Anchor from "../ui/Anchor/Anchor";
 
   const { id } = props();
 
@@ -33,7 +33,7 @@
   <div class="flex flex-col gap-4 px-6 py-8">
     <nav class="flex flex-col gap-0.5">
       <for each="cid of components" key="cid">
-        <Link to="{BASE}/{cid}" class="{itemClass(cid)}" variant="ghost">{label(cid)}</Link>
+        <Anchor to="{BASE}/{cid}" class="{itemClass(cid)}" variant="ghost">{label(cid)}</Anchor>
       </for>
     </nav>
   </div>

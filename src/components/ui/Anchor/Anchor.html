@@ -38,8 +38,8 @@
 </script>
 
 <if when="to">
-  <a data-slot="link" to="{to}" aria-label="{ariaLabel}" class="{classes()}" aria-disabled="{disabled}">{children}</a>
+  <a data-slot="anchor" to="{to}" aria-label="{ariaLabel}" class="{classes()}" aria-disabled="{disabled}">{children}</a>
 </if>
 <else>
-  <a data-slot="link" href="{href}" aria-label="{ariaLabel}" target="{target}" rel="{relValue()}" class="{classes()}" aria-disabled="{disabled}">{children}</a>
+  <a data-slot="anchor" href="{href}" aria-label="{ariaLabel}" target="{target}" rel="{relValue()}" class="{classes()}" aria-disabled="{disabled}">{children}</a>
 </else>
