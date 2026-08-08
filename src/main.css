@@ -120,14 +120,9 @@
 
   /* Room for the PageToc rail -- only from xl, where two rails plus the content
      column fit without squeezing it, and only on pages that actually render one
-     (the gallery index has no blocks to link, so it must not be inset). The
-     pager is fixed, so body padding can't reach it; it needs its own rule. */
+     (the gallery index has no blocks to link, so it must not be inset). */
   @media (min-width: 80rem) {
     body:has([data-slot="page-toc"]) {
-      padding-right: 14rem;
-    }
-
-    body:has([data-slot="page-toc"]) [data-slot="pager"] {
       padding-right: 14rem;
     }
   }
