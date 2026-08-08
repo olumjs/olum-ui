@@ -2,25 +2,26 @@ import { icons } from "./imports.js";
 // The cartesian charts stay monochrome so the gallery reads as one surface
 // rather than a colour swatch page; the donut is the one place a palette
 // actually carries meaning (one slice per source).
-export const contributions = [
-  { month: "Dec", amount: 320 },
-  { month: "Jan", amount: 610 },
-  { month: "Feb", amount: 480 },
-  { month: "Mar", amount: 720 },
-  { month: "Apr", amount: 415 },
-  { month: "May", amount: 560 },
-];
+// Both series are labelled off the current date rather than frozen months, so
+// a chart captioned "last 6 months" still says something true a year from now.
+const lastMonths = (count, offset = 0) => {
+  const now = new Date();
+  return Array.from({ length: count }, (_, i) => {
+    const d = new Date(now.getFullYear(), now.getMonth() - offset - (count - 1 - i), 1);
+    return d.toLocaleString("en-US", { month: "short" });
+  });
+};
+
+export const nextMonth = (() => {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth() + 1, 1).toLocaleString("en-US", { month: "long", year: "numeric" });
+})();
+
+export const contributions = lastMonths(6).map((month, i) => ({ month, amount: [320, 610, 480, 720, 415, 560][i] }));
 
 export const contributionConfig = { amount: { label: "Contributions", color: "var(--olum-foreground)" } };
 
-export const visitors = [
-  { month: "Jan", visitors: 186 },
-  { month: "Feb", visitors: 245 },
-  { month: "Mar", visitors: 207 },
-  { month: "Apr", visitors: 296 },
-  { month: "May", visitors: 254 },
-  { month: "Jun", visitors: 318 },
-];
+export const visitors = lastMonths(6).map((month, i) => ({ month, visitors: [186, 245, 207, 296, 254, 318][i] }));
 
 export const visitorConfig = { visitors: { label: "Visitors", color: "var(--olum-muted-foreground)" } };
 

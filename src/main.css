@@ -127,3 +127,21 @@
     }
   }
 }
+
+/* The band the card gallery sits on. It has to read as *behind* the cards in
+   both themes, and --olum-muted is lighter than --olum-background in dark mode,
+   so dark can't just reuse it -- it gets its own recessed tone mixed off the
+   background instead. Cards themselves are bg-background, so they lift off this
+   in either palette. */
+.card-surface {
+  background-color: var(--olum-muted);
+  /* Vignette that feathers the band's edges back into the page background, so
+     the seam with the hero above it is a fade rather than a hard line. */
+  box-shadow: inset 0 0 40px 40px white;
+}
+
+.dark .card-surface {
+  background-color: color-mix(in oklch, var(--olum-background), black 45%);
+  /* Same vignette, fading to the dark page background instead of white. */
+  box-shadow: inset 0 0 40px 40px var(--olum-background);
+}

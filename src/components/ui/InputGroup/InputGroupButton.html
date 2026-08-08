@@ -3,7 +3,7 @@
   import { twMerge } from "tailwind-merge";
   import Button from "../Button/Button";
 
-  const { type = "button", variant = "ghost", size = "xs", class: className = "", children } = props();
+  const { type = "button", variant = "ghost", size = "xs", value, ariaLabel, class: className = "", children } = props();
 
   const sizes = {
     xs: "h-6 gap-1 rounded-[calc(var(--radius)-3px)] px-1.5 [&>svg:not([class*='size-'])]:size-3.5",
@@ -15,4 +15,4 @@
   const classes = () => twMerge("flex items-center gap-2 text-sm shadow-none", sizes[size] || sizes.xs, className);
 </script>
 
-<Button type="{type}" variant="{variant}" class="{classes()}">{children}</Button>
+<Button type="{type}" variant="{variant}" value="{value}" ariaLabel="{ariaLabel}" class="{classes()}">{children}</Button>

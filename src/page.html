@@ -258,6 +258,7 @@
     royalties,
     faq,
     files,
+    nextMonth,
     activity,
     chat,
     fruits,
@@ -270,7 +271,19 @@
     trigger,
   } from "./utils/data.js";
 
-  const state = { direction: "ltr" };
+  // Everything a visitor can actually change lives here, so the cards behave
+  // like one small app rather than a wall of screenshots. The seeded lists are
+  // copied out of data.js because they get added to and removed from.
+  const state = {
+    direction: "ltr",
+    messages: [],
+    replying: false,
+    payout: 2500,
+    goals: targets.slice(),
+    attachments: files.slice(),
+    hidden: {},
+  };
+
   import { onMount } from "olum";
   import { BASE, components } from "./utils/components";
   import Footer from "./components/Footer/Footer";
@@ -278,15 +291,126 @@
   import Logo from "./components/Logo";
   import { qr } from "./utils/index";
 
-  // Both interactions below live inside a Card's slot, where a callback prop
-  // would be dropped (the slot-owning component resolves it, not this page), so
-  // they're delegated from the page host instead -- toasts key off the Button's
-  // `value` (rendered as data-value) and the RTL switch off its id.
+  const money = (n) => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  // Canned answers, cycled rather than random so a reply never repeats itself
+  // back-to-back and the conversation reads like it's going somewhere.
+  const replies = [
+    "Pin the viewport to a fixed height and let the content scroll inside it — the jump usually comes from the container growing with the list.",
+    "MessageScroller already tracks whether you're pinned to the bottom, so it only auto-scrolls when you haven't scrolled up yourself.",
+    "That should hold now. Want me to add a jump-to-latest button as well?",
+  ];
+  let replyAt = 0;
+
   onMount(() => {
+    const find = (sel) => host.querySelector(sel);
+    const notify = (title, description, type) => toast.add({ title, description, type });
+
+    // The log is a plain overflow container, so a new message lands below the
+    // fold until we pin it back to the bottom -- after the state change has
+    // been flushed into the DOM.
+    const stickToBottom = () =>
+      setTimeout(() => {
+        const log = find("#home-chat-log");
+        if (log) log.scrollTop = log.scrollHeight;
+      }, 0);
+
+    const send = () => {
+      const box = find("#home-chat-input");
+      const text = box ? box.value.trim() : "";
+      if (!text) return;
+      state.messages = [...state.messages, { id: "u" + Date.now(), align: "end", text }];
+      box.value = "";
+      state.replying = true;
+      stickToBottom();
+      setTimeout(() => {
+        state.replying = false;
+        state.messages = [...state.messages, { id: "a" + Date.now(), align: "start", text: replies[replyAt++ % replies.length] }];
+        stickToBottom();
+      }, 900);
+    };
+
+    const createGoal = () => {
+      const name = find("#home-goal");
+      const label = name ? name.value.trim() : "";
+      if (!label) {
+        if (name) name.focus();
+        return notify("Name your goal first", "A milestone needs something to aim at.", "warning");
+      }
+      const total = (find("#home-amount") || {}).value || "$0";
+      const due = (find("#home-date") || {}).value || "no date set";
+      state.goals = [...state.goals, { label, amount: "$0 of " + total, value: 0 }];
+      name.value = "";
+      notify("Goal created", label + " — due " + due + ".", "success");
+    };
+
+    const savePrefs = () => {
+      const on = alerts.filter((a) => {
+        const box = find("#" + a.id);
+        return box && box.checked;
+      }).length;
+      notify("Preferences saved", on + " of " + alerts.length + " alert types are on.", "success");
+    };
+
+    const dismiss = (key, label) => {
+      state.hidden = { ...state.hidden, [key]: true };
+      notify(label + " dismissed", "Reload the page to bring it back.");
+    };
+
+    const actions = {
+      "chat:send": send,
+      "chat:reset": () => {
+        state.messages = [];
+        state.replying = false;
+        notify("Conversation cleared", "Starting fresh.");
+      },
+      "goal:create": createGoal,
+      "goal:cancel": () => {
+        const name = find("#home-goal");
+        if (name) name.value = "";
+      },
+      "payout:save": () => notify("Threshold saved", "Payouts run once the balance clears " + money(state.payout) + ".", "success"),
+      "prefs:save": savePrefs,
+      "report:view": () => notify("Report queued", "The full contribution report is on its way to your inbox."),
+      "analytics:view": () => notify("Opening analytics", "418.2K visitors over the last 30 days."),
+      "release:create": () => notify("Release started", "Upload a master to continue."),
+      "team:invite": () => notify("Invite sent", "They'll get an email in a moment.", "success"),
+      "otp:resend": () => notify("Code resent", "Check your device for a new 6-digit code."),
+      "alert:retry": () => notify("Deleted", "The item was removed on the second try.", "success"),
+      "card:payout": () => dismiss("payout", "Payout Threshold"),
+      "card:dividend": () => dismiss("dividend", "Q2 Dividend Income"),
+    };
+
+    // These controls all sit inside a Card's slot, where a callback prop would
+    // be dropped (the slot-owning component resolves it, not this page), so
+    // everything is delegated from the page host instead -- buttons key off the
+    // Button's `value` (rendered as data-value), fields off their id.
     const onClick = (e) => {
-      const btn = e.target.closest("[data-value^='toast:']");
+      const btn = e.target.closest("[data-value]");
       if (!btn || !host.contains(btn)) return;
-      toast.add({ ...toasts[btn.dataset.value], autoClose: false });
+      const key = btn.dataset.value;
+      if (toasts[key]) return toast.add({ ...toasts[key], autoClose: false });
+      if (key && key.startsWith("file:")) {
+        const name = key.slice(5);
+        state.attachments = state.attachments.filter((f) => f.name !== name);
+        return notify("Attachment removed", name);
+      }
+      if (actions[key]) actions[key]();
+    };
+
+    const onKeydown = (e) => {
+      if (e.target.id === "home-chat-input" && e.key === "Enter") {
+        e.preventDefault();
+        send();
+      }
+    };
+
+    // Slider exposes no callback, but its thumb is a real range input whose
+    // `input` event bubbles -- the wrapper id tells this one apart from the
+    // slider inside the Drawer demo.
+    const onInput = (e) => {
+      if (!e.target.closest("#home-payout-slider")) return;
+      state.payout = +e.target.value;
     };
 
     const onChange = (e) => {
@@ -295,9 +419,13 @@
     };
 
     host.addEventListener("click", onClick);
+    host.addEventListener("keydown", onKeydown);
+    host.addEventListener("input", onInput);
     host.addEventListener("change", onChange);
     return () => {
       host.removeEventListener("click", onClick);
+      host.removeEventListener("keydown", onKeydown);
+      host.removeEventListener("input", onInput);
       host.removeEventListener("change", onChange);
     };
   });
@@ -336,17 +464,21 @@
   <section class="relative px-4 pb-16 sm:px-6">
     <div aria-hidden="true" class="pointer-events-none absolute inset-y-0 -left-8 hidden w-44 flex-col gap-4 opacity-50 blur-[2px] 2xl:flex">
       <for each="h of ghosts" key="h">
-        <div class="w-full shrink-0 rounded-xl bg-muted" style="height: {h}px;"></div>
+        <!-- bg-background, not bg-muted: these sit on the muted band and read as
+             more cards trailing off the edge, so they take the card's surface. -->
+        <div class="w-full shrink-0 rounded-xl bg-background" style="height: {h}px;"></div>
       </for>
     </div>
 
     <div aria-hidden="true" class="pointer-events-none absolute inset-y-0 -right-8 hidden w-44 flex-col gap-4 opacity-50 blur-[2px] 2xl:flex">
       <for each="h of ghosts" key="h">
-        <div class="w-full shrink-0 rounded-xl bg-muted" style="height: {h}px;"></div>
+        <!-- bg-background, not bg-muted: these sit on the muted band and read as
+             more cards trailing off the edge, so they take the card's surface. -->
+        <div class="w-full shrink-0 rounded-xl bg-background" style="height: {h}px;"></div>
       </for>
     </div>
 
-    <div class="relative mx-auto columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5">
+    <div class="relative mx-auto columns-1 gap-4 sm:columns-2 lg:columns-4 xl:columns-5 2xl:columns-6 card-surface">
       <!-- Kitchen sink: the components a visitor most likely came to look at. -->
       <div class="mb-4 break-inside-avoid">
         <Card class="gap-3">
@@ -425,7 +557,7 @@
               <Item variant="muted" size="sm">
                 <ItemContent>
                   <ItemDescription class="text-[10px] tracking-wide uppercase">Upcoming</ItemDescription>
-                  <ItemTitle>May 2024</ItemTitle>
+                  <ItemTitle>{nextMonth}</ItemTitle>
                   <ItemDescription class="text-xs">Scheduled</ItemDescription>
                 </ItemContent>
               </Item>
@@ -439,7 +571,7 @@
             </ItemGroup>
           </CardContent>
           <CardContent>
-            <Button class="w-full">View Full Report</Button>
+            <Button class="w-full" value="report:view">View Full Report</Button>
           </CardContent>
         </Card>
       </div>
@@ -464,15 +596,15 @@
                 </Field>
                 <Field>
                   <FieldLabel for="home-date">Target Date</FieldLabel>
-                  <Input id="home-date" value="Dec 2025" class="bg-muted/50" />
+                  <Input id="home-date" value="Dec 2027" class="bg-muted/50" />
                 </Field>
               </div>
 
               <FieldSeparator>Then</FieldSeparator>
 
               <Field>
-                <Button class="w-full">Create Goal</Button>
-                <Button variant="outline" class="w-full">Cancel</Button>
+                <Button class="w-full" value="goal:create">Create Goal</Button>
+                <Button variant="outline" class="w-full" value="goal:cancel">Cancel</Button>
               </Field>
             </FieldGroup>
           </CardContent>
@@ -553,7 +685,10 @@
 
             <Table>
               <TableBody>
-                <for each="line of royalties" key="line.label">
+                <!-- Deliberately unkeyed: the loop key is stamped onto every nested
+                     component, so two same-named siblings (the two TableCells) would
+                     share one store entry and collapse into a single cell. -->
+                <for each="line of royalties">
                   <TableRow>
                     <TableCell class="text-muted-foreground">{line.label}</TableCell>
                     <TableCell class="text-right font-medium">{line.amount}</TableCell>
@@ -575,13 +710,14 @@
         </Card>
       </div>
 
+      <if when="!state.hidden.payout">
       <div class="mb-4 break-inside-avoid">
         <Card class="{overlayCard}">
           <CardHeader>
             <CardTitle>Payout Threshold</CardTitle>
             <CardDescription>Set the minimum balance required before a payout is triggered.</CardDescription>
             <CardAction>
-              <Button variant="ghost" size="icon-sm" ariaLabel="Dismiss">
+              <Button variant="ghost" size="icon-sm" ariaLabel="Dismiss" value="card:payout">
                 <span html="icons.x"></span>
               </Button>
             </CardAction>
@@ -606,9 +742,13 @@
                 <FieldContent class="gap-2">
                   <div class="flex items-baseline justify-between gap-2">
                     <FieldLabel>Minimum Payout Amount</FieldLabel>
-                    <span class="text-xl font-semibold tracking-tight">$2,500.00</span>
+                    <span class="text-xl font-semibold tracking-tight">{money(state.payout)}</span>
                   </div>
-                  <Slider defaultValue="{[25]}" />
+                  <!-- The slider runs in real dollars rather than 0-100, so the
+                       thumb position and the amount above it are the same number. -->
+                  <div id="home-payout-slider">
+                    <Slider defaultValue="{[2500]}" min="{50}" max="{10000}" step="{50}" />
+                  </div>
                   <div class="flex items-center justify-between text-xs text-muted-foreground">
                     <span>$50 (MIN)</span>
                     <span>$10,000 (MAX)</span>
@@ -622,11 +762,12 @@
                 <FieldDescription>Only visible to workspace admins.</FieldDescription>
               </Field>
 
-              <Button class="w-full">Save Threshold</Button>
+              <Button class="w-full" value="payout:save">Save Threshold</Button>
             </FieldGroup>
           </CardContent>
         </Card>
       </div>
+      </if>
 
       <div class="mb-4 break-inside-avoid">
         <Card class="gap-3">
@@ -634,40 +775,52 @@
             <CardTitle>New Chat</CardTitle>
             <CardDescription>How can I help you today?</CardDescription>
             <CardAction>
-              <Button variant="ghost" size="icon-sm" ariaLabel="Reset conversation">
+              <Button variant="ghost" size="icon-sm" ariaLabel="Reset conversation" value="chat:reset">
                 <span html="icons.refresh"></span>
               </Button>
             </CardAction>
           </CardHeader>
           <CardContent>
-            <Empty class="py-6">
-              <EmptyHeader>
-                <EmptyMedia variant="icon">
-                  <Spinner class="size-5" />
-                </EmptyMedia>
-                <EmptyTitle>Morning, olum!</EmptyTitle>
-                <EmptyDescription>What are we working on today? Press send to start a new conversation.</EmptyDescription>
-              </EmptyHeader>
-            </Empty>
+            <if when="!state.messages.length && !state.replying">
+              <Empty class="py-6">
+                <EmptyHeader>
+                  <EmptyMedia variant="icon">
+                    <div html="icons.inbox"></div>
+                  </EmptyMedia>
+                  <EmptyTitle>Morning, olum!</EmptyTitle>
+                  <EmptyDescription>What are we working on today? Press send to start a new conversation.</EmptyDescription>
+                </EmptyHeader>
+              </Empty>
+            </if>
+            <else>
+              <div id="home-chat-log" class="max-h-56 overflow-y-auto">
+                <BubbleGroup>
+                  <for each="m of state.messages" key="m.id">
+                    <Bubble align="{m.align}" variant="{m.align === 'end' ? 'default' : 'muted'}">
+                      <BubbleContent class="text-xs leading-relaxed">{m.text}</BubbleContent>
+                    </Bubble>
+                  </for>
+                  <show when="state.replying">
+                    <Bubble align="start" variant="muted">
+                      <BubbleContent class="text-xs leading-relaxed">
+                        <Spinner class="size-3.5" />
+                      </BubbleContent>
+                    </Bubble>
+                  </show>
+                </BubbleGroup>
+              </div>
+            </else>
           </CardContent>
           <CardContent class="flex flex-col gap-2">
-            <BubbleGroup>
-              <Bubble align="end" variant="muted">
-                <BubbleContent class="text-xs leading-relaxed">
-                  I'm building a chat for our app and the scroll behavior is driving me nuts. Every time the...
-                </BubbleContent>
-              </Bubble>
-            </BubbleGroup>
-
             <InputGroup>
               <InputGroupAddon>
-                <InputGroupButton size="icon-xs">
+                <InputGroupButton size="icon-xs" ariaLabel="Add attachment">
                   <div html="icons.plus"></div>
                 </InputGroupButton>
               </InputGroupAddon>
-              <InputGroupInput placeholder="Ask anything..." />
+              <InputGroupInput id="home-chat-input" placeholder="Ask anything..." />
               <InputGroupAddon align="inline-end">
-                <InputGroupButton variant="default" size="icon-xs">
+                <InputGroupButton variant="default" size="icon-xs" ariaLabel="Send" value="chat:send">
                   <div html="icons.arrowUp"></div>
                 </InputGroupButton>
               </InputGroupAddon>
@@ -688,7 +841,7 @@
                 <EmptyDescription>Upload your first master to start reaching listeners on Spotify, Apple Music, and more.</EmptyDescription>
               </EmptyHeader>
               <EmptyContent>
-                <Button size="sm">Create Release</Button>
+                <Button size="sm" value="release:create">Create Release</Button>
               </EmptyContent>
             </Empty>
           </CardContent>
@@ -700,7 +853,7 @@
           <CardHeader>
             <CardTitle>Analytics</CardTitle>
             <CardAction>
-              <Button variant="outline" size="sm">View Analytics</Button>
+              <Button variant="outline" size="sm" value="analytics:view">View Analytics</Button>
             </CardAction>
           </CardHeader>
           <CardContent class="flex items-center gap-2">
@@ -760,11 +913,11 @@
         <Card>
           <CardHeader>
             <CardTitle>Savings Targets</CardTitle>
-            <CardDescription>Active milestones for 2024 across your portfolio.</CardDescription>
+            <CardDescription>Active milestones across your portfolio. New goals land here.</CardDescription>
           </CardHeader>
           <CardContent>
             <ItemGroup>
-              <for each="target of targets" key="target.label">
+              <for each="target of state.goals" key="target.label">
                 <Item variant="outline" size="sm">
                   <ItemContent>
                     <ItemTitle class="w-full justify-between">
@@ -801,7 +954,7 @@
             </FieldGroup>
           </CardContent>
           <CardContent>
-            <Button class="w-full">Save Preferences</Button>
+            <Button class="w-full" value="prefs:save">Save Preferences</Button>
           </CardContent>
         </Card>
       </div>
@@ -885,7 +1038,7 @@
               <AlertTitle>Failed to delete</AlertTitle>
               <AlertDescription>This item could not be removed. Try again.</AlertDescription>
               <AlertAction>
-                <Button size="sm" variant="outline">Retry</Button>
+                <Button size="sm" variant="outline" value="alert:retry">Retry</Button>
               </AlertAction>
             </Alert>
           </CardContent>
@@ -901,7 +1054,7 @@
           </CardHeader>
           <CardContent>
             <AttachmentGroup class="flex-col">
-              <for each="file of files" key="file.name">
+              <for each="file of state.attachments" key="file.name">
                 <Attachment state="{file.state}">
                   <AttachmentMedia>
                     <if when="file.icon">
@@ -916,7 +1069,7 @@
                     <AttachmentDescription>{file.meta}</AttachmentDescription>
                   </AttachmentContent>
                   <AttachmentActions>
-                    <AttachmentAction>
+                    <AttachmentAction ariaLabel="Remove attachment" value="file:{file.name}">
                       <div class="[&_svg]:size-3!" html="icons.x"></div>
                     </AttachmentAction>
                   </AttachmentActions>
@@ -971,7 +1124,7 @@
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <Button variant="outline" size="sm" class="ml-auto">Invite</Button>
+                    <Button variant="outline" size="sm" class="ml-auto" value="team:invite">Invite</Button>
                   </TooltipTrigger>
                   <TooltipContent>
                     Send an invite
@@ -1360,7 +1513,7 @@
                 <InputOTPSlot index="{5}" />
               </InputOTPGroup>
             </InputOTP>
-            <Button size="sm" variant="ghost">Resend code</Button>
+            <Button size="sm" variant="ghost" value="otp:resend">Resend code</Button>
           </CardContent>
         </Card>
       </div>
@@ -1675,13 +1828,14 @@
         </Card>
       </div>
 
+      <if when="!state.hidden.dividend">
       <div class="mb-4 break-inside-avoid">
         <Card size="sm">
           <CardHeader>
             <CardTitle>Q2 Dividend Income</CardTitle>
             <CardDescription>Quarterly dividend payouts across your portfolio holdings.</CardDescription>
             <CardAction>
-              <Button variant="ghost" size="icon-sm" ariaLabel="Dismiss">
+              <Button variant="ghost" size="icon-sm" ariaLabel="Dismiss" value="card:dividend">
                 <span html="icons.x"></span>
               </Button>
             </CardAction>
@@ -1692,6 +1846,7 @@
           </CardFooter>
         </Card>
       </div>
+      </if>
     </div>
   </section>
 
