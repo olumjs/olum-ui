@@ -13,7 +13,7 @@ export const components = [
   "accordion", "alert", "alert-dialog", "aspect-ratio", "attachment", "avatar", "badge",
   "breadcrumb", "bubble", "button", "anchor", "button-group", "calendar", "card", "carousel", "chart",
   "checkbox", "collapsible", "combobox", "command", "context-menu", "data-table", "date-picker",
-  "dialog", "direction", "drawer", "dropdown-menu", "empty", "field", "hover-card", "input",
+  "dialog", "direction", "drawer", "dropdown-menu", "empty", "field", "hover-card", "icon", "input",
   "input-group", "input-otp", "item", "kbd", "label", "marker", "menubar", "message",
   "message-scroller", "native-select", "navigation-menu", "pagination", "popover", "progress",
   "radio-group", "resizable", "scroll-area", "select", "separator", "sheet", "sidebar", "skeleton",

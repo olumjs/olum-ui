@@ -1,6 +1,14 @@
 {
   "components": [
     {
+      "name": "icon",
+      "title": "Icon",
+      "description": "Displays an SVG icon with customizable size, color, and styling. Supports icons from the Olum icon library and other SVG-based icon sets.",
+      "category": "utility",
+      "deps": [],
+      "path": "src/components/ui/Icon/Icon.html"
+    },
+    {
       "name": "button",
       "title": "Button",
       "description": "A clickable control for triggering an action or submitting a form. Ships six variants and five sizes, and accepts leading or trailing icons that adjust its padding automatically.",

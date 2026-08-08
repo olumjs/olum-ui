@@ -31,6 +31,7 @@ export const descriptions = {
   "empty": "The placeholder shown when there's nothing to display yet. Composes media, a title, a description, and a call to action for first-run and no-results states.",
   "field": "Wraps a control with everything that explains it: label, helper description, and validation error. Group several into a fieldset with a legend to build a whole form.",
   "hover-card": "A preview card that appears when a link is hovered, for showing detail without a click. Opens after a short delay so it doesn't flicker in passing.",
+  "icon": "Displays an SVG icon with customizable size, color, and styling. Supports icons from the Olum icon library and other SVG-based icon sets.",
   "input": "A single-line text field for short values. Handles the usual native types and carries the theme's focus ring, invalid, and disabled treatments.",
   "input-group": "An input with addons sitting inside its border rather than beside it. Attach icons, text, or buttons at either end to build search fields, prefixes, and unit suffixes.",
   "input-otp": "Separate slots for entering a one-time passcode, one character per box. Advances and retreats as you type or delete, and takes an optional separator between groups.",

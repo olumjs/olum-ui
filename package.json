@@ -21,6 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "olum": "latest",
+    "olum-icons": "latest",
     "olum-router": "latest",
     "olum-store": "latest",
     "olum-transition": "latest",
