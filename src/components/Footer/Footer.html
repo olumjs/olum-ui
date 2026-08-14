@@ -3,6 +3,8 @@
 
   const REPO = "https://github.com/olumjs/olum-ui";
   const SITE = "https://olumjs.top";
+  const LICENSE = `${REPO}/blob/main/LICENSE.md`;
+  const ATTRIBUTION = `${REPO}/blob/main/attribution.md`;
 </script>
 
 <!-- Shadow instead of a border-t: reads as the page lifting away from the
@@ -17,6 +19,13 @@
       <Anchor variant="link" href="{SITE}" target="_blank" class="h-auto px-0 text-foreground">OlumJS</Anchor>.
       The source code is available on
       <Anchor variant="link" href="{REPO}" target="_blank" class="h-auto px-0 text-foreground">GitHub</Anchor>.
+    </p>
+
+    <p class="mt-2 text-xs [&>[data-olum]]:contents">
+      Inspired by shadcn/ui — not affiliated with or endorsed by it. olum-ui is
+      <Anchor variant="link" href="{LICENSE}" target="_blank" class="h-auto px-0 text-xs text-foreground">MIT licensed</Anchor>;
+      upstream notices are listed under
+      <Anchor variant="link" href="{ATTRIBUTION}" target="_blank" class="h-auto px-0 text-xs text-foreground">attribution</Anchor>.
     </p>
   </div>
 </footer>

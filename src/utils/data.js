@@ -83,7 +83,7 @@ export const royalties = [
 ];
 
 export const faq = [
-  { q: "Is it accessible?", a: "Every component ships with the roles, labels, and keyboard behaviour of its shadcn counterpart." },
+  { q: "Is it accessible?", a: "Every component ships with the roles, labels, and keyboard behaviour you would expect of it." },
   { q: "Is it styled?", a: "Yes — the same Tailwind tokens drive light and dark mode across the whole set." },
   { q: "Can I own the code?", a: "Copy the component folder into your project and edit it. There is no runtime to upgrade around." },
 ];

@@ -1,4 +1,8 @@
-@import "tailwindcss";
+/* source(...) roots class detection at src/ instead of the project root. Without
+   it Tailwind v4 scans every non-ignored file, so prose in README.md or
+   attribution.md leaks stray utilities into the build. (tailwind.config.js is a
+   v3-style config and is ignored unless loaded with @config.) */
+@import "tailwindcss" source("../../");
 
 :root {
   --olum-radius: 0.625rem;
@@ -22,8 +26,8 @@
   --olum-chart-5: oklch(0.769 0.188 70.08);
 }
 
-/* Toggled by the Navbar, which puts .dark on <html>. Values track the shadcn
-   neutral dark palette so the ported components stay faithful. */
+/* Toggled by the Navbar, which puts .dark on <html>. A neutral dark palette in
+   the same vein as shadcn's, so the components read as familiar. */
 .dark {
   --olum-background: oklch(0.145 0 0);
   --olum-foreground: oklch(0.985 0 0);

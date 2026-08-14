@@ -1,3 +1,10 @@
+This license covers all of olum-ui's own work — the OlumJS components, the docs
+site, and the build scripts. The third-party material bundled alongside it (the
+Lucide demo icons and the Geist font files) remains under its own license,
+reproduced in full in `attribution.md`.
+
+---
+
 MIT License
 
 Copyright 2026 Eissa Saber

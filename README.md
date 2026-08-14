@@ -1,8 +1,8 @@
 # Olum UI
 
-[shadcn/ui](https://ui.shadcn.com), rebuilt for [OlumJS](https://olumjs.top) — same markup, same behavior, no React.
+A complete component set for [OlumJS](https://olumjs.top), in the spirit of [shadcn/ui](https://ui.shadcn.com) — familiar API, no React.
 
-The whole shadcn/ui component set ported to plain OlumJS files. Nothing is installed as a package: components are copied straight into your project as source, so you own the code and can edit it like you wrote it yourself.
+63 components written from scratch as plain OlumJS files. Nothing is installed as a package: components are copied straight into your project as source, so you own the code and can edit it like you wrote it yourself.
 
 **[Browse the components →](https://ui.olumjs.top)**
 
@@ -61,7 +61,7 @@ Run `npm run snippets` after editing any `src/elements/*/page.html` demo, or aft
 ```
 src/
   components/
-    ui/           # the ported components (Button, Dialog, DataTable, ...)
+    ui/           # the component set (Button, Dialog, DataTable, ...)
     Navbar/, Footer/, ...   # site chrome, not part of the component set
   elements/
     <component>/
@@ -73,8 +73,10 @@ registry.json      # manifest the CLI reads: name, title, description, deps, pat
 
 ## Attribution
 
-A community port of [shadcn/ui](https://ui.shadcn.com) (MIT). Not affiliated with or endorsed by the original project.
+Inspired by [shadcn/ui](https://ui.shadcn.com), but not affiliated with, sponsored by, or endorsed by it.
+
+Every component here is an original implementation written directly in OlumJS — no React, no Radix/Base UI primitives, no Recharts/TanStack/DayPicker/Embla, and no shadcn/ui source. What the two share is a vocabulary: component names, variant names, the `data-slot` convention and a familiar visual language. [attribution.md](./attribution.md) sets that out in full, alongside the licenses for the material that *is* bundled here — the Lucide demo icons (ISC) and the self-hosted Geist fonts (OFL 1.1).
 
 ## License
 
-MIT
+[MIT](./LICENSE.md). See [attribution.md](./attribution.md) for the third-party notices that come with the bundled icons and fonts.

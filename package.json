@@ -18,7 +18,7 @@
     "olum"
   ],
   "author": "Eissa Saber",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "olum": "latest",
     "olum-icons": "latest",

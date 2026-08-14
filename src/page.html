@@ -439,18 +439,18 @@
       to="{BASE}"
       class="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-full border border-border bg-background px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted [&_svg]:size-3"
     >
-      New: {components.length} components ported to OlumJS
+      New: {components.length} components for OlumJS
       <span class="pointer-events-none" html="icons.arrowRight"></span>
     </a>
 
     <h1 class="text-4xl font-semibold tracking-tighter text-balance sm:text-6xl">
-      shadcn/ui, rebuilt for
+      The component set for
       <Logo title="OlumJS"/>
     </h1>
 
     <p class="max-w-2xl text-base text-balance text-muted-foreground sm:text-lg">
-      The whole component set ported to plain OlumJS files — same markup, same behaviour, no React. Copy a folder into your project and edit it like
-      code you wrote yourself.
+      {components.length} components in the spirit of shadcn/ui, written from scratch as plain OlumJS files — familiar API, no React. Copy a folder into
+      your project and edit it like code you wrote yourself.
     </p>
 
     <Anchor to="{BASE}" size="lg" class="gap-2 px-4">
@@ -458,7 +458,18 @@
       <span html="icons.arrowRight"></span>
     </Anchor>
 
-    <p class="text-xs text-muted-foreground">A community port of shadcn/ui (MIT). Not affiliated with or endorsed by the original project.</p>
+    <!-- Anchor's host wrapper is a block div, which would break the sentence
+         onto a second line -- collapse it so the link flows with the text. -->
+    <p class="text-xs text-muted-foreground [&>[data-olum]]:contents">
+      Inspired by shadcn/ui. Not affiliated with, sponsored by, or endorsed by it — see the
+      <Anchor
+        variant="link"
+        href="https://github.com/olumjs/olum-ui/blob/main/attribution.md"
+        target="_blank"
+        class="h-auto px-0 text-xs text-foreground"
+        >third-party notices</Anchor
+      >.
+    </p>
   </section>
 
   <section class="relative px-4 pb-16 sm:px-6">
