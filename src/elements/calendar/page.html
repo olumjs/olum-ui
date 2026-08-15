@@ -8,6 +8,7 @@
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
+  const selectedDate = "2026-12-25";
 </script>
 
 <Navbar />
@@ -20,6 +21,10 @@
   
   <DemoBlock label="default" snippet="{snippets['default']}">
     <Calendar class="rounded-lg border border-border" />
+  </DemoBlock>
+
+  <DemoBlock label="selected" snippet="{snippets['selected']}">
+    <Calendar selected="{selectedDate}" class="rounded-lg border border-border" />
   </DemoBlock>
   <InstallBlock id="calendar" />
 

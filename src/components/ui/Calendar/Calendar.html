@@ -2,49 +2,98 @@
   import { props } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { selected, onSelect, class: className = "" } = props();
-
-  const now = new Date();
-  const state = { year: now.getFullYear(), month: now.getMonth(), cells: [] };
+  // `props()` returns a live proxy, so `selected` is read through `p` on every
+  // render instead of being destructured once at setup -- that is what lets a
+  // parent change `selected` later and have the grid follow it.
+  const p = props();
+  const { onSelect, class: className = "" } = p;
 
   const weekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
-  const label = () => new Date(state.year, state.month, 1).toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  // Midnight (local) of a date -- the grid cells are built the same way, so
+  // comparing these two is a day comparison, not a clock comparison.
+  const dayTs = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
 
-  const buildCells = () => {
-    const first = new Date(state.year, state.month, 1);
-    const start = new Date(state.year, state.month, 1 - first.getDay());
+  // `selected` accepts a Date, an epoch number, "YYYY-MM-DD" or any parsable
+  // date string. Props travel through JSON, so a Date given by a parent arrives
+  // here as an ISO string -- that is the `new Date(s)` branch below.
+  const toTs = (val) => {
+    if (val === null || val === undefined || val === "") return null;
+    if (val instanceof Date) return isNaN(val.getTime()) ? null : dayTs(val);
+    if (typeof val === "number") {
+      const d = new Date(val);
+      return isNaN(d.getTime()) ? null : dayTs(d);
+    }
+    if (typeof val === "string") {
+      const s = val.trim();
+      // Date-only strings are UTC per the spec; build them locally instead so
+      // they can't land on the previous day west of Greenwich.
+      const ymd = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+      if (ymd) return new Date(+ymd[1], +ymd[2] - 1, +ymd[3]).getTime();
+      const d = new Date(s);
+      return isNaN(d.getTime()) ? null : dayTs(d);
+    }
+    return null;
+  };
+
+  // `ts` is what the user clicked; `propAtPick` is the value of `selected` at
+  // that moment. If the prop moved since then, the parent is the newer source
+  // of truth and wins. Nothing below writes to state while rendering.
+  const state = { ts: undefined, propAtPick: undefined, nav: null, navRef: undefined };
+
+  const selectedTs = () => {
+    const t = toTs(p.selected);
+    if (state.ts === undefined) return t;
+    if (t !== state.propAtPick) return t;
+    return state.ts;
+  };
+
+  // The month on screen: wherever the user navigated to, unless the selection
+  // changed after that -- then it follows the selection (or today, if none).
+  const view = () => {
+    const cur = selectedTs();
+    if (state.nav && state.navRef === cur) return state.nav;
+    const d = cur === null ? new Date() : new Date(cur);
+    return { year: d.getFullYear(), month: d.getMonth() };
+  };
+
+  const label = () => {
+    const v = view();
+    return new Date(v.year, v.month, 1).toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  };
+
+  const cells = () => {
+    const v = view();
+    const cur = selectedTs();
+    const first = new Date(v.year, v.month, 1);
+    const start = new Date(v.year, v.month, 1 - first.getDay());
     const out = [];
     for (let i = 0; i < 42; i++) {
       const d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
       out.push({
         ts: d.getTime(),
         day: d.getDate(),
-        outside: d.getMonth() !== state.month,
+        outside: d.getMonth() !== v.month,
         today: d.toDateString() === new Date().toDateString(),
-        selected: typeof selected === "number" && d.getTime() === selected,
+        selected: d.getTime() === cur,
       });
     }
     return out;
   };
 
-  state.cells = buildCells();
+  const goTo = (delta) => {
+    const v = view();
+    const d = new Date(v.year, v.month + delta, 1);
+    state.navRef = selectedTs();
+    state.nav = { year: d.getFullYear(), month: d.getMonth() };
+  };
 
-  const prev = () => {
-    const d = new Date(state.year, state.month - 1, 1);
-    state.year = d.getFullYear();
-    state.month = d.getMonth();
-    state.cells = buildCells();
-  };
-  const next = () => {
-    const d = new Date(state.year, state.month + 1, 1);
-    state.year = d.getFullYear();
-    state.month = d.getMonth();
-    state.cells = buildCells();
-  };
+  const prev = () => goTo(-1);
+  const next = () => goTo(1);
 
   const pick = (cell) => {
-    state.cells = state.cells.map((c) => ({ ...c, selected: c.ts === cell.ts }));
+    state.propAtPick = toTs(p.selected);
+    state.ts = cell.ts;
     onSelect && onSelect(new Date(cell.ts));
   };
 
@@ -88,7 +137,7 @@
     </for>
   </div>
   <div class="mt-1 grid grid-cols-7 gap-y-1">
-    <for each="cell of state.cells" key="cell.ts">
+    <for each="cell of cells()" key="cell.ts">
       <button type="button" class="{dayClasses(cell)}" onclick="pick(cell)">{cell.day}</button>
     </for>
   </div>
