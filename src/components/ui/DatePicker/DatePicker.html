@@ -3,7 +3,7 @@
   import { twMerge } from "tailwind-merge";
   import Calendar from "../Calendar/Calendar";
 
-  const { placeholder = "Pick a date", class: className = "" } = props();
+  const { placeholder = "Pick a date", onSelect, class: className = "" } = props();
 
   const state = { open: false, ts: null };
 
@@ -13,6 +13,7 @@
   const pick = (d) => {
     state.ts = d.getTime();
     state.open = false;
+    onSelect && onSelect(d);
   };
 
   onMount(() => {
