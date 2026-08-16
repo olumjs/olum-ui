@@ -2,7 +2,7 @@
   import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { class: className = "", containerClass = "", onChange, onComplete, children } = props();
+  const { class: className = "", containerClass = "", oninput, oncomplete, children } = props();
 
   const containerClasses = () => twMerge("flex items-center has-disabled:opacity-50", className, containerClass);
 
@@ -20,8 +20,8 @@
       const value = all.map((el) => el.value).join("");
       if (value === last) return;
       last = value;
-      onChange && onChange(value);
-      if (all.length && all.every((el) => el.value)) onComplete && onComplete(value);
+      oninput && oninput(value);
+      if (all.length && all.every((el) => el.value)) oncomplete && oncomplete(value);
     };
 
     // "input" covers typing and deletion; the slot's paste handler fills the

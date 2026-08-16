@@ -405,9 +405,11 @@
       }
     };
 
-    // Slider exposes no callback, but its thumb is a real range input whose
-    // `input` event bubbles -- the wrapper id tells this one apart from the
-    // slider inside the Drawer demo.
+    // Slider's oninput prop is unusable here: the Slider is slotted through
+    // <Field>/<FieldContent>, so a function prop resolves against the
+    // slot-owning component instead of this page. Its thumb is a real range
+    // input whose `input` event bubbles, so delegate from here -- the wrapper
+    // id tells this one apart from the slider inside the Drawer demo.
     const onInput = (e) => {
       if (!e.target.closest("#home-payout-slider")) return;
       state.payout = +e.target.value;

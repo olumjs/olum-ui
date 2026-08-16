@@ -2,7 +2,7 @@
   import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { class: className = "", onValueChange, children } = props();
+  const { class: className = "", onchange, children } = props();
 
   const classes = () => twMerge("grid w-full gap-2", className);
 
@@ -15,7 +15,7 @@
     const onChange = (e) => {
       const item = e.target.closest('input[data-slot="radio-group-item"]');
       if (!item || !root.contains(item)) return;
-      onValueChange && onValueChange(item.value);
+      onchange && onchange(item.value);
     };
 
     root.addEventListener("change", onChange);

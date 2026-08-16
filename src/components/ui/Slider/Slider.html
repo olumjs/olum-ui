@@ -2,7 +2,7 @@
   import { props } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { defaultValue, value, min = 0, max = 100, step = 1, disabled = false, class: className = "", onValueChange, onValueCommit } = props();
+  const { defaultValue, value, min = 0, max = 100, step = 1, disabled = false, class: className = "", oninput, onchange } = props();
 
   const initial = Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max];
   const state = { values: initial.slice() };
@@ -16,7 +16,7 @@
   // -- the same shape the component takes in through defaultValue/value.
   const handleInput = (i, e) => {
     state.values[i] = +e.target.value;
-    onValueChange && onValueChange(state.values.slice());
+    oninput && oninput(state.values.slice());
   };
 
   // "change" on a range input fires once the drag ends (or on the keyboard
@@ -24,7 +24,7 @@
   // want on every pixel of the drag.
   const handleCommit = (i, e) => {
     state.values[i] = +e.target.value;
-    onValueCommit && onValueCommit(state.values.slice());
+    onchange && onchange(state.values.slice());
   };
 
   const isRange = () => state.values.length > 1;

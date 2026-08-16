@@ -2,10 +2,10 @@
   import { props } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { name = "radio-group", value, defaultChecked = false, disabled = false, id, class: className = "", onCheckedChange } = props();
+  const { name = "radio-group", value, defaultChecked = false, disabled = false, id, class: className = "", onchange } = props();
 
   const handleChange = (e) => {
-    onCheckedChange && onCheckedChange(e.target.value);
+    onchange && onchange(e.target.value);
   };
 
   const base =

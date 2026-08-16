@@ -9,14 +9,14 @@
     pressed,
     disabled = false,
     class: className = "",
-    onPressedChange,
+    onchange,
     children,
   } = props();
 
   // When `pressed` is explicitly passed, this becomes a fully controlled
   // component: isPressed() always reflects the live prop (read fresh on
   // every call, not just seeded once at mount like defaultPressed), and a
-  // click only reports the intended new value via onPressedChange -- the
+  // click only reports the intended new value via onchange -- the
   // caller (e.g. ToggleGroupItem, coordinating several of these against
   // shared group state) owns deciding what actually happens. Uncontrolled
   // usage (no `pressed` prop) is unaffected: it still just flips its own
@@ -28,7 +28,7 @@
   const handleClick = () => {
     const next = !isPressed();
     if (!isControlled()) state.pressed = next;
-    onPressedChange && onPressedChange(next);
+    onchange && onchange(next);
   };
 
   const base =

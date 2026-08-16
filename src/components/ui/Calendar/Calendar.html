@@ -6,7 +6,7 @@
   // render instead of being destructured once at setup -- that is what lets a
   // parent change `selected` later and have the grid follow it.
   const p = props();
-  const { onSelect, class: className = "" } = p;
+  const { onchange, class: className = "" } = p;
 
   const weekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
@@ -94,7 +94,7 @@
   const pick = (cell) => {
     state.propAtPick = toTs(p.selected);
     state.ts = cell.ts;
-    onSelect && onSelect(new Date(cell.ts));
+    onchange && onchange(new Date(cell.ts));
   };
 
   // Plain native <button>s (not the shared Button component) -- reading

@@ -11,14 +11,14 @@
     id,
     name,
     class: className = "",
-    onCheckedChange,
+    onchange,
   } = props();
 
   const state = { checked: checked !== undefined ? checked : defaultChecked };
 
   const handleChange = (e) => {
     state.checked = e.target.checked;
-    onCheckedChange && onCheckedChange(e.target.checked);
+    onchange && onchange(e.target.checked);
   };
 
   const base =

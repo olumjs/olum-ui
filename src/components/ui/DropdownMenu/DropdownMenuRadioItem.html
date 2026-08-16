@@ -2,9 +2,9 @@
   import { props } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { name = "dropdown-radio", value, defaultChecked = false, inset = false, disabled = false, onCheckedChange, class: className = "", children } = props();
+  const { name = "dropdown-radio", value, defaultChecked = false, inset = false, disabled = false, onchange, class: className = "", children } = props();
 
-  const handleChange = () => onCheckedChange && onCheckedChange(value);
+  const handleChange = () => onchange && onchange(value);
 
   const base =
     "relative flex w-full cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-none select-none hover:bg-muted has-checked:bg-muted disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4";

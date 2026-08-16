@@ -2,7 +2,7 @@
   import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { items = [], placeholder = "", emptyText = "No results found.", showClear = false, onSelect, onClear, class: className = "" } = props();
+  const { items = [], placeholder = "", emptyText = "No results found.", showClear = false, onchange, onclear, class: className = "" } = props();
 
   const state = { query: "", open: false, value: null };
 
@@ -12,13 +12,13 @@
     state.value = it;
     state.query = it;
     state.open = false;
-    onSelect && onSelect(it);
+    onchange && onchange(it);
   };
 
   const clear = () => {
     state.value = null;
     state.query = "";
-    onClear && onClear();
+    onclear && onclear();
   };
 
   onMount(() => {

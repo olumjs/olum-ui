@@ -187,7 +187,7 @@
   // The sort/pagination <Button>s, the column-visibility
   // <DropdownMenuCheckboxItem>s, and the row-selection checkboxes below are
   // all slotted through TableHead/TableCell/DropdownMenuContent, so an
-  // onclick/onCheckedChange prop resolves against that slot-owning component
+  // onclick/onchange prop resolves against that slot-owning component
   // instead of this one and silently never fires. Delegate from here (which
   // does own its markup) instead: identify the element via data-role/
   // data-value/aria-checked/data-row-id.

@@ -2,13 +2,13 @@
   import { props } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { value, defaultChecked = false, inset = false, disabled = false, onCheckedChange, class: className = "", children } = props();
+  const { value, defaultChecked = false, inset = false, disabled = false, onchange, class: className = "", children } = props();
 
   const state = { checked: defaultChecked };
 
   const toggle = () => {
     state.checked = !state.checked;
-    onCheckedChange && onCheckedChange(state.checked);
+    onchange && onchange(state.checked);
   };
 
   const base =

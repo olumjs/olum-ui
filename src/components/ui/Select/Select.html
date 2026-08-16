@@ -1,7 +1,7 @@
 <script>
   import { props, onMount } from "olum";
 
-  const { defaultValue, onValueChange, children } = props();
+  const { defaultValue, onchange, children } = props();
 
   onMount(() => {
     const root = host.querySelector('[data-slot="select"]');
@@ -26,7 +26,7 @@
       if (!item || !root.contains(item)) return;
       apply(item);
       close();
-      onValueChange && onValueChange(item.dataset.value);
+      onchange && onchange(item.dataset.value);
     };
 
     root.addEventListener("click", onClick);

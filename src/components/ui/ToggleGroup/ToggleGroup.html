@@ -3,7 +3,7 @@
   import { twMerge } from "tailwind-merge";
   import { toggleGroupStore, nextToggleGroupId } from "./toggleGroupStore";
 
-  const { multiple = false, defaultValue = [], orientation = "horizontal", class: className = "", onValueChange, children } = props();
+  const { multiple = false, defaultValue = [], orientation = "horizontal", class: className = "", onchange, children } = props();
 
   // Coordinating which item(s) are pressed can't live on each item's own
   // Toggle instance (there's no way for siblings to see each other's local
@@ -46,7 +46,7 @@
       const sig = JSON.stringify(value);
       if (sig === last) return;
       last = sig;
-      onValueChange && onValueChange(value);
+      onchange && onchange(value);
     };
 
     root.addEventListener("click", onClick);
