@@ -1,9 +1,9 @@
 <script>
-  import { props } from "olum";
+  import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
   import { toggleGroupStore, nextToggleGroupId } from "./toggleGroupStore";
 
-  const { multiple = false, defaultValue = [], orientation = "horizontal", class: className = "", children } = props();
+  const { multiple = false, defaultValue = [], orientation = "horizontal", class: className = "", onValueChange, children } = props();
 
   // Coordinating which item(s) are pressed can't live on each item's own
   // Toggle instance (there's no way for siblings to see each other's local
@@ -27,6 +27,31 @@
   };
 
   const classes = () => twMerge(base, orientations[orientation] || orientations.horizontal, className);
+
+  onMount(() => {
+    const root = host.querySelector('[data-slot="toggle-group"]');
+
+    // Items are slotted children, so a callback prop can't be handed down to
+    // them -- the click is caught here on the way up instead. Each item's own
+    // Toggle listener sits on its button (target phase), so by the time the
+    // event reaches this root listener the store already holds the new set.
+    let last = null;
+    const onClick = (e) => {
+      const btn = e.target.closest('[data-slot="toggle"]');
+      if (!btn || !root.contains(btn)) return;
+      const active = Array.from(toggleGroupStore.active[id] || []);
+      // Single mode reports the one pressed value as a plain string (""
+      // when nothing is pressed); multiple mode reports every pressed value.
+      const value = multiple ? active : active[0] || "";
+      const sig = JSON.stringify(value);
+      if (sig === last) return;
+      last = sig;
+      onValueChange && onValueChange(value);
+    };
+
+    root.addEventListener("click", onClick);
+    return () => root.removeEventListener("click", onClick);
+  });
 </script>
 
 <div role="group" data-slot="toggle-group" data-group-id="{id}" data-multiple="{multiple}" data-orientation="{orientation}" class="{classes()}">{children}</div>

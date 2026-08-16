@@ -5,7 +5,7 @@
   const { name = "radio-group", value, defaultChecked = false, disabled = false, id, class: className = "", onCheckedChange } = props();
 
   const handleChange = (e) => {
-    onCheckedChange && onCheckedChange(value);
+    onCheckedChange && onCheckedChange(e.target.value);
   };
 
   const base =

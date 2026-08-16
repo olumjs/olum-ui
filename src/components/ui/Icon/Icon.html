@@ -2,10 +2,11 @@
   import { props } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { icon, class: className = "" } = props();
+  const { icon, class: className = "", onclick } = props();
+  const handleClick = (e) => onclick && onclick(e);
 
   const classes = () =>
-    twMerge("inline-flex items-center justify-center", "[&_svg]:w-full [&_svg]:h-full [&_svg]:text-current [&_svg]:stroke-current", className);
+    twMerge("inline-flex items-center justify-center", "[&_svg]:w-full [&_svg]:h-full [&_svg]:text-current [&_svg]:stroke-current [&_svg]:pointer-events-none", className);
 </script>
 
-<span html="icon" class="{classes()}"></span>
+<span html="icon" class="{classes()}" onclick="handleClick()"></span>

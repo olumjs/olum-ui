@@ -1,10 +1,40 @@
 <script>
-  import { props } from "olum";
+  import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { class: className = "", containerClass = "", children } = props();
+  const { class: className = "", containerClass = "", onChange, onComplete, children } = props();
 
   const containerClasses = () => twMerge("flex items-center has-disabled:opacity-50", className, containerClass);
+
+  onMount(() => {
+    const root = host.querySelector('[data-slot="input-otp"]');
+
+    // Slots are slotted children nested inside InputOTPGroup, so function
+    // props cannot be passed down to them -- the value is read back off the
+    // DOM here instead, from the one place that owns every slot.
+    const slots = () => Array.from(root.querySelectorAll('input[data-slot="input-otp-slot"]'));
+
+    let last = null;
+    const emit = () => {
+      const all = slots();
+      const value = all.map((el) => el.value).join("");
+      if (value === last) return;
+      last = value;
+      onChange && onChange(value);
+      if (all.length && all.every((el) => el.value)) onComplete && onComplete(value);
+    };
+
+    // "input" covers typing and deletion; the slot's paste handler fills the
+    // other inputs programmatically (no "input" event fires for those), so the
+    // bubbled "paste" -- which reaches here after the slot has already written
+    // the values -- is the second trigger.
+    root.addEventListener("input", emit);
+    root.addEventListener("paste", emit);
+    return () => {
+      root.removeEventListener("input", emit);
+      root.removeEventListener("paste", emit);
+    };
+  });
 </script>
 
 <div data-slot="input-otp" class="{containerClasses()}">{children}</div>

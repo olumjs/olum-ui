@@ -2,7 +2,7 @@
   import { props } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { defaultValue, value, min = 0, max = 100, step = 1, disabled = false, class: className = "" } = props();
+  const { defaultValue, value, min = 0, max = 100, step = 1, disabled = false, class: className = "", onValueChange, onValueCommit } = props();
 
   const initial = Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max];
   const state = { values: initial.slice() };
@@ -11,8 +11,20 @@
   const rangeStart = () => (state.values.length > 1 ? pct(Math.min(...state.values)) : 0);
   const rangeEnd = () => pct(Math.max(...state.values));
 
+  // The callbacks always hand back a copy of the whole array (one entry per
+  // thumb, in thumb order), so a range slider reports both ends on every move
+  // -- the same shape the component takes in through defaultValue/value.
   const handleInput = (i, e) => {
     state.values[i] = +e.target.value;
+    onValueChange && onValueChange(state.values.slice());
+  };
+
+  // "change" on a range input fires once the drag ends (or on the keyboard
+  // step), which is the moment to run the expensive work a consumer does not
+  // want on every pixel of the drag.
+  const handleCommit = (i, e) => {
+    state.values[i] = +e.target.value;
+    onValueCommit && onValueCommit(state.values.slice());
   };
 
   const isRange = () => state.values.length > 1;
@@ -48,6 +60,7 @@
         value="{v}"
         disabled="{disabled}"
         oninput="(e) => handleInput(i, e)"
+        onchange="(e) => handleCommit(i, e)"
         class="{inputClasses()}"
       />
       <div

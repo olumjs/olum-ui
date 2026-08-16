@@ -1,10 +1,26 @@
 <script>
-  import { props } from "olum";
+  import { props, onMount } from "olum";
   import { twMerge } from "tailwind-merge";
 
-  const { class: className = "", children } = props();
+  const { class: className = "", onValueChange, children } = props();
 
   const classes = () => twMerge("grid w-full gap-2", className);
+
+  onMount(() => {
+    const root = host.querySelector('[data-slot="radio-group"]');
+
+    // Items are slotted children (usually wrapped in a layout div next to a
+    // Label), so a function prop cannot reach them from the page -- the
+    // selection is read off the bubbled "change" here instead.
+    const onChange = (e) => {
+      const item = e.target.closest('input[data-slot="radio-group-item"]');
+      if (!item || !root.contains(item)) return;
+      onValueChange && onValueChange(item.value);
+    };
+
+    root.addEventListener("change", onChange);
+    return () => root.removeEventListener("change", onChange);
+  });
 </script>
 
 <div role="radiogroup" data-slot="radio-group" class="{classes()}">{children}</div>
