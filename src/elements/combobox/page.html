@@ -10,6 +10,10 @@
   import { snippets } from "./snippets";
 
   const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape"];
+
+  const state = { log: "Search and pick a fruit, or clear it" };
+  const onComboboxChange = (value) => (state.log = "onchange: " + value);
+  const onComboboxClear = () => (state.log = "onclear");
 </script>
 
 <Navbar />
@@ -25,5 +29,21 @@
   </DemoBlock>
   
   <InstallBlock id="combobox" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}" previewClass="min-h-50 items-start">
+    <div class="flex flex-col gap-3">
+      <Combobox
+        items="{fruits}"
+        placeholder="Search fruit…"
+        showClear="{true}"
+        emptyText="No fruit found."
+        class="w-56"
+        onchange="{onComboboxChange}"
+        onclear="{onComboboxClear}"
+      />
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
+  </DemoBlock>
+
   <Pager id="combobox" />
 </div>

@@ -10,6 +10,9 @@
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
+
+  const state = { log: "Pick a fruit" };
+  const onNativeSelectChange = (e) => (state.log = "onchange: " + e.target.value);
 </script>
 
 <Navbar />
@@ -32,6 +35,17 @@
     </NativeSelect>
   </DemoBlock>
   <InstallBlock id="native-select" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col gap-3">
+      <NativeSelect onchange="{onNativeSelectChange}">
+        <NativeSelectOption value="apple">Apple</NativeSelectOption>
+        <NativeSelectOption value="banana">Banana</NativeSelectOption>
+        <NativeSelectOption value="carrot">Carrot</NativeSelectOption>
+      </NativeSelect>
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
+  </DemoBlock>
 
   <Pager id="native-select" />
 </div>

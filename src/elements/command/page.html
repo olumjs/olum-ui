@@ -29,6 +29,11 @@
     plus: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>`,
     folder: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></svg>`,
   };
+
+  const state = { log: "Pick an item" };
+  const onSelectCalendar = () => (state.log = "onselect: Calendar");
+  const onSelectSearch = () => (state.log = "onselect: Search");
+  const onSelectProfile = () => (state.log = "onselect: Profile");
 </script>
 
 <Navbar />
@@ -96,6 +101,29 @@
         </Command>
       </CommandDialogContent>
     </CommandDialog>
+  </DemoBlock>
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col gap-3">
+      <Command class="w-72 rounded-lg border border-border">
+        <CommandInput placeholder="Type a command…" />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Suggestions">
+            <CommandItem onselect="{onSelectCalendar}">
+              <div html="icons.calendar"></div> Calendar
+            </CommandItem>
+            <CommandItem onselect="{onSelectSearch}">
+              <div html="icons.search"></div> Search
+            </CommandItem>
+            <CommandItem onselect="{onSelectProfile}">
+              <div html="icons.user"></div> Profile
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </Command>
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
   </DemoBlock>
 
   <Pager id="command" />

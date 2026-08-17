@@ -8,6 +8,12 @@
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
+
+  const state = { log: "Type, focus, or blur the textarea" };
+  const onTextareaInput = (e) => (state.log = "oninput: " + e.target.value);
+  const onTextareaChange = (e) => (state.log = "onchange: " + e.target.value);
+  const onTextareaFocus = () => (state.log = "onfocus");
+  const onTextareaBlur = () => (state.log = "onblur");
 </script>
 
 <Navbar />
@@ -23,6 +29,13 @@
     <Textarea placeholder="Disabled" disabled="{true}" class="w-64" />
   </DemoBlock>
   <InstallBlock id="textarea" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex w-64 flex-col gap-3">
+      <Textarea placeholder="Type here" oninput="{onTextareaInput}" onchange="{onTextareaChange}" onfocus="{onTextareaFocus}" onblur="{onTextareaBlur}" class="w-64" />
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
+  </DemoBlock>
 
   <Pager id="textarea" />
 </div>

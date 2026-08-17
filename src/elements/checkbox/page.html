@@ -9,6 +9,9 @@
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
+
+  const state = { log: "Toggle the checkbox" };
+  const onCheckboxChange = (checked) => (state.log = "onchange: " + checked);
 </script>
 
 <Navbar />
@@ -34,6 +37,16 @@
     </div>
   </DemoBlock>
   <InstallBlock id="checkbox" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-2">
+        <Checkbox id="cb-events" onchange="{onCheckboxChange}" />
+        <Label for="cb-events">Notify me</Label>
+      </div>
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
+  </DemoBlock>
 
   <Pager id="checkbox" />
 </div>

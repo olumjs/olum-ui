@@ -11,6 +11,10 @@
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
+
+  const state = { log: "Type the 6-digit code" };
+  const onOtpInput = (value) => (state.log = "oninput: " + value);
+  const onOtpComplete = (value) => (state.log = "oncomplete: " + value);
 </script>
 
 <Navbar />
@@ -38,5 +42,25 @@
   </DemoBlock>
 
   <InstallBlock id="input-otp" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col gap-3">
+      <InputOTP maxLength="{6}" oninput="{onOtpInput}" oncomplete="{onOtpComplete}">
+        <InputOTPGroup>
+          <InputOTPSlot index="{0}" />
+          <InputOTPSlot index="{1}" />
+          <InputOTPSlot index="{2}" />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index="{3}" />
+          <InputOTPSlot index="{4}" />
+          <InputOTPSlot index="{5}" />
+        </InputOTPGroup>
+      </InputOTP>
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
+  </DemoBlock>
+
   <Pager id="input-otp" />
 </div>

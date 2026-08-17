@@ -18,6 +18,9 @@
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
 
+  const state = { log: "Open the dialog and confirm" };
+  const onConfirmClick = () => (state.log = "onclick: action confirmed");
+
   const icons = {
     trash: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /></svg>`,
   };
@@ -65,6 +68,25 @@
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
+  </DemoBlock>
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col gap-3">
+      <AlertDialog>
+        <AlertDialogTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Delete account</AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onclick="{onConfirmClick}">Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
   </DemoBlock>
 
   <Pager id="alert-dialog" />

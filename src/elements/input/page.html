@@ -8,6 +8,12 @@
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
+
+  const state = { log: "Type, focus, or blur the input" };
+  const onInputInput = (e) => (state.log = "oninput: " + e.target.value);
+  const onInputChange = (e) => (state.log = "onchange: " + e.target.value);
+  const onInputFocus = () => (state.log = "onfocus");
+  const onInputBlur = () => (state.log = "onblur");
 </script>
 
 <Navbar />
@@ -27,6 +33,13 @@
   <InstallBlock id="input" />
   <DemoBlock label="password" snippet="{snippets['password']}">
     <Input type="password" placeholder="Password" />
+  </DemoBlock>
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex w-56 flex-col gap-3">
+      <Input placeholder="Type here" oninput="{onInputInput}" onchange="{onInputChange}" onfocus="{onInputFocus}" onblur="{onInputBlur}" />
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
   </DemoBlock>
 
   <Pager id="input" />

@@ -21,6 +21,11 @@
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
 
+  const state = { log: "Open the menu and pick something" };
+  const onProfileClick = () => (state.log = "onclick: Profile");
+  const onStatusChange = (checked) => (state.log = "onchange: status bar " + checked);
+  const onSizeChange = (value) => (state.log = "onchange: size " + value);
+
   const icons = {
     user: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>`,
     creditCard: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" y1="10" x2="22" y2="10" /></svg>`,
@@ -75,6 +80,25 @@
   </DemoBlock>
 
   <InstallBlock id="dropdown-menu" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col items-center gap-3">
+      <DropdownMenu>
+        <DropdownMenuTrigger class="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-2.5 text-sm hover:bg-muted">Open menu</DropdownMenuTrigger>
+        <DropdownMenuContent class="w-56">
+          <DropdownMenuItem onclick="{onProfileClick}">Profile</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuCheckboxItem defaultChecked="{true}" onchange="{onStatusChange}">Show status bar</DropdownMenuCheckboxItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup>
+            <DropdownMenuRadioItem name="dm-ev-size" value="small" onchange="{onSizeChange}">Small text</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem name="dm-ev-size" value="medium" defaultChecked="{true}" onchange="{onSizeChange}">Medium text</DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
+  </DemoBlock>
 
   <Pager id="dropdown-menu" />
 </div>

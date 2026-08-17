@@ -22,6 +22,10 @@
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
 
+  const state = { log: "Click a menu item" };
+  const onHomeClick = (e) => (state.log = "onclick: Home");
+  const onInboxClick = (e) => (state.log = "onclick: Inbox");
+
   const icons = {
     home: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>`,
     inbox: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12" /><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /></svg>`,
@@ -96,5 +100,34 @@
   </DemoBlock>
 
   <InstallBlock id="sidebar" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="relative isolate h-56 w-full overflow-hidden rounded-xl border border-border">
+      <SidebarProvider class="h-full min-h-0">
+        <Sidebar collapsible="icon">
+          <SidebarContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Home" onclick="{onHomeClick}">
+                  <div html="icons.home"></div>
+                  <span>Home</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Inbox" onclick="{onInboxClick}">
+                  <div html="icons.inbox"></div>
+                  <span>Inbox</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+        </Sidebar>
+        <SidebarInset class="flex-1">
+          <div class="p-4 text-sm text-muted-foreground">{state.log}</div>
+        </SidebarInset>
+      </SidebarProvider>
+    </div>
+  </DemoBlock>
+
   <Pager id="sidebar" />
 </div>

@@ -9,6 +9,9 @@
   import Icon from "../../components/ui/Icon/Icon";
   import { snippets } from "./snippets";
   import { OlumLogo } from "olum-icons";
+
+  const state = { log: "Click the icon" };
+  const onLogoClick = (e) => (state.log = "onclick: logo clicked");
 </script>
 
 <Navbar />
@@ -22,6 +25,13 @@
     <Icon icon="{OlumLogo}" class="w-20 h-auto text-green-300" />
   </DemoBlock>
   <InstallBlock id="icon" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col gap-3">
+      <Icon icon="{OlumLogo}" class="w-20 h-auto text-green-300 cursor-pointer" onclick="{onLogoClick}" />
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
+  </DemoBlock>
 
   <Pager id="icon" />
 </div>

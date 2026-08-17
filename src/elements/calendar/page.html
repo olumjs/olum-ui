@@ -9,6 +9,9 @@
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
   const selectedDate = "2026-12-25";
+
+  const state = { log: "Pick a date" };
+  const onCalendarChange = (date) => (state.log = "onchange: " + date.toDateString());
 </script>
 
 <Navbar />
@@ -27,6 +30,13 @@
     <Calendar selected="{selectedDate}" class="rounded-lg border border-border" />
   </DemoBlock>
   <InstallBlock id="calendar" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col gap-3">
+      <Calendar onchange="{onCalendarChange}" class="rounded-lg border border-border" />
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
+  </DemoBlock>
 
   <Pager id="calendar" />
 </div>

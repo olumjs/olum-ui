@@ -10,6 +10,12 @@
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
+
+  // The group and the item both report the same pick, so they get their own
+  // log lines -- sharing one would let whichever fires last hide the other.
+  const state = { groupLog: "group onchange: -", itemLog: "item onchange: -" };
+  const onGroupChange = (value) => (state.groupLog = "group onchange: " + value);
+  const onItemChange = (value) => (state.itemLog = "item onchange: " + value);
 </script>
 
 <Navbar />
@@ -37,6 +43,23 @@
     </RadioGroup>
   </DemoBlock>
   <InstallBlock id="radio-group" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col gap-3">
+      <RadioGroup class="w-48" onchange="{onGroupChange}">
+        <div class="flex items-center gap-2">
+          <RadioGroupItem name="re" value="one" id="re1" defaultChecked="{true}" onchange="{onItemChange}" />
+          <Label for="re1">One</Label>
+        </div>
+        <div class="flex items-center gap-2">
+          <RadioGroupItem name="re" value="two" id="re2" />
+          <Label for="re2">Two</Label>
+        </div>
+      </RadioGroup>
+      <p class="text-sm text-muted-foreground">{state.groupLog}</p>
+      <p class="text-sm text-muted-foreground">{state.itemLog}</p>
+    </div>
+  </DemoBlock>
 
   <Pager id="radio-group" />
 </div>

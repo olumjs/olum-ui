@@ -20,6 +20,16 @@
   import { snippets } from "./snippets";
 
   const fieldErrors = [{ message: "Email is required." }];
+
+  const state = { email: "", emailInvalid: false, emailErrors: [], log: "Type an email address" };
+  const onEmailInput = (e) => {
+    const value = e.target.value;
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    state.email = value;
+    state.emailInvalid = value.length > 0 && !valid;
+    state.emailErrors = state.emailInvalid ? [{ message: "Email is not valid" }] : [];
+    state.log = "oninput: " + value;
+  };
 </script>
 
 <Navbar />
@@ -52,5 +62,22 @@
   </DemoBlock>
 
   <InstallBlock id="field" />
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <Field class="w-80">
+      <FieldLabel for="field-email-live">Email</FieldLabel>
+      <Input
+        id="field-email-live"
+        type="email"
+        placeholder="you@example.com"
+        value="{state.email}"
+        invalid="{state.emailInvalid}"
+        oninput="{onEmailInput}"
+      />
+      <FieldError errors="{state.emailErrors}" />
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </Field>
+  </DemoBlock>
+
   <Pager id="field" />
 </div>

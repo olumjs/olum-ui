@@ -8,6 +8,10 @@
   import InstallBlock from "../../components/InstallBlock/InstallBlock";
   import PageHeader from "../../components/PageHeader/PageHeader";
   import { snippets } from "./snippets";
+
+  const state = { log: "Drag the slider" };
+  const onSliderInput = (values) => (state.log = "oninput: " + values.join(", "));
+  const onSliderChange = (values) => (state.log = "onchange: " + values.join(", "));
 </script>
 
 <Navbar />
@@ -25,6 +29,13 @@
 
   <DemoBlock label="range" snippet="{snippets['range']}">
     <Slider defaultValue="{[25, 75]}" class="w-56" />
+  </DemoBlock>
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex w-56 flex-col gap-3">
+      <Slider defaultValue="{[40]}" oninput="{onSliderInput}" onchange="{onSliderChange}" />
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
   </DemoBlock>
 
   <Pager id="slider" />

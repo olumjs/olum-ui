@@ -23,6 +23,9 @@
     file: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /></svg>`,
     plus: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>`,
   };
+
+  const state = { log: "Click an attachment action" };
+  const onAttachmentActionClick = (e) => (state.log = "onclick: remove " + e.currentTarget.dataset.value);
 </script>
 
 <Navbar />
@@ -90,6 +93,42 @@
         <AttachmentDescription>12 KB</AttachmentDescription>
       </AttachmentContent>
     </Attachment>
+  </DemoBlock>
+
+  <DemoBlock label="events" snippet="{snippets['events']}">
+    <div class="flex flex-col gap-3">
+      <AttachmentGroup class="flex-col">
+        <Attachment>
+          <AttachmentMedia>
+            <div html="icons.fileText"></div>
+          </AttachmentMedia>
+          <AttachmentContent>
+            <AttachmentTitle>report.pdf</AttachmentTitle>
+            <AttachmentDescription>2.4 MB</AttachmentDescription>
+          </AttachmentContent>
+          <AttachmentActions>
+            <AttachmentAction value="report.pdf" onclick="{onAttachmentActionClick}">
+              <div html="icons.trash" class="[&_svg]:size-3!"></div>
+            </AttachmentAction>
+          </AttachmentActions>
+        </Attachment>
+        <Attachment>
+          <AttachmentMedia>
+            <div html="icons.file"></div>
+          </AttachmentMedia>
+          <AttachmentContent>
+            <AttachmentTitle>notes.txt</AttachmentTitle>
+            <AttachmentDescription>12 KB</AttachmentDescription>
+          </AttachmentContent>
+          <AttachmentActions>
+            <AttachmentAction value="notes.txt" onclick="{onAttachmentActionClick}">
+              <div html="icons.trash" class="[&_svg]:size-3!"></div>
+            </AttachmentAction>
+          </AttachmentActions>
+        </Attachment>
+      </AttachmentGroup>
+      <p class="text-sm text-muted-foreground">{state.log}</p>
+    </div>
   </DemoBlock>
 
   <Pager id="attachment" />
