@@ -18,21 +18,32 @@
 
   // Slices start at 12 o'clock (-90deg) and go clockwise, each sized
   // proportionally to its share of the total, with a small gap between them.
+  // The gap only separates slices, so with a single non-empty slice there is
+  // nothing to separate and it closes into a whole ring.
   const angles = () => {
     const t = Math.max(1, total());
+    const pad = data.filter((d) => +d.value > 0).length > 1 ? PAD_ANGLE : 0;
     let cursor = -Math.PI / 2;
     return data.map((d) => {
       const span = ((+d.value || 0) / t) * Math.PI * 2;
       const start = cursor;
       const end = cursor + span;
       cursor = end;
-      return { start: start + PAD_ANGLE / 2, end: Math.max(start + PAD_ANGLE / 2, end - PAD_ANGLE / 2) };
+      return { start: start + pad / 2, end: Math.max(start + pad / 2, end - pad / 2) };
     });
   };
 
   const point = (r, a) => [CX + r * Math.cos(a), CY + r * Math.sin(a)];
 
+  // A whole ring's arcs would start and end on the same point, which SVG drops,
+  // so it is drawn as two circles instead -- the inner one wound the other way
+  // to cut the hole.
+  const ringPath = () =>
+    `M ${CX - OUTER_R} ${CY} A ${OUTER_R} ${OUTER_R} 0 1 1 ${CX + OUTER_R} ${CY} A ${OUTER_R} ${OUTER_R} 0 1 1 ${CX - OUTER_R} ${CY} Z ` +
+    `M ${CX - INNER_R} ${CY} A ${INNER_R} ${INNER_R} 0 1 0 ${CX + INNER_R} ${CY} A ${INNER_R} ${INNER_R} 0 1 0 ${CX - INNER_R} ${CY} Z`;
+
   const slicePath = (start, end) => {
+    if (end - start >= Math.PI * 2 - 1e-6) return ringPath();
     const largeArc = end - start > Math.PI ? 1 : 0;
     const [x1, y1] = point(OUTER_R, start);
     const [x2, y2] = point(OUTER_R, end);
