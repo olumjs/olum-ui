@@ -2461,8 +2461,22 @@
   :where([data-slot="tooltip-content"]) .in-data-\[slot\=tooltip-content\]\:text-background {
     color: var(--olum-background);
   }
+  .has-checked\:bg-background:has(:checked) {
+    background-color: var(--olum-background);
+  }
   .has-checked\:bg-muted:has(:checked) {
     background-color: var(--olum-muted);
+  }
+  .has-checked\:text-foreground:has(:checked) {
+    color: var(--olum-foreground);
+  }
+  .has-checked\:shadow-sm:has(:checked) {
+    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .has-checked\:after\:opacity-100:has(:checked)::after {
+    content: var(--tw-content);
+    opacity: 100%;
   }
   .has-focus-visible\:border-ring:has(:focus-visible) {
     border-color: var(--olum-ring);
@@ -2537,20 +2551,6 @@
   }
   .has-data-\[slot\=card-footer\]\:pb-0:has([data-slot="card-footer"]) {
     padding-bottom: 0px;
-  }
-  .has-\[\:checked\]\:bg-background:has(:is(:checked)) {
-    background-color: var(--olum-background);
-  }
-  .has-\[\:checked\]\:text-foreground:has(:is(:checked)) {
-    color: var(--olum-foreground);
-  }
-  .has-\[\:checked\]\:shadow-sm:has(:is(:checked)) {
-    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-  .has-\[\:checked\]\:after\:opacity-100:has(:is(:checked))::after {
-    content: var(--tw-content);
-    opacity: 100%;
   }
   .has-\[\[data-align\=block-end\]\]\:h-auto:has(:is([data-align=block-end])) {
     height: auto;
