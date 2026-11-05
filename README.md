@@ -80,3 +80,55 @@ Every component here is an original implementation written directly in OlumJS �
 ## License
 
 [MIT](./LICENSE.md). See [attribution.md](./attribution.md) for the third-party notices that come with the bundled icons and fonts.
+
+## Contributing
+Thanks for wanting to help make Olum UI better! 💙 Bug fixes, new features, and docs improvements are all welcome.
+
+### Step by step
+1. **Fork** the repo and clone your fork:
+   ```bash
+   git clone https://github.com/<your-username>/olum-ui.git
+   cd olum-ui
+   ```
+2. **Make sure you're up to date** with `main`:
+   ```bash
+   git fetch origin
+   git checkout main
+   ```
+3. **Create your own branch from it:**
+   ```bash
+   git checkout -b feat/my-awesome-feature
+   # or: git checkout -b fix/describe-the-bug
+   ```
+4. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+5. **Make your change.** Components live in `src/components/ui/`, demo pages in `src/elements/<component>/page.html`, and `registry.json` is the manifest the CLI reads. Keep the change focused: one feature or fix per PR.
+6. **Preview your change** with `npm run dev`. Run `npm run snippets` after editing any demo page or a description in `registry.json` — generated files (`snippets.js`, `docs/`) should not be hand-edited.
+7. **Commit** using a clear message, following the existing style:
+   ```
+   feat: add a new component
+   fix: describe the bug
+   ```
+8. **Push** your branch to your fork:
+   ```bash
+   git push origin feat/my-awesome-feature
+   ```
+9. **Open a Pull Request** against `main`. Describe what changed, why, and include a screenshot or small example if it's user-facing.
+
+### PR checklist
+- [ ] Branched from the latest `main`
+- [ ] PR targets `main`
+- [ ] One focused change, clear commit messages
+
+Questions or unsure about an idea? Ask in [Discord](https://discord.gg/2zK7tb2Cg9) before you start — we're happy to help.
+
+## Community
+- [X](https://x.com/olumjs)
+- [Bluesky](https://bsky.app/profile/olumjs.bsky.social)
+- [Discord](https://discord.gg/2zK7tb2Cg9)
+
+## Contact
+- General: [hello@olumjs.top](mailto:hello@olumjs.top)
+- Security: [security@olumjs.top](mailto:security@olumjs.top) — please report vulnerabilities here privately rather than opening a public issue
